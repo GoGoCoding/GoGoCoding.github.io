@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="key establishment (key exchange, key negotiation) 是一个过程或协议，从而使共享的秘密可供两方随后的加密通信使用，建立技术可以是秘钥协商或秘钥传输方案。  在秘钥协商方案中，双方都参与共享密钥的协商。 秘钥协商方案典型的有Diffie-Hellman(DHKE) 和Elliptic-Curve Diffie-Hellman (ECDH)。 在秘钥传输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05 Key Exchange &#x2F; Key Establishment Schemes">
+<meta property="og:url" content="https://gogocoding.github.io/2020/03/05/CryptoGraphy/05%20Key%20Exchange%20-%20Key%20Establishment%20Schemes/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="key establishment (key exchange, key negotiation) 是一个过程或协议，从而使共享的秘密可供两方随后的加密通信使用，建立技术可以是秘钥协商或秘钥传输方案。  在秘钥协商方案中，双方都参与共享密钥的协商。 秘钥协商方案典型的有Diffie-Hellman(DHKE) 和Elliptic-Curve Diffie-Hellman (ECDH)。 在秘钥传输">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/Mixed%20color%201.png">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/Mixed%20color%202.png">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/The%20DHKE%20Protocol.png">
+<meta property="article:published_time" content="2020-03-05T06:37:16.000Z">
+<meta property="article:modified_time" content="2020-09-08T09:12:44.315Z">
+<meta property="article:author" content="Hao Qi">
+<meta property="article:tag" content="CryptoGraphy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/Mixed%20color%201.png">
+
+<link rel="canonical" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/05%20Key%20Exchange%20-%20Key%20Establishment%20Schemes/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>05 Key Exchange / Key Establishment Schemes | GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/05%20Key%20Exchange%20-%20Key%20Establishment%20Schemes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          05 Key Exchange / Key Establishment Schemes
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:16" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:16+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="http://cacr.uwaterloo.ca/hac/about/chap12.pdf" target="_blank" rel="noopener"><strong>key establishment</strong></a> (<strong>key exchange</strong>, <strong>key negotiation</strong>) 是一个过程或协议，从而使共享的秘密可供两方随后的加密通信使用，建立技术可以是秘钥协商或秘钥传输方案。</p>
+<ul>
+<li>在秘钥协商方案中，双方都参与共享密钥的协商。 秘钥协商方案典型的有<strong>Diffie-Hellman</strong>(DHKE) 和<strong>Elliptic-Curve Diffie-Hellman</strong> (ECDH)。</li>
+<li>在秘钥传输方案中，只有一方参与生产共享密钥，另一方从他获取密钥。密钥传输方案通常通过公钥密码术实现，例如 在<strong>RSA</strong>密钥交换中，客户端使用其私钥对随机会话密钥进行加密，然后将其发送到服务器，在服务器中使用客户端的公钥对其进行解密。</li>
+</ul>
+<p>​通过设计密钥交换方案，可以安全地在两方之间交换加密密钥，而其他任何人都无法获得密钥的副本。通常，在加密对话的开始时（例如在TLS握手阶段），各方首先协商要在对话中使用的共享秘钥。</p>
+<p>每当便携式计算机连接到Wi-Fi网络或Web浏览器通过https：//协议打开网站时，都会执行密钥协商（密钥建立）方案。密钥协商可以基于匿名密钥交换协议（例如<code>DHKE</code>），密码或预共享密钥（PSK），数字证书或许多元素的组合。 一些通信协议仅建立一次共享密钥，而另一些则随时间不断更改密钥。</p>
+<p>​身份验证密钥交换（AKE）是密钥交换协议中会话密钥的交换，该协议还对有关各方的身份进行身份验证（例如通过密码，公钥或数字证书）。例如，如果您连接到受密码保护的WiFi网络，则使用经过身份验证的密钥协商协议，在大多数情况下，将使用经过密码认证的密钥协商（PAKE）。 如果您连接到公共WiFi网络，则会执行匿名密钥协议。</p>
+<h2 id="51-diffiehellman-key-exchange-dhke"><a class="markdownIt-Anchor" href="#51-diffiehellman-key-exchange-dhke"></a> 5.1 Diffie–Hellman Key Exchange (DHKE)</h2>
+<p>​<a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange" target="_blank" rel="noopener"><strong>Diffie–Hellman Key Exchange</strong></a> (DHKE) 是一种通过公共（不安全的）渠道也可以安全地交换加密密钥的方案。交换的密钥稍后用于加密通信（例如，使用诸如AES之类的对称密码）。Diffie-Hellman（DH）方法是匿名密钥协商方案：它允许彼此不具有先验知识的两方通过不安全的信道共同建立共享密钥。DHKE方法可以抵抗<a href="https://en.wikipedia.org/wiki/Sniffing_attack" target="_blank" rel="noopener"><strong>sniffing attacks</strong></a> (数据拦截)，但它容易受到<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener"><strong>man-in-the-middle attacks</strong></a> （中间人攻击，攻击者会偷偷中继并可能改变双方的通信）。</p>
+<p>​Diffie-Hellman密钥交换协议可以使用离散对数（经典 <a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange" target="_blank" rel="noopener"><strong>DHKE</strong></a>算法）或椭圆曲线加密算法（ <a href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman" target="_blank" rel="noopener"><strong>ECDH</strong></a>算法）实现。</p>
+<h2 id="52-通过混合颜色mixing-colors进行密钥交换"><a class="markdownIt-Anchor" href="#52-通过混合颜色mixing-colors进行密钥交换"></a> 5.2 通过混合颜色(Mixing Colors)进行密钥交换</h2>
+<p><code>​Diffie-Hellman</code>密钥交换协议与“<strong>通过混合颜色交换密钥</strong>”的概念非常相似，该协议具有良好的视觉表示，从而简化了对其的理解。这就是为什么我们将首先解释如何通过颜色混合来交换秘密颜色的原因。</p>
+<p>​颜色混合密钥交换方案的设计假定，如果我们有两种不同颜色的液体，我们可以轻松地混合颜色并获得新的颜色，但是反向操作几乎是不可能的：无法将混合后的颜色分离回其原始颜色。</p>
+<p><strong>具体操作步骤如下：</strong></p>
+<ol>
+<li><strong>Alice</strong>和<strong>Bob</strong>使用一个无需保密的任意起始（共享）颜色（例如黄色）。</li>
+<li><strong>Alice</strong>和<strong>Bob</strong>分别选择自己保留的私密颜色（例如红色和海绿色）。</li>
+<li><strong>Alice</strong>和<strong>Bob</strong>将他们的私密颜色与共享的颜色混合在一起， 获得用于公开交换的混合色（在我们的示例中为橙色和浅天蓝色）。</li>
+</ol>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/Mixed%20color%201.png" alt="Mixed color 1 -c400" /></p>
+<p><strong>后续步骤如下：</strong></p>
+<ol>
+<li><strong>Alice</strong>和<strong>Bob</strong>公开交换他们的两种混合色。</li>
+<li>最后，<strong>Alice</strong>和<strong>Bob</strong>将他们从对方那里得到的颜色与自己的私密颜色混合在一起，得到最终的颜色。</li>
+</ol>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/Mixed%20color%202.png" alt="Mixed color 2-c400" /></p>
+<p>​Diffie-Hellman密钥交换协议基于相似的概念，但是使用 <a href="https://en.wikipedia.org/wiki/Discrete_logarithm" target="_blank" rel="noopener"><strong>discrete logarithms</strong></a>（离散对数）和 <a href="https://en.wikipedia.org/wiki/Modular_exponentiation" target="_blank" rel="noopener"><strong>modular exponentiations</strong></a> （模化指数）而不是颜色混合。</p>
+<h2 id="53-dhke背后的数学理论"><a class="markdownIt-Anchor" href="#53-dhke背后的数学理论"></a> 5.3 DHKE背后的数学理论</h2>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>b</mi></msup><msup><mo stretchy="false">)</mo><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mi>e</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">(g^a)^b \quad mod \quad p = (g^b)^a \quad mode \quad p
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></span></p>
+<p><strong>g</strong>, <strong>a</strong>, <strong>b</strong> 和 <strong>p</strong>都是正整数；<br />
+当我们已知 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><msup><mi>g</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">A = g^a \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>=</mo><msup><mi>g</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">B = g^b \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.043548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span>，我们可以在不知道 a 或 b 的情况下计算 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">(g^a)^b \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></p>
+<p><code>注</code>: 如果$ m = g^s \quad mod \quad p $, 即使<strong>m</strong> 、<strong>g</strong>、<strong>p</strong>已知的情况下，也没有有效的（快速）算法来找到私密指数<strong>s</strong>，<a href="https://en.wikipedia.org/wiki/Discrete_Logarithm_Problem_(DLP)" target="_blank" rel="noopener">Discrete Logartihm Problem (DLP)</a>。</p>
+<p><strong>离散对数问题（ Discrete Logarithm Problem，DLP）</strong></p>
+<p>计算机科学中的离散对数问题（DLP）定义如下：</p>
+<ul>
+<li>通过给定元素<strong>b</strong>和值<strong>a</strong> = $ b^x $来找到指数 <strong>x</strong>（如果存在）</li>
+</ul>
+<p>指数<strong>x</strong>称为离散对数，即<strong>x</strong> =$ \log_ba$</p>
+<p><strong>The DHKE Protocol</strong></p>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/The%20DHKE%20Protocol.png" alt="The DHKE Protoco -c400" /></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><msup><mi>A</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><msup><mo stretchy="false">)</mo><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><msup><mi>B</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">S=A^b \quad mod \quad p = (g^a \quad mod \quad p)^b \quad mod \quad p = (g^a)^b \quad mod  \quad p = (g^b \quad mod \quad p)^a \quad mod \quad p = B^a \quad mod \quad p
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.093548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9088319999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></span></p>
+<h2 id="54-ecdh-基于椭圆曲线的diffie-hellman密钥交换协议"><a class="markdownIt-Anchor" href="#54-ecdh-基于椭圆曲线的diffie-hellman密钥交换协议"></a> 5.4 ECDH-基于椭圆曲线的Diffie-Hellman密钥交换协议</h2>
+<p>​**<a href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman" target="_blank" rel="noopener">Elliptic-Curve Diffie–Hellman (ECDH)</a>** 是一个匿名密钥协商协议，该协议允许两方（每方都有一个椭圆曲线的公私钥对）在不安全的通道上建立共享秘钥。ECDH是经典DHKE协议的一种变体，其中模化指数计算被椭圆曲线计算代替以提高安全性。稍后我们将详细解释椭圆曲线密码学（ECC）部分。</p>
+<h2 id="55-dhke-使用示例"><a class="markdownIt-Anchor" href="#55-dhke-使用示例"></a> 5.5 DHKE 使用示例</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyDHE</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyDHE</span><br><span class="line"></span><br><span class="line">alice = pyDHE.new()</span><br><span class="line">alicePubKey = alice.getPublicKey()</span><br><span class="line">print(<span class="string">"Alice public key:"</span>, hex(alicePubKey))</span><br><span class="line"></span><br><span class="line">bob = pyDHE.new()</span><br><span class="line">bobPubKey = bob.getPublicKey()</span><br><span class="line">print(<span class="string">"Bob public key:"</span>, hex(bobPubKey))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Now exchange the public keys (e.g. through Internet)"</span>)</span><br><span class="line"></span><br><span class="line">aliceSharedKey = alice.update(bobPubKey)</span><br><span class="line">print(<span class="string">"Alice shared key:"</span>, hex(aliceSharedKey))</span><br><span class="line"></span><br><span class="line">bobSharedKey = bob.update(alicePubKey)</span><br><span class="line">print(<span class="string">"Bob shared key:"</span>, hex(bobSharedKey))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Equal shared keys:"</span>, aliceSharedKey == bobSharedKey)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Alice public key: 0xa26c2f1354a8f58abbf78172730595c4de8277962ebe92100793f99ea80f66abe5e75a14a52e86ce1c086c1ca2e1662b3900510346d848b425d34279ceea92661fb1166b9438589c0b57eb4ebb69e0c3844ebe5ad4c0e316b637d47148d69dc2387c2968c82d198114a6c0f14a605a9e85110d24a9db4f11963b9b13dc788c0538096cadffd258364c63621f6bb1a3e515d3741af4619e62452a394fab9d84be7cee255fdd7216401cafee6471b4adbb77e93f878f1bb4df633e0632522b51fe70fc154e7d3e60a69f815a4e2a84506f05b1ccfce01e873cd7dc51fba0b6eac66af1c0a7500f71af405a6c34ffd27a1239180c22fbddf8dc15d30c821c57307d</span><br><span class="line">Bob public key: 0x822660dfff1af80c237402263dda9e0e417fa04547a4e36041a35a152df28b0ac66b059d9e0034c7cd58b6b7edbc8a20bf1bdc2af6534bd6f2dbcffeb9a4aa9f038461994622f786258beb8f6493594e1559e5ebf5a92ba60335f668a9ccbf8d6d87460f21d94938ac40cfd78d062571f68aa7e7fbabed4ba582e8e831288670004ae64be113a2c7b5b9a472ba4733ea4f29c1b1f30ead3729908d9bb54278a499b2c16cc62d4f330a28cdd302bf655f3d724b6d5b0655c9299ada183d8bed4e98c2f0d93339eb3c22c88c9d000de4ea3286b6be5b96e7d7cccb7b8d6a079264e155c5b25b5aca21ccfed7d21d5dce79845fe5456419504ec9c2a896448572e7</span><br><span class="line">Now exchange the public keys (e.g. through Internet)</span><br><span class="line">Alice shared key: 0x60d96187ae1db8e8acac7795837a2964e4972ebf666eaecfa09135371a2de5287db18c1a30f2af840f04cac42fea21e42369af5ffbeb235faa42da6bed24cd922ea4637ad146558f2d8b07b19a0084c19f041af5456a5826dd836d0c9c4f32ca0a5877da9493af36f66949e76af12e45a20b20c222a37a49b658066bd7b1f79bcf81d1083e79c62c43e3ee11f8727e798e310a2683939c06b75ab80c531743d6c03c90007ab8a36af45b3573f4e41a2a41c9fdde962493f9ed860597ee527d978e41a413d13198aaac2b27e70aac5be15fd695592350c56b6d74b3427dcf6888ee11cef4b4d8f5b3acbfbda1d9b8d7425bc9446e1a6424a929d9136590161cfe</span><br><span class="line">Bob shared key: 0x60d96187ae1db8e8acac7795837a2964e4972ebf666eaecfa09135371a2de5287db18c1a30f2af840f04cac42fea21e42369af5ffbeb235faa42da6bed24cd922ea4637ad146558f2d8b07b19a0084c19f041af5456a5826dd836d0c9c4f32ca0a5877da9493af36f66949e76af12e45a20b20c222a37a49b658066bd7b1f79bcf81d1083e79c62c43e3ee11f8727e798e310a2683939c06b75ab80c531743d6c03c90007ab8a36af45b3573f4e41a2a41c9fdde962493f9ed860597ee527d978e41a413d13198aaac2b27e70aac5be15fd695592350c56b6d74b3427dcf6888ee11cef4b4d8f5b3acbfbda1d9b8d7425bc9446e1a6424a929d9136590161cfe</span><br><span class="line">Equal shared keys: True</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/04.%20Secure%20Random%20Number%20Generators,%20PRNG%20and%20CSPRNG/" rel="prev" title="04. Secure Random Number Generators, PRNG and CSPRNG">
+      <i class="fa fa-chevron-left"></i> 04. Secure Random Number Generators, PRNG and CSPRNG
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/06.%20Symmetric%20and%20Asymmetric%20Encryption%20-%20Overview/" rel="next" title="06. Symmetric and Asymmetric Encryption - Overview">
+      06. Symmetric and Asymmetric Encryption - Overview <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#51-diffiehellman-key-exchange-dhke"><span class="nav-number">1.</span> <span class="nav-text"> 5.1 Diffie–Hellman Key Exchange (DHKE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#52-通过混合颜色mixing-colors进行密钥交换"><span class="nav-number">2.</span> <span class="nav-text"> 5.2 通过混合颜色(Mixing Colors)进行密钥交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#53-dhke背后的数学理论"><span class="nav-number">3.</span> <span class="nav-text"> 5.3 DHKE背后的数学理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#54-ecdh-基于椭圆曲线的diffie-hellman密钥交换协议"><span class="nav-number">4.</span> <span class="nav-text"> 5.4 ECDH-基于椭圆曲线的Diffie-Hellman密钥交换协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#55-dhke-使用示例"><span class="nav-number">5.</span> <span class="nav-text"> 5.5 DHKE 使用示例</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>

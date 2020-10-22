@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="​Elliptic Curve Cryptography (ECC)是现代的公钥加密系统，它基于有限域上的椭圆曲线的代数结构以及椭圆曲线离散对数问题（ECDLP）的难度。 ​ECC实现了非对称密码系统的所有主要功能：加密，签名和密钥交换。 ​ECC加密被认为是RSA加密的自然的后继产品，因为在相同的安全级别上，ECC使用的密钥和签名比RSA小，并且提供了更高效率的密钥生成，密钥协商和数字签名。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11. Elliptic Curve Cryptography (ECC) - Concepts">
+<meta property="og:url" content="https://gogocoding.github.io/2020/03/05/CryptoGraphy/11.%20Elliptic%20Curve%20Cryptography%20(ECC)%20-%20Concepts/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="​Elliptic Curve Cryptography (ECC)是现代的公钥加密系统，它基于有限域上的椭圆曲线的代数结构以及椭圆曲线离散对数问题（ECDLP）的难度。 ​ECC实现了非对称密码系统的所有主要功能：加密，签名和密钥交换。 ​ECC加密被认为是RSA加密的自然的后继产品，因为在相同的安全级别上，ECC使用的密钥和签名比RSA小，并且提供了更高效率的密钥生成，密钥协商和数字签名。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/secp256k1.png">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/f17.png">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/ecc%20calc.png">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/k%20e%206.png">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/cofactor.png">
+<meta property="og:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/G.png">
+<meta property="article:published_time" content="2020-03-05T06:37:22.000Z">
+<meta property="article:modified_time" content="2020-09-08T09:12:44.316Z">
+<meta property="article:author" content="Hao Qi">
+<meta property="article:tag" content="CryptoGraphy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q6r9jgptb.bkt.clouddn.com/mweb/secp256k1.png">
+
+<link rel="canonical" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/11.%20Elliptic%20Curve%20Cryptography%20(ECC)%20-%20Concepts/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>11. Elliptic Curve Cryptography (ECC) - Concepts | GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/11.%20Elliptic%20Curve%20Cryptography%20(ECC)%20-%20Concepts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          11. Elliptic Curve Cryptography (ECC) - Concepts
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:22" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:22+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>​<a href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography" target="_blank" rel="noopener"><strong>Elliptic Curve Cryptography (ECC)</strong></a>是现代的公钥加密系统，它基于有限域上的椭圆曲线的代数结构以及椭圆曲线离散对数问题（ECDLP）的难度。</p>
+<p>​ECC实现了非对称密码系统的所有主要功能：加密，签名和密钥交换。</p>
+<p>​ECC加密被认为是RSA加密的自然的后继产品，因为在相同的安全级别上，ECC使用的密钥和签名比RSA小，并且提供了更高效率的密钥生成，密钥协商和数字签名。</p>
+<h2 id="111-ecc密钥"><a class="markdownIt-Anchor" href="#111-ecc密钥"></a> 11.1 ECC密钥</h2>
+<p>​ECC中的私钥是整数（在曲线区域的范围内，通常为256位整数），如:<br />
+<code>0x51897b64e85c3f714bba707e867914295a1377a7463a9dae8ea6a8b914246319</code></p>
+<p>​ECC的密钥生成就像安全地生成一定范围内的随机整数一样简单，因此它非常快。 范围内的任何数字都是有效的ECC私钥。</p>
+<p>​ECC中的公钥是EC点-放置在曲线上的成对的整数坐标{x，y}。 由于其特殊的属性，EC点可以压缩为一个坐标+1位，因此，对应于256位ECC私钥的压缩公钥是257位整数。ECC公钥的示例如下（与上述私钥相对应，以太坊格式编码，前缀为02或03的十六进制）：<br />
+<code>0x02f54ba86dc1ccb5bed0224d23f01ed87e4a443c47fc690d7797a13d41d2340e1a</code></p>
+<p>在这种格式下，公钥实际上占用33个字节（66个十六进制数字），可以将其优化为恰好257位</p>
+<h2 id="112-曲线和秘钥长度"><a class="markdownIt-Anchor" href="#112-曲线和秘钥长度"></a> 11.2 曲线和秘钥长度</h2>
+<p>​ECC加密算法可以使用不同的基础椭圆曲线。 不同的曲线提供不同的安全性（加密强度），不同的性能（速度）和不同的密钥长度，并且可能涉及不同的算法。流行的密码库和安全标准中采用的ECC曲线具有name（命名曲线，例如secp256k1或Curve25519），<strong>field size</strong>（定义密钥长度，例如256位），security <strong>strength</strong>（通常是<strong>field size</strong>/ 2 或 更少），<strong>performance</strong>（操作数/秒）和许多其他参数。</p>
+<p>​ECC密钥的长度直接取决于基础曲线。 在大多数应用程序（如OpenSSL，OpenSSH和Bitcoin）中，ECC私钥的默认密钥长度为256位，但根据曲线，可能有许多不同的ECC密钥大小：192位（curve secp192r1），233位（curve  sect233k1），224位（curve secp224k1），256位（curve secp256k1和curve25519），283位（curve sect283k1），384位（curve p384和secp384r1），409位（curve sect409r1），414位 （curve Curve41417），448位（curve Curve448-Goldilocks），511位（curve M-511），521位（curve P-521），571位（curve sect571k1）等。</p>
+<h2 id="113-ecc算法"><a class="markdownIt-Anchor" href="#113-ecc算法"></a> 11.3 ECC算法</h2>
+<p>ECC 根据有限域上椭圆曲线的数学原理，提供了几组算法：</p>
+<ul>
+<li>ECC数字签名算法： <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm" target="_blank" rel="noopener"><strong>ECDSA</strong></a>和<a href="https://en.wikipedia.org/wiki/EdDSA" target="_blank" rel="noopener"><strong>EdDSA</strong></a></li>
+<li>ECC加密算法和混合加密方案：<a href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme" target="_blank" rel="noopener"><strong>ECIES</strong></a>和<a href="https://cse.unl.edu/~ssamal/crypto/EEECC.pdf" target="_blank" rel="noopener"><strong>EEECC</strong></a></li>
+<li>ECC密钥协商算法： <a href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman" target="_blank" rel="noopener"><strong>ECDH</strong></a>, <a href="https://cryptography.io/en/latest/hazmat/primitives/asymmetric/x25519/" target="_blank" rel="noopener"><strong>X25519</strong></a> 和 <a href="https://fastd.readthedocs.io/en/v18/crypto/fhmqvc.html" target="_blank" rel="noopener"><strong>FHMQV</strong></a></li>
+</ul>
+<h2 id="114-椭圆曲线"><a class="markdownIt-Anchor" href="#114-椭圆曲线"></a> 11.4 椭圆曲线</h2>
+<p>​在数学中，椭圆曲线（<strong><a href="http://mathworld.wolfram.com/EllipticCurve.html" target="_blank" rel="noopener">elliptic curves</a></strong>）是平面代数曲线，由所有点{x，y}组成，由等式描述：</p>
+<ul>
+<li>$Ax^3 + Bx^2y + Cxy^2 + Dy^3 + Ex^2 + Fxy + Gy^2 + Hx + Iy + J = 0 $</li>
+</ul>
+<p>​密码学使用简化形式（Weierstras形式）的椭圆曲线，其定义为：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mi>a</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y^2 = x^3 + ax + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span></li>
+</ul>
+<p>​例如， <a href="https://en.bitcoin.it/wiki/Secp256k1" target="_blank" rel="noopener">NIST curve <code>secp256k1</code></a>（在比特币中使用）基于以下形式的椭圆曲线：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">y^2 = x^3 + 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span></li>
+</ul>
+<p>这是上述椭圆曲线的图形：</p>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/secp256k1.png" alt="secp256k1 -c" /></p>
+<p><code>注</code>:要了解有关椭圆曲线方程式及其外观的更多信息，请使用在线椭圆曲线可视化工具: <a href="https://www.desmos.com/calculator/ialhd71we3" target="_blank" rel="noopener">https://www.desmos.com/calculator/ialhd71we3</a>.</p>
+<h3 id="1141-有限域上的椭圆曲线"><a class="markdownIt-Anchor" href="#1141-有限域上的椭圆曲线"></a> 11.4.1 有限域上的椭圆曲线</h3>
+<p>​椭圆曲线加密（ECC）在有限域 (<strong><a href="https://en.wikipedia.org/wiki/Finite_field" target="_blank" rel="noopener">finite field</a></strong> ) <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">𝔽p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord mathbb">F</span><span class="mord mathdefault">p</span></span></span></span>（其中p是素数且p&gt; 3）或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">𝔽2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">F</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span>（其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>=</mo><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">p = 2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span>）上使用椭圆曲线。即该域是大小为p x p的方阵，并且仅限于曲线上的在该域内的整数坐标。域内的所有代数运算（例如点加法和乘法）都会得到域内另一个点。有限域<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">𝔽p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord mathbb">F</span><span class="mord mathdefault">p</span></span></span></span>上的椭圆曲线方程采用以下模块化形式：</p>
+<ul>
+<li>$ y^2 ≡ x^3 + ax + b \quad (mod \quad p)$</li>
+</ul>
+<p>“比特币曲线” secp256k1采用以下形式：</p>
+<ul>
+<li>$ y^2 ≡ x^3 + 7 \quad (mod \quad p)$</li>
+</ul>
+<p>​与RSA不同，RSA的密钥空间使用[0 … p-1]范围内的整数（域<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Z</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">ℤp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord amsrm">Z</span><span class="mord mathdefault">p</span></span></span></span>）；ECC使用Galois域<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">𝔽p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord mathbb">F</span><span class="mord mathdefault">p</span></span></span></span>中的点{x，y}（其中x和y是[0 … p-1]范围内的整数）。</p>
+<p>​有限域<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">𝔽p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord mathbb">F</span><span class="mord mathdefault">p</span></span></span></span>上的椭圆曲线包括：</p>
+<ul>
+<li>一组整数坐标{x，y}，使得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo>≤</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>&lt;</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">0≤x, y &lt;p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span></li>
+<li>保持在椭圆曲线上：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>≡</mo><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mi>a</mi><mi>x</mi><mo>+</mo><mi>b</mi><mspace width="1em"/><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y^2≡x^3 + ax + b \quad (mod \quad p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<p>有限域<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><mn>17</mn></mrow><annotation encoding="application/x-tex">𝔽17</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">F</span><span class="mord">1</span><span class="mord">7</span></span></span></span>上的椭圆曲线示例：</p>
+<ul>
+<li>$ y^2 ≡ x^3 + 7 \quad (mod \quad 17)$</li>
+</ul>
+<p>其曲线如下图所示：</p>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/f17.png" alt="f17 -c" /></p>
+<p>​有限域$ y^2 ≡ x^3 + 7 \quad (mod \quad 17)$上的椭圆曲线由上图的蓝点组成，即在实践中，密码学中使用的“椭圆曲线”是“方阵中的点集”，不是经典的 “曲线”。并且上面的曲线是“学习使用的”。 它只提供了非常小的密钥长度（4-5位）。在现实中，开发人员通常使用256位或更多位的曲线。</p>
+<h3 id="1142-有限域上的椭圆曲线的计算"><a class="markdownIt-Anchor" href="#1142-有限域上的椭圆曲线的计算"></a> 11.4.2 有限域上的椭圆曲线的计算</h3>
+<p>​计算某个点是否属于有限域上的某些椭圆曲线非常容易。 例如，当且仅当以下情况时，点{x，y}属于曲线$ y^2 ≡ x^3 + 7 \quad (mod \quad 17)$：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mn>7</mn><mo>−</mo><msup><mi>y</mi><mn>2</mn></msup><mo>≡</mo><mn>0</mn><mspace width="1em"/><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mn>17</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x^3 + 7 - y^2 ≡ 0 \quad (mod \quad 17)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<p>点P {5，8}属于曲线，因为<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \％ at position 19: …^ 3 + 7-8 ^ 2) \̲％̲ 17 == 0'>(5 ^ 3 + 7-8 ^ 2) \％ 17 == 0</span>；点{9，15}不属于曲线，因为<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \％ at position 22: … + 7 - 15 ^ 2) \̲％̲ 17 \quad != 0'>(9 ^ 3 + 7 - 15 ^ 2) \％ 17 \quad != 0</span></p>
+<p>上面提到的椭圆曲线和点{5，8}和{9，15}如下所示：</p>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/ecc%20calc.png" alt="ecc cal -c" /></p>
+<h3 id="1143-整数乘以ecc点"><a class="markdownIt-Anchor" href="#1143-整数乘以ecc点"></a> 11.4.3 整数乘以ECC点</h3>
+<p>​椭圆曲线上两个点（EC点）可以相加，结果是另一个点。 此操作称为EC点加法。 如果将点G添加到自身G，则结果为$ G + G = 2 \cdot G $ 。如果再次将G添加到结果，则将获得<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>⋅</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">3 \cdot G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span></span></span></span>，依此类推。 这就是EC点乘法的定义。</p>
+<p>​可以将有限域上的椭圆曲线上的点G（EC点）乘以整数k，结果是同一条曲线上的另一个EC点P，此操作很快：</p>
+<ul>
+<li><strong>P</strong> = <strong>k</strong> * <strong>G</strong></li>
+</ul>
+<p>​上面的操作涉及一些公式和转换，但是为简单起见，我们将跳过它们。 要知道的重要一点是，将EC点乘以整数会在同一条曲线上返回另一个EC点，并且此操作很快。 将EC点乘以0将返回一个称为“无穷大”的特殊EC点。</p>
+<p><code>注</code>:  <a href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication" target="_blank" rel="noopener">read more about EC point multiplication</a></p>
+<p><a href="http://blog.51cto.com/11821908/2057726" target="_blank" rel="noopener">http://blog.51cto.com/11821908/2057726</a><br />
+讲解了受限域的曲线下的加法实现计算<br />
+<a href="https://www.jianshu.com/p/2e6031ac3d50" target="_blank" rel="noopener">https://www.jianshu.com/p/2e6031ac3d50</a><br />
+只讲解了无受限域下曲线的加法<br />
+<a href="https://wenku.baidu.com/view/6f2879cca1c7aa00b52acb5f.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/6f2879cca1c7aa00b52acb5f.html</a><br />
+分数求模原理介绍<br />
+<a href="https://www.pediy.com/kssd/pediy06/pediy6014.htm" target="_blank" rel="noopener">https://www.pediy.com/kssd/pediy06/pediy6014.htm</a><br />
+看雪论坛上的详细介绍，提供了加法运算的验证集<br />
+<a href="https://blog.csdn.net/baidu_38271024/article/details/78881031" target="_blank" rel="noopener">https://blog.csdn.net/baidu_38271024/article/details/78881031</a><br />
+乘法逆元求解的python实现</p>
+<p><strong>示例：将EC点乘以整数</strong></p>
+<p>​EC乘法的公式针对曲线的不同表示形式而有所不同。 在此示例中，我们将使用经典Weierstrass形式的椭圆曲线。在有限域<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>≡</mo><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mn>7</mn><mspace width="1em"/><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mn>17</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y^2≡x^3 + 7 \quad(mod \quad 17)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mclose">)</span></span></span></span>上的椭圆曲线上获取EC点G = {15，13}并将其乘以k = 6。我们将获得EC点P = {5，8 }：</p>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/k%20e%206.png" alt="k e 6 -c" /></p>
+<h3 id="1144-椭圆曲线的序和余子式"><a class="markdownIt-Anchor" href="#1144-椭圆曲线的序和余子式"></a> 11.4.4 椭圆曲线的序和余子式</h3>
+<p>​有限域上的一个椭圆曲线可以形成一个由曲线上的所有点组成的有限循环代数群（<strong><a href="https://en.wikipedia.org/wiki/Cyclic_group" target="_blank" rel="noopener">cyclic algebraic group</a></strong>），在有限循环代数群中，如果将两个EC点相加或将一个EC点乘以一个整数，则结果是同一有限循环代数群（在同一条曲线上）的另一个EC点。曲线的序是曲线上所有EC点的总数。该总点数还包括称为“<a href="https://en.wikipedia.org/wiki/Point_at_infinity" target="_blank" rel="noopener"><strong>point at infinity</strong></a>”的特殊点，该特殊点是将一个点乘以0得到的。</p>
+<p>​一些曲线形成单个循环组（保存所有EC点），而另一些曲线形成几个不重叠的循环子群（每个子集中包含曲线EC点的子集）。在第二种情况下，曲线上的点被划分为h个循环子群，每个子群的序为r（每个子群拥有相等数量的点）。整个群的序为$ n = h \cdot r $ ，拥有EC点的子群h的数量称为余子式。</p>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/cofactor.png" alt="cofacto -c" /></p>
+<ul>
+<li>
+<p>$ h = n / r$</p>
+</li>
+<li>
+<p><strong>n</strong> 曲线的序（所有点的数量）</p>
+</li>
+<li>
+<p><strong>h</strong> 曲线的余子式（点的非重叠子群的数量，它们共同保存所有曲线点）</p>
+</li>
+<li>
+<p><strong>r</strong> 子群的数量（每个子群中的点数，包括每个子群的无穷远点）</p>
+</li>
+</ul>
+<p>​换句话说，椭圆曲线上的点位于一个或几个不重叠的子集中，称为子群。 子群的数量称为“余子式”（<strong>cofactor</strong>）。所有子群中的总点数称为曲线的“数量”，通常用n表示。 如果曲线仅包含一个循环子群，则其余子式 h =1。如果曲线包含多个子群，则其余子式 h &gt; 1。</p>
+<ul>
+<li>Example of elliptic curve having <strong>cofactor</strong> = <strong>1</strong> is <code>secp256k1</code>.</li>
+<li>Example of elliptic curve having <strong>cofactor</strong> = <strong>8</strong> is <code>Curve25519</code>.</li>
+<li>Example of elliptic curve having <strong>cofactor</strong> = <strong>4</strong> is <code>Curve448</code>.</li>
+</ul>
+<h3 id="1145-ecc中的生成器点"><a class="markdownIt-Anchor" href="#1145-ecc中的生成器点"></a> 11.4.5 ECC中的“生成器”点</h3>
+<p>​对于有限域上的椭圆曲线，ECC密码系统定义了一个特殊的预定义（恒定）EC点，称为生成器点G（<strong><a href="https://en.wikipedia.org/wiki/Generating_set_of_a_group" target="_blank" rel="noopener">generator point G</a></strong>，<strong>base point</strong>），该点可以通过将G乘以某个整数来生成其在椭圆曲线上的子群中在[0 … r]范围内的任何其他点。这个数字 <strong>r</strong> 称为循环子群的“序”(子群中所有点的总数)。</p>
+<p>​对于余子式 <code>h</code> = 1 的曲线，只有一个子群，曲线的序 <code>n</code>（曲线上不同点的总数，包括无穷大）等于数r。</p>
+<p>​当选择好 G 和 n，且 cofactor = 1时，可以通过将生成器点G乘以[1 … n]范围内的整数，从生成器点G生成曲线上所有可能的EC点（包括特殊点无穷大）。该整数<code>n</code>被称为“曲线的序”。</p>
+<p>​从某个EC生成器点G（可能与曲线的 序不同）获得的子群的序 <code>r</code> 定义了该曲线所有可能的私钥的总数：$ r = n / h$</p>
+<p>​密码学家精心选择椭圆曲线域参数（曲线方程，生成器点，余子式等），以确保密钥空间足够大，足以保证一定的密码强度。</p>
+<p>​<strong>总而言之</strong>，在ECC密码学中，EC点与生成器点G一起形成循环群（或循环子群），这意味着存在数 r（r&gt; 1），从而r * G = 0 * G = <strong>infinity</strong> 子群中的所有点都可以通过将G乘以[1 … r]范围内的整数来获得。数字 r 称为组（或子群）的“序”。</p>
+<p>​椭圆曲线子群通常具有许多生成器点，但是密码学家会仔细选择其中的一个，从而生成整个群（或子群），并且适合于计算中的性能优化。</p>
+<p>​众所周知，对于某些曲线，不同的生成器点会生成不同“序”的子群。 更准确地说，如果组序为n，则对于每个除以n的素数d，都会存在一个点Q，使得d * Q =<strong>infinity</strong>。 这意味着用作同一条曲线的生成器的某些点将比其他点生成更小的子群。 如果 <code>r</code> 较小，则安全性较弱。这就是所谓的 <strong><a href="https://tools.ietf.org/html/rfc2785" target="_blank" rel="noopener">“small-subgroup” attacks</a></strong>。这就是密码学家通常选择子群序 r 为质数的原因。</p>
+<p>​对于余子式 h &gt; 1的椭圆曲线，不同的基点可以在曲线上生成EC点的不同子群。 通过选择某个生成器点，我们选择在曲线上的某个子群上进行操作，使得大多数EC点操作和ECC加密算法很好地工作。应该特别注意，应该仅使用经过验证的ECC实现，算法和软件包。</p>
+<h3 id="1146-生成器点示例"><a class="markdownIt-Anchor" href="#1146-生成器点示例"></a> 11.4.6 “生成器”点示例</h3>
+<p>​在上面的示例（有限域 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>≡</mo><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mn>7</mn><mspace width="1em"/><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mn>17</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y^2≡x^3 + 7 \quad(mod \quad 17)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mclose">)</span></span></span></span>上的EC点）上，如果我们将点G = {15，13}作为生成器点，则曲线上的任何其他点都可以通过将G乘以 range[1 … 18]。 因此，此EC的 序 n = 18，其余子式 h = 1。曲线具有17个正常EC点（如上图所示）+ 一个特殊的“无穷远点”，全部位于一个子群中，并且曲线顺序为18（而不是17）。</p>
+<p>​如果我们将点{5，9}作为生成器，它将仅生成3个EC点：{5，8}，{5，9}和无穷大点。 由于曲线 序 不是素数，因此不同的生成器可能会生成不同 序 的子群。 这是一个 “为什么我们不应该出于加密目的而“发明”自己的椭圆曲线，而应该使用经过验证的曲线”的例子，。</p>
+<h3 id="1147-ecc中的私钥公钥和生成器点"><a class="markdownIt-Anchor" href="#1147-ecc中的私钥公钥和生成器点"></a> 11.4.7 ECC中的私钥，公钥和生成器点</h3>
+<p>​在ECC中，当将固定的EC点G（生成器点）乘以某个整数k（k可以视为私钥）时，我们获得EC点P（即k对应的公钥）。</p>
+<p>因此，在ECC中，我们具有：</p>
+<ul>
+<li>有限域<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">𝔽p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord mathbb">F</span><span class="mord mathdefault">p</span></span></span></span>上的椭圆曲线（EC）</li>
+<li>$ G == generator \quad point $ (EC的基点);</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mo>=</mo><mi>p</mi><mi>r</mi><mi>i</mi><mi>v</mi><mi>a</mi><mi>t</mi><mi>e</mi><mspace width="1em"/><mi>k</mi><mi>e</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">k ==private \quad key</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>  整数</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>=</mo><mo>=</mo><mi>p</mi><mi>u</mi><mi>b</mi><mi>l</mi><mi>i</mi><mi>c</mi><mspace width="1em"/><mi>k</mi><mi>e</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">P == public \quad key</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">u</span><span class="mord mathdefault">b</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 点</li>
+</ul>
+<p>​通过的ECC乘法算法<a href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication" target="_blank" rel="noopener">ECC multiplication algorithms</a>，可以很快地计算出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>=</mo><mi>k</mi><mo>⋅</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">P = k \cdot G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span></span></span></span> ，时间复杂度为： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\log _2 (k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>，</p>
+<p>计算<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mi>P</mi><mi mathvariant="normal">/</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">k = P / G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord">/</span><span class="mord mathdefault">G</span></span></span></span>非常慢（对于大k而言，这是不可行的）。</p>
+<p>这种不对称性（快速乘法和不可行的慢速相反操作）是ECC密码学背后的安全强度的基础，也称为ECDLP问题。</p>
+<h3 id="1148-椭圆曲线离散对数问题ecdlp"><a class="markdownIt-Anchor" href="#1148-椭圆曲线离散对数问题ecdlp"></a> 11.4.8 椭圆曲线离散对数问题（ECDLP）</h3>
+<p>​计算机科学中的椭圆曲线离散对数问题（ECDLP）定义如下：</p>
+<ul>
+<li>通过在有限域<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">𝔽p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord mathbb">F</span><span class="mord mathdefault">p</span></span></span></span>上给定椭圆曲线，并已知在曲线上生成点G和在曲线上点P，求出整数k（如果存在），使得<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>=</mo><mi>k</mi><mo>⋅</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">P = k \cdot G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span></span></span></span> ；</li>
+</ul>
+<p>​对于（由密码学家精心选择的）有限域和椭圆曲线，ECDLP问题没有有效的解决方案。</p>
+<p>​<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝔽</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">𝔽p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord mathbb">F</span><span class="mord mathdefault">p</span></span></span></span>群中椭圆曲线点的乘法类似于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Z</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">ℤp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.88333em;vertical-align:-0.19444em;"></span><span class="mord amsrm">Z</span><span class="mord mathdefault">p</span></span></span></span> 组中整数的幂（这就是乘法符号），这就是ECDLP问题与DLP问题（<a href="https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/key-exchange/diffie-hellman-key-exchange.html#discrete-logarithm-problem-dlp" target="_blank" rel="noopener"><strong>DLP problem</strong></a>，离散对数问题）的相似之处。</p>
+<h3 id="1149-ec点的乘法-示例"><a class="markdownIt-Anchor" href="#1149-ec点的乘法-示例"></a> 11.4.9 EC点的乘法-示例</h3>
+<p>​首先，安装软件包tinec：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tinyec</span><br></pre></td></tr></table></figure>
+<p>​我们将使用前面示例<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>≡</mo><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mn>7</mn><mspace width="1em"/><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mn>17</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y^2≡x^3 + 7 \quad(mod \quad 17)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mclose">)</span></span></span></span> 对应的曲线，生成点G = {15，13}，其序为n =18。我们将其命名为p1707。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tinyec.ec <span class="keyword">import</span> SubGroup, Curve</span><br><span class="line"></span><br><span class="line">field = SubGroup(p=<span class="number">17</span>, g=(<span class="number">15</span>, <span class="number">13</span>), n=<span class="number">18</span>, h=<span class="number">1</span>)</span><br><span class="line">curve = Curve(a=<span class="number">0</span>, b=<span class="number">7</span>, field=field, name=<span class="string">'p1707'</span>)</span><br><span class="line">print(<span class="string">'curve:'</span>, curve)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">25</span>):</span><br><span class="line">    p = k * curve.g</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;k&#125;</span> * G = (<span class="subst">&#123;p.x&#125;</span>, <span class="subst">&#123;p.y&#125;</span>)"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">curve: &quot;p1707&quot; &#x3D;&gt; y^2 &#x3D; x^3 + 0x + 7 (mod 17)</span><br><span class="line">0 * G &#x3D; (None, None)</span><br><span class="line">1 * G &#x3D; (15, 13)</span><br><span class="line">2 * G &#x3D; (2, 10)</span><br><span class="line">3 * G &#x3D; (8, 3)</span><br><span class="line">4 * G &#x3D; (12, 1)</span><br><span class="line">5 * G &#x3D; (6, 6)</span><br><span class="line">6 * G &#x3D; (5, 8)</span><br><span class="line">7 * G &#x3D; (10, 15)</span><br><span class="line">8 * G &#x3D; (1, 12)</span><br><span class="line">9 * G &#x3D; (3, 0)</span><br><span class="line">10 * G &#x3D; (1, 5)</span><br><span class="line">11 * G &#x3D; (10, 2)</span><br><span class="line">12 * G &#x3D; (5, 9)</span><br><span class="line">13 * G &#x3D; (6, 11)</span><br><span class="line">14 * G &#x3D; (12, 16)</span><br><span class="line">15 * G &#x3D; (8, 14)</span><br><span class="line">16 * G &#x3D; (2, 7)</span><br><span class="line">17 * G &#x3D; (15, 4)</span><br><span class="line">18 * G &#x3D; (None, None)</span><br><span class="line">19 * G &#x3D; (15, 13)</span><br><span class="line">20 * G &#x3D; (2, 10)</span><br><span class="line">21 * G &#x3D; (8, 3)</span><br><span class="line">22 * G &#x3D; (12, 1)</span><br><span class="line">23 * G &#x3D; (6, 6)</span><br><span class="line">24 * G &#x3D; (5, 8)</span><br></pre></td></tr></table></figure>
+<p>​可见0 * G =无穷大。 同样清楚可见，EC群是循环的，EC群的序是n = 18，因为从k = 18开始，接下来的点重复第一个点：</p>
+<ul>
+<li><strong>18</strong> * <strong>G</strong> = <strong>0</strong> * <strong>G</strong> = <em>infinity</em></li>
+<li><strong>19</strong> * <strong>G</strong> = <strong>1</strong> * <strong>G</strong> = {15, 13}</li>
+<li><strong>20</strong> * <strong>G</strong> = <strong>2</strong> * <strong>G</strong> = {2, 10}</li>
+<li><strong>21</strong> * <strong>G</strong> = <strong>3</strong> * <strong>G</strong> = {8, 3}</li>
+<li>etc.</li>
+</ul>
+<p>​下图显示了通过将生成器点G乘以2、3、4，…，17生成的EC点：</p>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/G.png" alt="G -c" /></p>
+<p>​让我们对上面的示例进行一些修改，并将生成器点更改为G’= {5，9}。 这将显着改变输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tinyec.ec <span class="keyword">import</span> SubGroup, Curve</span><br><span class="line"></span><br><span class="line">field = SubGroup(p=<span class="number">17</span>, g=(<span class="number">5</span>, <span class="number">9</span>), n=<span class="number">18</span>, h=<span class="number">1</span>)</span><br><span class="line">curve = Curve(a=<span class="number">0</span>, b=<span class="number">7</span>, field=field, name=<span class="string">'p1707'</span>)</span><br><span class="line">print(<span class="string">'curve:'</span>, curve)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">25</span>):</span><br><span class="line">    p = k * curve.g</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;k&#125;</span> * G' = (<span class="subst">&#123;p.x&#125;</span>, <span class="subst">&#123;p.y&#125;</span>)"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curve: &quot;p1707&quot; &#x3D;&gt; y^2 &#x3D; x^3 + 0x + 7 (mod 17)</span><br><span class="line">0 * G&#39; &#x3D; (None, None)</span><br><span class="line">1 * G&#39; &#x3D; (5, 9)</span><br><span class="line">2 * G&#39; &#x3D; (5, 8)</span><br><span class="line">3 * G&#39; &#x3D; (None, None)</span><br><span class="line">4 * G&#39; &#x3D; (5, 9)</span><br><span class="line">5 * G&#39; &#x3D; (5, 8)</span><br><span class="line">6 * G&#39; &#x3D; (None, None)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>​上面的示例再次确认，为加密设计椭圆曲线应该由密码学家而不是开发人员完成。 开发人员应依赖完善的加密标准和经过验证的加密库。</p>
+<h3 id="11410-ec点的乘法-真实示例"><a class="markdownIt-Anchor" href="#11410-ec点的乘法-真实示例"></a> 11.4.10 EC点的乘法-真实示例</h3>
+<p>​我们使用192位密码曲线secp192r1（192位，p = 6277101735386680763835789423207666416083908700390324961279）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tinyec <span class="keyword">import</span> registry</span><br><span class="line"></span><br><span class="line">curve = registry.get_curve(<span class="string">'secp192r1'</span>)</span><br><span class="line">print(<span class="string">'curve:'</span>, curve)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">    p = k * curve.g</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;k&#125;</span> * G = (<span class="subst">&#123;p.x&#125;</span>, <span class="subst">&#123;p.y&#125;</span>)"</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Cofactor ="</span>, curve.field.h)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Cyclic group order ='</span>, curve.field.n)</span><br><span class="line"></span><br><span class="line">nG = curve.field.n * curve.g</span><br><span class="line">print(<span class="string">f"n * G = (<span class="subst">&#123;nG.x&#125;</span>, <span class="subst">&#123;nG.y&#125;</span>)"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">curve: &quot;secp192r1&quot; &#x3D;&gt; y^2 &#x3D; x^3 + 6277101735386680763835789423207666416083908700390324961276x + 2455155546008943817740293915197451784769108058161191238065 (mod 6277101735386680763835789423207666416083908700390324961279)</span><br><span class="line">0 * G &#x3D; (None, None)</span><br><span class="line">1 * G &#x3D; (602046282375688656758213480587526111916698976636884684818, 174050332293622031404857552280219410364023488927386650641)</span><br><span class="line">2 * G &#x3D; (5369744403678710563432458361254544170966096384586764429448, 5429234379789071039750654906915254128254326554272718558123)</span><br><span class="line">3 * G &#x3D; (2915109630280678890720206779706963455590627465886103135194, 2946626711558792003980654088990112021985937607003425539581)</span><br><span class="line">4 * G &#x3D; (1305994880430903997305943738697779408316929565234787837114, 3981863977451150342116987835776121688410789618551673306674)</span><br><span class="line">5 * G &#x3D; (410283251116784874018993562136566870110676706936762660240, 1206654674899825246688205669651974202006189255452737318561)</span><br><span class="line">6 * G &#x3D; (4008504146453526025173196900303594155799995627910231899946, 3263759301305176906990806636587838100022690095020155627760)</span><br><span class="line">7 * G &#x3D; (3473339081378406123852871299395262476289672479707038350589, 2152713176906603604200842901176476029776544337891569565621)</span><br><span class="line">8 * G &#x3D; (1167950611014894512313033362696697441497340081390841490910, 4002177906111215127148483369584652296488769677804145538752)</span><br><span class="line">9 * G &#x3D; (3176317450453705650283775811228493626776489433309636475023, 44601893774669384766793803854980115179612118075017062201)</span><br><span class="line">Cofactor &#x3D; 1</span><br><span class="line">Cyclic group order &#x3D; 6277101735386680763835789423176059013767194773182842284081</span><br><span class="line">n * G &#x3D; (None, None)</span><br></pre></td></tr></table></figure>
+<p>现在，让我们生成一个随机的私钥<code>privKey</code>（范围为[0 … n-1]的整数）及其对应的公钥<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>u</mi><mi>b</mi><mi>K</mi><mi>e</mi><mi>y</mi><mo>=</mo><mi>p</mi><mi>r</mi><mi>i</mi><mi>v</mi><mi>K</mi><mi>e</mi><mi>y</mi><mo>⋅</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">pubKey = privKey \cdot G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">u</span><span class="mord mathdefault">b</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span></span></span></span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tinyec <span class="keyword">import</span> registry</span><br><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line"></span><br><span class="line">curve = registry.get_curve(<span class="string">'secp192r1'</span>)</span><br><span class="line"></span><br><span class="line">privKey = secrets.randbelow(curve.field.n)</span><br><span class="line">pubKey = privKey * curve.g</span><br><span class="line">print(<span class="string">"private key:"</span>, privKey)</span><br><span class="line">print(<span class="string">"public key:"</span>, pubKey)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">private key: 4225655318977962031264230130242180748818603147467615868902</span><br><span class="line">public key: (5396030834456770190396776530938374882273836179487834152291, 3422160588166914010077732710830109086004758012634997793937) on &quot;secp192r1&quot; &#x3D;&gt; y^2 &#x3D; x^3 + 6277101735386680763835789423207666416083908700390324961276x + 2455155546008943817740293915197451784769108058161191238065 (mod 6277101735386680763835789423207666416083908700390324961279)</span><br></pre></td></tr></table></figure>
+<p>稍后，我们将使用此ECC密钥对（私钥，公钥）对数据进行加密，签名消息并验证签名。</p>
+<h3 id="11411-ecc的椭圆曲线域参数"><a class="markdownIt-Anchor" href="#11411-ecc的椭圆曲线域参数"></a> 11.4.11 ECC的椭圆曲线域参数</h3>
+<p>​ECC椭圆曲线由一组椭圆曲线域参数来描述，例如曲线方程参数，场参数和生成器点坐标。 这些参数在加密标准中指定，例如：</p>
+<ul>
+<li><a href="http://www.secg.org/sec2-v2.pdf" target="_blank" rel="noopener">SEC 2: Recommended Elliptic Curve Domain Parameters</a></li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf" target="_blank" rel="noopener">NIST FIPS PUB 186-4 Digital Signature Standard (DSS)</a></li>
+<li><a href="https://tools.ietf.org/html/rfc5639" target="_blank" rel="noopener">Brainpool ECC Standard (RFC-5639)</a></li>
+</ul>
+<p>​这些标准定义了一组命名曲线的参数，例如<code>secp256k1</code>，<code>P-521</code>和<code>brainpoolP512t1</code>。 这些密码标准中描述的有限域上的椭圆曲线已受到密码学家的充分研究和分析，并被认为具有一定的安全强度，这些标准中也对此进行了描述。</p>
+<h4 id="114111-为ecc选择椭圆曲线"><a class="markdownIt-Anchor" href="#114111-为ecc选择椭圆曲线"></a> 11.4.11.1 为ECC选择椭圆曲线</h4>
+<p>​使用ECC前，所有通信方都应就EC域参数（定义椭圆曲线的所有元素）达成一致。 强烈建议使用上述标准中至少256位的命名曲线，以确保其安全性。不要使用自己的椭圆曲线（带有非标准的域参数），除非您是经验丰富的密码专家并且非常清楚自己在做什么！ 许多曲线都有弱点，这使ECDLP问题变得不那么困难并损害了安全性。 如果您担心后门曲线，请使用“安全曲线”列表（ <a href="https://safecurves.cr.yp.to/" target="_blank" rel="noopener">SafeCurves list</a>）中的标准安全曲线。</p>
+<h4 id="114112-secp256k1曲线的示例"><a class="markdownIt-Anchor" href="#114112-secp256k1曲线的示例"></a> 11.4.11.2 “ secp256k1”曲线的示例</h4>
+<p>​让我们对secp256k1曲线执行上述域参数。 让我们定义EC并计算某些私钥的公钥：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tinyec.ec <span class="keyword">import</span> SubGroup, Curve</span><br><span class="line"></span><br><span class="line"><span class="comment"># Domain parameters for the `secp256k1` curve</span></span><br><span class="line"><span class="comment"># (as defined in http://www.secg.org/sec2-v2.pdf)</span></span><br><span class="line">name = <span class="string">'secp256k1'</span></span><br><span class="line">p = <span class="number">0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f</span></span><br><span class="line">n = <span class="number">0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</span></span><br><span class="line">a = <span class="number">0x0000000000000000000000000000000000000000000000000000000000000000</span></span><br><span class="line">b = <span class="number">0x0000000000000000000000000000000000000000000000000000000000000007</span></span><br><span class="line">g = (<span class="number">0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798</span>,</span><br><span class="line">     <span class="number">0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8</span>)</span><br><span class="line">h = <span class="number">1</span></span><br><span class="line">curve = Curve(a, b, SubGroup(p, g, n, h), name)</span><br><span class="line">print(<span class="string">'curve:'</span>, curve)</span><br><span class="line"></span><br><span class="line">privKey = int(<span class="string">'0x51897b64e85c3f714bba707e867914295a1377a7463a9dae8ea6a8b914246319'</span>, <span class="number">16</span>)</span><br><span class="line">print(<span class="string">'privKey:'</span>, hex(privKey)[<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line">pubKey = curve.g * privKey</span><br><span class="line">pubKeyCompressed = <span class="string">'0'</span> + str(<span class="number">2</span> + pubKey.y % <span class="number">2</span>) + str(hex(pubKey.x)[<span class="number">2</span>:])</span><br><span class="line">print(<span class="string">'pubKey:'</span>, pubKeyCompressed)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curve: &quot;secp256k1&quot; &#x3D;&gt; y^2 &#x3D; x^3 + 0x + 7 (mod 115792089237316195423570985008687907853269984665640564039457584007908834671663)</span><br><span class="line">privKey: 51897b64e85c3f714bba707e867914295a1377a7463a9dae8ea6a8b914246319</span><br><span class="line">pubKey: 02f54ba86dc1ccb5bed0224d23f01ed87e4a443c47fc690d7797a13d41d2340e1a</span><br></pre></td></tr></table></figure>
+<p>公钥以标准格式进行压缩和编码（将y坐标编码为前缀02或03）。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/10.%20The%20RSA%20Cryptosystem%20-%20Concepts/" rel="prev" title="10. The RSA Cryptosystem - Concepts">
+      <i class="fa fa-chevron-left"></i> 10. The RSA Cryptosystem - Concepts
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/12.%20ECDH%20Key%20Exchange%20(Elliptic%20Curve%20Diffie%E2%80%93Hellman%20Key%20Exchange)/" rel="next" title="12. ECDH Key Exchange (Elliptic Curve Diffie–Hellman Key Exchange)">
+      12. ECDH Key Exchange (Elliptic Curve Diffie–Hellman Key Exchange) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#111-ecc密钥"><span class="nav-number">1.</span> <span class="nav-text"> 11.1 ECC密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#112-曲线和秘钥长度"><span class="nav-number">2.</span> <span class="nav-text"> 11.2 曲线和秘钥长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#113-ecc算法"><span class="nav-number">3.</span> <span class="nav-text"> 11.3 ECC算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#114-椭圆曲线"><span class="nav-number">4.</span> <span class="nav-text"> 11.4 椭圆曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1141-有限域上的椭圆曲线"><span class="nav-number">4.1.</span> <span class="nav-text"> 11.4.1 有限域上的椭圆曲线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1142-有限域上的椭圆曲线的计算"><span class="nav-number">4.2.</span> <span class="nav-text"> 11.4.2 有限域上的椭圆曲线的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1143-整数乘以ecc点"><span class="nav-number">4.3.</span> <span class="nav-text"> 11.4.3 整数乘以ECC点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1144-椭圆曲线的序和余子式"><span class="nav-number">4.4.</span> <span class="nav-text"> 11.4.4 椭圆曲线的序和余子式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1145-ecc中的生成器点"><span class="nav-number">4.5.</span> <span class="nav-text"> 11.4.5 ECC中的“生成器”点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1146-生成器点示例"><span class="nav-number">4.6.</span> <span class="nav-text"> 11.4.6 “生成器”点示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1147-ecc中的私钥公钥和生成器点"><span class="nav-number">4.7.</span> <span class="nav-text"> 11.4.7 ECC中的私钥，公钥和生成器点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1148-椭圆曲线离散对数问题ecdlp"><span class="nav-number">4.8.</span> <span class="nav-text"> 11.4.8 椭圆曲线离散对数问题（ECDLP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1149-ec点的乘法-示例"><span class="nav-number">4.9.</span> <span class="nav-text"> 11.4.9 EC点的乘法-示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11410-ec点的乘法-真实示例"><span class="nav-number">4.10.</span> <span class="nav-text"> 11.4.10 EC点的乘法-真实示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11411-ecc的椭圆曲线域参数"><span class="nav-number">4.11.</span> <span class="nav-text"> 11.4.11 ECC的椭圆曲线域参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#114111-为ecc选择椭圆曲线"><span class="nav-number">4.11.1.</span> <span class="nav-text"> 11.4.11.1 为ECC选择椭圆曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#114112-secp256k1曲线的示例"><span class="nav-number">4.11.2.</span> <span class="nav-text"> 11.4.11.2 “ secp256k1”曲线的示例</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>

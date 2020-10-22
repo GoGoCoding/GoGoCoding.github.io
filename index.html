@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Mobile developer, also want to be a Gopher">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GoGoCoding">
+<meta property="og:url" content="https://gogocoding.github.io/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="Mobile developer, also want to be a Gopher">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Hao Qi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gogocoding.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false
+  };
+</script>
+
+  <title>GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/09/08/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">Kafka基本概念</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-08 17:12:44" itemprop="dateCreated datePublished" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%81%E5%A4%84%E7%90%86%E5%B9%B3%E5%8F%B0/" itemprop="url" rel="index"><span itemprop="name">流处理平台</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-kafka介绍"><a class="markdownIt-Anchor" href="#1-kafka介绍"></a> 1. Kafka介绍</h1>
+<p>Apache Kafka 是一个分布式流处理平台。<br />
+Kafka有以下三种特性:</p>
+<ul>
+<li>可以发布和订阅流式的记录。这一方面与消息队列或者企业消息系统类似。</li>
+<li>可以储存流式的记录，并且有较好的容错性。</li>
+<li>可以在流式记录产生时就进行处理。</li>
+</ul>
+<p>Kafka可以用于两大类别的应用:</p>
+<ul>
+<li>构造实时流数据管道，它可以在系统或应用之间可靠地获取数据。 (相当于message queue)</li>
+<li>构建实时流式应用程序，对这些流数据进行转换或者影响。 (就是流处理，通过kafka stream topic和topic之间内部进行变化)</li>
+</ul>
+<h2 id="11-kafka基本概念"><a class="markdownIt-Anchor" href="#11-kafka基本概念"></a> 1.1 kafka基本概念</h2>
+<ul>
+<li>
+<p><strong>Topic</strong>: 逻辑概念，Kafka消息的类别，对数据区分、隔离，每一类的消息称之为一个主题（Topic）。</p>
+</li>
+<li>
+<p><strong>Producer</strong>: 消息和数据的生产者，向Kafka的一个Topic发布消息的进程/代码/服务。</p>
+</li>
+<li>
+<p><strong>Consumer</strong>: 消息和数据的消费者，订阅数据（Topic）并且处理其发布的消息的进程/代码/服务。</p>
+</li>
+<li>
+<p><strong>Consumer Group</strong>: 逻辑概念，对于同一个Topic，会广播给不同的group，一个group中，只有一个consumer可以消费该消息。</p>
+</li>
+<li>
+<p><strong>Broker</strong>: 物理概念，Kafka集群中的每个Kafka节点。</p>
+</li>
+<li>
+<p><strong>Partition</strong>： 物理概念，Kafka下数据存储的基本单元。一个Topic数据，会被分散存储到多个Partition，每个Partition是有序的。</p>
+</li>
+<li>
+<p><strong>Replication</strong>: 同一个Partition可能会有多个Replication，多个Replication之间数据时一样的。</p>
+</li>
+<li>
+<p><strong>Replication Leader</strong>: 一个Partition的多个Replication上，需要一个Leader负责该Partition上与Producer和Consumer交互。</p>
+</li>
+<li>
+<p><strong>ReplicaManager</strong>: 负责管理当前broker所有分区和副本的信息，处理KafkaController发起的一些请求，副本状态的切换、添加/读取消息等。</p>
+</li>
+</ul>
+<h3 id="111-主题和日志topic和log"><a class="markdownIt-Anchor" href="#111-主题和日志topic和log"></a> 1.1.1 主题和日志（Topic和Log）</h3>
+<p>Topic是发布的消息的类别名，一个topic可以有零个，一个或多个消费者订阅该主题的消息。对于每个topic，Kafka集群都会维护一个分区log，就像下图中所示：<br />
+<img src="http://qiniu.gogocoding.cn/mweb/%E5%88%86%E5%8C%BAlog.png" alt="分区log" /></p>
+<h3 id="112-分区partition"><a class="markdownIt-Anchor" href="#112-分区partition"></a> 1.1.2 分区（Partition）</h3>
+<p>每一个分区都是一个顺序的、不可变的消息队列， 并且可以持续的添加。分区中的消息都被分了一个序列号，称之为偏移量(offset)，在每个分区中此偏移量都是唯一的。</p>
+<p>Kafka集群保持所有的消息，直到它们过期（无论消息是否被消费）。实际上消费者所持有的仅有的元数据就是这个offset（偏移量），也就是说offset由消费者来控制：正常情况当消费者消费消息的时候，偏移量也线性的的增加。但是实际偏移量由消费者控制，消费者可以将偏移量重置为更早的位置，重新读取消息。可以看到这种设计对消费者来说操作自如，一个消费者的操作不会影响其它消费者对此log的处理。<br />
+<img src="http://qiniu.gogocoding.cn/mweb/%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9.png" alt="生产消费" /></p>
+<ul>
+<li>每个Topic被切分为多个Partitions</li>
+<li>消费者数目少于或等于Partition的数目</li>
+<li>broker Group中的每一个Broker保存Topic的一个或多个Partitions</li>
+<li>Consumer Group中的仅有一个Consumer读取Topic的一个或多个Partitions，并且是唯一的Consumer</li>
+</ul>
+<h3 id="113-生产者producers"><a class="markdownIt-Anchor" href="#113-生产者producers"></a> 1.1.3 生产者（Producers）</h3>
+<p>生产者往某个Topic上发布消息。生产者也负责选择发布到Topic上的哪一个分区。最简单的方式从分区列表中轮流选择。也可以根据某种算法依照权重选择分区。开发者负责如何选择分区的算法。</p>
+<h3 id="114-消费者consumers"><a class="markdownIt-Anchor" href="#114-消费者consumers"></a> 1.1.4 消费者（Consumers）</h3>
+<p>通常来讲，消息模型可以分为两种， 队列和发布-订阅式。 队列的处理方式是 一组消费者从服务器读取消息，一条消息只有其中的一个消费者来处理。在发布-订阅模型中，消息被广播给所有的消费者，接收到消息的消费者都可以处理此消息。Kafka为这两种模型提供了单一的消费者抽象模型： 消费者组 （consumer group）。 消费者用一个消费者组名标记自己。 一个发布在Topic上消息被分发给此消费者组中的一个消费者。 假如所有的消费者都在一个组中，那么这就变成了queue模型。 假如所有的消费者都在不同的组中，那么就完全变成了发布-订阅模型。 更通用的， 我们可以创建一些消费者组作为逻辑上的订阅者。每个组包含数目不等的消费者， 一个组内多个消费者可以用来扩展性能和容错。</p>
+<h3 id="115-备份replication"><a class="markdownIt-Anchor" href="#115-备份replication"></a> 1.1.5 备份（Replication）</h3>
+<ul>
+<li>当集群中有Broker挂掉的情况，系统可以主动地使Replicas提供服务</li>
+<li>系统默认设置每一个Topic的replication系数为1，可以在创建Topic时单独设置</li>
+<li>Replication的基本单位时Topic的Partition</li>
+<li>所有的读和写都从Leader进，Followers只是做为备份</li>
+<li>Follower必须能够及时复制Leader的数据</li>
+<li>增加容错性与可扩展性</li>
+</ul>
+<h2 id="12-kafka的基本结构"><a class="markdownIt-Anchor" href="#12-kafka的基本结构"></a> 1.2. Kafka的基本结构</h2>
+<p><img src="http://qiniu.gogocoding.cn/mweb/Kafka%E7%BB%93%E6%9E%84-2.png" alt="Kafka结构" /></p>
+<ul>
+<li><strong>Producer Api</strong>: 允许应用程序发送数据流到kafka集群中的topic</li>
+<li><strong>Consumer Api</strong>: 允许应用程序从kafka集群的topic中读取数据流</li>
+<li><strong>Streams Api</strong>: 允许从输入topic转换数据流到输出topic</li>
+<li><strong>Connectors Api</strong>: 通过实现连接器（connector），不断地从一些源系统或应用程序中拉取数据到kafka，或从kafka提交数据到宿系统（sink system）或应用程序。</li>
+</ul>
+<p><img src="http://qiniu.gogocoding.cn/mweb/kafka%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84.png" alt="kafka消息结构" /></p>
+<h2 id="13-kafka特点"><a class="markdownIt-Anchor" href="#13-kafka特点"></a> 1.3 Kafka特点</h2>
+<ul>
+<li>分布式
+<ul>
+<li>多分区</li>
+<li>多副本</li>
+<li>多订阅者</li>
+<li>基于Zookeeper调度</li>
+</ul>
+</li>
+<li>高性能
+<ul>
+<li>高吞吐量</li>
+<li>低延迟</li>
+<li>高并发</li>
+<li>时间复杂度为O(1)</li>
+</ul>
+</li>
+<li>持久性和扩展性
+<ul>
+<li>数据可持久化</li>
+<li>容错性</li>
+<li>支持在线水平扩展</li>
+<li>消息自动平衡</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-kafka应用场景"><a class="markdownIt-Anchor" href="#2-kafka应用场景"></a> 2. Kafka应用场景</h1>
+<ul>
+<li><strong>消息队列</strong>：kafka更好的替换传统的消息系统，消息系统被用于各种场景（解耦数据生产者，缓存未处理的消息，等），与大多数消息系统比较，kafka有更好的吞吐量，内置分区，副本和故障转移，这有利于处理大规模的消息。在端到端延迟这一领域，kafka比得上传统的消息系统，如的ActiveMQ或RabbitMQ的。</li>
+<li><strong>行为跟踪</strong>：kafka原本的使用场景：用户的活动追踪，网站的活动（网页游览，搜索或其他用户的操作信息）发布到不同的话题中心，这些消息可实时处理，实时监测，也可加载到Hadoop或离线处理数据仓库。</li>
+<li><strong>元信息监控</strong>：kafka也常常用于监测数据。分布式应用程序生成的统计数据集中聚合。</li>
+<li><strong>日志收集</strong>：Kafka抽象出文件的细节，并将日志或事件数据更清晰地抽象为消息流。这允许更低延迟的处理并更容易支持多个数据源和分布式数据消费。</li>
+<li><strong>流处理</strong>：kafka中消息处理一般包含多个阶段。其中原始输入数据是从kafka主题消费的，然后汇总，丰富，或者以其他的方式处理转化为新主题，例如，一个推荐新闻文章，文章内容可能从“articles”主题获取；然后进一步处理内容，得到一个处理后的新内容，最后推荐给用户。这种处理是基于单个主题的实时数据流。从0.10.0.0开始，轻量，但功能强大的流处理，就可以这样进行数据处理了。</li>
+<li><strong>事件采集</strong>：事件采集是一种应用程序的设计风格，其中状态的变化根据时间的顺序记录下来，kafka支持这种非常大的存储日志数据的场景。</li>
+<li><strong>持久性日志</strong>：kafka可以作为一种分布式的外部日志，可帮助节点之间复制数据，并作为失败的节点来恢复数据重新同步，kafka的日志压缩功能很好的支持这种用法，这种用法类似于Apacha BookKeeper项目。</li>
+</ul>
+<h1 id="3-kafka安装启动"><a class="markdownIt-Anchor" href="#3-kafka安装启动"></a> 3. Kafka安装启动</h1>
+<p><strong>1 下载镜像</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull wurstmeister/zookeeper</span><br><span class="line">docker pull wurstmeister/kafka</span><br></pre></td></tr></table></figure>
+<p><strong>2 启动镜像</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name zookeeper --publish 2181:2181 --volume /etc/localtime:/etc/localtime zookeeper:latest</span><br><span class="line"></span><br><span class="line">docker run -p 9092:9092 --name kafka1 -d -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=宿主机IP:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://宿主机IP:19092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 wurstmeister/kafka:latest</span><br></pre></td></tr></table></figure>
+<p><strong>3 创建一个主题（Topic）</strong><br />
+创建topic</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure>
+<p>查看topic</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --list --zookeeper localhost:2181 test</span><br></pre></td></tr></table></figure>
+<p><strong>4 发送消息</strong><br />
+Kafka提供了一个命令行的工具，可以从输入文件或者命令行中读取消息并发送给Kafka集群。每一行是一条消息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line">This is a message</span><br><span class="line">This is another message</span><br></pre></td></tr></table></figure>
+<p><strong>5 消费消息</strong><br />
+Kafka也提供了一个消费消息的命令行工具，将存储的信息输出出来。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line">This is a message</span><br><span class="line">This is another message</span><br></pre></td></tr></table></figure>
+<p><strong>6 设置多个broker集群</strong></p>
+<p><code>broker.id</code>是集群中每个节点的唯一且永久的名称，我们修改端口和日志目录是因为我们现在在同一台机器上运行，我们要防止broker在同一端口上注册和覆盖对方的数据。<br />
+启动2个新的kafka节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 9093:9093 --name kafka2 -d -e KAFKA_BROKER_ID&#x3D;1 -e KAFKA_ZOOKEEPER_CONNECT&#x3D;宿主机IP:2181 -e KAFKA_ADVERTISED_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;宿主机IP:19093 -e KAFKA_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;0.0.0.0:9092 wurstmeister&#x2F;kafka:latest</span><br><span class="line"></span><br><span class="line">docker run -p 9094:9094 --name kafka3 -d -e KAFKA_BROKER_ID&#x3D;2 -e KAFKA_ZOOKEEPER_CONNECT&#x3D;宿主机IP:2181 -e KAFKA_ADVERTISED_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;宿主机IP:19094 -e KAFKA_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;0.0.0.0:9092 wurstmeister&#x2F;kafka:latest</span><br></pre></td></tr></table></figure>
+<p>现在，我们创建一个新topic，把备份设置为：3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic</span><br></pre></td></tr></table></figure>
+<p>好了，现在我们已经有了一个集群了，我们怎么知道每个集群在做什么呢？运行命令“describe topics”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/09/08/Interview/MQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/Interview/MQ/" class="post-title-link" itemprop="url">Interview/MQ</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-08 17:12:44" itemprop="dateCreated datePublished" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id=""><a class="markdownIt-Anchor" href="#"></a> </h1>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/09/08/Interview/MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/Interview/MySQL/" class="post-title-link" itemprop="url">Interview/MySQL</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-08 17:12:44" itemprop="dateCreated datePublished" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id=""><a class="markdownIt-Anchor" href="#"></a> </h1>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/09/08/Interview/Micro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/Interview/Micro/" class="post-title-link" itemprop="url">Interview/Micro</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-08 17:12:44" itemprop="dateCreated datePublished" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id=""><a class="markdownIt-Anchor" href="#"></a> </h1>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/08/11/Data%20Structure%20and%20Algorithm/%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/11/Data%20Structure%20and%20Algorithm/%E6%A0%91/" class="post-title-link" itemprop="url">树</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-11 23:14:12" itemprop="dateCreated datePublished" datetime="2020-08-11T23:14:12+08:00">2020-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-树总共包含4节内容-具体如下"><a class="markdownIt-Anchor" href="#1-树总共包含4节内容-具体如下"></a> 1. 树，总共包含4节内容。具体如下：</h1>
+<ol>
+<li>树、二叉树</li>
+<li>二叉查找树</li>
+<li>平衡二叉树、红黑树</li>
+<li>递归树</li>
+</ol>
+<h1 id="2-树"><a class="markdownIt-Anchor" href="#2-树"></a> 2 树</h1>
+<h2 id="21-树的常用概念"><a class="markdownIt-Anchor" href="#21-树的常用概念"></a> 2.1. 树的常用概念</h2>
+<p>根节点、叶子节点、父节点、子节点、兄弟节点，还有节点的高度、深度以及层数，树的高度。</p>
+<h2 id="22-概念解释"><a class="markdownIt-Anchor" href="#22-概念解释"></a> 2.2 概念解释</h2>
+<p>节点：树中的每个元素称为节点<br />
+父子关系：相邻两节点的连线，称为父子关系<br />
+根节点：没有父节点的节点<br />
+叶子节点：没有子节点的节点<br />
+父节点：指向子节点的节点<br />
+子节点：被父节点指向的节点<br />
+兄弟节点：具有相同父节点的多个节点称为兄弟节点关系<br />
+节点的高度：节点到叶子节点的最长路径所包含的边数<br />
+节点的深度：根节点到节点的路径所包含的边数<br />
+节点的层数：节点的深度+1（根节点的层数是1）<br />
+树的高度：等于根节点的高度</p>
+<h1 id="3-二叉树"><a class="markdownIt-Anchor" href="#3-二叉树"></a> 3. 二叉树</h1>
+<h2 id="31-概念"><a class="markdownIt-Anchor" href="#31-概念"></a> 3.1. 概念</h2>
+<h3 id="311-什么是二叉树"><a class="markdownIt-Anchor" href="#311-什么是二叉树"></a> 3.1.1. 什么是二叉树？</h3>
+<p>每个节点最多只有2个子节点的树，这两个节点分别是左子节点和右子节点。</p>
+<h3 id="312-什么是满二叉树"><a class="markdownIt-Anchor" href="#312-什么是满二叉树"></a> 3.1.2. 什么是满二叉树？</h3>
+<p>有一种二叉树，除了叶子节点外，每个节点都有左右两个子节点，这种二叉树叫做满二叉树。</p>
+<h3 id="313什么是完全二叉树"><a class="markdownIt-Anchor" href="#313什么是完全二叉树"></a> 3.1.3.什么是完全二叉树？</h3>
+<p>有一种二叉树，叶子节点都在最底下两层，最后一层叶子节都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种二叉树叫做完全二叉树。</p>
+<h2 id="32-完全二叉树的存储"><a class="markdownIt-Anchor" href="#32-完全二叉树的存储"></a> 3.2. 完全二叉树的存储</h2>
+<h3 id="321-链式存储"><a class="markdownIt-Anchor" href="#321-链式存储"></a> 3.2.1. 链式存储</h3>
+<p>每个节点由3个字段，其中一个存储数据，另外两个是指向左右子节点的指针。我们只要拎住根节点，就可以通过左右子节点的指针，把整棵树都串起来。这种存储方式比较常用，大部分二叉树代码都是通过这种方式实现的。</p>
+<h3 id="322-顺序存储"><a class="markdownIt-Anchor" href="#322-顺序存储"></a> 3.2.2. 顺序存储</h3>
+<p>用数组来存储，对于完全二叉树，如果节点X存储在数组中的下标为i，那么它的左子节点的存储下标为2<em>i，右子节点的下标为2</em>i+1，反过来，下标i/2位置存储的就是该节点的父节点。注意，根节点存储在下标为1的位置。完全二叉树用数组来存储时最省内存的方式。</p>
+<h2 id="33-二叉树的遍历"><a class="markdownIt-Anchor" href="#33-二叉树的遍历"></a> 3.3. 二叉树的遍历</h2>
+<h3 id="331-前序遍历"><a class="markdownIt-Anchor" href="#331-前序遍历"></a> 3.3.1. 前序遍历：</h3>
+<p>对于树中的任意节点来说，先打印这个节点，然后再打印它的左子树，最后打印它的右子树。</p>
+<h3 id="332-中序遍历"><a class="markdownIt-Anchor" href="#332-中序遍历"></a> 3.3.2. 中序遍历：</h3>
+<p>对于树中的任意节点来说，先打印它的左子树，然后再打印它的本身，最后打印它的右子树。</p>
+<h3 id="333-后序遍历"><a class="markdownIt-Anchor" href="#333-后序遍历"></a> 3.3.3. 后序遍历：</h3>
+<p>对于树中的任意节点来说，先打印它的左子树，然后再打印它的右子树，最后打印它本身。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">前序遍历的递推公式：</span><br><span class="line">preOrder(r) &#x3D; print r-&gt;preOrder(r-&gt;left)-&gt;preOrder(r-&gt;right)</span><br><span class="line">中序遍历的递推公式：</span><br><span class="line">inOrder(r) &#x3D; inOrder(r-&gt;left)-&gt;print r-&gt;inOrder(r-&gt;right)</span><br><span class="line">后序遍历的递推公式：</span><br><span class="line">postOrder(r) &#x3D; postOrder(r-&gt;left)-&gt;postOrder(r-&gt;right)-&gt;print r</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：3种遍历方式中，每个节点最多会被访问2次，所以时间复杂度是O(n)。</p>
+<h1 id="4-练习题"><a class="markdownIt-Anchor" href="#4-练习题"></a> 4. 练习题</h1>
+<p>leetcode：94、105、106、889</p>
+<h2 id="41-二叉树的中序遍历-leetcode题号-94"><a class="markdownIt-Anchor" href="#41-二叉树的中序遍历-leetcode题号-94"></a> 4.1 二叉树的中序遍历 : <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">94</a></h2>
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<p>递归</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">inorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> res []<span class="keyword">int</span></span><br><span class="line">    <span class="keyword">if</span> root.Left != <span class="literal">nil</span> &#123;</span><br><span class="line">        leftRes := inorderTraversal(root.Left)</span><br><span class="line">        res = <span class="built_in">append</span>(res, leftRes...)</span><br><span class="line">    &#125;</span><br><span class="line">    res  = <span class="built_in">append</span>(res, root.Val)</span><br><span class="line">    <span class="keyword">if</span> root.Right != <span class="literal">nil</span> &#123;</span><br><span class="line">        rightRes := inorderTraversal(root.Right)</span><br><span class="line">        res = <span class="built_in">append</span>(res, rightRes...)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>迭代</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">inorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> inorderIterate(root)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">inorderIterate</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	stack, rest := Stack([]*TreeNode&#123;root&#125;), []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(stack) &gt; <span class="number">0</span> &#123;</span><br><span class="line">		cur := stack.Pop()</span><br><span class="line">		<span class="keyword">if</span> cur != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> cur.Right != <span class="literal">nil</span> &#123;</span><br><span class="line">				stack.Push(cur.Right)</span><br><span class="line">			&#125;</span><br><span class="line">			stack.Push(cur)</span><br><span class="line">			stack.Push(<span class="literal">nil</span>) <span class="comment">// 待读取标记</span></span><br><span class="line">			<span class="keyword">if</span> cur.Left != <span class="literal">nil</span> &#123;</span><br><span class="line">				stack.Push(cur.Left)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			rest = <span class="built_in">append</span>(rest, stack.Pop().Val)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> rest</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Stack []*TreeNode</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Stack)</span> <span class="title">Push</span><span class="params">(node *TreeNode)</span></span> &#123;</span><br><span class="line">	*s = <span class="built_in">append</span>(*s, node)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Stack)</span> <span class="title">Pop</span><span class="params">()</span> *<span class="title">TreeNode</span></span> &#123;</span><br><span class="line">	n := []*TreeNode(*s)[<span class="built_in">len</span>(*s)<span class="number">-1</span>]</span><br><span class="line">	*s = []*TreeNode(*s)[:<span class="built_in">len</span>(*s)<span class="number">-1</span>]</span><br><span class="line">	<span class="keyword">return</span> n</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="42-从前序与中序遍历序列构造二叉树-leetcode题号-105"><a class="markdownIt-Anchor" href="#42-从前序与中序遍历序列构造二叉树-leetcode题号-105"></a> 4.2 从前序与中序遍历序列构造二叉树 : <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">105</a></h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">buildTree</span><span class="params">(preorder []<span class="keyword">int</span>, inorder []<span class="keyword">int</span>)</span> *<span class="title">TreeNode</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(preorder) == <span class="number">0</span> || <span class="built_in">len</span>(inorder) == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 中顺序列找根结点</span></span><br><span class="line">    <span class="keyword">var</span> root <span class="keyword">int</span></span><br><span class="line">    <span class="keyword">for</span> k, v :=  <span class="keyword">range</span> inorder &#123;</span><br><span class="line">        <span class="keyword">if</span> v == preorder[<span class="number">0</span>] &#123;</span><br><span class="line">            root = k</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 左右子树归类</span></span><br><span class="line">    <span class="comment">// pre_left, pre_right := preorder[1: root+1], preorder[root+1:]</span></span><br><span class="line">    <span class="comment">// in_left, in_right := inorder[0: root], inorder[root+1:]</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 左右子树递归</span></span><br><span class="line">    <span class="keyword">return</span> &amp;TreeNode&#123;</span><br><span class="line">        Val:   preorder[<span class="number">0</span>],</span><br><span class="line">        Left:  buildTree(preorder[<span class="number">1</span>: root+<span class="number">1</span>], inorder[<span class="number">0</span>: root]),</span><br><span class="line">        Right: buildTree(preorder[root+<span class="number">1</span>:], inorder[root+<span class="number">1</span>:]),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="43-从中序与后序遍历序列构造二叉树-leetcode题号-106"><a class="markdownIt-Anchor" href="#43-从中序与后序遍历序列构造二叉树-leetcode题号-106"></a> 4.3 从中序与后序遍历序列构造二叉树 : <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank" rel="noopener">106</a></h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">buildTree</span><span class="params">(inorder []<span class="keyword">int</span>, postorder []<span class="keyword">int</span>)</span> *<span class="title">TreeNode</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(inorder) == <span class="number">0</span> || <span class="built_in">len</span>(postorder) == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> root <span class="keyword">int</span></span><br><span class="line">    <span class="keyword">for</span> k, v := <span class="keyword">range</span> inorder &#123;</span><br><span class="line">        <span class="keyword">if</span> (v == postorder[<span class="built_in">len</span>(postorder) - <span class="number">1</span>]) &#123;</span><br><span class="line">            root = k</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &amp;TreeNode &#123;</span><br><span class="line">        Val : inorder[root],</span><br><span class="line">        Left : buildTree(inorder[<span class="number">0</span> : root], postorder[<span class="number">0</span>: root]),</span><br><span class="line">        Right : buildTree(inorder[root +<span class="number">1</span> :], postorder[root : <span class="built_in">len</span>(postorder) - <span class="number">1</span>]),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="43-根据前序和后序遍历构造二叉树-leetcode题号-889"><a class="markdownIt-Anchor" href="#43-根据前序和后序遍历构造二叉树-leetcode题号-889"></a> 4.3 根据前序和后序遍历构造二叉树 : <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/" target="_blank" rel="noopener">889</a></h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">constructFromPrePost</span><span class="params">(pre []<span class="keyword">int</span>, post []<span class="keyword">int</span>)</span> *<span class="title">TreeNode</span></span> &#123;</span><br><span class="line">	node:=&amp;TreeNode&#123;Val: pre[<span class="number">0</span>]&#125;</span><br><span class="line">    	<span class="comment">//长度至少要大于1才能构建子树</span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(pre)&gt;<span class="number">1</span>&#123;</span><br><span class="line">		i:=<span class="number">0</span></span><br><span class="line">		<span class="keyword">for</span> i&lt;<span class="built_in">len</span>(post)&#123;</span><br><span class="line">			<span class="keyword">if</span> post[i]==pre[<span class="number">1</span>]&#123;</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">			i++</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//长度大于1，因此按照自定义的规则来说，必然可以构建左子树</span></span><br><span class="line">		node.Left=constructFromPrePost(pre[<span class="number">1</span>:i+<span class="number">2</span>],post[<span class="number">0</span>:i+<span class="number">1</span>])</span><br><span class="line">		<span class="comment">//可能存在右子树，那么构建右子树</span></span><br><span class="line">		<span class="keyword">if</span> i+<span class="number">2</span>&lt;<span class="built_in">len</span>(pre)&#123;</span><br><span class="line">			node.Right=constructFromPrePost(pre[i+<span class="number">2</span>:],post[i+<span class="number">1</span>:<span class="built_in">len</span>(post)<span class="number">-1</span>])</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/08/09/Data%20Structure%20and%20Algorithm/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/09/Data%20Structure%20and%20Algorithm/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="post-title-link" itemprop="url">二分查找</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-09 12:13:32" itemprop="dateCreated datePublished" datetime="2020-08-09T12:13:32+08:00">2020-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-普通二分查找的非递归与递归实现"><a class="markdownIt-Anchor" href="#1-普通二分查找的非递归与递归实现"></a> 1 普通二分查找的非递归与递归实现</h1>
+<p>条件：无重复元素的有序数组</p>
+<h4 id="11-非递归"><a class="markdownIt-Anchor" href="#11-非递归"></a> 1.1 非递归</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BinarySearch</span><span class="params">(arr []<span class="keyword">int</span>, v <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	low := <span class="number">0</span></span><br><span class="line">	hight := n - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> low &lt;= hight &#123;</span><br><span class="line">		mid := low + ((hight - low) &gt;&gt; <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> arr[mid] == v &#123;</span><br><span class="line">			<span class="keyword">return</span> mid</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> arr[mid] &gt; v &#123;</span><br><span class="line">			hight = mid - <span class="number">1</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			low = mid + <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="12-递归"><a class="markdownIt-Anchor" href="#12-递归"></a> 1.2 递归</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BinarySearchRecursive</span><span class="params">(arr []<span class="keyword">int</span>, v <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> bs()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bs</span><span class="params">(arr []<span class="keyword">int</span>, v <span class="keyword">int</span>, low, hight <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> low &gt; hight &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mid := low + ((hight - low) &gt;&gt; <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">if</span> a[mid] == v &#123;</span><br><span class="line">		<span class="keyword">return</span> mid</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> a[mid] &gt; v &#123;</span><br><span class="line">		<span class="keyword">return</span> bs(arr, v, low, mid<span class="number">-1</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> bs(arr, v, mid+<span class="number">1</span>, hight)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-4种常见的二分查找变形问题"><a class="markdownIt-Anchor" href="#2-4种常见的二分查找变形问题"></a> 2. 4种常见的二分查找变形问题</h1>
+<p>条件：有重复元素的有序数组</p>
+<h2 id="21-查找第一个值等于给定值的元素"><a class="markdownIt-Anchor" href="#21-查找第一个值等于给定值的元素"></a> 2.1 查找第一个值等于给定值的元素</h2>
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BinarySearchFirst</span><span class="params">(arr []<span class="keyword">int</span>, v <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>[arr]</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	low := <span class="number">0</span></span><br><span class="line">	hight := n <span class="number">-1</span> </span><br><span class="line">	<span class="keyword">for</span> low &lt;= hight &#123;</span><br><span class="line">		mid := low + ((hight - low)&gt;&gt;<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> arr[mid] &gt; v &#123;</span><br><span class="line">			hight = mid<span class="number">-1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> arr[mid] &lt; v&#123;</span><br><span class="line">			low = mid + <span class="number">1</span></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span> mid == <span class="number">0</span> || arr[mid - <span class="number">1</span>] != v &#123;</span><br><span class="line">				<span class="keyword">return</span> mid</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				hight = mid <span class="number">-1</span> </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span> </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="22-查找最后一个值等于给定值的元素"><a class="markdownIt-Anchor" href="#22-查找最后一个值等于给定值的元素"></a> 2.2 查找最后一个值等于给定值的元素</h2>
+<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BinarySearchLast</span><span class="params">(arr []<span class="keyword">int</span>, v <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>[arr]</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	low := <span class="number">0</span></span><br><span class="line">	hight := n <span class="number">-1</span> </span><br><span class="line">	<span class="keyword">for</span> low &lt;= hight &#123;</span><br><span class="line">		mid := low + ((hight - low)&gt;&gt;<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> arr[mid] &gt; v &#123;</span><br><span class="line">			hight = mid<span class="number">-1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> arr[mid] &lt; v&#123;</span><br><span class="line">			low = mid + <span class="number">1</span></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span> mid == n<span class="number">-1</span> || arr[mid + <span class="number">1</span>] != v &#123;</span><br><span class="line">				<span class="keyword">return</span> mid</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				low = mid + <span class="number">1</span> </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span> </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="23-查找第一个大于等于给定值的元素"><a class="markdownIt-Anchor" href="#23-查找第一个大于等于给定值的元素"></a> 2.3 查找第一个大于等于给定值的元素</h2>
+<h4 id="代码-3"><a class="markdownIt-Anchor" href="#代码-3"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BinarySearchFirstGT</span><span class="params">(arr []<span class="keyword">int</span>, v <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>[arr]</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	low := <span class="number">0</span></span><br><span class="line">	hight := n <span class="number">-1</span> </span><br><span class="line">	<span class="keyword">for</span> low &lt;= hight &#123;</span><br><span class="line">		mid := low + ((hight - low)&gt;&gt;<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> arr[mid] &gt;= value &#123;</span><br><span class="line">			<span class="keyword">if</span> (mid ==<span class="number">0</span>) || a[mid - <span class="number">1</span>]&lt; v &#123;</span><br><span class="line">				<span class="keyword">return</span> mid</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				hight = mid <span class="number">-1</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			low = mid + <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span> </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="24-查找最后一个小于等于给定值的元素"><a class="markdownIt-Anchor" href="#24-查找最后一个小于等于给定值的元素"></a> 2.4 查找最后一个小于等于给定值的元素</h2>
+<h4 id="代码-4"><a class="markdownIt-Anchor" href="#代码-4"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BinarySearchLastLT</span><span class="params">(arr []<span class="keyword">int</span>, v <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>[arr]</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	low := <span class="number">0</span></span><br><span class="line">	hight := n - <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> low &lt;= hight &#123;</span><br><span class="line">		mid := low + ((hight - low) &gt;&gt; <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> arr[mid] &lt;= value &#123;</span><br><span class="line">			<span class="keyword">if</span> (mid == n<span class="number">-1</span>) || a[mid+<span class="number">1</span>] &gt; v &#123;</span><br><span class="line">				<span class="keyword">return</span> mid</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				low = mid + <span class="number">1</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			hight = mid - <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="练习题"><a class="markdownIt-Anchor" href="#练习题"></a> 练习题</h1>
+<p>1.搜索旋转排序数组 : <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">33</a></p>
+<h3 id="思路一"><a class="markdownIt-Anchor" href="#思路一"></a> 思路一：</h3>
+<ol>
+<li>先二分法找到 数组旋转分界点</li>
+<li>判断 目标点在分界点的左侧还是右侧，传入对应的二分查找方法中去</li>
+</ol>
+<h4 id="代码-5"><a class="markdownIt-Anchor" href="#代码-5"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">search</span><span class="params">(nums []<span class="keyword">int</span>, target <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(nums)</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	low := <span class="number">0</span></span><br><span class="line">	hight := n - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> nums[low] &gt; target &amp;&amp; nums[hight] &lt; target &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> flag <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">for</span> low &lt;= hight &#123;</span><br><span class="line">		mid := low + ((hight - low) &gt;&gt; <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> nums[mid] &gt; nums[low] &#123;</span><br><span class="line">			low = mid</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &lt; nums[low] &#123;</span><br><span class="line">			hight = mid</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> nums[mid] &gt;= nums[hight] &#123;</span><br><span class="line">				flag = mid</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				flag = hight</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> nums[<span class="number">0</span>] &lt;= target &#123;</span><br><span class="line">		<span class="keyword">return</span> sort(nums, <span class="number">0</span>, flag, target)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> sort(nums, flag+<span class="number">1</span>, n<span class="number">-1</span>, target)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sort</span><span class="params">(arr []<span class="keyword">int</span>, start, end, target <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	low := start</span><br><span class="line">	hight := end</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> low &lt;= hight &#123;</span><br><span class="line">		mid := low + ((hight - low) &gt;&gt; <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span> arr[mid] == target &#123;</span><br><span class="line">			<span class="keyword">return</span> mid</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> arr[mid] &lt; target &#123;</span><br><span class="line">			low = mid + <span class="number">1</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			hight = mid - <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路二"><a class="markdownIt-Anchor" href="#思路二"></a> 思路二</h3>
+<p>我们可以在常规二分搜索的时候查看当前 mid 为分割位置分割出来的两个部分 [l, mid] 和 [mid + 1, r] 哪个部分是有序的，并根据有序的那个部分确定我们该如何改变二分搜索的上下界，因为我们能够根据有序的那部分判断出 target 在不在这个部分</p>
+<h4 id="代码-6"><a class="markdownIt-Anchor" href="#代码-6"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">search</span><span class="params">(nums []<span class="keyword">int</span>, target <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    low := <span class="number">0</span></span><br><span class="line">    hight := n <span class="number">-1</span> </span><br><span class="line">    <span class="keyword">for</span> low &lt;= hight &#123;</span><br><span class="line">        mid := low +((hight -low) &gt;&gt;<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> nums[mid] == target &#123;</span><br><span class="line">            <span class="keyword">return</span> mid </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> nums[low] &lt;= nums[mid] &#123;</span><br><span class="line">            <span class="keyword">if</span> nums[low] &lt;= target &amp;&amp; nums[mid] &gt; target &#123;</span><br><span class="line">                hight = mid <span class="number">-1</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                low = mid + <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> nums[mid] &lt; target &amp;&amp; nums[hight] &gt;= target &#123;</span><br><span class="line">                low = mid +<span class="number">1</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                hight = mid <span class="number">-1</span> </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/08/06/Data%20Structure%20and%20Algorithm/%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/06/Data%20Structure%20and%20Algorithm/%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">排序</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-06 23:04:47" itemprop="dateCreated datePublished" datetime="2020-08-06T23:04:47+08:00">2020-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-几种经典排序算法及其时间复杂度级别"><a class="markdownIt-Anchor" href="#1-几种经典排序算法及其时间复杂度级别"></a> 1. 几种经典排序算法及其时间复杂度级别</h1>
+<ul>
+<li>冒泡、插入、选择 O(n^2) 基于比较</li>
+<li>快排、归并 O(nlogn) 基于比较</li>
+<li>计数、基数、桶 O(n) 不基于比较</li>
+</ul>
+<h1 id="2-如何分析一个排序算法"><a class="markdownIt-Anchor" href="#2-如何分析一个排序算法"></a> 2. 如何分析一个排序算法？</h1>
+<ol>
+<li>学习排序算法的思路？明确原理、掌握实现以及分析性能。</li>
+<li>如何分析排序算法性能？从执行效率、内存消耗以及稳定性3个方面分析排序算法的性能。</li>
+<li>执行效率：从以下3个方面来衡量<br />
+1）最好情况、最坏情况、平均情况时间复杂度<br />
+2）时间复杂度的系数、常数、低阶：排序的数据量比较小时考虑<br />
+3）比较次数和交换（或移动）次数</li>
+<li>内存消耗：通过空间复杂度来衡量。针对排序算法的空间复杂度，引入原地排序的概念，原地排序算法就是指空间复杂度为O(1)的排序算法。</li>
+<li>稳定性：如果待排序的序列中存在值等的元素，经过排序之后，相等元素之间原有的先后顺序不变，就说明这个排序算法时稳定的。</li>
+</ol>
+<h1 id="3-冒泡排序"><a class="markdownIt-Anchor" href="#3-冒泡排序"></a> 3. 冒泡排序</h1>
+<h2 id="31-排序原理"><a class="markdownIt-Anchor" href="#31-排序原理"></a> 3.1. 排序原理</h2>
+<ol>
+<li>冒泡排序只会操作相邻的两个数据。</li>
+<li>对相邻两个数据进行比较，看是否满足大小关系要求，若不满足让它俩互换。</li>
+<li>一次冒泡会让至少一个元素移动到它应该在的位置，重复n次，就完成了n个数据的排序工作。</li>
+<li>优化：若某次冒泡不存在数据交换，则说明已经达到完全有序，所以终止冒泡。</li>
+</ol>
+<h2 id="32-代码实现"><a class="markdownIt-Anchor" href="#32-代码实现"></a> 3.2. 代码实现</h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bubbleSort</span> <span class="params">([]<span class="keyword">int</span> a, <span class="keyword">int</span> n)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> n &lt;=<span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i &lt; n; i++ &#123; </span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; n-i<span class="number">-1</span>; j++ &#123;</span><br><span class="line">            <span class="keyword">if</span> a[j] &gt; a[j+<span class="number">1</span>] &#123;</span><br><span class="line">                temp := a[j]</span><br><span class="line">                a[i] = a[j+]</span><br><span class="line">                a[j+<span class="number">1</span>] = temp</span><br><span class="line">                flag = <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> !flag &#123;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="33-性能分析"><a class="markdownIt-Anchor" href="#33-性能分析"></a> 3.3. 性能分析</h2>
+<h3 id="331-执行效率最小时间复杂度-最大时间复杂度-平均时间复杂度"><a class="markdownIt-Anchor" href="#331-执行效率最小时间复杂度-最大时间复杂度-平均时间复杂度"></a> 3.3.1 执行效率：最小时间复杂度、最大时间复杂度、平均时间复杂度</h3>
+<ul>
+<li>最小时间复杂度：数据完全有序时，只需进行一次冒泡操作即可，时间复杂度是O(n)。</li>
+<li>最大时间复杂度：数据倒序排序时，需要n次冒泡操作，时间复杂度是O(n^2)。</li>
+<li>平均时间复杂度：通过有序度和逆序度来分析。</li>
+</ul>
+<p>什么是有序度？<br />
+有序度是数组中具有有序关系的元素对的个数，比如[2,4,3,1,5,6]这组数据的有序度就是11，分别是[2,4][2,3][2,5][2,6][4,5][4,6][3,5][3,6][1,5][1,6][5,6]。同理，对于一个倒序数组，比如[6,5,4,3,2,1]，有序度是0；对于一个完全有序的数组，比如[1,2,3,4,5,6]，有序度为n*(n-1)/2，也就是15，完全有序的情况称为满有序度。<br />
+什么是逆序度？逆序度的定义正好和有序度相反。核心公式：逆序度=满有序度-有序度。<br />
+排序过程，就是有序度增加，逆序度减少的过程，最后达到满有序度，就说明排序完成了。<br />
+冒泡排序包含两个操作原子，即比较和交换，每交换一次，有序度加1。不管算法如何改进，交换的次数总是确定的，即逆序度。<br />
+对于包含n个数据的数组进行冒泡排序，平均交换次数是多少呢？最坏的情况初始有序度为0，所以要进行n*(n-1)/2交换。最好情况下，初始状态有序度是n*(n-1)/2，就不需要进行交互。我们可以取个中间值n*(n-1)/4，来表示初始有序度既不是很高也不是很低的平均情况。<br />
+换句话说，平均情况下，需要n*(n-1)/4次交换操作，比较操作可定比交换操作多，而复杂度的上限是O(n<sup>2)，所以平均情况时间复杂度就是O(n</sup>2)。<br />
+以上的分析并不严格，但很实用，这就够了。</p>
+<h3 id="332-空间复杂度每次交换仅需1个临时变量故空间复杂度为o1是原地排序算法"><a class="markdownIt-Anchor" href="#332-空间复杂度每次交换仅需1个临时变量故空间复杂度为o1是原地排序算法"></a> 3.3.2 空间复杂度：每次交换仅需1个临时变量，故空间复杂度为O(1)，是原地排序算法。</h3>
+<h3 id="333-算法稳定性如果两个值相等就不会交换位置故是稳定排序算法"><a class="markdownIt-Anchor" href="#333-算法稳定性如果两个值相等就不会交换位置故是稳定排序算法"></a> 3.3.3 算法稳定性：如果两个值相等，就不会交换位置，故是稳定排序算法。</h3>
+<h1 id="4-插入排序"><a class="markdownIt-Anchor" href="#4-插入排序"></a> 4. 插入排序</h1>
+<h2 id="41-算法原理"><a class="markdownIt-Anchor" href="#41-算法原理"></a> 4.1. 算法原理</h2>
+<p>首先，我们将数组中的数据分为2个区间，即已排序区间和未排序区间。初始已排序区间只有一个元素，就是数组的第一个元素。插入算法的核心思想就是取未排序区间中的元素，在已排序区间中找到合适的插入位置将其插入，并保证已排序区间中的元素一直有序。重复这个过程，直到未排序中元素为空，算法结束。</p>
+<h2 id="42代码实现"><a class="markdownIt-Anchor" href="#42代码实现"></a> 4.2代码实现</h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertionSort</span> <span class="params">([]<span class="keyword">int</span> a, n <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">1</span>; i &lt; n; i++ &#123;</span><br><span class="line">        value := a[i]</span><br><span class="line">        j:=i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> ; j&gt;<span class="number">0</span>; j--&#123;</span><br><span class="line">            <span class="keyword">if</span> a[j]&gt;a[i] &#123;</span><br><span class="line">                a[j+<span class="number">1</span>]= a[j]</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        a[j+<span class="number">1</span>] = a[i]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="43-性能分析"><a class="markdownIt-Anchor" href="#43-性能分析"></a> 4.3 性能分析</h2>
+<h3 id="431-时间复杂度最好-最坏-平均情况"><a class="markdownIt-Anchor" href="#431-时间复杂度最好-最坏-平均情况"></a> 4.3.1 时间复杂度：最好、最坏、平均情况</h3>
+<p>如果要排序的数组已经是有序的，我们并不需要搬移任何数据。只需要遍历一遍数组即可，所以时间复杂度是O(n)。如果数组是倒序的，每次插入都相当于在数组的第一个位置插入新的数据，所以需要移动大量的数据，因此时间复杂度是O(n<sup>2)。而在一个数组中插入一个元素的平均时间复杂都是O(n)，插入排序需要n次插入，所以平均时间复杂度是O(n</sup>2)。</p>
+<h3 id="432-空间复杂度从上面的代码可以看出插入排序算法的运行并不需要额外的存储空间所以空间复杂度是o1是原地排序算法"><a class="markdownIt-Anchor" href="#432-空间复杂度从上面的代码可以看出插入排序算法的运行并不需要额外的存储空间所以空间复杂度是o1是原地排序算法"></a> 4.3.2 空间复杂度：从上面的代码可以看出，插入排序算法的运行并不需要额外的存储空间，所以空间复杂度是O(1)，是原地排序算法。</h3>
+<h3 id="433-算法稳定性在插入排序中对于值相同的元素我们可以选择将后面出现的元素插入到前面出现的元素的后面这样就保持原有的顺序不变所以是稳定的"><a class="markdownIt-Anchor" href="#433-算法稳定性在插入排序中对于值相同的元素我们可以选择将后面出现的元素插入到前面出现的元素的后面这样就保持原有的顺序不变所以是稳定的"></a> 4.3.3 算法稳定性：在插入排序中，对于值相同的元素，我们可以选择将后面出现的元素，插入到前面出现的元素的后面，这样就保持原有的顺序不变，所以是稳定的。</h3>
+<h1 id="5-归并排序"><a class="markdownIt-Anchor" href="#5-归并排序"></a> 5 归并排序</h1>
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MergeSort</span><span class="params">(arr []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	arrLen := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="keyword">if</span> arrLen &lt;= <span class="number">1</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mergeSort(arr, <span class="number">0</span>, arrLen<span class="number">-1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mergeSort</span><span class="params">(arr []<span class="keyword">int</span>, start, end <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> start &gt;= end &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mid := (start + end) / <span class="number">2</span></span><br><span class="line">	mergeSort(arr, start, mid)</span><br><span class="line">	mergeSort(arr, mid+<span class="number">1</span>, end)</span><br><span class="line">	merge(arr, start, mid, end)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">merge</span><span class="params">(arr []<span class="keyword">int</span>, start, mid, end <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	tmpArr := <span class="built_in">make</span>([]<span class="keyword">int</span>, end-start+<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">	i := start</span><br><span class="line">	j := mid + <span class="number">1</span></span><br><span class="line">	k := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> ; i &lt;= mid &amp;&amp; j &lt;= end; k++ &#123;</span><br><span class="line">		<span class="keyword">if</span> arr[i] &lt;= arr[j] &#123;</span><br><span class="line">			tmpArr[k] = arr[i]</span><br><span class="line">			i++</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			tmpArr[k] = arr[j]</span><br><span class="line">			j++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> ; i &lt;= mid; i++ &#123;</span><br><span class="line">		tmpArr[k] = arr[i]</span><br><span class="line">		k++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> ; j &lt;= end; j++ &#123;</span><br><span class="line">		tmpArr[k] = arr[j]</span><br><span class="line">		k++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">copy</span>(arr[start:end+<span class="number">1</span>], tmpArr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="6-快速排序"><a class="markdownIt-Anchor" href="#6-快速排序"></a> 6 快速排序</h1>
+<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// QuickSort is quicksort methods for golang</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">QuickSort</span><span class="params">(arr []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	separateSort(arr, <span class="number">0</span>, <span class="built_in">len</span>(arr)<span class="number">-1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">separateSort</span><span class="params">(arr []<span class="keyword">int</span>, start, end <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> start &gt;= end &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	i := partition(arr, start, end)</span><br><span class="line">	separateSort(arr, start, i<span class="number">-1</span>)</span><br><span class="line">	separateSort(arr, i+<span class="number">1</span>, end)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">partition</span><span class="params">(arr []<span class="keyword">int</span>, start, end <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="comment">// 选取最后一位当对比数字</span></span><br><span class="line">	pivot := arr[end]</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> i = start</span><br><span class="line">	<span class="keyword">for</span> j := start; j &lt; end; j++ &#123;</span><br><span class="line">		<span class="keyword">if</span> arr[j] &lt; pivot &#123;</span><br><span class="line">			<span class="keyword">if</span> !(i == j) &#123;</span><br><span class="line">				<span class="comment">// 交换位置</span></span><br><span class="line">				arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">			&#125;</span><br><span class="line">			i++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	arr[i], arr[end] = arr[end], arr[i]</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="桶排序"><a class="markdownIt-Anchor" href="#桶排序"></a> 桶排序</h1>
+<h4 id="代码-3"><a class="markdownIt-Anchor" href="#代码-3"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 获取待排序数组中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMax</span><span class="params">(a []<span class="keyword">int</span>)</span><span class="title">int</span></span>&#123;</span><br><span class="line">	max := a[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>; i&lt;<span class="built_in">len</span>(a); i++&#123;</span><br><span class="line">		<span class="keyword">if</span> a[i] &gt; max&#123;</span><br><span class="line">			max = a[i]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> max</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BucketSort</span><span class="params">(a []<span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">	num := <span class="built_in">len</span>(a)</span><br><span class="line">	<span class="keyword">if</span> num &lt;= <span class="number">1</span>&#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	max := getMax(a)</span><br><span class="line">	buckets := <span class="built_in">make</span>([][]<span class="keyword">int</span>, num)  <span class="comment">// 二维切片</span></span><br><span class="line"></span><br><span class="line">	index :=<span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt; num; i++&#123;</span><br><span class="line">		index = a[i]*(num <span class="number">-1</span>) / max  <span class="comment">// 桶序号</span></span><br><span class="line">		buckets[index] = <span class="built_in">append</span>(buckets[index],a[i]) <span class="comment">// 加入对应的桶中</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tmpPos := <span class="number">0</span>  <span class="comment">// 标记数组位置</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; num; i++ &#123;</span><br><span class="line">		bucketLen := <span class="built_in">len</span>(buckets[i])</span><br><span class="line">		<span class="keyword">if</span> bucketLen &gt; <span class="number">0</span>&#123;</span><br><span class="line">			Sort.QuickSort(buckets[i])  <span class="comment">// 桶内做快速排序</span></span><br><span class="line">			<span class="built_in">copy</span>(a[tmpPos:], buckets[i])</span><br><span class="line">			tmpPos += bucketLen</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 桶排序简单实现</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BucketSortSimple</span><span class="params">(source []<span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(source)&lt;=<span class="number">1</span>&#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	array := <span class="built_in">make</span>([]<span class="keyword">int</span>, getMax(source)+<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;<span class="built_in">len</span>(source); i++&#123;</span><br><span class="line">		array[source[i]] ++</span><br><span class="line">	&#125;</span><br><span class="line">    fmt.Println(array)</span><br><span class="line">	c := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">0</span>)</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;<span class="built_in">len</span>(array); i++&#123;</span><br><span class="line">		<span class="keyword">for</span> array[i] != <span class="number">0</span> &#123;</span><br><span class="line">            c = <span class="built_in">append</span>(c, i)</span><br><span class="line">			array[i] --</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">copy</span>(source,c)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/08/04/Data%20Structure%20and%20Algorithm/%E9%80%92%E5%BD%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/04/Data%20Structure%20and%20Algorithm/%E9%80%92%E5%BD%92/" class="post-title-link" itemprop="url">递归</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-04 23:37:49" itemprop="dateCreated datePublished" datetime="2020-08-04T23:37:49+08:00">2020-08-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>#1. 什么是递归？</p>
+<ol>
+<li>递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法，比如DFS深度优先搜索、前中后序二叉树遍历等都是使用递归。</li>
+<li>方法或函数调用自身的方式称为递归调用，调用称为递，返回称为归。</li>
+<li>基本上，所有的递归问题都可以用递推公式来表示，比如<br />
+f(n) = f(n-1) + 1;<br />
+f(n) = f(n-1) + f(n-2);<br />
+f(n)=n*f(n-1);</li>
+</ol>
+<p>#2. 为什么使用递归？递归的优缺点？</p>
+<ol>
+<li>优点：代码的表达力很强，写起来简洁。</li>
+<li>缺点：空间复杂度高、有堆栈溢出风险、存在重复计算、过多的函数调用会耗时较多等问题。</li>
+</ol>
+<p>#3. 什么样的问题可以用递归解决呢？</p>
+<p>一个问题只要同时满足以下3个条件，就可以用递归来解决：</p>
+<ol>
+<li>问题的解可以分解为几个子问题的解。何为子问题？就是数据规模更小的问题。</li>
+<li>问题与子问题，除了数据规模不同，求解思路完全一样</li>
+<li>存在递归终止条件</li>
+</ol>
+<p>#4. 如何实现递归？</p>
+<ol>
+<li>递归代码编写<br />
+写递归代码的关键就是找到如何将大问题分解为小问题的规律，并且基于此写出递推公式，然后再推敲终止条件，最后将递推公式和终止条件翻译成代码。</li>
+<li>递归代码理解<br />
+对于递归代码，若试图想清楚整个递和归的过程，实际上是进入了一个思维误区。<br />
+那该如何理解递归代码呢？如果一个问题A可以分解为若干个子问题B、C、D，你可以假设子问题B、C、D已经解决。而且，你只需要思考问题A与子问题B、C、D两层之间的关系即可，不需要一层层往下思考子问题与子子问题，子子问题与子子子问题之间的关系。屏蔽掉递归细节，这样子理解起来就简单多了。<br />
+因此，理解递归代码，就把它抽象成一个递推公式，不用想一层层的调用关系，不要试图用人脑去分解递归的每个步骤。</li>
+</ol>
+<p>#5. 递归常见问题及解决方案</p>
+<p>1.警惕堆栈溢出：可以声明一个全局变量来控制递归的深度，从而避免堆栈溢出。<br />
+2.警惕重复计算：通过某种数据结构来保存已经求解过的值，从而避免重复计算。</p>
+<p>#6. 如何将递归改写为非递归代码？</p>
+<p>笼统的讲，所有的递归代码都可以改写为迭代循环的非递归写法。如何做？抽象出递推公式、初始值和边界条件，然后用迭代循环实现。</p>
+<p>#7. 练习题<br />
+##1. 斐波那契数列: <code>剑指 Offer 10</code>题号: <a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/" target="_blank" rel="noopener">剑指 Offer 10</a></p>
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fib</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">0</span> ||n==<span class="number">1</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    &#125;</span><br><span class="line">    dp:=<span class="built_in">make</span>([]<span class="keyword">int</span>,n+<span class="number">1</span>)</span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span></span><br><span class="line">    dp[<span class="number">1</span>]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">2</span>;i&lt;=n;i++&#123;</span><br><span class="line">        dp[i]=(dp[i<span class="number">-1</span>]+dp[i<span class="number">-2</span>])%<span class="number">1000000007</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##2. 汉诺塔问题: <code>面试题 08.06.</code>题号: <a href="https://leetcode-cn.com/problems/hanota-lcci/" target="_blank" rel="noopener">面试题 08.06. </a></p>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>递归重点：1）必须可以拆分为若干个规模较小，与原问题形式相同的子问题；并且子问题可以用完全相同的解题思路解决；（递归主体）<br />
+2）递归的演化过程是一个对原问题从大到小进行拆解的过程，并且会有一个明确的终点。（终止条件）<br />
+假设共n个盘子，三个柱子分别是x,y,z，则目的是将x柱上面的n个盘子转移到z柱上面，那么分析：<br />
+1.将n-1个盘子从x柱转移到y柱<br />
+2.将x柱上最后一个盘子转移到z柱<br />
+3.将n-1个盘子从y柱转移到z柱<br />
+可见，1，3是汉诺塔问题；终止条件，当n=1时无法再细化。<br />
+所以判断可以使用递归解决该问题。</p>
+<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hanota</span><span class="params">(A []<span class="keyword">int</span>, B []<span class="keyword">int</span>, C []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(A)</span><br><span class="line">	hanio(n, &amp;A, &amp;B, &amp;C)</span><br><span class="line">	<span class="keyword">return</span> C</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hanio</span><span class="params">(n <span class="keyword">int</span>, a *[]<span class="keyword">int</span>, b *[]<span class="keyword">int</span>, c *[]<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> n &lt; <span class="number">1</span> || n &gt; <span class="number">14</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> n == <span class="number">1</span> &#123;</span><br><span class="line">		*c = <span class="built_in">append</span>(*c, (*a)[<span class="built_in">len</span>(*a)<span class="number">-1</span>])</span><br><span class="line">		*a = (*a)[:<span class="built_in">len</span>(*a)<span class="number">-1</span>]</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		hanio(n<span class="number">-1</span>, a, c, b)</span><br><span class="line">		*c = <span class="built_in">append</span>(*c, (*a)[<span class="built_in">len</span>(*a)<span class="number">-1</span>])</span><br><span class="line">		*a = (*a)[:<span class="built_in">len</span>(*a)<span class="number">-1</span>]</span><br><span class="line">		hanio(n<span class="number">-1</span>, b, a, c)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/08/03/Data%20Structure%20and%20Algorithm/%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/03/Data%20Structure%20and%20Algorithm/%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">队列</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-03 23:09:01" itemprop="dateCreated datePublished" datetime="2020-08-03T23:09:01+08:00">2020-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-什么是队列"><a class="markdownIt-Anchor" href="#1-什么是队列"></a> 1. 什么是队列？</h1>
+<ol>
+<li>先进者先出，这就是典型的“队列”结构。</li>
+<li>支持两个操作：入队enqueue()，放一个数据到队尾；出队dequeue()，从队头取一个元素。</li>
+<li>所以，和栈一样，队列也是一种操作受限的线性表。</li>
+</ol>
+<h1 id="2-如何实现队列"><a class="markdownIt-Anchor" href="#2-如何实现队列"></a> 2. 如何实现队列？</h1>
+<ol>
+<li>队列API<br />
+public interface Queue<T> {<br />
+public void enqueue(T item); //入队<br />
+public T dequeue(); //出队<br />
+public int size(); //统计元素数量<br />
+public boolean isNull(); //是否为空<br />
+}</li>
+<li>数组实现（顺序队列）：</li>
+<li>链表实现（链式队列）：</li>
+<li>循环队列（基于数组）：</li>
+</ol>
+<h1 id="3-队列有哪些常见的应用"><a class="markdownIt-Anchor" href="#3-队列有哪些常见的应用"></a> 3. 队列有哪些常见的应用？</h1>
+<ol>
+<li>阻塞队列<br />
+1)在队列的基础上增加阻塞操作，就成了阻塞队列。<br />
+2）阻塞队列就是在队列为空的时候，从队头取数据会被阻塞，因为此时还没有数据可取，直到队列中有了数据才能返回；如果队列已经满了，那么插入数据的操作就会被阻塞，直到队列中有空闲位置后再插入数据，然后在返回。<br />
+3）从上面的定义可以看出这就是一个“生产者-消费者模型”。这种基于阻塞队列实现的“生产者-消费者模型”可以有效地协调生产和消费的速度。当“生产者”生产数据的速度过快，“消费者”来不及消费时，存储数据的队列很快就会满了，这时生产者就阻塞等待，直到“消费者”消费了数据，“生产者”才会被唤醒继续生产。不仅如此，基于阻塞队列，我们还可以通过协调“生产者”和“消费者”的个数，来提高数据处理效率，比如配置几个消费者，来应对一个生产者。</li>
+<li>并发队列<br />
+1）在多线程的情况下，会有多个线程同时操作队列，这时就会存在线程安全问题。能够有效解决线程安全问题的队列就称为并发队列。<br />
+2）并发队列简单的实现就是在enqueue()、dequeue()方法上加锁，但是锁粒度大并发度会比较低，同一时刻仅允许一个存或取操作。<br />
+3）实际上，基于数组的循环队列利用CAS原子操作，可以实现非常高效的并发队列。这也是循环队列比链式队列应用更加广泛的原因。</li>
+<li>线程池资源枯竭是的处理<br />
+在资源有限的场景，当没有空闲资源时，基本上都可以通过“队列”这种数据结构来实现请求排队。</li>
+</ol>
+<h1 id="4-思考"><a class="markdownIt-Anchor" href="#4-思考"></a> 4. 思考</h1>
+<p>1.除了线程池这种池结构会用到队列排队请求，还有哪些类似线程池结构或者场景中会用到队列的排队请求呢？<br />
+2.今天讲到并发队列，关于如何实现无锁的并发队列，网上有很多讨论。对这个问题，你怎么看？</p>
+<h1 id="5-练习题"><a class="markdownIt-Anchor" href="#5-练习题"></a> 5. 练习题</h1>
+<p>1.滑动窗口的最大值: <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/number-of-recent-calls/" target="_blank" rel="noopener">剑指 Offer 59</a></p>
+<h2 id="1滑动窗口的最大值"><a class="markdownIt-Anchor" href="#1滑动窗口的最大值"></a> 1.滑动窗口的最大值</h2>
+<p><code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/" target="_blank" rel="noopener">剑指 Offer 59</a></p>
+<h3 id="思路一"><a class="markdownIt-Anchor" href="#思路一"></a> 思路一</h3>
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxSlidingWindow</span><span class="params">(nums []<span class="keyword">int</span>, k <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">    ret := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span>)</span><br><span class="line">    queue := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span>, k)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(nums) == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> k &lt;= <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> i, v := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		<span class="comment">// 窗口已经移动到第i个位置， 而queue[0]保存的值已经是窗口之外的索引，因此有queue[0] &lt;= i - k; </span></span><br><span class="line">        <span class="comment">// i &gt;= k 代表，窗口的移动已经超过初始的k个大小。这样才有queue = queue[1:]的意义</span></span><br><span class="line">        <span class="keyword">if</span> i &gt;= k &amp;&amp; queue[<span class="number">0</span>] &lt;= i - k &#123;</span><br><span class="line">            queue = queue[<span class="number">1</span>:]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 校验新进来的v和queue内保存的值比较，如果有小于v的，那么淘汰掉。目的是为了当窗口不断移动时，始终保持窗口内有最大值，</span></span><br><span class="line">        <span class="comment">// 并且是顺序排列的。 也就是优先队列。 golang的slice可以作为双向队列，左右两边都可以pop</span></span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">len</span>(queue) &gt; <span class="number">0</span> &amp;&amp; nums[queue[<span class="built_in">len</span>(queue)<span class="number">-1</span>]] &lt;= v &#123;</span><br><span class="line">            queue = queue[:(<span class="built_in">len</span>(queue)<span class="number">-1</span>)]</span><br><span class="line">        &#125;</span><br><span class="line">        queue = <span class="built_in">append</span>(queue, i)</span><br><span class="line">        <span class="keyword">if</span> i &gt;= k - <span class="number">1</span> &#123;</span><br><span class="line">            ret = <span class="built_in">append</span>(ret, nums[queue[<span class="number">0</span>]])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/08/02/Data%20Structure%20and%20Algorithm/%E6%A0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/02/Data%20Structure%20and%20Algorithm/%E6%A0%88/" class="post-title-link" itemprop="url">栈</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-02 13:44:43" itemprop="dateCreated datePublished" datetime="2020-08-02T13:44:43+08:00">2020-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-什么是栈"><a class="markdownIt-Anchor" href="#1-什么是栈"></a> 1. 什么是栈？</h1>
+<p>后进者先出，先进者后出，这就是典型的“栈”结构。从栈的操作特性来看，是一种“操作受限”的线性表，只允许在端插入和删除数据。</p>
+<h1 id="2-为什么需要栈"><a class="markdownIt-Anchor" href="#2-为什么需要栈"></a> 2. 为什么需要栈？</h1>
+<ol>
+<li>栈是一种操作受限的数据结构，其操作特性用数组和链表均可实现。</li>
+<li>任何数据结构都是对特定应用场景的抽象，数组和链表虽然使用起来更加灵活，但却暴露了几乎所有的操作，难免会引发错误操作的风险。</li>
+<li>所以，当某个数据集合只涉及在某端插入和删除数据，且满足后进者先出，先进者后出的操作特性时，我们应该首选栈这种数据结构。</li>
+</ol>
+<h1 id="3如何实现栈"><a class="markdownIt-Anchor" href="#3如何实现栈"></a> 3.如何实现栈？</h1>
+<h2 id="31-栈的api"><a class="markdownIt-Anchor" href="#31-栈的api"></a> 3.1 栈的API</h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> stack</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Item <span class="keyword">interface</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ItemStack the stack of items</span></span><br><span class="line"><span class="keyword">type</span> ItemStack <span class="keyword">struct</span> &#123;</span><br><span class="line">    items []Item</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// New Create a new ItemStack</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ItemStack)</span> <span class="title">New</span><span class="params">()</span> *<span class="title">ItemStack</span></span> &#123;</span><br><span class="line">    s.items = []Item&#123;&#125;</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Push adds an Item to the top of the stack</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ItemStack)</span> <span class="title">Push</span><span class="params">(t Item)</span></span> &#123;</span><br><span class="line">    s.items = <span class="built_in">append</span>(s.items, t)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Pop removes an Item from the top of the stack</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ItemStack)</span> <span class="title">Pop</span><span class="params">()</span> *<span class="title">Item</span></span> &#123;</span><br><span class="line">    item := s.items[<span class="built_in">len</span>(s.items)<span class="number">-1</span>] <span class="comment">// 后进先出</span></span><br><span class="line">    s.items = s.items[<span class="number">0</span>:<span class="built_in">len</span>(s.items)<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> &amp;item</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// size of stack</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ItemStack)</span> <span class="title">size</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(s.items)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="32-数组实现自动扩容"><a class="markdownIt-Anchor" href="#32-数组实现自动扩容"></a> 3.2 数组实现（自动扩容）</h2>
+<p>时间复杂度分析：根据均摊复杂度的定义，可以得数组实现（自动扩容）符合大多数情况是O(1)级别复杂度，个别情况是O(n)级别复杂度，比如自动扩容时，会进行完整数据的拷贝。<br />
+空间复杂度分析：在入栈和出栈的过程中，只需要一两个临时变量存储空间，所以O(1)级别。我们说空间复杂度的时候，是指除了原本的数据存储空间外，算法运行还需要额外的存储空间。</p>
+<p>3.链表实现<br />
+时间复杂度分析：压栈和弹栈的时间复杂度均为O(1)级别，因为只需更改单个节点的索引即可。<br />
+空间复杂度分析：在入栈和出栈的过程中，只需要一两个临时变量存储空间，所以O(1)级别。我们说空间复杂度的时候，是指除了原本的数据存储空间外，算法运行还需要额外的存储空间。</p>
+<h1 id="4-栈的应用"><a class="markdownIt-Anchor" href="#4-栈的应用"></a> 4. 栈的应用</h1>
+<h2 id="41-栈在函数调用中的应用"><a class="markdownIt-Anchor" href="#41-栈在函数调用中的应用"></a> 4.1 栈在函数调用中的应用</h2>
+<p>操作系统给每个线程分配了一块独立的内存空间，这块内存被组织成“栈”这种结构，用来存储函数调用时的临时变量。每进入一个函数，就会将其中的临时变量作为栈帧入栈，当被调用函数执行完成，返回之后，将这个函数对应的栈帧出栈。</p>
+<h2 id="42-栈在表达式求值中的应用比如3413944-123"><a class="markdownIt-Anchor" href="#42-栈在表达式求值中的应用比如3413944-123"></a> 4.2 栈在表达式求值中的应用（比如：34+13*9+44-12/3）</h2>
+<p>利用两个栈，其中一个用来保存操作数，另一个用来保存运算符。我们从左向右遍历表达式，当遇到数字，我们就直接压入操作数栈；当遇到运算符，就与运算符栈的栈顶元素进行比较，若比运算符栈顶元素优先级高，就将当前运算符压入栈，若比运算符栈顶元素的优先级低或者相同，从运算符栈中取出栈顶运算符，从操作数栈顶取出2个操作数，然后进行计算，把计算完的结果压入操作数栈，继续比较。</p>
+<h2 id="43-栈在括号匹配中的应用比如"><a class="markdownIt-Anchor" href="#43-栈在括号匹配中的应用比如"></a> 4.3 栈在括号匹配中的应用（比如：{}{<a href="">()</a>}）</h2>
+<p>用栈保存为匹配的左括号，从左到右一次扫描字符串，当扫描到左括号时，则将其压入栈中；当扫描到右括号时，从栈顶取出一个左括号，如果能匹配上，则继续扫描剩下的字符串。如果扫描过程中，遇到不能配对的右括号，或者栈中没有数据，则说明为非法格式。<br />
+当所有的括号都扫描完成之后，如果栈为空，则说明字符串为合法格式；否则，说明未匹配的左括号为非法格式。</p>
+<h2 id="44-如何实现浏览器的前进后退功能"><a class="markdownIt-Anchor" href="#44-如何实现浏览器的前进后退功能"></a> 4.4 如何实现浏览器的前进后退功能？</h2>
+<p>我们使用两个栈X和Y，我们把首次浏览的页面依次压如栈X，当点击后退按钮时，再依次从栈X中出栈，并将出栈的数据一次放入Y栈。当点击前进按钮时，我们依次从栈Y中取出数据，放入栈X中。当栈X中没有数据时，说明没有页面可以继续后退浏览了。当Y栈没有数据，那就说明没有页面可以点击前进浏览了。</p>
+<h1 id="5-思考"><a class="markdownIt-Anchor" href="#5-思考"></a> 5. 思考</h1>
+<ol>
+<li>我们在讲栈的应用时，讲到用函数调用栈来保存临时变量，为什么函数调用要用“栈”来保存临时变量呢？用其他数据结构不行吗？<br />
+答：因为函数调用的执行顺序符合后进者先出，先进者后出的特点。比如函数中的局部变量的生命周期的长短是先定义的生命周期长，后定义的生命周期短；还有函数中调用函数也是这样，先开始执行的函数只有等到内部调用的其他函数执行完毕，该函数才能执行结束。<br />
+正是由于函数调用的这些特点，根据数据结构是特定应用场景的抽象的原则，我们优先考虑栈结构。</li>
+<li>我们都知道，JVM 内存管理中有个“堆栈”的概念。栈内存用来存储局部变量和方法调用，堆内存用来存储 Java 中的对象。那 JVM 里面的“栈”跟我们这里说的“栈”是不是一回事呢？如果不是，那它为什么又叫作“栈”呢？<br />
+答：JVM里面的栈和我们这里说的是一回事，被称为方法栈。和前面函数调用的作用是一致的，用来存储方法中的局部变量</li>
+</ol>
+<h1 id="6-练习题"><a class="markdownIt-Anchor" href="#6-练习题"></a> 6. 练习题</h1>
+<p>1.有效的括号: <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank" rel="noopener">20</a><br />
+2.最小栈: <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/min-stack/" target="_blank" rel="noopener">155</a><br />
+3.用栈实现队列: <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/implement-queue-using-stacks/" target="_blank" rel="noopener">232</a><br />
+4.比较含退格的字符串: <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/backspace-string-compare/" target="_blank" rel="noopener">844</a><br />
+5.基本计算器: <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/basic-calculator/" target="_blank" rel="noopener">224</a><br />
+6.棒球比赛: <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/baseball-game/" target="_blank" rel="noopener">682</a><br />
+7.下一个更大元素: <code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/next-greater-element-i/" target="_blank" rel="noopener">496</a></p>
+<h2 id="1-有效的括号"><a class="markdownIt-Anchor" href="#1-有效的括号"></a> 1. 有效的括号</h2>
+<p><code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank" rel="noopener">20</a></p>
+<h3 id="思路一"><a class="markdownIt-Anchor" href="#思路一"></a> 思路一</h3>
+<ol>
+<li>初始化栈 S。</li>
+<li>一次处理表达式的每个括号。</li>
+<li>如果遇到开括号，我们只需将其推到栈上即可。这意味着我们将稍后处理它，让我们简单地转到前面的 子表达式。</li>
+<li>如果我们遇到一个闭括号，那么我们检查栈顶的元素。如果栈顶的元素是一个 相同类型的 左括号，那么我们将它从栈中弹出并继续处理。否则，这意味着表达式无效。</li>
+<li>如果到最后我们剩下的栈中仍然有元素，那么这意味着表达式无效。</li>
+</ol>
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isValid</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    schar := []<span class="keyword">rune</span>(s)</span><br><span class="line">	<span class="keyword">var</span> stack []<span class="keyword">rune</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(schar); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> schar[i] == <span class="string">'('</span> || schar[i] == <span class="string">'['</span> || schar[i] == <span class="string">'&#123;'</span> &#123;</span><br><span class="line">			stack = <span class="built_in">append</span>(stack, schar[i])</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> <span class="built_in">len</span>(stack) == <span class="number">0</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> schar[i] == <span class="string">')'</span> &#123;</span><br><span class="line">				tem := stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">				stack = <span class="built_in">append</span>(stack[:<span class="built_in">len</span>(stack)<span class="number">-1</span>])</span><br><span class="line">				<span class="keyword">if</span> tem != <span class="string">'('</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> schar[i] == <span class="string">']'</span> &#123;</span><br><span class="line">				tem := stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">				stack = <span class="built_in">append</span>(stack[:<span class="built_in">len</span>(stack)<span class="number">-1</span>])</span><br><span class="line">				<span class="keyword">if</span> tem != <span class="string">'['</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> schar[i] == <span class="string">'&#125;'</span> &#123;</span><br><span class="line">				tem := stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">				stack = <span class="built_in">append</span>(stack[:<span class="built_in">len</span>(stack)<span class="number">-1</span>])</span><br><span class="line">				<span class="keyword">if</span> tem != <span class="string">'&#123;'</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(stack) == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-最小栈"><a class="markdownIt-Anchor" href="#2-最小栈"></a> 2. 最小栈</h2>
+<p><code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/min-stack/" target="_blank" rel="noopener">155</a></p>
+<h3 id="思路一-2"><a class="markdownIt-Anchor" href="#思路一-2"></a> 思路一</h3>
+<p>常规思路，普通栈操作+ 一遍遍历最小值</p>
+<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MinStack <span class="keyword">struct</span> &#123;</span><br><span class="line">    items []<span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/** initialize your data structure here. */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">MinStack</span></span> &#123;</span><br><span class="line">    stack := MinStack&#123;&#125;</span><br><span class="line">    <span class="keyword">return</span> stack</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Push</span><span class="params">(x <span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">    this.items = <span class="built_in">append</span>(this.items, x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Pop</span><span class="params">()</span></span>  &#123;</span><br><span class="line">    this.items = <span class="built_in">append</span>(this.items[:<span class="built_in">len</span>(this.items) <span class="number">-1</span>])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Top</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    res := this.items[<span class="built_in">len</span>(this.items) - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">GetMin</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    minV := this.items[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="built_in">len</span>(this.items);i++ &#123;</span><br><span class="line">        <span class="keyword">if</span> minV &gt; this.items[i]&#123;</span><br><span class="line">            minV = this.items[i]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minV</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-用栈实现队列"><a class="markdownIt-Anchor" href="#3-用栈实现队列"></a> 3. 用栈实现队列</h2>
+<p><code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/implement-queue-using-stacks/" target="_blank" rel="noopener">232</a></p>
+<h3 id="思路一-3"><a class="markdownIt-Anchor" href="#思路一-3"></a> 思路一</h3>
+<p>使用两个栈来模拟队列操作</p>
+<h4 id="代码-3"><a class="markdownIt-Anchor" href="#代码-3"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyQueue <span class="keyword">struct</span> &#123;</span><br><span class="line">    input []<span class="keyword">int</span></span><br><span class="line">    output []<span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">MyQueue</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> MyQueue&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Push element x to the back of queue. */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span> <span class="title">Push</span><span class="params">(x <span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">    this.input = <span class="built_in">append</span>(this.input, x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Removes the element from in front of queue and returns that element. */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span> <span class="title">Pop</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    this.Peek()</span><br><span class="line">    e := this.output[<span class="built_in">len</span>(this.output) - <span class="number">1</span>]</span><br><span class="line">    this.output = this.output[:<span class="built_in">len</span>(this.output) - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> e</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Get the front element. */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span> <span class="title">Peek</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(this.output) == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">len</span>(this.input) &gt; <span class="number">0</span> &#123;</span><br><span class="line">            this.output = <span class="built_in">append</span>(this.output, this.input[<span class="built_in">len</span>(this.input) - <span class="number">1</span>])</span><br><span class="line">            this.input = this.input[:<span class="built_in">len</span>(this.input) - <span class="number">1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> this.output[<span class="built_in">len</span>(this.output) - <span class="number">1</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Returns whether the queue is empty. */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span> <span class="title">Empty</span><span class="params">()</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(this.input) == <span class="number">0</span> &amp;&amp; <span class="built_in">len</span>(this.output) == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>  <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-比较含退格的字符串"><a class="markdownIt-Anchor" href="#4-比较含退格的字符串"></a> 4. 比较含退格的字符串</h2>
+<p><code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/backspace-string-compare/" target="_blank" rel="noopener">844</a></p>
+<h3 id="思路一-4"><a class="markdownIt-Anchor" href="#思路一-4"></a> 思路一</h3>
+<p>重构字符串，依次压栈，遇到退格就出栈，最后比较两个栈</p>
+<h4 id="代码-4"><a class="markdownIt-Anchor" href="#代码-4"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">backspaceCompare</span><span class="params">(S <span class="keyword">string</span>, T <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> stackS []<span class="keyword">rune</span></span><br><span class="line">    <span class="keyword">var</span> StackT []<span class="keyword">rune</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span> _, item := <span class="keyword">range</span> S &#123;</span><br><span class="line">        <span class="keyword">if</span> item != <span class="string">'#'</span> &#123;</span><br><span class="line">            stackS = <span class="built_in">append</span>(stackS,item)</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(stackS) &gt;<span class="number">0</span> &#123;</span><br><span class="line">                stackS = stackS[:<span class="built_in">len</span>(stackS) - <span class="number">1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _, item := <span class="keyword">range</span> T&#123;</span><br><span class="line">        <span class="keyword">if</span> item != <span class="string">'#'</span> &#123;</span><br><span class="line">            StackT = <span class="built_in">append</span>(StackT,item)</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(StackT) &gt;<span class="number">0</span> &#123;</span><br><span class="line">                StackT = StackT[:<span class="built_in">len</span>(StackT) - <span class="number">1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">len</span>(stackS) &gt;<span class="number">0</span> &amp;&amp; <span class="built_in">len</span>(StackT)&gt;<span class="number">0</span> &#123;</span><br><span class="line">        itemS := stackS[<span class="built_in">len</span>(stackS)<span class="number">-1</span>]</span><br><span class="line">        itemT := StackT[<span class="built_in">len</span>(StackT)<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> (itemS != itemT)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        stackS = stackS[:<span class="built_in">len</span>(stackS) - <span class="number">1</span>]</span><br><span class="line">        StackT = StackT[:<span class="built_in">len</span>(StackT) - <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(stackS) == <span class="number">0</span> &amp;&amp; <span class="built_in">len</span>(StackT)  == <span class="number">0</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-基本计算器"><a class="markdownIt-Anchor" href="#5-基本计算器"></a> 5. 基本计算器</h2>
+<p><code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/basic-calculator/" target="_blank" rel="noopener">224</a></p>
+<h3 id="思路一-5"><a class="markdownIt-Anchor" href="#思路一-5"></a> 思路一</h3>
+<p>在遍历s的过程中，再未遇到’(‘之前，一直计算并累计当前的计算结果；遇到’('时，将当前计算结果压栈。<br />
+另外，通过引入sign符号，避免对&quot;+&quot;、“-”号的多次判断：</p>
+<h4 id="代码-5"><a class="markdownIt-Anchor" href="#代码-5"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calculate</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	stack := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span>)</span><br><span class="line">	res := <span class="number">0</span></span><br><span class="line">	sign := <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span> ; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> s[i] &gt;= <span class="string">'0'</span> &amp;&amp; s[i] &lt;= <span class="string">'9'</span> &#123;</span><br><span class="line">			num := <span class="number">0</span></span><br><span class="line">			<span class="keyword">for</span> ; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">				<span class="keyword">if</span> s[i] &lt; <span class="string">'0'</span> || s[i] &gt; <span class="string">'9'</span> &#123;</span><br><span class="line">					<span class="keyword">break</span></span><br><span class="line">				&#125;</span><br><span class="line">				num = num*<span class="number">10</span> + <span class="keyword">int</span>(s[i]-<span class="string">'0'</span>)</span><br><span class="line">			&#125;</span><br><span class="line">			res = res + sign*num</span><br><span class="line">			i--</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">switch</span> s[i] &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'+'</span>:</span><br><span class="line">				sign = <span class="number">1</span></span><br><span class="line">			<span class="keyword">case</span> <span class="string">'-'</span>:</span><br><span class="line">				sign = <span class="number">-1</span></span><br><span class="line">			<span class="keyword">case</span> <span class="string">'('</span>:</span><br><span class="line">				stack = <span class="built_in">append</span>(stack, res, sign)</span><br><span class="line">				res, sign = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">			<span class="keyword">case</span> <span class="string">')'</span>:</span><br><span class="line">				sign := stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">				num := stack[<span class="built_in">len</span>(stack)<span class="number">-2</span>]</span><br><span class="line">				res = num + sign*res</span><br><span class="line">				stack = stack[:<span class="built_in">len</span>(stack)<span class="number">-2</span>]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6-棒球比赛"><a class="markdownIt-Anchor" href="#6-棒球比赛"></a> 6. 棒球比赛</h2>
+<p><code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/baseball-game/" target="_blank" rel="noopener">682</a></p>
+<h3 id="思路一-6"><a class="markdownIt-Anchor" href="#思路一-6"></a> 思路一</h3>
+<ol>
+<li>准备一个栈保存数据</li>
+<li>从前往后遍历ops</li>
+<li>如果是+ 计算stack 最后两位的加和score, 并把score入栈</li>
+<li>如果是D 计算stack 最后一位的两倍score,并把score入栈</li>
+<li>如果是C stack 栈顶出栈</li>
+<li>遍历stack,计算加和</li>
+</ol>
+<h4 id="代码-6"><a class="markdownIt-Anchor" href="#代码-6"></a> 代码</h4>
+ <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">func</span> <span class="title">calPoints</span><span class="params">(ops []<span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> stack []<span class="keyword">int</span></span><br><span class="line">    res := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;<span class="built_in">len</span>(ops); i++ &#123;</span><br><span class="line">       </span><br><span class="line">            <span class="keyword">switch</span> ops[i] &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"+"</span>:</span><br><span class="line">                score := stack[<span class="built_in">len</span>(stack) <span class="number">-1</span> ]+ stack[<span class="built_in">len</span>(stack)<span class="number">-2</span>]</span><br><span class="line">                stack = <span class="built_in">append</span>(stack, score)</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"D"</span>:</span><br><span class="line">                 score := stack[<span class="built_in">len</span>(stack) <span class="number">-1</span> ] * <span class="number">2</span> </span><br><span class="line">                 stack = <span class="built_in">append</span>(stack, score)</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"C"</span>:</span><br><span class="line">                stack = stack[:<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                num,_ := strconv.Atoi(ops[i])</span><br><span class="line">                stack = <span class="built_in">append</span>(stack,num)</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;<span class="built_in">len</span>(stack); i++&#123;</span><br><span class="line">        res = res + stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>-i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="7-下一个更大元素"><a class="markdownIt-Anchor" href="#7-下一个更大元素"></a> 7. 下一个更大元素</h2>
+<p><code>leetcode</code>题号: <a href="https://leetcode-cn.com/problems/next-greater-element-i/" target="_blank" rel="noopener">496</a></p>
+<h3 id="思路一-7"><a class="markdownIt-Anchor" href="#思路一-7"></a> 思路一</h3>
+<p>先找到num2的单调增的栈 + map 记录</p>
+<h4 id="代码-7"><a class="markdownIt-Anchor" href="#代码-7"></a> 代码</h4>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">nextGreaterElement</span><span class="params">(nums1 []<span class="keyword">int</span>, nums2 []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">var</span> stack []<span class="keyword">int</span></span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> nums2 &#123;</span><br><span class="line">		<span class="keyword">for</span> <span class="built_in">len</span>(stack) != <span class="number">0</span> &amp;&amp; v &gt; stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>] &#123;</span><br><span class="line">			m[stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>]] = v</span><br><span class="line">			stack = stack[:<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">		&#125;</span><br><span class="line">		stack = <span class="built_in">append</span>(stack, v)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(stack) != <span class="number">0</span> &#123;</span><br><span class="line">		m[stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>]] = <span class="number">-1</span></span><br><span class="line">		stack = stack[:<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> nums1 &#123;</span><br><span class="line">		nums1[k] = m[v]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> nums1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

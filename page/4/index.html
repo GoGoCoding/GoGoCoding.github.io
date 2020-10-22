@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Mobile developer, also want to be a Gopher">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GoGoCoding">
+<meta property="og:url" content="https://gogocoding.github.io/page/4/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="Mobile developer, also want to be a Gopher">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Hao Qi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gogocoding.github.io/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false
+  };
+</script>
+
+  <title>GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/05%20Key%20Exchange%20-%20Key%20Establishment%20Schemes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/05%20Key%20Exchange%20-%20Key%20Establishment%20Schemes/" class="post-title-link" itemprop="url">05 Key Exchange / Key Establishment Schemes</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:16" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:16+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="http://cacr.uwaterloo.ca/hac/about/chap12.pdf" target="_blank" rel="noopener"><strong>key establishment</strong></a> (<strong>key exchange</strong>, <strong>key negotiation</strong>) 是一个过程或协议，从而使共享的秘密可供两方随后的加密通信使用，建立技术可以是秘钥协商或秘钥传输方案。</p>
+<ul>
+<li>在秘钥协商方案中，双方都参与共享密钥的协商。 秘钥协商方案典型的有<strong>Diffie-Hellman</strong>(DHKE) 和<strong>Elliptic-Curve Diffie-Hellman</strong> (ECDH)。</li>
+<li>在秘钥传输方案中，只有一方参与生产共享密钥，另一方从他获取密钥。密钥传输方案通常通过公钥密码术实现，例如 在<strong>RSA</strong>密钥交换中，客户端使用其私钥对随机会话密钥进行加密，然后将其发送到服务器，在服务器中使用客户端的公钥对其进行解密。</li>
+</ul>
+<p>​通过设计密钥交换方案，可以安全地在两方之间交换加密密钥，而其他任何人都无法获得密钥的副本。通常，在加密对话的开始时（例如在TLS握手阶段），各方首先协商要在对话中使用的共享秘钥。</p>
+<p>每当便携式计算机连接到Wi-Fi网络或Web浏览器通过https：//协议打开网站时，都会执行密钥协商（密钥建立）方案。密钥协商可以基于匿名密钥交换协议（例如<code>DHKE</code>），密码或预共享密钥（PSK），数字证书或许多元素的组合。 一些通信协议仅建立一次共享密钥，而另一些则随时间不断更改密钥。</p>
+<p>​身份验证密钥交换（AKE）是密钥交换协议中会话密钥的交换，该协议还对有关各方的身份进行身份验证（例如通过密码，公钥或数字证书）。例如，如果您连接到受密码保护的WiFi网络，则使用经过身份验证的密钥协商协议，在大多数情况下，将使用经过密码认证的密钥协商（PAKE）。 如果您连接到公共WiFi网络，则会执行匿名密钥协议。</p>
+<h2 id="51-diffiehellman-key-exchange-dhke"><a class="markdownIt-Anchor" href="#51-diffiehellman-key-exchange-dhke"></a> 5.1 Diffie–Hellman Key Exchange (DHKE)</h2>
+<p>​<a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange" target="_blank" rel="noopener"><strong>Diffie–Hellman Key Exchange</strong></a> (DHKE) 是一种通过公共（不安全的）渠道也可以安全地交换加密密钥的方案。交换的密钥稍后用于加密通信（例如，使用诸如AES之类的对称密码）。Diffie-Hellman（DH）方法是匿名密钥协商方案：它允许彼此不具有先验知识的两方通过不安全的信道共同建立共享密钥。DHKE方法可以抵抗<a href="https://en.wikipedia.org/wiki/Sniffing_attack" target="_blank" rel="noopener"><strong>sniffing attacks</strong></a> (数据拦截)，但它容易受到<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener"><strong>man-in-the-middle attacks</strong></a> （中间人攻击，攻击者会偷偷中继并可能改变双方的通信）。</p>
+<p>​Diffie-Hellman密钥交换协议可以使用离散对数（经典 <a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange" target="_blank" rel="noopener"><strong>DHKE</strong></a>算法）或椭圆曲线加密算法（ <a href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman" target="_blank" rel="noopener"><strong>ECDH</strong></a>算法）实现。</p>
+<h2 id="52-通过混合颜色mixing-colors进行密钥交换"><a class="markdownIt-Anchor" href="#52-通过混合颜色mixing-colors进行密钥交换"></a> 5.2 通过混合颜色(Mixing Colors)进行密钥交换</h2>
+<p><code>​Diffie-Hellman</code>密钥交换协议与“<strong>通过混合颜色交换密钥</strong>”的概念非常相似，该协议具有良好的视觉表示，从而简化了对其的理解。这就是为什么我们将首先解释如何通过颜色混合来交换秘密颜色的原因。</p>
+<p>​颜色混合密钥交换方案的设计假定，如果我们有两种不同颜色的液体，我们可以轻松地混合颜色并获得新的颜色，但是反向操作几乎是不可能的：无法将混合后的颜色分离回其原始颜色。</p>
+<p><strong>具体操作步骤如下：</strong></p>
+<ol>
+<li><strong>Alice</strong>和<strong>Bob</strong>使用一个无需保密的任意起始（共享）颜色（例如黄色）。</li>
+<li><strong>Alice</strong>和<strong>Bob</strong>分别选择自己保留的私密颜色（例如红色和海绿色）。</li>
+<li><strong>Alice</strong>和<strong>Bob</strong>将他们的私密颜色与共享的颜色混合在一起， 获得用于公开交换的混合色（在我们的示例中为橙色和浅天蓝色）。</li>
+</ol>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/Mixed%20color%201.png" alt="Mixed color 1 -c400" /></p>
+<p><strong>后续步骤如下：</strong></p>
+<ol>
+<li><strong>Alice</strong>和<strong>Bob</strong>公开交换他们的两种混合色。</li>
+<li>最后，<strong>Alice</strong>和<strong>Bob</strong>将他们从对方那里得到的颜色与自己的私密颜色混合在一起，得到最终的颜色。</li>
+</ol>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/Mixed%20color%202.png" alt="Mixed color 2-c400" /></p>
+<p>​Diffie-Hellman密钥交换协议基于相似的概念，但是使用 <a href="https://en.wikipedia.org/wiki/Discrete_logarithm" target="_blank" rel="noopener"><strong>discrete logarithms</strong></a>（离散对数）和 <a href="https://en.wikipedia.org/wiki/Modular_exponentiation" target="_blank" rel="noopener"><strong>modular exponentiations</strong></a> （模化指数）而不是颜色混合。</p>
+<h2 id="53-dhke背后的数学理论"><a class="markdownIt-Anchor" href="#53-dhke背后的数学理论"></a> 5.3 DHKE背后的数学理论</h2>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>b</mi></msup><msup><mo stretchy="false">)</mo><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mi>e</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">(g^a)^b \quad mod \quad p = (g^b)^a \quad mode \quad p
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></span></p>
+<p><strong>g</strong>, <strong>a</strong>, <strong>b</strong> 和 <strong>p</strong>都是正整数；<br />
+当我们已知 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><msup><mi>g</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">A = g^a \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>=</mo><msup><mi>g</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">B = g^b \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.043548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span>，我们可以在不知道 a 或 b 的情况下计算 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">(g^a)^b \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></p>
+<p><code>注</code>: 如果$ m = g^s \quad mod \quad p $, 即使<strong>m</strong> 、<strong>g</strong>、<strong>p</strong>已知的情况下，也没有有效的（快速）算法来找到私密指数<strong>s</strong>，<a href="https://en.wikipedia.org/wiki/Discrete_Logarithm_Problem_(DLP)" target="_blank" rel="noopener">Discrete Logartihm Problem (DLP)</a>。</p>
+<p><strong>离散对数问题（ Discrete Logarithm Problem，DLP）</strong></p>
+<p>计算机科学中的离散对数问题（DLP）定义如下：</p>
+<ul>
+<li>通过给定元素<strong>b</strong>和值<strong>a</strong> = $ b^x $来找到指数 <strong>x</strong>（如果存在）</li>
+</ul>
+<p>指数<strong>x</strong>称为离散对数，即<strong>x</strong> =$ \log_ba$</p>
+<p><strong>The DHKE Protocol</strong></p>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/The%20DHKE%20Protocol.png" alt="The DHKE Protoco -c400" /></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><msup><mi>A</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><msup><mo stretchy="false">)</mo><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><msup><mi>B</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">S=A^b \quad mod \quad p = (g^a \quad mod \quad p)^b \quad mod \quad p = (g^a)^b \quad mod  \quad p = (g^b \quad mod \quad p)^a \quad mod \quad p = B^a \quad mod \quad p
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.093548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9088319999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></span></p>
+<h2 id="54-ecdh-基于椭圆曲线的diffie-hellman密钥交换协议"><a class="markdownIt-Anchor" href="#54-ecdh-基于椭圆曲线的diffie-hellman密钥交换协议"></a> 5.4 ECDH-基于椭圆曲线的Diffie-Hellman密钥交换协议</h2>
+<p>​**<a href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman" target="_blank" rel="noopener">Elliptic-Curve Diffie–Hellman (ECDH)</a>** 是一个匿名密钥协商协议，该协议允许两方（每方都有一个椭圆曲线的公私钥对）在不安全的通道上建立共享秘钥。ECDH是经典DHKE协议的一种变体，其中模化指数计算被椭圆曲线计算代替以提高安全性。稍后我们将详细解释椭圆曲线密码学（ECC）部分。</p>
+<h2 id="55-dhke-使用示例"><a class="markdownIt-Anchor" href="#55-dhke-使用示例"></a> 5.5 DHKE 使用示例</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyDHE</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyDHE</span><br><span class="line"></span><br><span class="line">alice = pyDHE.new()</span><br><span class="line">alicePubKey = alice.getPublicKey()</span><br><span class="line">print(<span class="string">"Alice public key:"</span>, hex(alicePubKey))</span><br><span class="line"></span><br><span class="line">bob = pyDHE.new()</span><br><span class="line">bobPubKey = bob.getPublicKey()</span><br><span class="line">print(<span class="string">"Bob public key:"</span>, hex(bobPubKey))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Now exchange the public keys (e.g. through Internet)"</span>)</span><br><span class="line"></span><br><span class="line">aliceSharedKey = alice.update(bobPubKey)</span><br><span class="line">print(<span class="string">"Alice shared key:"</span>, hex(aliceSharedKey))</span><br><span class="line"></span><br><span class="line">bobSharedKey = bob.update(alicePubKey)</span><br><span class="line">print(<span class="string">"Bob shared key:"</span>, hex(bobSharedKey))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Equal shared keys:"</span>, aliceSharedKey == bobSharedKey)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Alice public key: 0xa26c2f1354a8f58abbf78172730595c4de8277962ebe92100793f99ea80f66abe5e75a14a52e86ce1c086c1ca2e1662b3900510346d848b425d34279ceea92661fb1166b9438589c0b57eb4ebb69e0c3844ebe5ad4c0e316b637d47148d69dc2387c2968c82d198114a6c0f14a605a9e85110d24a9db4f11963b9b13dc788c0538096cadffd258364c63621f6bb1a3e515d3741af4619e62452a394fab9d84be7cee255fdd7216401cafee6471b4adbb77e93f878f1bb4df633e0632522b51fe70fc154e7d3e60a69f815a4e2a84506f05b1ccfce01e873cd7dc51fba0b6eac66af1c0a7500f71af405a6c34ffd27a1239180c22fbddf8dc15d30c821c57307d</span><br><span class="line">Bob public key: 0x822660dfff1af80c237402263dda9e0e417fa04547a4e36041a35a152df28b0ac66b059d9e0034c7cd58b6b7edbc8a20bf1bdc2af6534bd6f2dbcffeb9a4aa9f038461994622f786258beb8f6493594e1559e5ebf5a92ba60335f668a9ccbf8d6d87460f21d94938ac40cfd78d062571f68aa7e7fbabed4ba582e8e831288670004ae64be113a2c7b5b9a472ba4733ea4f29c1b1f30ead3729908d9bb54278a499b2c16cc62d4f330a28cdd302bf655f3d724b6d5b0655c9299ada183d8bed4e98c2f0d93339eb3c22c88c9d000de4ea3286b6be5b96e7d7cccb7b8d6a079264e155c5b25b5aca21ccfed7d21d5dce79845fe5456419504ec9c2a896448572e7</span><br><span class="line">Now exchange the public keys (e.g. through Internet)</span><br><span class="line">Alice shared key: 0x60d96187ae1db8e8acac7795837a2964e4972ebf666eaecfa09135371a2de5287db18c1a30f2af840f04cac42fea21e42369af5ffbeb235faa42da6bed24cd922ea4637ad146558f2d8b07b19a0084c19f041af5456a5826dd836d0c9c4f32ca0a5877da9493af36f66949e76af12e45a20b20c222a37a49b658066bd7b1f79bcf81d1083e79c62c43e3ee11f8727e798e310a2683939c06b75ab80c531743d6c03c90007ab8a36af45b3573f4e41a2a41c9fdde962493f9ed860597ee527d978e41a413d13198aaac2b27e70aac5be15fd695592350c56b6d74b3427dcf6888ee11cef4b4d8f5b3acbfbda1d9b8d7425bc9446e1a6424a929d9136590161cfe</span><br><span class="line">Bob shared key: 0x60d96187ae1db8e8acac7795837a2964e4972ebf666eaecfa09135371a2de5287db18c1a30f2af840f04cac42fea21e42369af5ffbeb235faa42da6bed24cd922ea4637ad146558f2d8b07b19a0084c19f041af5456a5826dd836d0c9c4f32ca0a5877da9493af36f66949e76af12e45a20b20c222a37a49b658066bd7b1f79bcf81d1083e79c62c43e3ee11f8727e798e310a2683939c06b75ab80c531743d6c03c90007ab8a36af45b3573f4e41a2a41c9fdde962493f9ed860597ee527d978e41a413d13198aaac2b27e70aac5be15fd695592350c56b6d74b3427dcf6888ee11cef4b4d8f5b3acbfbda1d9b8d7425bc9446e1a6424a929d9136590161cfe</span><br><span class="line">Equal shared keys: True</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/04.%20Secure%20Random%20Number%20Generators,%20PRNG%20and%20CSPRNG/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/04.%20Secure%20Random%20Number%20Generators,%20PRNG%20and%20CSPRNG/" class="post-title-link" itemprop="url">04. Secure Random Number Generators, PRNG and CSPRNG</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:15" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:15+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​在密码学中，随机性（熵）起着非常重要的作用。 在许多算法中，我们需要随机（即不可预测）。 如果这些数字不是不可预测的，则算法将会更容易被攻破。</p>
+<p>​例如，假设我们需要一个密钥，它将保护我们的金融资产。应该以其他任何人都不能生成或拥有相同密钥的方式随机生成此密钥。我们从安全的随机生成器生成密钥，则密钥将是不可预测的，因此“安全随机”仅表示“不可预测的随机”。</p>
+<p>​让我们更详细地讨论计算机科学中的随机数及其在密码学中的作用，伪随机数生成器（ pseudo-random numbers generators, PRNG），安全伪随机生成器（Cryptography secure pseudo-random generators, CSPRNG），以及开发人员应如何在代码中生成和使用随机数的一些准则。</p>
+<h2 id="41-pseudo-random-number-generators-prng"><a class="markdownIt-Anchor" href="#41-pseudo-random-number-generators-prng"></a> 4.1 Pseudo-Random Number Generators (PRNG)</h2>
+<p>​伪随机数生成器(PRNG)用于将少量的初始随机性扩展为大量的伪随机性，通常用于密码系统。注意，PRNGs不是加密安全的，并且不同于CSPRNGs。</p>
+<p>​<code>PRNGs</code>是从某个初始熵（种子,seed）开始，并通过某种计算来计算下一个随机数的函数，而这些计算在不知道种子的情况下是无法预测的。 这种计算称为伪随机函数。<br />
+​<br />
+<img src="http://q6r9jgptb.bkt.clouddn.com/mweb/PRNGs.png" alt="PRNGs" /></p>
+<p>此过程以最简单的形式可以实现如下:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">init(entropy):</span><br><span class="line">  state = entropy, counter = <span class="number">0</span></span><br><span class="line">netNum():</span><br><span class="line">  state = HMAC(state, ++counter)</span><br><span class="line">  <span class="keyword">return</span> state</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">print(random.randrange(<span class="number">1000000</span>, <span class="number">9999999</span>))</span><br></pre></td></tr></table></figure>
+<p>上面的代码生成一个随机数，但是这个数字是可以预测的。 这是因为Python（旧版本）中的随机库会在当前时间之前初始化随机生成器种子</p>
+<h2 id="42-csprng-cryptography-secure-random-number-generators"><a class="markdownIt-Anchor" href="#42-csprng-cryptography-secure-random-number-generators"></a> 4.2 CSPRNG (Cryptography Secure Random Number Generators)</h2>
+<p>​根据定义，<code>CSPRNG</code>（密码学安全随机数发生器）是一种伪随机数发生器（PRNG），其一些特性使其适合用于密码学。 要使PRNG成为CSPRNG，有两个主要要求：</p>
+<ol>
+<li>满足 <a href="https://en.wikipedia.org/wiki/Next-bit_test" target="_blank" rel="noopener"><strong>next-bit test</strong></a> ：即使某人从PRNG的开头就知道所有k位，那么他将无法使用合理的计算资源来预测k + 1位。</li>
+<li>经受<a href="https://www.owasp.org/index.php/PRNG_state_compromise_extension_attack" target="_blank" rel="noopener"><strong>state compromise extensions</strong></a> : 如果攻击者猜出PRNG的内部状态或内部状态以某种方式被暴露，攻击者也无法重建内部状态暴露前的所有随机数。</li>
+</ol>
+<p>已提出许多设计来构造CSPRNG算法：</p>
+<ol>
+<li>基于数论、整数分解问题（IFP），离散对数问题（DLP）或椭圆曲线离散对数问题（ECDLP）。</li>
+<li>基于密码安全随机性的特殊设计：例如：<code>MacOS</code> 和<code>FreeBSD</code>系统中的 <a href="https://en.wikipedia.org/wiki/Yarrow_algorithm" target="_blank" rel="noopener">Yarrow algorithm</a> 和 <a href="https://en.wikipedia.org/wiki/Fortuna_(PRNG)" target="_blank" rel="noopener">Fortuna</a>,</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line">print(secrets.randbelow(int(<span class="number">1e50</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, time, binascii</span><br><span class="line"></span><br><span class="line">entropy = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    s = input(<span class="string">"Enter something ["</span> + str(i+<span class="number">1</span>) + <span class="string">" of 5]: "</span>)</span><br><span class="line">    entropy = entropy + s + <span class="string">'|'</span> + str(time.time()) + <span class="string">'|'</span></span><br><span class="line">print(<span class="string">"Entropy:"</span>, entropy)</span><br><span class="line">startSeed = str(binascii.hexlify(hashlib.sha256(entropy.encode(<span class="string">'ascii'</span>)).digest()))[<span class="number">2</span>:<span class="number">-1</span>]</span><br><span class="line">print(<span class="string">"Start seed = SHA-256(entropy) ="</span>, startSeed)</span><br><span class="line"></span><br><span class="line">min = <span class="number">10</span></span><br><span class="line">max = <span class="number">20</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    nextSeed = startSeed + <span class="string">'|'</span> + str(i)</span><br><span class="line">    hash = hashlib.sha256(nextSeed.encode(<span class="string">'ascii'</span>)).digest()</span><br><span class="line">    bigRand = int.from_bytes(hash, <span class="string">'big'</span>)</span><br><span class="line">    rand = min + bigRand % (max - min + <span class="number">1</span>)</span><br><span class="line">    print(nextSeed, bigRand, <span class="string">'--&gt;'</span>, rand)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Enter something [1 of 5]: first</span><br><span class="line">Enter something [2 of 5]: second</span><br><span class="line">Enter something [3 of 5]: random text</span><br><span class="line">Enter something [4 of 5]: dfasfdasfs</span><br><span class="line">Enter something [5 of 5]: last</span><br><span class="line">Entropy: first|1539885709.4494743|second|1539885713.687703|random text|1539885721.5754962|dfasfdasfs|1539885724.40904|last|1539885726.1286101|</span><br><span class="line">Start seed &#x3D; SHA-256(entropy) &#x3D; f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|0 84482770259566839097936866229004786554948913905882724148636325987196754263481 --&gt; 19</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|1 67001454659030164457342421011672033052466168976555224352709830050538321411120 --&gt; 14</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|2 103739181507291072572315034266940107849472122762876847172454548630886082729227 --&gt; 12</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|3 3011033199204097839903859902789759740091959530467456042709372597822032778153 --&gt; 16</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|4 100466094724924763659843669256673300207383922129676800217664465341535622195997 --&gt; 16</span><br></pre></td></tr></table></figure>
+<p><strong>作为开发者如何访问CSPRNG</strong></p>
+<ul>
+<li>In <strong>Linux</strong> and <strong>macOS</strong>, it is considered that both <code>/dev/random</code> and <code>/dev/urandom</code> sources of randomness are <strong>secure enough for most cryptographic purposes</strong> and most cryptographic libraries access them internally.</li>
+<li>In <strong>Windows</strong>, random numbers for cryptographic purposes can be securely generated using the <code>BCryptGenRandom</code> function from the <a href="https://docs.microsoft.com/windows/desktop/SecCNG/cng-portal" target="_blank" rel="noopener">Cryptography API: Next Generation (CNG)</a> or higher level crypto libraries.</li>
+<li>In <strong>C#</strong> use <code>System.Security.Cryptography.RandomNumberGenerator.Create()</code> from .NET Framework or .NET Core.</li>
+<li>In <strong>Python</strong> use <code>os.urandom()</code> or the <code>secrets</code> library.</li>
+<li>In <strong>Java</strong> use the <code>java.security.SecureRandom</code> system class.</li>
+<li>In <strong>JavaScript</strong> use <code>window.crypto.getRandomValues(Uint8Array)</code> for client side (in the Web browser) or <code>crypto.randomBytes()</code> or external module like <code>node-sodium</code> for server-side (in Node.js).</li>
+</ul>
+<p><strong>Never use</strong> <code>Math.random()</code> or similar insecure RNG functions for cryptographic purposes!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/03.%20MAC%20Codes%20and%20Key%20Derivation%20Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/03.%20MAC%20Codes%20and%20Key%20Derivation%20Functions/" class="post-title-link" itemprop="url">03. MAC Codes and Key Derivation Functions</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:14" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:14+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​消息认证码(MAC)，HMAC(hash-based message authentication code,基于哈希的消息认证码)和KDF(key derivation functions, 密钥导出函数)在密码学中起着重要的作用。</p>
+<h2 id="31-消息认证码"><a class="markdownIt-Anchor" href="#31-消息认证码"></a> 3.1 消息认证码</h2>
+<p>消息验证码(MAC)是由给定密钥和消息计算出的密码。<br />
+​<code>auth_code = MAC(key, msg)</code><br />
+通常它的类似于哈希函数：</p>
+<ul>
+<li>消息或密钥中的微小变化会导致<code>MAC</code>值完全不同；</li>
+<li>不可能通过更改秘钥或者消息来获得相同的<code>MAC</code>值；</li>
+<li>无法从<code>MAC</code>值推测出原始消息或密钥。</li>
+</ul>
+<p>​存在许多用于计算消息认证码（MAC）的算法。 最受欢迎的是基于哈希算法，如：<a href="https://en.wikipedia.org/wiki/HMAC" target="_blank" rel="noopener">HMAC</a>（Hash-based MAC, e.g. HMAC-SHA256）和<a href="https://www.cryptosys.net/manapi/api_kmac.html" target="_blank" rel="noopener">KMAC</a>（Keccak-based MAC）。基于对称加密的MAC，如<a href="https://en.wikipedia.org/wiki/One-key_MAC" target="_blank" rel="noopener">CMAC</a>(Cipher-based MAC)，<a href="https://en.wikipedia.org/wiki/Galois/Counter_Mode" target="_blank" rel="noopener">GMAC</a>（Galois MAC）和<a href="https://en.wikipedia.org/wiki/Poly1305" target="_blank" rel="noopener">Poly1305</a>（Bernstein’s one-time authenticator）。</p>
+<p><strong>例</strong>：可以通过HMAC-SHA256算法来计算MAC值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, hmac, binascii</span><br><span class="line"></span><br><span class="line">mac = hmac.new(<span class="string">b'key'</span>, <span class="string">b'some msg'</span>, hashlib.sha256).digest()</span><br><span class="line">print(binascii.hexlify(mac))</span><br></pre></td></tr></table></figure>
+<p>MAC是类似于数字签名的数字认证码，但是他具有预共享的密钥。</p>
+<p>消息认证码的应用场景：</p>
+<ul>
+<li>通信双方交换了某种特定的MAC的秘钥；</li>
+<li>接收方从某处收到了msg + auth_code；</li>
+<li>保证msg未被篡改，意味着秘钥key和msg是正确的，且可以匹配对应的MAC码。</li>
+</ul>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/sample%20scenario%20for%20using%20MAC%20codes.png" alt="sample scenario for using MAC codes" /></p>
+<h3 id="311-认证加密使用mac加密解密消息"><a class="markdownIt-Anchor" href="#311-认证加密使用mac加密解密消息"></a> 3.1.1 认证加密：使用MAC加密/解密消息</h3>
+<p>​使用MAC代码的另一种情况是认证加密：当我们加密消息时，我们要确保解密的密码正确并且解密后的消息与加密前的原始消息相同。<br />
+​<br />
+​加密msg过程：</p>
+<ol>
+<li>根据密码生成密钥。 我们可以将此密钥用于<code>MAC</code>算法。</li>
+<li>使用生成的密钥对消息进行加密，并将密文存储在输出中。</li>
+<li>使用密钥和原始消息来计算<code>MAC</code>，并将其附加到输出中。</li>
+</ol>
+<p>​解密msg过程</p>
+<ol>
+<li>根据用户输入的密码生成密钥，可能是正确的密码或错误的密码， 稍后可以得到验证。</li>
+<li>使用生成的密钥解密消息， 它可能是原始消息，也可能是错误消息（取决于输入的密码）。</li>
+<li>使用生成的密钥+解密后的消息来计算MAC代码。
+<ol>
+<li>如果计算出的MAC码与加密消息中的MAC代码匹配，则密码正确。</li>
+<li>否则，得到的解密消息和源消息不一致，意味着密码错误。</li>
+</ol>
+</li>
+</ol>
+<p>​一些认证加密算法（例如<strong>AES-GCM</strong>和<strong>ChaCha20-Poly1305</strong>）将MAC计算集成到加密算法中，并将MAC验证集成到解密算法中。MAC与密文一起存储，并且不会泄露密码或原始消息。 存储对任何人都可见的MAC码是安全的，并且在解密之后，我们知道消息是否是原始消息（密码是否错误）。</p>
+<h3 id="312-基于mac的伪随机数器生成器"><a class="markdownIt-Anchor" href="#312-基于mac的伪随机数器生成器"></a> 3.1.2 基于MAC的伪随机数器生成器</h3>
+<p><code>MAC</code>的另一个应用就是伪随机数器生成器，根据一个确定的salt(常量、当前日期和时间，或者其他随机数)和一些seed number（最新生成的随机数），我们可以如下计算next_seed：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">next_seed = MAC(salt, seed)</span><br></pre></td></tr></table></figure>
+<h2 id="32-hmac和密钥生成函数-key-derivation-functions-kdf"><a class="markdownIt-Anchor" href="#32-hmac和密钥生成函数-key-derivation-functions-kdf"></a> 3.2 HMAC和密钥生成函数( Key Derivation Functions, KDF)</h2>
+<p>​仅通过计算哈希 <code>hash_func(key + msg)</code>来获得<code>MAC</code>是不安全的，<a href="https://en.wikipedia.org/wiki/HMAC#Design_principles" target="_blank" rel="noopener">点击查看详情</a>。建议改用<strong>HMAC</strong>算法，例如 <code>HMAC-SHA256</code>或<code>HMAC-SHA3-512</code>或其他安全的MAC算法<br />
+​<br />
+​<a href="https://en.wikipedia.org/wiki/HMAC" target="_blank" rel="noopener"><strong>HMAC</strong></a> = <strong>H</strong>ash-based <strong>M</strong>essage <strong>A</strong>uthentication <strong>C</strong>ode (MAC code, calculated using a cryptographic hash function):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HMAC(key, msg, hash_func) -&gt; hash</span><br></pre></td></tr></table></figure>
+<p>​得到的结果MAC码是混合了密钥的消息哈希值。 它具有哈希的加密属性：不可逆，抗碰撞等。<code>hash_func</code>可以是任何加密哈希函数，例如:<code>SHA-256</code>，<code>SHA-512</code>，<code>RIPEMD-160</code>，<code>SHA3-256</code>或<code>BLAKE2s</code>。<strong>HMAC</strong>用于保证消息真实性，消息完整性，有时还用于密钥生成。<br />
+​</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, hmac, binascii</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hmac_sha256</span><span class="params">(key, msg)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> hmac.new(key, msg, hashlib.sha256).digest()</span><br><span class="line"></span><br><span class="line">key = <span class="string">b"12345"</span></span><br><span class="line">msg = <span class="string">b"sample message"</span></span><br><span class="line">print(binascii.hexlify(hmac_sha256(key, msg)))</span><br></pre></td></tr></table></figure>
+<h3 id="321-秘钥生成函数key-derivation-functions-kdf"><a class="markdownIt-Anchor" href="#321-秘钥生成函数key-derivation-functions-kdf"></a> 3.2.1 秘钥生成函数(Key Derivation Functions, KDF)</h3>
+<p>KDF是将可变长度密码转换为固定长度密钥（bit序列）的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function(password) -&gt; key</span><br></pre></td></tr></table></figure>
+<h3 id="322-根据密码生成秘钥"><a class="markdownIt-Anchor" href="#322-根据密码生成秘钥"></a> 3.2.2 根据密码生成秘钥</h3>
+<p>如何安全的根据密码生成秘钥？一起了解一下实践中常用的KDFs：<strong><a href="https://en.wikipedia.org/wiki/PBKDF2" target="_blank" rel="noopener">PBKDF2</a></strong>，<strong><a href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank" rel="noopener">Bcrypt</a></strong>，<strong><a href="https://en.wikipedia.org/wiki/Argon2" target="_blank" rel="noopener">Scrypt</a><strong>和</strong><a href="https://en.wikipedia.org/wiki/Argon2" target="_blank" rel="noopener">Argon2</a></strong>，并讨论上述KDFs的优缺点和使用它们的场景。</p>
+<h4 id="3221-pbkdf2"><a class="markdownIt-Anchor" href="#3221-pbkdf2"></a> 3.2.2.1 PBKDF2:</h4>
+<p>​<code>PBKDF2</code>是一个简单的可抵御<a href="https://en.wikipedia.org/wiki/Dictionary_attack" target="_blank" rel="noopener">dictionary attacks</a>和 <a href="https://en.wikipedia.org/wiki/Rainbow_table" target="_blank" rel="noopener">rainbow table attacks</a> 的 KDF。 该算法原理基于在HASH算法基础上增加随机盐，并进行多次HASH运算。PBKDF2接受多个输入参数，并生成密钥作为输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key &#x3D; pbkdf2(password, salt, iterations-count, hash-function, derived-key-len)</span><br></pre></td></tr></table></figure>
+<p>从技术上讲，<code>PBKDF2</code>的输入数据包括：</p>
+<ul>
+<li><code>password</code> : 字节/字符串数组;</li>
+<li><code>salt</code> : 安全生成的随机字节(最低64位，建议使用128位);</li>
+<li><code>iterations-count</code>: 迭代次数；</li>
+<li><code>hash-function</code> : 用于计算HMAC;</li>
+<li><code>derived-key-len</code> : 生成秘钥长度;</li>
+</ul>
+<p><strong>注</strong>：PBKDF2不能抵抗<a href="https://security.stackexchange.com/questions/118147/how-are-gpus-used-in-brute-force-attacks" target="_blank" rel="noopener">GPU attacks</a> (使用显卡并行密码破解)和<a href="https://en.wikipedia.org/wiki/Custom_hardware_attack" target="_blank" rel="noopener">ASIC attacks</a>(专用密码破解硬件).如今<code>PBKDF2</code>被认为是过时的且不如现代KDF功能安全的，因此建议改用<code>Bcrypt</code>，<code>Scrypt</code>或<code>Argon2</code>。</p>
+<p>在此处尝试PBKDF2密钥生成：<a href="https://asecuritysite.com/encryption/PBKDF2z" target="_blank" rel="noopener">https://asecuritysite.com/encryption/PBKDF2z</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install backports.pbkdf2</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, binascii</span><br><span class="line"><span class="keyword">from</span> backports.pbkdf2 <span class="keyword">import</span> pbkdf2_hmac</span><br><span class="line"></span><br><span class="line">salt = binascii.unhexlify(<span class="string">'aaef2d3f4d77ac66e9c5a6c3d8f921d1'</span>)</span><br><span class="line">passwd = <span class="string">"p@$Sw0rD~1"</span>.encode(<span class="string">"utf8"</span>)</span><br><span class="line">key = pbkdf2_hmac(<span class="string">"sha256"</span>, passwd, salt, <span class="number">50000</span>, <span class="number">32</span>)</span><br><span class="line">print(<span class="string">"Derived key:"</span>, binascii.hexlify(key))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Derived key: b&#39;52c5efa16e7022859051b1dec28bc65d9696a3005d0f97e506c42843bc3bdbc0&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="323-现代kdfbcryptscrypt和argon2"><a class="markdownIt-Anchor" href="#323-现代kdfbcryptscrypt和argon2"></a> 3.2.3 现代KDF：Bcrypt，Scrypt和Argon2</h3>
+<p>​<code>Scrypt</code>和<code>Argon2</code>等现代KDF旨在抵抗字典攻击，GPU攻击和ASIC攻击。 这些功能根据密码（文本）生成固定长度密钥，需要大量内存（RAM），这使得无法在GPU或ASIC硬件上进行快速并行计算。</p>
+<h4 id="3231-scrypt"><a class="markdownIt-Anchor" href="#3231-scrypt"></a> 3.2.3.1 Scrypt</h4>
+<p>​<a href="https://en.wikipedia.org/wiki/Scrypt" target="_blank" rel="noopener"><strong>Scrypt</strong></a> (<a href="https://tools.ietf.org/html/rfc7914.html" target="_blank" rel="noopener">RFC 7914</a>)是一个健壮的，它需要耗费大量内存，旨在防止GPU，ASIC和FPGA攻击(高效的密码破解硬件)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key &#x3D; Scrypt(password, salt, N, r, p, derived-key-len)</span><br></pre></td></tr></table></figure>
+<p><strong>Scrypt 参数</strong>：</p>
+<ul>
+<li><code>N</code> – 迭代计数（影响内存和CPU使用率）;</li>
+<li><code>r</code> –块大小（影响内存和CPU使用率）;</li>
+<li><code>p</code> –并行因素（并行运行的线程-影响内存，CPU使用率），通常为1;</li>
+<li><code>password</code> – 输入密码（建议最小长度为8-10个字符）;</li>
+<li><code>salt</code> – 安全生成的随机字节（最小64位，建议128位）</li>
+<li><code>derived-key-len</code> - 要生成多少字节作为输出，例如 32个字节（256位）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Memory required &#x3D; 128 * N * r * p bytes</span><br></pre></td></tr></table></figure>
+<p>参数的选择取决于你要等待的时间以及想要达到的安全级别（密码破解阻力）：</p>
+<ol>
+<li>交互式登录的示例参数：N = 16384，r = 8，p = 1（RAM = 2 MB）。 对于交互式登录，您很可能不想等待超过0.5秒， 同样在服务器端，通常许多用户可以同时登录，因此太过缓慢的Scrypt计算会减慢整个系统的速度。</li>
+<li>用于文件加密的样本参数：N = 1048576，r = 8，p = 1（RAM = 1 GB）。 加密硬盘驱动器时，在极少会对数据进行加解密（通常每天不超过2-3次），所以在解锁加密的数据时，可以等待2-3秒以提高安全性。</li>
+</ol>
+<p><strong>Scrypt Calculation in Python</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install scrypt</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyscrypt</span><br><span class="line"></span><br><span class="line">salt = <span class="string">b'aa1f2d3f4d23ac44e9c5a6c3d8f9ee8c'</span></span><br><span class="line">passwd = <span class="string">b'p@$Sw0rD~7'</span></span><br><span class="line">key = pyscrypt.hash(passwd, salt, <span class="number">2048</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">32</span>)</span><br><span class="line">print(<span class="string">"Derived key:"</span>, key.hex())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Derived key: b&#39;e813a6f6ccc4e9110193bf9efb7c0a489d76655f9e36629dccbeaf2a73bc0c6f&#39;</span><br></pre></td></tr></table></figure>
+<h4 id="3232-bcrypt"><a class="markdownIt-Anchor" href="#3232-bcrypt"></a> 3.2.3.2 Bcrypt</h4>
+<p>​<a href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank" rel="noopener"><strong>Bcrypt</strong></a>是另一种KDF函数，它对ASIC和GPU攻击的抵抗力较弱。 Bcrypt提供了可配置的迭代计数，但使用恒定的内存消耗，因此更容易构建硬件加速的密码破解程序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bcrypt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import bcrypt</span><br><span class="line"></span><br><span class="line">salt &#x3D; bcrypt.gensalt()</span><br><span class="line">passwd &#x3D; b&#39;p@$Sw0rD~7&#39;</span><br><span class="line">bcrypt.hashpw(passwd, salt)</span><br></pre></td></tr></table></figure>
+<h4 id="3233-argon2-安全的抗asic攻击的kdf"><a class="markdownIt-Anchor" href="#3233-argon2-安全的抗asic攻击的kdf"></a> 3.2.3.3 Argon2: 安全的，抗ASIC攻击的KDF</h4>
+<p><a href="https://en.wikipedia.org/wiki/Argon2" target="_blank" rel="noopener"><strong>Argon2</strong></a>是现代的抗ASIC攻击和抗GPU攻击的KDF。它具有比PBKDF2，Bcrypt和Scrypt（在相同CPU和RAM占用的参数配置下）更好的防止密码被破解能力。</p>
+<p><strong>Argon2</strong>有多个变体：</p>
+<ol>
+<li><strong>Argon2d</strong> ：提供强大的抗GPU攻击能力，但具有潜在的side-channel攻击（在非常特殊的情况下）。</li>
+<li><strong>Argon2i</strong> : 提供较低的抗GPU攻击能力，但没有side-channel攻击。</li>
+<li><strong>Argon2id</strong> - 推荐，结合了Argon2d和Argon2i。</li>
+</ol>
+<p>Argon2需要以下参数，与Scrypt非常相似：</p>
+<ul>
+<li><strong>password</strong> <code>P</code>: the password (or message) to be hashed</li>
+<li><strong>salt</strong> <code>S</code>: random-generated salt (16 bytes recommended for password hashing)</li>
+<li><strong>iterations</strong> <code>t</code>: number of iterations to perform</li>
+<li><strong>memorySizeKB</strong> <code>m</code>: amount of memory (in kilobytes) to use</li>
+<li><strong>parallelism</strong> <code>p</code>: degree of parallelism (i.e. number of threads)</li>
+<li><strong>outputKeyLength</strong> <code>T</code>: desired number of returned bytes</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install argon2_cffi</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argon2, binascii</span><br><span class="line"></span><br><span class="line">hash = argon2.hash_password_raw(</span><br><span class="line">    time_cost=<span class="number">16</span>, memory_cost=<span class="number">2</span>**<span class="number">15</span>, parallelism=<span class="number">2</span>, hash_len=<span class="number">32</span>,</span><br><span class="line">    password=<span class="string">b'password'</span>, salt=<span class="string">b'some salt'</span>, type=argon2.low_level.Type.ID)</span><br><span class="line">print(<span class="string">"Argon2 raw hash:"</span>, binascii.hexlify(hash))</span><br><span class="line"></span><br><span class="line">argon2Hasher = argon2.PasswordHasher(</span><br><span class="line">    time_cost=<span class="number">16</span>, memory_cost=<span class="number">2</span>**<span class="number">15</span>, parallelism=<span class="number">2</span>, hash_len=<span class="number">32</span>, salt_len=<span class="number">16</span>)</span><br><span class="line">hash = argon2Hasher.hash(<span class="string">"password"</span>)</span><br><span class="line">print(<span class="string">"Argon2 hash (random salt):"</span>, hash)</span><br><span class="line"></span><br><span class="line">verifyValid = argon2Hasher.verify(hash, <span class="string">"password"</span>)</span><br><span class="line">print(<span class="string">"Argon2 verify (correct password):"</span>, verifyValid)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    argon2Hasher.verify(hash, <span class="string">"wrong123"</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"Argon2 verify (incorrect password):"</span>, <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Argon2 raw hash: b&#39;157f21dd3fdf7bafb76d2923ccaffa0b7be7cbae394709474d2bc66ee7b09d3e&#39;</span><br><span class="line">Argon2 hash (random salt): $argon2id$v&#x3D;19$m&#x3D;32768,t&#x3D;16,p&#x3D;2$Rfy6J41W9idBU+n&#x2F;8sZc6Q$i3QYYPtoogIAw78I2qqlUQ8vjzUXGG1V6QsBOq2NIp4</span><br><span class="line">Argon2 verify (correct password): True</span><br><span class="line">Argon2 verify (incorrect password): False</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Approach</strong></th>
+<th style="text-align:left"><strong>Security</strong></th>
+<th style="text-align:left"><strong>Comments</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Clear-text passwords</td>
+<td style="text-align:left">Extremely low</td>
+<td style="text-align:left">Never do this: compromised server will render all passwords leaked</td>
+</tr>
+<tr>
+<td style="text-align:left">Simple password hash</td>
+<td style="text-align:left">Low</td>
+<td style="text-align:left">Vulnerable to dictionary attacks</td>
+</tr>
+<tr>
+<td style="text-align:left">Salted hashed passwords</td>
+<td style="text-align:left">Average</td>
+<td style="text-align:left">Vulnerable to GPU-based and ASIC-based password cracking</td>
+</tr>
+<tr>
+<td style="text-align:left">Secure KDF function (like Argon2)</td>
+<td style="text-align:left">High</td>
+<td style="text-align:left">Recommended, use strong KDF parameters</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/" class="post-title-link" itemprop="url">02. Hashing and Cryptographic Hash Functions</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:13" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:13+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="02-hashing-and-cryptographic-hash-functions"><a class="markdownIt-Anchor" href="#02-hashing-and-cryptographic-hash-functions"></a> 02. Hashing and Cryptographic Hash Functions</h1>
+<p>​在计算机编程中，哈希函数用于将文本或其他数据映射到整形值。通常不通的输入值会映射到不通的输出值，但是输出值偶尔会发生<code>碰撞</code>（不同的输入值，但是输出值相同）。加密哈希函数将文本或二进制数据转换为固定长度的散列值，并且具有抗冲突性和不可逆性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHA3-256(<span class="string">"hello"</span>) = <span class="string">"3338be694f50c5f338814986cdf0686453a888b84f424d792af4b9202398f392"</span></span><br><span class="line">SHA256(<span class="string">"hello"</span>) = <span class="string">"2CF24DBA5FB0A30E26E83B2AC5B9E29E1B161E5C1FA7425E73043362938B9824"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line">sha3_256hash = hashlib.sha3_256(<span class="string">b'hello'</span>).digest()</span><br><span class="line">print(<span class="string">"SHA3-256('hello') ="</span>, binascii.hexlify(sha3_256hash))</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line">sha256hash = hashlib.sha256(<span class="string">b'hello'</span>).digest()</span><br><span class="line">print(<span class="string">"SHA3-256('hello') ="</span>, binascii.hexlify(sha256hash))</span><br></pre></td></tr></table></figure>
+<h2 id="21-加密哈希函数和冲突"><a class="markdownIt-Anchor" href="#21-加密哈希函数和冲突"></a> 2.1 加密哈希函数和冲突</h2>
+<h3 id="211-哈希碰撞"><a class="markdownIt-Anchor" href="#211-哈希碰撞"></a> 2.1.1 哈希碰撞</h3>
+<p>碰撞意味着两个不同输入的哈希值相同， 对于简单的哈希函数，很容易发生碰撞。例如，假设哈希函数h(text)等于文本中所有字符码的和。 则对于以不同顺序持有相同字母的文本，将产生相同的哈希值（碰撞），即：<code>h('abc') == h('cab') == h('bca')</code>。为了避免冲突，密码学家设计了抗碰撞的哈希函数。</p>
+<h3 id="212-加密哈希函数无冲突"><a class="markdownIt-Anchor" href="#212-加密哈希函数无冲突"></a> 2.1.2 加密哈希函数：无冲突</h3>
+<p>​加密哈希函数极不可能产生碰撞，可以认为加密哈希值几乎可以唯一地标识其对应的输入， 并且很难根据哈希值反推出输入值。加密哈希函数是不可逆的单向哈希函数。<br />
+​<br />
+理想的加密哈希函数应该具备以下属性：</p>
+<ul>
+<li><strong>确定性</strong>：相同输入总是可以得到相同的输出值</li>
+<li><strong>快速性</strong>：计算任何给定消息的哈希值应该很快。</li>
+<li><strong>难分析性</strong>：对输入值的微小更改将完全改变输出哈希值。</li>
+<li><strong>不可逆性</strong>：无法根据哈希值反推出输入值，即：除了暴力穷举外，没有明显更好的办法来猜出输入值。</li>
+</ul>
+<p>现代的加密哈希函数（例如SHA2和SHA3）属性与上述属性匹配，并且在密码学中得到了广泛使用。</p>
+<h2 id="22-加密哈希函数的应用"><a class="markdownIt-Anchor" href="#22-加密哈希函数的应用"></a> 2.2 加密哈希函数的应用</h2>
+<ul>
+<li>文件完整性校验</li>
+<li>存储密码：/etc/shadow</li>
+<li>生成唯一ID: <code>Git commit ID</code>、<code>Bitcoin addresses</code></li>
+<li>生成伪随机数：</li>
+<li>工作量证明算法：</li>
+</ul>
+<h2 id="23-安全哈希算法"><a class="markdownIt-Anchor" href="#23-安全哈希算法"></a> 2.3 安全哈希算法</h2>
+<p>​软件开发人员提出并使用了许多密码哈希算法。 但是其中一些已经被证明为不安全的，例如MD5和SHA1；还有一些仍然认为是安全的，如SHA-2,SHA-3和BLAKE2等</p>
+<h3 id="231-sha-2-sha-256-sha-512"><a class="markdownIt-Anchor" href="#231-sha-2-sha-256-sha-512"></a> 2.3.1 SHA-2, SHA-256, SHA-512</h3>
+<p>​SHA-2是一组加密哈希函数，<strong>SHA-256</strong> (256 bits hash), <strong>SHA-384</strong> (384 bits hash), <strong>SHA-512</strong> (512 bits hash)，他们都是基于 &quot;<a href="https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction" target="_blank" rel="noopener"><strong>Merkle–Damgård construction</strong></a>&quot;的密码学概念，SHA-2是美国的官方加密标准。更多位的哈希值能提供更好的抗碰撞性。</p>
+<h3 id="232-sha-3-sha3-256-sha3-512-keccak-256"><a class="markdownIt-Anchor" href="#232-sha-3-sha3-256-sha3-512-keccak-256"></a> 2.3.2 SHA-3, SHA3-256, SHA3-512, Keccak-256</h3>
+<p>​SHA-3及其变体SHA3-224，SHA3-256，SHA3-384，SHA3-512 在相同的哈希长度的情况下比SHA-2（SHA-224，SHA-256，SHA-384，SHA-512）更加安全 。SHA-3系列加密哈希函数不容易受到“<strong><a href="https://en.wikipedia.org/wiki/Length_extension_attack" target="_blank" rel="noopener">length extension attack</a></strong>”的影响。</p>
+<p>通过以下网址了解有关加密哈希函数，其强度和抗攻击性的更多信息：<a href="https://z.cash/technology/history-of-hash-function-attacks.html" target="_blank" rel="noopener">https://z.cash/technology/history-of-hash-function-attacks.html</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line"></span><br><span class="line">text = <span class="string">'hello'</span></span><br><span class="line">data = text.encode(<span class="string">"utf8"</span>)</span><br><span class="line"></span><br><span class="line">sha256hash = hashlib.sha256(data).digest()</span><br><span class="line">print(<span class="string">"SHA-256:   "</span>, binascii.hexlify(sha256hash))</span><br><span class="line"></span><br><span class="line">sha3_256 = hashlib.sha3_256(data).digest()</span><br><span class="line">print(<span class="string">"SHA3-256:  "</span>, binascii.hexlify(sha3_256))</span><br><span class="line"></span><br><span class="line">blake2s = hashlib.new(<span class="string">'blake2s'</span>, data).digest()</span><br><span class="line">print(<span class="string">"BLAKE2s:   "</span>, binascii.hexlify(blake2s))</span><br><span class="line"></span><br><span class="line">ripemd160 = hashlib.new(<span class="string">'ripemd160'</span>, data).digest()</span><br><span class="line">print(<span class="string">"RIPEMD-160:"</span>, binascii.hexlify(ripemd160))</span><br></pre></td></tr></table></figure>
+<h2 id="24-工作量证明哈希函数ethash-和-equihash"><a class="markdownIt-Anchor" href="#24-工作量证明哈希函数ethash-和-equihash"></a> 2.4 工作量证明哈希函数：ETHash 和 Equihash</h2>
+<p>​区块链工作量证明挖矿算法使用一类特殊的哈希函数，这些哈希函数旨在消耗大量计算资源和大量内存，并且很难通过硬件设备来实现（例如FPGA集成电路或ASIC矿工） 这种哈希函数的特点被称为“抗ASIC”。这样做的目的在于通过激励小型矿工来最大程度地减少采矿的集中化。大量的小型参与者比少数几个大型参与者意味着更好的权力下放，更好的去中心化。</p>
+<ul>
+<li><strong>ETHash</strong>：以太坊区块链中的工作量证明哈希函数。</li>
+<li><strong>Equihash</strong>：Zcash和Bitcoin Gold区块链中的工作量证明哈希函数</li>
+</ul>
+<p><code>MORE:</code><br />
+Learn more about <strong>ETHash</strong> at: <a href="https://github.com/ethereum/wiki/wiki/Ethash" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Ethash</a>, <a href="https://github.com/lukovkin/ethash" target="_blank" rel="noopener">https://github.com/lukovkin/ethash</a>.</p>
+<p>Learn more about <strong>Equihash</strong> at: <a href="https://www.cryptolux.org/images/b/b9/Equihash.pdf" target="_blank" rel="noopener">https://www.cryptolux.org/images/b/b9/Equihash.pdf</a>, <a href="https://github.com/tromp/equihash" target="_blank" rel="noopener">https://github.com/tromp/equihash</a>.</p>
+<p>Lear more about the <strong>ASIC-resistant hash functions</strong> at: <a href="https://github.com/ifdefelse/ProgPOW" target="_blank" rel="noopener">https://github.com/ifdefelse/ProgPOW</a>.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/" class="post-title-link" itemprop="url">01. Hello, CryptoGraphy</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:12" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:12+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="01-hello-cryptography"><a class="markdownIt-Anchor" href="#01-hello-cryptography"></a> 01. Hello, CryptoGraphy</h1>
+<p>​参加工作已有不短时间，在这期间，不可避免的接触使用了一些加密算法。平时忙于工作中的各种业务需求，没有对作为信息安全基石的现代密码学内容进行过系统的学习、归纳和总结。在即将迎接2020年春节之际，萌生一个想法，系统性的整理一套学习笔记，以供自己在此方面的知识积淀。</p>
+<p>​密码学有着深刻的数学背景，虽然自己也是数学系毕业，但是查看学院派的书籍如 :<a href="https://crypto.stanford.edu/~dabo/cryptobook/" target="_blank" rel="noopener">A Graduate Course in Applied Cryptography</a> 也难免觉得枯燥乏味，这份学习笔记会从工作实践的角度来进行总结。在此特别感谢Dr.<a href="https://nakov.com/" target="_blank" rel="noopener">Svetlin Nakov</a>，我的学习笔记主要参考了其编写的<a href="https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/" target="_blank" rel="noopener"> Practical Cryptography for Developers</a> 一书，沿着该书的脉络，后面笔记预计会从以下主题展开：</p>
+<ol>
+<li>哈希和哈希加密函数(Hashing and Cryptographic Hash Functions)</li>
+<li>消息验证码和秘钥导出函数(Message authentication codes and Key Derivation Functions)</li>
+<li>安全随机数生成器(Secure Random Number Generators)</li>
+<li>秘钥交换(Key Exchange)</li>
+<li>对称秘钥密码(Symmetric Key Ciphers)</li>
+<li>非对称秘钥密码(Asymmetric Key Ciphers)</li>
+<li>数字签名(Digital Signatures)</li>
+<li>更多的密码学概念(More Cryptographic Concepts)</li>
+</ol>
+<h2 id="11-什么是密码学"><a class="markdownIt-Anchor" href="#11-什么是密码学"></a> 1.1 什么是密码学？</h2>
+<p>​<code>密码学</code>是为信息提供安全与防护的一门学科，他广泛应用于数字世界中。因此开发人员应该至少对密码学有基本的了解，以及如何使用密码算法和密码库，并了解他们背后的算法。<br />
+​</p>
+<h2 id="12-加密和秘钥"><a class="markdownIt-Anchor" href="#12-加密和秘钥"></a> 1.2 加密和秘钥</h2>
+<p>​密码学使用安全的方式处理存储和传输数据，以便于只有特定的人才能读取和处理这些数据。这会涉及使用对称或非对称加密方案对数据进行加密和解密，这些方案在明文和密文的相互转化过程中会用到一个或多个秘钥。</p>
+<p>​对称加密（例如AES，Twofish和ChaCha20）使用相同的密钥来加密和解密消息，而非对称加密使用公钥密码系统（如RSA或ECC）和密钥对：公共密钥（加密密钥）和相应的私有密钥（解密密钥）。</p>
+<h2 id="13-数字签名和消息认证"><a class="markdownIt-Anchor" href="#13-数字签名和消息认证"></a> 1.3 数字签名和消息认证</h2>
+<p>​密码术提供了对消息进行数字签名的方法，可确保消息的真实性，完整性和不可否认性。大多数数字签名算法（例如DSA，ECDSA和EdDSA）都使用非对密钥对来完成：消息由私钥进行签名，签名由相应的公钥来完成验证。在银行系统中，数字签名用于签署和批准交易。在区块链中，签名交易允许用户将区块链资产从一个地址转移到另一个地址。密码学中使用消息认证算法（如：HMAC）和消息认证码（MAC codes）来证明消息的真实性，完整性和来源。</p>
+<h2 id="14-安全随机数"><a class="markdownIt-Anchor" href="#14-安全随机数"></a> 1.4 安全随机数</h2>
+<p>​安全随机数本质上是无法预测的，因此开发人员应在意它们，因为损坏的随机数生成器意味着系统或应用程序受到威胁或被黑。</p>
+<h2 id="15-秘钥交换"><a class="markdownIt-Anchor" href="#15-秘钥交换"></a> 1.5 秘钥交换</h2>
+<p>​密码学定义了密钥交换算法（例如Diffie-Hellman密钥交换和ECDH）和密钥生成方案，用于在打算使用加密算法安全地传输消息的两个节点之间安全地创建加密密钥。这种算法典型的应用就是在双方之间建立新的安全连接，例如，打开一个新的网站或连接到WiFi网络。<br />
+​<br />
+##1.6 加密哈希和密码哈希</p>
+<p>​密码学提供加密哈希函数（如SHA-3和BLAKE2），可将消息转换为消息摘要（固定长度的哈希值），并且同时要满足哈希值不能被还原回原始消息，且可以几乎唯一地标识输入值。例如，在区块链系统中，散列用于生成区块链地址，交易ID。在Git中，加密散列用于为文件和提交生成唯一的ID。密码哈希和秘钥导出函数对应的密码如（Scrypt 和 Argon2）通过安全地从基于文本的密码生成散列(或密钥) 来保护用户的密码以及密码加密的文件和数据，并注入随机参数（盐，salt）并使用大量迭代和计算资源以使密码破解速度变慢</p>
+<h2 id="17-密码学中的混乱和扩散"><a class="markdownIt-Anchor" href="#17-密码学中的混乱和扩散"></a> 1.7 密码学中的混乱和扩散</h2>
+<p>​在密码学中，哈希，加密算法和随机生成器遵循香农的混淆和扩散原理。<code>混乱</code>意味着密码形式的输出中的每个bit都应取决于密钥和输入数据的几个部分，因此无法建立直接映射关系。<code>扩散</code>意味着更改输入中的任一bit应更改输出中大约一半的bits。这些原理已包含在大多数哈希函数，MAC算法，随机数生成器，对称和非对称加密中。</p>
+<h2 id="18-加密库"><a class="markdownIt-Anchor" href="#18-加密库"></a> 1.8 加密库</h2>
+<p>​开发人员应该了解现代密码库的编程语言和平台，以及如何使用它们。使用密码学进行开发需要了解加密概念。从Internet复制/粘贴代码或遵循Blog中的示例可能会导致安全风险。加密库非常有用，但是您应该首先了解概念，然后选择适当的算法组合并仔细调整其参数。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/01/WorkDay/Genesis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/01/WorkDay/Genesis/" class="post-title-link" itemprop="url">1. Genesis</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-01 14:37:12" itemprop="dateCreated datePublished" datetime="2020-03-01T14:37:12+08:00">2020-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5/" itemprop="url" rel="index"><span itemprop="name">工作日</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="gogocoding-blog-goes-online"><a class="markdownIt-Anchor" href="#gogocoding-blog-goes-online"></a> GoGoCoding blog goes online !!!</h1>
+<p>2020-03-01 14:37:12</p>
+<h1 id="是的算法练习开始~"><a class="markdownIt-Anchor" href="#是的算法练习开始~"></a> 是的！算法练习开始~</h1>
+<p>2020-08-01 18:49:58<br />
+<a href="https://time.geekbang.org/column/article/39922?utm_campaign=guanwang&amp;utm_source=baidu-ad&amp;utm_medium=ppzq-pc&amp;utm_content=title&amp;utm_term=baidu-ad-ppzq-title" target="_blank" rel="noopener">参考教程</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/02/11/Interview/Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/11/Interview/Redis/" class="post-title-link" itemprop="url">如何掌握企业级技术和项目经验</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-11 18:27:56" itemprop="dateCreated datePublished" datetime="2020-02-11T18:27:56+08:00">2020-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AC%E8%BD%BD/" itemprop="url" rel="index"><span itemprop="name">转载</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="我把问烂了的redis常见面试题总结了一下带答案"><a class="markdownIt-Anchor" href="#我把问烂了的redis常见面试题总结了一下带答案"></a> 我把问烂了的Redis常见面试题总结了一下（带答案）</h1>
+<p><a href="https://blog.csdn.net/qq_35190492/article/details/103041932?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare" target="_blank" rel="noopener">转载自 https://blog.csdn.net/qq_35190492</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/02/11/Forward/%E3%80%8A%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8F%A1%E4%BC%81%E4%B8%9A%E7%BA%A7%E6%8A%80%E6%9C%AF%E5%92%8C%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C%E3%80%8B%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/11/Forward/%E3%80%8A%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8F%A1%E4%BC%81%E4%B8%9A%E7%BA%A7%E6%8A%80%E6%9C%AF%E5%92%8C%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C%E3%80%8B%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">如何掌握企业级技术和项目经验</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-11 18:27:56" itemprop="dateCreated datePublished" datetime="2020-02-11T18:27:56+08:00">2020-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AC%E8%BD%BD/" itemprop="url" rel="index"><span itemprop="name">转载</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>作者：神思者<br />
+链接：<a href="https://www.imooc.com/article/290648" target="_blank" rel="noopener">https://www.imooc.com/article/290648</a><br />
+来源：慕课网<br />
+本文原创发布于慕课网 ，转载请注明出处，谢谢合作</p>
+<p>这次分享的主题是《如何掌握企业级技术和项目经验》。因为和学习有关，所以我就先从学习这个话题谈起，学习方向和方式对了路子，不管多难的技术在有限的时间内都是可以攻破的。这次技术分享，我就做一回知音大姐，跟大家分享一下学习的事情。</p>
+<p>为什么我意识到学习方法的重要性了呢？因为我在咱们慕课网的QQ群里面，发现有的同学很迷茫。技术这么多，学也学不完，更不知道应该学什么？其他讲师分享的都是某个技术某个框架，很少看到有人谈学习方法的，所以借着这次分享，我跟大家先聊一下学习的事情。</p>
+<p>首先我们要做好学习计划，时间就按照一年来规划。每年给自己制定一个研究的方向，比如说今年我要成为数据库领域的专家；明年后年我要作Java领域的达人；大后年我要成为前端领域的小强。每年集中精力突破一个技术方向，是最容易取得成就的。</p>
+<p>这就跟恒星诞生的过程一样，一个天体在宇宙里不停地俘获物质，增加自己质量，总有一天，到达临界点的时候，这个天体突然点亮了，发生核聚变反应，于是照亮了宇宙。学习的过程也是这样，你专攻一个领域的时候，积累了大量的学习材料，努力专研是最容易出成果的。</p>
+<p>因为我看咱们群里很多小伙伴都是20多岁上下的样子。年轻人容易受到新事物的吸引，不容易集中注意力，往往生活中刷个抖音、逛个淘宝，打一局王者荣耀，时间就不知不觉过去了。咱们群里面不知道有没有做大数据业务的，大数据里面有个协同过滤算法很厉害，网站不需要长期跟踪你，积累用户数据，就能快速的识别出你的喜好。</p>
+<p>比如说你刚下载了淘宝APP，不需要下订单买东西，淘宝就能找出你的喜好。假如你看一个运动鞋挺好的，点开看两眼，然后就给关上了。下次再打开淘宝APP，首页出现的商品都是你喜欢的。这就是淘宝后台利用协同过滤算法，分析出看这个运动鞋的一类人，大部分人会买什么东西，比如很多人买了篮球、充电宝、护肤品等等。所以你的APP上就会出现这类东西，然后你的购物欲就被勾引起来了，不停地买买买。抖音也是类似的原理，让你不停的看视频。</p>
+<p>现在的年轻人在学习的时候，越来越难以集中精力了。然后更糟糕的是，学习编程技术，必须要用大段大段的时间，才有效果。你用碎片化的时间去学编程，拿过来一个框架看五分钟，然后就去聊QQ、打游戏去了。过了几个小时，再回来看学一会儿，这一天下来，跟什么都没学一样，什么东西也记不住。</p>
+<p>人的大脑，调动理性思维让它活跃起来是需要时间的，前半个小时都是预热的过程，然后才能进入到学习的状态。所以我给大家的建议就是舍小取大，把零碎的事情都集中在一起处理，然后留出大段的时间去学习，这样的效果会非常好。</p>
+<p>那么有的同学会说，学习这么辛苦，我坚持不下来。确实，学习是这个世界上最痛苦的事情。打游戏可比学习有意思多了，这是因为打游戏跟结果之间存在必然联系。砍死一个Boss能掉什么装备，得到多少经验，是有明确结果的。所以很多人追求这个明确的结果，不停的升级刷装备，沉迷于游戏。但是我们平时很少看见有人能沉迷于学习的，这是因为学习跟成果没有必然联系。比如说你今天背了50个单词，没人会给你承诺，四六级考试一定会考这些单词。</p>
+<p>我们的大脑进化的还不完全，大脑只会为有明确结果的事情，分泌出多巴胺，让你感到快乐。你在做没有明确结果的事情的时候，大脑就不会分泌多巴胺，用不了多久，一件事情你就会做腻了。原始社会，物质条件很差，你要是整天不务正业，仰望星空，就容易饿死。所以大脑为了禁止你做一些消耗能量，而又不会有结果的事情，就不给你分泌多巴胺，让你感觉不到快乐，从而放弃一件事情，达到节省能量的目的。</p>
+<p>恰恰学习就是一个没有明确结果的事情，所以从你上学的第一天起，就感受不到学习快乐，原因就在这儿。我们现在开始制定学习计划，要是一路枯燥的学习，恐怕有很多人都坚持不下去。那该怎么办呢？先找到一个参照物，然后自我鼓励。这个参照物可以是你自己，也可以是周边的人。你在学习的过程中，经常与这个参照物去比较，感知到自己的进步，就很容收获成就感。这样就把一个没有结果的事情，转化成有明确结果的事情。起码我知道我每个月的学习，都在进步。</p>
+<p>比如说，公司目前用的是SSM单体架构。如果遇到高负载的情况下，肯定有问题。所以我应该学习一下Nginx负载均衡。等你搞明白负载均衡以后，又发现轮询式的请求转发，会造成Session丢失。比如说用户访问网站，Nginx把请求负载均衡到A节点，你在A节点登陆之后，HttpSession保存在A节点。如果刷新一下浏览器，请求被负载均衡到了B节点，B节点没有你的HTTPSession对象，于是就被判定成没有登陆。这时候就得用Redis缓存Session了，或者说把认证信息以Token的形式存储在客户端。</p>
+<p>然后没多久，你又发现数据表记录太多了，需要缩表，要搞冷热数据分离，于是又要学习TokuDB引擎。这么一路研究下来，再跟你周围的同事比较一下，或者跟半年前的你自己，比较一下。技术水平，还有思考的维度都大不一样了，这种技术上碾压周围人的快感就是成就感。这种成就感会一路推动你后续的学习，从而走上终身学习的道路。学习是一件快乐的事情，其实很容易做到。这比会一个框架，学习一门语言，更重要。</p>
+<p>接下来，我举一个反面的例子，相信很多同学都有过相似的经历。刚学会一个新的语言或者框架，就急不可待的虚构一个项目，立即用这种语言或者框架实现一下。比如说你刚学会Spring框架，于是就虚构了一个小型的微商系统，采用极限编程的方式，先不写文档，匆忙建了几张数据表，直接就进入到编码环节了。</p>
+<p>过了几天，你在录入数据的时候，忽然发现有重大问题，商品表创建的不对，很难把所有商品数据都保存进入。食品有保质期属性，电视没有保质期属性。手机有操作系统属性，化妆品就没有这个属性。我建表怎么规定字段呢？不行，得重新设计数据表。一下子，SQL语句要改、PO和VO类要改、业务层要改、视图层也要改，然后还要跑一堆测试案例。你看，这是你的项目第一次推翻重来。</p>
+<p>没过多久，你又发现了一个重大设计问题。如果订单表直接引用商品ID的话。如果顾客购买了进口奶粉，卖家偷换成了国产奶粉发货。顾客来投诉，卖家马上篡改商品信息，跟顾客说，我们卖的就是国产奶粉。电商平台绝对不可以出现这种行为，所以你又得去修改数据表结构。然后项目又推翻重来一次。</p>
+<p>这种把项目反复退倒重来的经历，我相信很多小伙伴都有过。错误的学习实践方法，只会浪费我们大量的时间。每个人的职业生涯都是有限的，我们要在有限的时间里，学习到更多的技术，这样才不会出现中年职业危机。关于职业危机的事情，我放在后面再说。</p>
+<p>在学习的过程中，同学们不要先着急做虚拟项目。每一个项目都不是靠单一技术实现的，所以我建议大家先充实理论知识，然后再去做项目。你掌握的技术多了，创建项目的时候，考虑的维度和深度也就到位了，具备了整合能力，所以再去做项目，基本上就可以驾驭了。</p>
+<p>下面我来说一下，怎么选择学习方向。很多同学感叹，现在技术太多了，听上去都挺重要的，自己好像都快追赶不上了。这就需要我们抓大放小，利用有限的时间，多学习关键性的技术。</p>
+<p>比如说技术体系里面，速成的是前端和Python方向，慢成的是Java方向。各位擅长Java的小伙伴，也都发现了，Java领域太复杂了，学起来太累了，那我们学习Java的意义何在呢？不如搞前端或者学习Python去了。其实从后台转前端和移动端，很容易；转到大数据领域也不难。但是从前端往后端转，就很困难，至少我身边前端工程师转型做后台开发的成功案例很少。所以我建议，大家在选择学习方向的时候，应该先从后端开始。</p>
+<p>大上周有同学问我，该不该学习一下GO语言。我觉得这是一个典型的普遍性问题。面对一个冉冉升起的语言或者技术，很多人都觉得自己不应该落下。但是理性思维告诉我：抓大放小，先学习主流技术。你不妨问问自己，GO语言是不是主流语言？GO语言的就业市场有多大？GO语言的资料多不多？GO语言工程师月薪是多少？GO语言职位在北京有多少，Java工程师职位有多少？一路追问下来，虽然你感兴趣GO语言，但是还是得把学习的注意力放在主流的语言上。编程语言的老大哥Java语言，你学透彻了吗？</p>
+<p>如果把需要研究的后台技术，排一个先后次序的话，无疑应该先从数据库开始。我知道你会用MYSQL，会写CRUD语句，这些还都太初级了，钻研的深度不够。比如说我们经常编写表连接SQL，数据库可不会按照书写的顺序去连接数据表，优化器会筛选出数据最少的表，优先查询，因为结果集数量比较少，所以连接大表的速度会很快。</p>
+<p>当然了，这是理想的情况，有的时候SQL语句里面带上GROUP BY或者ORDER BY之后，优化器对SQL的优化就出问题了，不是小表驱动大表，这就需要我们在SQL语句里面添加STRAIGHT JOIN关键字调整表连接的顺序。一直以来我都保持手写SQL语句的习惯，对于Hibernate跟MyBatis Plus框架提供Criteria操作方式，一直都不感冒。</p>
+<p>这些只是SQL层面的事情，还有数据库架构层面的事情。想去BATJ工作，写代码不懂得从MySQL集群中提取数据，怎么能行。所以作为一个大厂的后端程序员，操作数据库集群是个必备的工作。然而数据库集群的SQL语句跟单实例MySQL差别又很大，不能按照原有思路去想问题。</p>
+<p>举个例子，在数据库集群中跨分片的表连接就很难实现。在水平切分的场景下，数据被切分到不同的数据库分片中。A分片具有客户表和订单表，B分片也有客户表和订单表。如果李强的客户记录被切分存储在A分片的客户表里面。李强开始在电商平台购物，他的订单如果有的被切分到A分片的订单表，有的被切分到B分片的订单表。如果这种情况下，你要查询李强等人的购物记录是不可能的。无论A分片把数据传给B分片，还是B分片把数据传给A分片做表连接，都要在网络里传输大量数据，而且查询的速度又很慢。所以就要在数据库中间件上配置父子表，客户表是父表，订单表是子表。子表的数据跟随父表，被切分到同一个分片里面。</p>
+<p>比如李强被切分到A分片，他的所有购物记录都被切分到A分片。如果陈浩被切分到B分片，那么他的所有购物记录就连带着被切分到B分片，这样我们做表连接的时候，就不用跨分片了。分片内做表连接就能查询出数据，然后两个分片的数据汇总到MyCat，做一下合并就可以返回给客户端了。</p>
+<p>还有就是冷热数据分离方面的事情，InnoDB引擎数据超过2000万，读写性能会很差。即便你加上很多索引也无济于事。所以我们要定期缩表，比如把1年以上的数据转移到归档库。如果冷数据也很重要，那就用TokuDB存储，带着事务写入速度是InnoDB的7-11倍。如果不是重要数据，扔到MongoDB里面就好了。</p>
+<p>数据库是所有项目的基础，大部分人每天写程序都是围绕数据处理展开的，所以我建议你第一年应该彻底把数据库研究明白，看SQL语句优化、数据库参数优化、Replication集群、PXC集群、MHA集群、分布式事务等等。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2019/02/11/WorkDay/%E4%BA%BA%E7%94%9F%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/11/WorkDay/%E4%BA%BA%E7%94%9F%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">人生规划</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-11 09:37:32" itemprop="dateCreated datePublished" datetime="2019-02-11T09:37:32+08:00">2019-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%8C%E4%B8%9A%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">职业规划</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>人们常常高估了一天所能做的事,却低估一年所能做的事</strong></p>
+<h2 id="2020"><a class="markdownIt-Anchor" href="#2020"></a> 2020</h2>
+<p><strong>目标：</strong></p>
+<ol>
+<li>掌握MySQL数据库分布式集群</li>
+<li>掌握Redis数据库分布式集群</li>
+<li>掌握Kafka、RabbitMQ</li>
+<li>微服务架构</li>
+<li>了解k8s集群管理</li>
+<li>LeetCode 200题</li>
+<li>研读一本经典书籍</li>
+<li>要注意锻炼身体了，疫情过去，每周游泳一次+跑步&amp;健身两次</li>
+<li>晋升T6 &amp; 转后端Go语言开发</li>
+<li>工作之余好好享受家庭生活，日常带娃，每个季度带家人郊游一次，小暖喜欢海边，夏天再去一次吧。</li>
+</ol>
+<p><strong>结果：</strong></p>
+<h2 id="2019"><a class="markdownIt-Anchor" href="#2019"></a> 2019</h2>
+<p><strong>目标：</strong></p>
+<ol>
+<li>晋升T5</li>
+<li>Flutter</li>
+<li>移动端音视频</li>
+<li>Go语言基础</li>
+<li>Docker的使用</li>
+<li>读一本密码学入门的书</li>
+<li>提升自己的表达能力</li>
+</ol>
+<p><strong>结果：</strong></p>
+<ul>
+<li>[x] 1. 晋升T5； ---- 2020-01；</li>
+<li>[x] 2. 学习并推动了Flutter技术在项目中的实践，采用脚本收集产物，远程依赖集成的方式在原有项目中集成了Flutter模块，重构了<code>用户模块</code>、<code>意见反馈模块</code>、<code>物联网场景自动化模块</code>；---- 2020-01；</li>
+<li>[x] 3. 参与了xx摄像头项目的开发，主持了iOS端的开发任务，完成了摄像头实时流播放模块、人形检测报警视频模块、云存视频等模块的开发；---- 2019-06</li>
+<li>[x] 4. GO语言核心语法、并发调度原理，使用Gin+MySQL+Redis+RabbitMQ+Flutter搭建了个人前后端分离的Blog； ---- 2019-10</li>
+<li>[x] 5. Docker的常用操作；---- 2019-10</li>
+<li>[x] 6. <a href="https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/preface.html#preface" target="_blank" rel="noopener">《Practical Cryptography for Developers》</a>；---- 2019-12</li>
+<li>[x] 7. 在部门做了两次在线技术分享《Flutter在XX项目中的实践》、《密码学在XX项目中的实践》 ---- 2019-09 &amp; 2019-12</li>
+</ul>
+<h2 id="2018-2017"><a class="markdownIt-Anchor" href="#2018-2017"></a> 2018 - 2017</h2>
+<p>初入职场的第一年，很遗憾这段时间还没有开始记录自己的人生规划。从实习生开始进入IoT领域，从T1连续升职到了T4，成为了团队的主力开发者之一，熟悉了一些IoT移动端的核心技术：各种设备配网技术如softAP、一键配网等，基于HTTP2的AVS,智能音箱、智能耳机, 设备自动化执行引擎IFTTT。</p>
+<p>结婚啦！有了自己的家庭和宝宝。以后肩上的担子更重了，加油啊！少年！~   oh，No~  中年！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>
