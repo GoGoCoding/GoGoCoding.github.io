@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="​在本节中，我们将解释如何实现基于椭圆曲线的公钥加密和对应的解密（基于ECC的非对称加密方案）。 这通常涉及混合加密方案的设计，包括ECC密码学，ECDH密钥交换和对称加密算法。 ​假设我们有一个公私钥对。 我们想使用这些密钥来加密和解密数据。 根据定义，非对称加密的工作方式如下：如果我们通过私钥加密数据，则稍后我们将能够通过相应的公钥解密密文：  ​上述过程可以直接应用于RSA密码系统，但不能应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="13. ECC-Based Encryption &#x2F; Decryption">
+<meta property="og:url" content="https://gogocoding.github.io/2020/03/05/CryptoGraphy/13.%20ECC-Based%20Encryption%20-%20Decryption/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="​在本节中，我们将解释如何实现基于椭圆曲线的公钥加密和对应的解密（基于ECC的非对称加密方案）。 这通常涉及混合加密方案的设计，包括ECC密码学，ECDH密钥交换和对称加密算法。 ​假设我们有一个公私钥对。 我们想使用这些密钥来加密和解密数据。 根据定义，非对称加密的工作方式如下：如果我们通过私钥加密数据，则稍后我们将能够通过相应的公钥解密密文：  ​上述过程可以直接应用于RSA密码系统，但不能应">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qiniu.gogocoding.cn/mweb/ecc%20asymmetric%20encryption.png">
+<meta property="og:image" content="http://qiniu.gogocoding.cn/mweb/hybrid%20encryption%20schemes.png">
+<meta property="og:image" content="http://qiniu.gogocoding.cn/mweb/hybrid%20dencryption%20schemes.png">
+<meta property="article:published_time" content="2020-03-05T06:37:24.000Z">
+<meta property="article:modified_time" content="2020-12-29T08:24:28.495Z">
+<meta property="article:author" content="Hao Qi">
+<meta property="article:tag" content="CryptoGraphy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qiniu.gogocoding.cn/mweb/ecc%20asymmetric%20encryption.png">
+
+<link rel="canonical" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/13.%20ECC-Based%20Encryption%20-%20Decryption/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>13. ECC-Based Encryption / Decryption | GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/13.%20ECC-Based%20Encryption%20-%20Decryption/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          13. ECC-Based Encryption / Decryption
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:24" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:24+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 16:24:28" itemprop="dateModified" datetime="2020-12-29T16:24:28+08:00">2020-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>​在本节中，我们将解释如何实现基于椭圆曲线的公钥加密和对应的解密（基于ECC的非对称加密方案）。 这通常涉及混合加密方案的设计，包括ECC密码学，ECDH密钥交换和对称加密算法。</p>
+<p>​假设我们有一个公私钥对。 我们想使用这些密钥来加密和解密数据。 根据定义，非对称加密的工作方式如下：如果我们通过私钥加密数据，则稍后我们将能够通过相应的公钥解密密文：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/ecc%20asymmetric%20encryption.png" alt="ecc asymmetric encryption -c400" /></p>
+<p>​上述过程可以直接应用于RSA密码系统，但不能应用于ECC。 椭圆曲线密码学（ECC）不直接提供加密方法。 相反，我们可以通过使用ECDH（椭圆曲线Diffie-Hellman）密钥交换方案来设计混合加密方案，以导出用于对称数据加密和解密的共享密钥。</p>
+<p>​大多数混合加密方案的工作方式如下（加密过程）：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/hybrid%20encryption%20schemes.png" alt="hybrid encryption schemes -c" /></p>
+<p>​这是大多数混合加密方案的工作方式（解密过程）：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/hybrid%20dencryption%20schemes.png" alt="hybrid dencryption schemes -c" /></p>
+<p>下面让我们详细介绍如何设计和实现基于ECC的混合加密方案。</p>
+<h2 id="131-基于ecc的密钥派生使用ecdh"><a class="markdownIt-Anchor" href="#131-基于ecc的密钥派生使用ecdh"></a> 13.1 基于ECC的密钥派生（使用ECDH）</h2>
+<p>​假设我们在有限域上具有一条加密椭圆曲线及其生成器点G。我们可以使用以下两个函数来计算用于加密和解密的共享秘密密钥（源自ECDH方案）：</p>
+<ul>
+<li>
+<p><strong>calculateEncryptionKey</strong>(pubKey) --&gt; (sharedECCKey, ciphertextPubKey)</p>
+<ol>
+<li><strong>ciphertextPrivKey</strong> = new random private key.</li>
+<li><strong>ciphertextPubKey</strong> = ciphertextPrivKey * G.</li>
+<li>计算共享秘钥 <strong>sharedECCKey</strong> = pubKey * ciphertextPrivKey</li>
+<li>同时返回sharedECCKey + ciphertextPubKey。 使用sharedECCKey进行对称加密。 使用随机生成的ciphertextPubKey稍后计算解密密钥。</li>
+</ol>
+</li>
+<li>
+<p><strong>calculateDecryptionKey</strong>(privKey, ciphertextPubKey) --&gt; sharedECCKey</p>
+<ol>
+<li><strong>sharedECCKey</strong> = ciphertextPubKey * privKey.</li>
+<li>返回sharedECCKey并将其用于解密。</li>
+</ol>
+</li>
+</ul>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>⋅</mo><mi>G</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>b</mi><mo>=</mo><mo stretchy="false">(</mo><mi>b</mi><mo>⋅</mo><mi>G</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">(a \cdot G) \cdot b = (b \cdot G) \cdot a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span></p>
+<p>​现在，对应的a = privKey，a * G = pubKey，b = ciphertextPrivKey，b * G = ciphertextPubKey。</p>
+<p>​这就是上述两个函数的准确计算结果，直接遵循ECDH密钥协商方案。 在混合加密方案中，封装的ciphertextPubKey也称为“临时密钥”，因为使用ECDH密钥协商方案临时使用它来导出对称加密密钥。</p>
+<h2 id="132-基于ecc的密钥派生-示例"><a class="markdownIt-Anchor" href="#132-基于ecc的密钥派生-示例"></a> 13.2 基于ECC的密钥派生-示例</h2>
+<p>​使用tinyec库为消息接收方生成ECC私钥-公钥对（基于brainpoolP256r1曲线），然后结合收件人的公钥，从密钥库中导出共享密钥（用于加密）和临时密文公共密钥（用于ECDH）。收件人再从收件人的私钥和生成的较早的临时密文公钥中得出相同的秘密共享密钥（用于解密）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tinyec <span class="keyword">import</span> registry</span><br><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line"></span><br><span class="line">curve = registry.get_curve(<span class="string">&#x27;brainpoolP256r1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compress_point</span>(<span class="params">point</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">hex</span>(point.x) + <span class="built_in">hex</span>(point.y % <span class="number">2</span>)[<span class="number">2</span>:]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ecc_calc_encryption_keys</span>(<span class="params">pubKey</span>):</span></span><br><span class="line">    ciphertextPrivKey = secrets.randbelow(curve.field.n)</span><br><span class="line">    ciphertextPubKey = ciphertextPrivKey * curve.g</span><br><span class="line">    sharedECCKey = pubKey * ciphertextPrivKey</span><br><span class="line">    <span class="keyword">return</span> (sharedECCKey, ciphertextPubKey)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ecc_calc_decryption_key</span>(<span class="params">privKey, ciphertextPubKey</span>):</span></span><br><span class="line">    sharedECCKey = ciphertextPubKey * privKey</span><br><span class="line">    <span class="keyword">return</span> sharedECCKey</span><br><span class="line"></span><br><span class="line">privKey = secrets.randbelow(curve.field.n)</span><br><span class="line">pubKey = privKey * curve.g</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;private key:&quot;</span>, <span class="built_in">hex</span>(privKey))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;public key:&quot;</span>, compress_point(pubKey))</span><br><span class="line"></span><br><span class="line">(encryptKey, ciphertextPubKey) = ecc_calc_encryption_keys(pubKey)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;ciphertext pubKey:&quot;</span>, compress_point(ciphertextPubKey))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;encryption key:&quot;</span>, compress_point(encryptKey))</span><br><span class="line"></span><br><span class="line">decryptKey = ecc_calc_decryption_key(privKey, ciphertextPubKey)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;decryption key:&quot;</span>, compress_point(decryptKey))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private key: 0x2e2921b4cde59cdf01e7a014a322abd530b3015085c31cb6e59502da761d29e9</span><br><span class="line">public key: 0x850d3873cf4ac50ddb54ddbd27f8225fc43bd3f4c2cc0a4f9d1f9ce15fc4eb711</span><br><span class="line">ciphertext pubKey: 0x71586f9999d3ee050005054bc681c1d96c5eb054ca15b080ba245e495627003b0</span><br><span class="line">encryption key: 0x9d13d3f8f9747669432f575731926b5ed99a6883f00146cbd3203ffa7ff8b1ae1</span><br><span class="line">decryption key: 0x9d13d3f8f9747669432f575731926b5ed99a6883f00146cbd3203ffa7ff8b1ae1</span><br></pre></td></tr></table></figure>
+<h2 id="133-基于ecc的混合加密解密-示例"><a class="markdownIt-Anchor" href="#133-基于ecc的混合加密解密-示例"></a> 13.3 基于ECC的混合加密/解密-示例</h2>
+<p>​		一旦有了密钥，我们就可以使用对称加密方案（例如AES-GCM或ChaCha20-Poly1305）将其用于对称数据加密。 让我们实现一个功能齐全的非对称ECC加密和解密混合方案。 它将基于BrainpoolP256r1曲线和AES-256-GCM认证的对称密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install tinyec</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
+<p>我们来看一下完整的ECC + AES混合加密示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tinyec <span class="keyword">import</span> registry</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> hashlib, secrets, binascii</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt_AES_GCM</span>(<span class="params">msg, secretKey</span>):</span></span><br><span class="line">    aesCipher = AES.new(secretKey, AES.MODE_GCM)</span><br><span class="line">    ciphertext, authTag = aesCipher.encrypt_and_digest(msg)</span><br><span class="line">    <span class="keyword">return</span> (ciphertext, aesCipher.nonce, authTag)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt_AES_GCM</span>(<span class="params">ciphertext, nonce, authTag, secretKey</span>):</span></span><br><span class="line">    aesCipher = AES.new(secretKey, AES.MODE_GCM, nonce)</span><br><span class="line">    plaintext = aesCipher.decrypt_and_verify(ciphertext, authTag)</span><br><span class="line">    <span class="keyword">return</span> plaintext</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ecc_point_to_256_bit_key</span>(<span class="params">point</span>):</span></span><br><span class="line">    sha = hashlib.sha256(<span class="built_in">int</span>.to_bytes(point.x, <span class="number">32</span>, <span class="string">&#x27;big&#x27;</span>))</span><br><span class="line">    sha.update(<span class="built_in">int</span>.to_bytes(point.y, <span class="number">32</span>, <span class="string">&#x27;big&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span> sha.digest()</span><br><span class="line"></span><br><span class="line">curve = registry.get_curve(<span class="string">&#x27;brainpoolP256r1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt_ECC</span>(<span class="params">msg, pubKey</span>):</span></span><br><span class="line">    ciphertextPrivKey = secrets.randbelow(curve.field.n)</span><br><span class="line">    sharedECCKey = ciphertextPrivKey * pubKey</span><br><span class="line">    secretKey = ecc_point_to_256_bit_key(sharedECCKey)</span><br><span class="line">    ciphertext, nonce, authTag = encrypt_AES_GCM(msg, secretKey)</span><br><span class="line">    ciphertextPubKey = ciphertextPrivKey * curve.g</span><br><span class="line">    <span class="keyword">return</span> (ciphertext, nonce, authTag, ciphertextPubKey)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt_ECC</span>(<span class="params">encryptedMsg, privKey</span>):</span></span><br><span class="line">    (ciphertext, nonce, authTag, ciphertextPubKey) = encryptedMsg</span><br><span class="line">    sharedECCKey = privKey * ciphertextPubKey</span><br><span class="line">    secretKey = ecc_point_to_256_bit_key(sharedECCKey)</span><br><span class="line">    plaintext = decrypt_AES_GCM(ciphertext, nonce, authTag, secretKey)</span><br><span class="line">    <span class="keyword">return</span> plaintext</span><br><span class="line"></span><br><span class="line">msg = <span class="string">b&#x27;Text to be encrypted by ECC public key and &#x27;</span> \</span><br><span class="line">      <span class="string">b&#x27;decrypted by its corresponding ECC private key&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;original msg:&quot;</span>, msg)</span><br><span class="line">privKey = secrets.randbelow(curve.field.n)</span><br><span class="line">pubKey = privKey * curve.g</span><br><span class="line"></span><br><span class="line">encryptedMsg = encrypt_ECC(msg, pubKey)</span><br><span class="line">encryptedMsgObj = &#123;</span><br><span class="line">    <span class="string">&#x27;ciphertext&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">0</span>]),</span><br><span class="line">    <span class="string">&#x27;nonce&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">1</span>]),</span><br><span class="line">    <span class="string">&#x27;authTag&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">2</span>]),</span><br><span class="line">    <span class="string">&#x27;ciphertextPubKey&#x27;</span>: <span class="built_in">hex</span>(encryptedMsg[<span class="number">3</span>].x) + <span class="built_in">hex</span>(encryptedMsg[<span class="number">3</span>].y % <span class="number">2</span>)[<span class="number">2</span>:]</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;encrypted msg:&quot;</span>, encryptedMsgObj)</span><br><span class="line"></span><br><span class="line">decryptedMsg = decrypt_ECC(encryptedMsg, privKey)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;decrypted msg:&quot;</span>, decryptedMsg)</span><br></pre></td></tr></table></figure>
+<p>上面代码的输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">original msg: b&#39;Text to be encrypted by ECC public key and decrypted by its corresponding ECC private key&#39;</span><br><span class="line">encrypted msg: &#123;&#39;ciphertext&#39;: b&#39;b5953b3082fcefdbde91dd3c03cf83dde0822c19be6ae906a634db65115295e7cbcd7a1a492d69ba5be91990c70d8df9dc84360cf554f155ef81ce1f0ad44bd9fdabbc5f960517089262b3390e61b37610012bee4e6bcae335&#39;, &#39;nonce&#39;: b&#39;9d55f4b5c87fff773d0457f3b23a953e&#39;, &#39;authTag&#39;: b&#39;5c9d339778925aa4e44f43252a28681d&#39;, &#39;ciphertextPubKey&#39;: &#39;0x21dbc985b625f2a42d0f86fc234b49b55477928bae73dfac73bafd9bed50abe70&#39;&#125;</span><br><span class="line">decrypted msg: b&#39;Text to be encrypted by ECC public key and decrypted by its corresponding ECC private key&#39;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/12.%20ECDH%20Key%20Exchange%20(Elliptic%20Curve%20Diffie%E2%80%93Hellman%20Key%20Exchange)/" rel="prev" title="12. ECDH Key Exchange (Elliptic Curve Diffie–Hellman Key Exchange)">
+      <i class="fa fa-chevron-left"></i> 12. ECDH Key Exchange (Elliptic Curve Diffie–Hellman Key Exchange)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/14.%20ECIES%20(Elliptic%20Curve%20Integrated%20Encryption%20Scheme)/" rel="next" title="14. ECIES (Elliptic Curve Integrated Encryption Scheme)">
+      14. ECIES (Elliptic Curve Integrated Encryption Scheme) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#131-%E5%9F%BA%E4%BA%8Eecc%E7%9A%84%E5%AF%86%E9%92%A5%E6%B4%BE%E7%94%9F%E4%BD%BF%E7%94%A8ecdh"><span class="nav-number">1.</span> <span class="nav-text"> 13.1 基于ECC的密钥派生（使用ECDH）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#132-%E5%9F%BA%E4%BA%8Eecc%E7%9A%84%E5%AF%86%E9%92%A5%E6%B4%BE%E7%94%9F-%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text"> 13.2 基于ECC的密钥派生-示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#133-%E5%9F%BA%E4%BA%8Eecc%E7%9A%84%E6%B7%B7%E5%90%88%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86-%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text"> 13.3 基于ECC的混合加密&#x2F;解密-示例</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Mobile developer, also want to be a Gopher">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GoGoCoding">
+<meta property="og:url" content="https://gogocoding.github.io/page/4/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="Mobile developer, also want to be a Gopher">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Hao Qi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gogocoding.github.io/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false
+  };
+</script>
+
+  <title>GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/10.%20The%20RSA%20Cryptosystem%20-%20Concepts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/10.%20The%20RSA%20Cryptosystem%20-%20Concepts/" class="post-title-link" itemprop="url">10. The RSA Cryptosystem - Concepts</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:21" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:21+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)"><strong>RSA cryptosystem</strong></a> 是最早的公钥密码系统之一，基于模幂的数学理论（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Modular_exponentiation"><strong>modular exponentiations</strong></a>）以及RSA问题( <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_problem"><strong>RSA problem</strong></a>)和紧密相关的整数分解问题( <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Integer_factorization"><strong>integer factorization problem</strong> (<strong>IFP</strong>)</a>)的计算难度。<strong>RSA</strong>算法以其作者的首字母命名（Rivest–Shamir–Adleman），在计算机密码学的早期被广泛使用。</p>
+<p>​后来，随着<strong>ECC</strong>密码学的发展，由于ECC比RSA更高的安全性和ECC在相同安全级别下密钥长度更短，ECC在非对称密码系统中逐渐占主导地位。</p>
+<p><strong>RSA算法提供：</strong></p>
+<ul>
+<li><strong>Key-pair generation</strong>：生成随机私钥（通常大小为1024-4096位）和相应的公钥。</li>
+<li><strong>Encryption</strong>：使用公钥加密秘密消息（范围为[0 … key_length]的整数），然后使用私钥将其解密。</li>
+<li><strong>Digital signatures</strong>：使用私钥签名消息，并使用公钥验证消息签名。</li>
+<li><strong>Key exchange</strong>：安全地传输密钥，该密钥稍后用于加密通信。</li>
+</ul>
+<p>​RSA可以使用以下长度不同的密钥：1024、2048、3072、4096、8129、16384或更多位。 3072位及以上的密钥长度被认为是安全的。较长的密钥可提供更高的安全性，但会消耗更多的计算时间，因此在安全性和速度之间要进行权衡。太长的RSA密钥（例如50000位或65536位）对于实际使用而言可能太慢，密钥生成可能需要几分钟到几小时。</p>
+<h2 id="101-rsa密钥生成"><a class="markdownIt-Anchor" href="#101-rsa密钥生成"></a> 10.1 RSA密钥生成</h2>
+<p>​生成RSA公钥和私钥对涉及以下内容：</p>
+<p>​使用数论中的一些非平凡数学计算，找到三个非常大的整数<strong>e</strong>，<strong>d</strong>和<strong>n</strong>，满足：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msup><mi>m</mi><mi>e</mi></msup><msup><mo stretchy="false">)</mo><mi>d</mi></msup><mo>≡</mo><mi>m</mi><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(m^e)^d ≡ m(mod \quad n )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 对于m取值范围为[0 … n）；</li>
+</ul>
+<p>整数n被称为“<strong>模数</strong>”，它定义了RSA密钥长度。 它通常是非常大的素数（例如2048位）。</p>
+<p>{n，e}是公用密钥。 它旨在与所有人共享。 数字e称为“公钥指数”。 通常为65537（0x010001）。</p>
+<p>{n，d}是私钥。 它被设计为保密的。 从公钥{n，e}计算私钥实际上是不可行的。 数字d称为“私钥指数”（秘密指数）</p>
+<h3 id="1011-rsa-public-key"><a class="markdownIt-Anchor" href="#1011-rsa-public-key"></a> 10.1.1 RSA Public Key</h3>
+<p>2048位RSA公钥的示例（表示为2048位十六进制整数模数n和24位公钥指数e）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n &#x3D; 0xa709e2f84ac0e21eb0caa018cf7f697f774e96f8115fc2359e9cf60b1dd8d4048d974cdf8422bef6be3c162b04b916f7ea2133f0e3e4e0eee164859bd9c1e0ef0357c142f4f633b4add4aab86c8f8895cd33fbf4e024d9a3ad6be6267570b4a72d2c34354e0139e74ada665a16a2611490debb8e131a6cffc7ef25e74240803dd71a4fcd953c988111b0aa9bbc4c57024fc5e8c4462ad9049c7f1abed859c63455fa6d58b5cc34a3d3206ff74b9e96c336dbacf0cdd18ed0c66796ce00ab07f36b24cbe3342523fd8215a8e77f89e86a08db911f237459388dee642dae7cb2644a03e71ed5c6fa5077cf4090fafa556048b536b879a88f628698f0c7b420c4b7</span><br><span class="line">e &#x3D; 0x010001</span><br></pre></td></tr></table></figure>
+<p>相同的RSA公钥，以传统的RSA格式<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PKCS_8">PKCS#8</a> <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail">PEM</a> <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One">ASN.1</a> 编码，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApwni+ErA4h6wyqAYz39p</span><br><span class="line">f3dOlvgRX8I1npz2Cx3Y1ASNl0zfhCK+9r48FisEuRb36iEz8OPk4O7hZIWb2cHg</span><br><span class="line">7wNXwUL09jO0rdSquGyPiJXNM&#x2F;v04CTZo61r5iZ1cLSnLSw0NU4BOedK2mZaFqJh</span><br><span class="line">FJDeu44TGmz&#x2F;x+8l50JAgD3XGk&#x2F;NlTyYgRGwqpu8TFcCT8XoxEYq2QScfxq+2FnG</span><br><span class="line">NFX6bVi1zDSj0yBv90uelsM226zwzdGO0MZnls4AqwfzayTL4zQlI&#x2F;2CFajnf4no</span><br><span class="line">agjbkR8jdFk4je5kLa58smRKA+ce1cb6UHfPQJD6+lVgSLU2uHmoj2KGmPDHtCDE</span><br><span class="line">twIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+<h3 id="1012-rsa-private-key"><a class="markdownIt-Anchor" href="#1012-rsa-private-key"></a> 10.1.2 RSA Private Key</h3>
+<p>与上述给定公钥相对应的2048位RSA私钥示例（表示为十六进制的2048位整数模数n和2048位秘密指数d）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n &#x3D; 0xa709e2f84ac0e21eb0caa018cf7f697f774e96f8115fc2359e9cf60b1dd8d4048d974cdf8422bef6be3c162b04b916f7ea2133f0e3e4e0eee164859bd9c1e0ef0357c142f4f633b4add4aab86c8f8895cd33fbf4e024d9a3ad6be6267570b4a72d2c34354e0139e74ada665a16a2611490debb8e131a6cffc7ef25e74240803dd71a4fcd953c988111b0aa9bbc4c57024fc5e8c4462ad9049c7f1abed859c63455fa6d58b5cc34a3d3206ff74b9e96c336dbacf0cdd18ed0c66796ce00ab07f36b24cbe3342523fd8215a8e77f89e86a08db911f237459388dee642dae7cb2644a03e71ed5c6fa5077cf4090fafa556048b536b879a88f628698f0c7b420c4b7</span><br><span class="line">d &#x3D; 0x10f22727e552e2c86ba06d7ed6de28326eef76d0128327cd64c5566368fdc1a9f740ad8dd221419a5550fc8c14b33fa9f058b9fa4044775aaf5c66a999a7da4d4fdb8141c25ee5294ea6a54331d045f25c9a5f7f47960acbae20fa27ab5669c80eaf235a1d0b1c22b8d750a191c0f0c9b3561aaa4934847101343920d84f24334d3af05fede0e355911c7db8b8de3bf435907c855c3d7eeede4f148df830b43dd360b43692239ac10e566f138fb4b30fb1af0603cfcf0cd8adf4349a0d0b93bf89804e7c2e24ca7615e51af66dccfdb71a1204e2107abbee4259f2cac917fafe3b029baf13c4dde7923c47ee3fec248390203a384b9eb773c154540c5196bce1</span><br></pre></td></tr></table></figure>
+<p>相同的RSA私钥，以传统的RSA格式<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PKCS_8">PKCS#8</a> <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail">PEM</a> <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One">ASN.1</a> 编码，看上去更长一些：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEowIBAAKCAQEApwni+ErA4h6wyqAYz39pf3dOlvgRX8I1npz2Cx3Y1ASNl0zf</span><br><span class="line">hCK+9r48FisEuRb36iEz8OPk4O7hZIWb2cHg7wNXwUL09jO0rdSquGyPiJXNM&#x2F;v0</span><br><span class="line">4CTZo61r5iZ1cLSnLSw0NU4BOedK2mZaFqJhFJDeu44TGmz&#x2F;x+8l50JAgD3XGk&#x2F;N</span><br><span class="line">lTyYgRGwqpu8TFcCT8XoxEYq2QScfxq+2FnGNFX6bVi1zDSj0yBv90uelsM226zw</span><br><span class="line">zdGO0MZnls4AqwfzayTL4zQlI&#x2F;2CFajnf4noagjbkR8jdFk4je5kLa58smRKA+ce</span><br><span class="line">1cb6UHfPQJD6+lVgSLU2uHmoj2KGmPDHtCDEtwIDAQABAoIBABDyJyflUuLIa6Bt</span><br><span class="line">ftbeKDJu73bQEoMnzWTFVmNo&#x2F;cGp90CtjdIhQZpVUPyMFLM&#x2F;qfBYufpARHdar1xm</span><br><span class="line">qZmn2k1P24FBwl7lKU6mpUMx0EXyXJpff0eWCsuuIPonq1ZpyA6vI1odCxwiuNdQ</span><br><span class="line">oZHA8MmzVhqqSTSEcQE0OSDYTyQzTTrwX+3g41WRHH24uN479DWQfIVcPX7u3k8U</span><br><span class="line">jfgwtD3TYLQ2kiOawQ5WbxOPtLMPsa8GA8&#x2F;PDNit9DSaDQuTv4mATnwuJMp2FeUa</span><br><span class="line">9m3M&#x2F;bcaEgTiEHq77kJZ8srJF&#x2F;r+OwKbrxPE3eeSPEfuP+wkg5AgOjhLnrdzwVRU</span><br><span class="line">DFGWvOECgYEAyIk7F0S0AGn2aryhw9CihDfimigCxEmtIO5q7mnItCfeQwYPsX72</span><br><span class="line">1fLpJNgfPc9DDfhAZ2hLSsBlAPLUOa0Cuny9PCBWVuxi1WjLVaeZCV2bF11mAgW2</span><br><span class="line">fjLkAXT34IX+HZl60VoetSWq9ibfkJHeCAPnh&#x2F;yjdB3Vs+2wxNkU8m8CgYEA1Tzm</span><br><span class="line">mjJq7M6f+zMo7DpRwFazGMmrLKFmHiGBY6sEg7EmoeH2CkAQePIGQw&#x2F;Rk16gWJR6</span><br><span class="line">DtUZ9666sjCH6&#x2F;79rx2xg+9AB76XTFFzIxOk9cm49cIosDMk4mogSfK0Zg8nVbyW</span><br><span class="line">5nEb&#x2F;&#x2F;9JCrZ18g4lD3IrT5VJoF4MhfdBUjAS1jkCgYB+RDIpv3+bNx0KLgWpFwgN</span><br><span class="line">Omb667B6SW2ya4x227KdBPFkwD9HYosnQZDdOxvIvmUZObPLqJan1aaDR2Krgi1S</span><br><span class="line">oNJCNpZGmwbMGvTU1Pd+Nys9NfjR0ykKIx7&#x2F;b9fXzman2ojDovvs0W&#x2F;pF6bzD3V&#x2F;</span><br><span class="line">FH5HWKLOrS5u4X3JJGqVDwKBgQCd953FwW&#x2F;gujld+EpqpdGGMTRAOrXqPC7QR3X5</span><br><span class="line">Beo0PPonlqOUeF07m9&#x2F;zsjZJfCJBPM0nS8sO54w7ESTAOYhpQBAPcx&#x2F;2HMUsrnIj</span><br><span class="line">HBxqUOQKe6l0zo6WhJQi8&#x2F;+cU8GKDEmlsUlS3iWYIA9EICJoTOW08R04BjQ00jS7</span><br><span class="line">1A1AUQKBgHlHrV&#x2F;6S&#x2F;4hjvMp+30hX5DpZviUDiwcGOGasmIYXAgwXepJUq0xN6aa</span><br><span class="line">lnT+ykLGSMMY&#x2F;LABQiNZALZQtwK35KTshnThK6zB4e9p8JUCVrFpssJ2NCrMY3SU</span><br><span class="line">qw87K1W6engeDrmunkJ&#x2F;PmvSDLYeGiYWmEKQbLQchTxx1IEddXkK</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+<h2 id="102-rsa加密数据"><a class="markdownIt-Anchor" href="#102-rsa加密数据"></a> 10.2 RSA加密数据</h2>
+<p>通过以下转换，使用相应的RSA公钥{n，e}对消息进行加密：</p>
+<ul>
+<li>$ encryptedMsg = (msg)^e \quad mod \quad n$</li>
+</ul>
+<p>​此处的<strong>msg</strong>为[0 … n）范围内的数字， 加密前数据应编码为[0 … n）范围内的整数（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding">EAOP</a>）。对于较大的文本，应使用混合加密（加密一个密钥，并使用对称加密来加密文本，请参阅 <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5990">RSA-KEM</a>）</p>
+<p>​上面的操作无法逆转：没有有效的算法可以根据<strong>encryptedMsg</strong>，<strong>e</strong> 和 <strong>n</strong>（请参阅<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_problem">the RSA problem</a>）来计算msg，这值在设计上都是可以公开的（非秘密的）。</p>
+<h2 id="103-rsa解密数据"><a class="markdownIt-Anchor" href="#103-rsa解密数据"></a> 10.3 RSA解密数据</h2>
+<p>通过以下转换，使用相应的RSA私钥{n，d}对加密的消息进行解密：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>e</mi><mi>c</mi><mi>r</mi><mi>y</mi><mi>p</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi>M</mi><mi>s</mi><mi>g</mi><mo>=</mo><mo stretchy="false">(</mo><mi>e</mi><mi>n</mi><mi>c</mi><mi>r</mi><mi>y</mi><mi>p</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi>M</mi><mi>s</mi><mi>g</mi><msup><mo stretchy="false">)</mo><mi>d</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi></mrow><annotation encoding="application/x-tex">decryptedMsg = (encryptedMsg)^d \quad  mod \quad n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span></span></span></span></li>
+</ul>
+<p>为什么这是正确的？ 回想一下，按照定义，RSA密钥对具有以下属性：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msup><mi>m</mi><mi>e</mi></msup><msup><mo stretchy="false">)</mo><mi>d</mi></msup><mo>≡</mo><mi>m</mi><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(m^e)^d ≡ m(mod \quad n )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 对于m取值范围为[0 … n）；</li>
+</ul>
+<p>通过加密转换，我们可以知道</p>
+<ul>
+<li>$ encryptedMsg = (msg)^e \quad mod \quad n$</li>
+</ul>
+<p>因此：</p>
+<ul>
+<li>$ decryptedMsg = (encryptedMsg)^d \quad mod \quad n = ((msg)^e \quad mod \quad n)^d = ((msg)<sup>e)</sup>d \quad mod \quad n = (msg) \quad mod \quad n = msg $</li>
+</ul>
+<h2 id="104-rsa加密和解密-示例"><a class="markdownIt-Anchor" href="#104-rsa加密和解密-示例"></a> 10.4 RSA加密和解密-示例</h2>
+<p>​根据上述公式，让我们研究一下RSA加密和解密的示例以及计算方法。 假设我们已经生成了RSA公钥-私钥对：</p>
+<ul>
+<li>modulus <strong>n</strong> = 143</li>
+<li>public exponent <strong>e</strong> = 7</li>
+<li>private exponent <strong>d</strong> = 103</li>
+<li>public key = {<strong>n</strong>, <strong>e</strong>} = {143, 7}</li>
+<li>private key = {<strong>n</strong>, <strong>d</strong>} = {143, 103}</li>
+</ul>
+<p>让我们加密一条秘密消息<strong>msg</strong> =83。只需遵循以下公式：</p>
+<ul>
+<li>$ encryptedMsg = msg^e \quad mod \quad n = 83^7 \quad mod \quad 143 = 27136050989627 \quad mod \quad 143 = 8 $</li>
+</ul>
+<p>现在，让我们将加密的消息解密回其原始值：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>e</mi><mi>c</mi><mi>r</mi><mi>y</mi><mi>p</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi>M</mi><mi>s</mi><mi>g</mi><mo>=</mo><mi>e</mi><mi>n</mi><mi>c</mi><mi>r</mi><mi>y</mi><mi>p</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi>M</mi><mi>s</mi><msup><mi>g</mi><mi>d</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi><mo>=</mo><msup><mn>8</mn><mn>1</mn></msup><mn>03</mn><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mn>143</mn><mo>=</mo><mn>1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512</mn><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mn>143</mn><mo>=</mo><mn>83</mn></mrow><annotation encoding="application/x-tex">decryptedMsg = encryptedMsg^d \quad mod \quad n = 8^103 \quad mod \quad 143 = 1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512 \quad mod \quad 143 = 83</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.043548em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">s</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">8</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mord">0</span><span class="mord">3</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">4</span><span class="mord">2</span><span class="mord">9</span><span class="mord">6</span><span class="mord">2</span><span class="mord">4</span><span class="mord">1</span><span class="mord">9</span><span class="mord">8</span><span class="mord">8</span><span class="mord">3</span><span class="mord">2</span><span class="mord">5</span><span class="mord">6</span><span class="mord">8</span><span class="mord">7</span><span class="mord">6</span><span class="mord">1</span><span class="mord">6</span><span class="mord">9</span><span class="mord">4</span><span class="mord">4</span><span class="mord">4</span><span class="mord">1</span><span class="mord">9</span><span class="mord">2</span><span class="mord">4</span><span class="mord">6</span><span class="mord">5</span><span class="mord">6</span><span class="mord">0</span><span class="mord">1</span><span class="mord">6</span><span class="mord">1</span><span class="mord">8</span><span class="mord">4</span><span class="mord">5</span><span class="mord">8</span><span class="mord">3</span><span class="mord">5</span><span class="mord">1</span><span class="mord">8</span><span class="mord">1</span><span class="mord">7</span><span class="mord">5</span><span class="mord">5</span><span class="mord">6</span><span class="mord">9</span><span class="mord">5</span><span class="mord">9</span><span class="mord">3</span><span class="mord">6</span><span class="mord">0</span><span class="mord">3</span><span class="mord">2</span><span class="mord">5</span><span class="mord">7</span><span class="mord">0</span><span class="mord">3</span><span class="mord">9</span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">6</span><span class="mord">9</span><span class="mord">4</span><span class="mord">4</span><span class="mord">3</span><span class="mord">2</span><span class="mord">2</span><span class="mord">5</span><span class="mord">4</span><span class="mord">7</span><span class="mord">8</span><span class="mord">8</span><span class="mord">2</span><span class="mord">8</span><span class="mord">3</span><span class="mord">9</span><span class="mord">3</span><span class="mord">5</span><span class="mord">6</span><span class="mord">5</span><span class="mord">8</span><span class="mord">9</span><span class="mord">9</span><span class="mord">4</span><span class="mord">5</span><span class="mord">6</span><span class="mord">5</span><span class="mord">1</span><span class="mord">2</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">3</span></span></span></span></li>
+</ul>
+<p>​RSA计算正确运行。 这是因为密钥对满足了上述RSA属性。在现实世界中，通常RSA模数n和私有指数d是3072位或4096位整数，公钥指数e是65537。</p>
+<p><code>注</code>：<a target="_blank" rel="noopener" href="http://doctrina.org/How-RSA-Works-With-Examples.html">http://doctrina.org/How-RSA-Works-With-Examples.html</a>.</p>
+<p>​由于RSA加密是确定性的（没有随机成分），攻击者可以通过使用公钥加密可能的明文并测试它们是否等于密文，从而成功发起针对所选明文的攻击（<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Chosen-plaintext_attack">chosen plaintext attack</a></strong>）。这可能不是问题，但是一个弱点，在开发人员选择加密方案时应予以考虑。像<strong>RSA-KEM</strong>这样的混合加密方案可以解决此漏洞，并允许对较长的文本进行加密。</p>
+<h2 id="105-rsa加密解密-代码示例"><a class="markdownIt-Anchor" href="#105-rsa加密解密-代码示例"></a> 10.5  RSA加密/解密-代码示例</h2>
+<p>​以下代码将使用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding"><strong>RSA-OAEP</strong></a>填充方案生成随机的RSA密钥对，将加密短消息并将其解密回其原始形式。</p>
+<p>​首先，安装pycryptodome软件包，这是一个强大的Python库，包含低级密码基元（哈希，MAC，密钥派生，对称和非对称密码，数字签名）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
+<h3 id="1051-rsa-密钥生成"><a class="markdownIt-Anchor" href="#1051-rsa-密钥生成"></a> 10.5.1 RSA 密钥生成</h3>
+<p>生成RSA密钥（1024位）并将其打印在控制台上（以十六进制数字和PKCS#8 PEM ASN.1格式显示）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_OAEP</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">keyPair = RSA.generate(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">pubKey = keyPair.publickey()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Public key:  (n=<span class="subst">&#123;<span class="built_in">hex</span>(pubKey.n)&#125;</span>, e=<span class="subst">&#123;<span class="built_in">hex</span>(pubKey.e)&#125;</span>)&quot;</span>)</span><br><span class="line">pubKeyPEM = pubKey.exportKey()</span><br><span class="line"><span class="built_in">print</span>(pubKeyPEM.decode(<span class="string">&#x27;ascii&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Private key: (n=<span class="subst">&#123;<span class="built_in">hex</span>(pubKey.n)&#125;</span>, d=<span class="subst">&#123;<span class="built_in">hex</span>(keyPair.d)&#125;</span>)&quot;</span>)</span><br><span class="line">privKeyPEM = keyPair.exportKey()</span><br><span class="line"><span class="built_in">print</span>(privKeyPEM.decode(<span class="string">&#x27;ascii&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="1052-rsa-加密"><a class="markdownIt-Anchor" href="#1052-rsa-加密"></a> 10.5.2 RSA 加密</h3>
+<p>使用带有RSA公钥的RSA-OAEP加密方案（带有PKCS＃1 OAEP填充的RSA）对消息进行加密：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">msg = <span class="string">b&#x27;A message for encryption&#x27;</span></span><br><span class="line">encryptor = PKCS1_OAEP.new(pubKey)</span><br><span class="line">encrypted = encryptor.encrypt(msg)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Encrypted:&quot;</span>, binascii.hexlify(encrypted))</span><br></pre></td></tr></table></figure>
+<h3 id="1053-rsa解密"><a class="markdownIt-Anchor" href="#1053-rsa解密"></a> 10.5.3 RSA解密</h3>
+<p>使用带有RSA私钥的RSA-OAEP解密消息:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">decryptor = PKCS1_OAEP.new(keyPair)</span><br><span class="line">decrypted = decryptor.decrypt(encrypted)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Decrypted:&#x27;</span>, decrypted)</span><br></pre></td></tr></table></figure>
+<h3 id="1054-输出"><a class="markdownIt-Anchor" href="#1054-输出"></a> 10.5.4 输出</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Public key: (n&#x3D;0x9a11485bccb9569410a848fb1afdf2a81b17c1fa9f9eb546fd1deb873b49b693a4edf20eb8362c085cd5b28ba109dbad2bd257a013f57f745402e245b0cc2d553c7b2b8dbba57ebda7f84cfb32b7d9c254f03dbd0188e4b8e40c47b64c1bd2572834b936ffc3da9953657ef8bee80c49c2c12933c8a34804a00eb4c81248e01f, e&#x3D;0x10001)</span><br><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCaEUhbzLlWlBCoSPsa&#x2F;fKoGxfB</span><br><span class="line">+p+etUb9HeuHO0m2k6Tt8g64NiwIXNWyi6EJ260r0legE&#x2F;V&#x2F;dFQC4kWwzC1VPHsr</span><br><span class="line">jbulfr2n+Ez7MrfZwlTwPb0BiOS45AxHtkwb0lcoNLk2&#x2F;8PamVNlfvi+6AxJwsEp</span><br><span class="line">M8ijSASgDrTIEkjgHwIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br><span class="line">Private key: (n&#x3D;0x9a11485bccb9569410a848fb1afdf2a81b17c1fa9f9eb546fd1deb873b49b693a4edf20eb8362c085cd5b28ba109dbad2bd257a013f57f745402e245b0cc2d553c7b2b8dbba57ebda7f84cfb32b7d9c254f03dbd0188e4b8e40c47b64c1bd2572834b936ffc3da9953657ef8bee80c49c2c12933c8a34804a00eb4c81248e01f, d&#x3D;0x318ab12be3cf0d4a1b7921cead454fcc42ba070462639483394d6fb9529547827e9c8d23b294a8e01f8a1019da34e350f2307740e06a270bef1fe646e6ad213e31b528fdd5f5d03e633c07c44755ed622a629d79e822c095ebdf9cc80e517b5566dd3d3e5b16ec737987337a0e497fdba4b5ad97af41c1c3cdd87542a4637d81)</span><br><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIICXAIBAAKBgQCaEUhbzLlWlBCoSPsa&#x2F;fKoGxfB+p+etUb9HeuHO0m2k6Tt8g64</span><br><span class="line">NiwIXNWyi6EJ260r0legE&#x2F;V&#x2F;dFQC4kWwzC1VPHsrjbulfr2n+Ez7MrfZwlTwPb0B</span><br><span class="line">iOS45AxHtkwb0lcoNLk2&#x2F;8PamVNlfvi+6AxJwsEpM8ijSASgDrTIEkjgHwIDAQAB</span><br><span class="line">AoGAMYqxK+PPDUobeSHOrUVPzEK6BwRiY5SDOU1vuVKVR4J+nI0jspSo4B+KEBna</span><br><span class="line">NONQ8jB3QOBqJwvvH+ZG5q0hPjG1KP3V9dA+YzwHxEdV7WIqYp156CLAlevfnMgO</span><br><span class="line">UXtVZt09PlsW7HN5hzN6Dkl&#x2F;26S1rZevQcHDzdh1QqRjfYECQQDGDUIQXlOiAcGo</span><br><span class="line">d5YqAGpWe0wzJ0UypeqZcqS9MVe9OkjjopCkkYntifdN&#x2F;1oG7S&#x2F;1KUMtLoGHqntb</span><br><span class="line">c428zOO&#x2F;AkEAxyV0cmuJbFdfM0x2XhZ+ge&#x2F;7putIx76RHDOjBpM6VQXpLEFj54kB</span><br><span class="line">qGLAB7SXr7P4AFrEjfckJOp2YMI5BreboQJAb3EUZHt&#x2F;WeDdJLutzpKPQ3x7oykM</span><br><span class="line">wfQkbxXYZvD16u96BkT6WO&#x2F;gCb6hXs05zj32x1&#x2F;hgfHyRvGCGjKKZdtwpwJBAJ74</span><br><span class="line">y0g7h+wwoxJ0S1k4Y6yeQikxUVwCSBxXLCCnjr0ohsaJPJMrz2L30YtVInFkHOlL</span><br><span class="line">i&#x2F;Q4AWZmtDDxWkx+bYECQG8e6bGoszuX5xjvhEBslIws9+nMzMuYBR8HvhLo58B5</span><br><span class="line">N8dk3nIsLs3UncKLiiWubMAciU5jUxZoqWpRXXwECKE&#x3D;</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br><span class="line">Encrypted: b&#39;99b331c4e1c8f3fa227aacd57c85f38b7b7461574701b427758ee4f94b1e07d791ab70b55d672ff55dbe133ac0bea16fc23ea84636365f605a9b645e0861ee11d68a7550be8eb35e85a4bde6d73b0b956d000866425511c7920cdc8a3786a4f1cb1986a875373975e158d74e11ad751594de593a35de765fe329c0d3dfbbfedc&#39;</span><br><span class="line">Decrypted: b&#39;A message for encryption&#39;</span><br></pre></td></tr></table></figure>
+<p><code>注</code>：</p>
+<ol>
+<li>如果运行上面的示例，您的输出将有所不同，因为它在每次执行时都会生成不同的随机RSA密钥对。</li>
+<li>即使您使用相同的公共密钥多次加密同一条消息，您也会获得不同的输出。 这是因为OAEP填充算法会给填充注入一些随机性。</li>
+<li>如果尝试加密较大的消息，则可能产生异常，因为1024位密钥限制了最大消息长度。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/09.%20Asymmetric%20Key%20Ciphers%20and%20Public-Key%20Cryptography%20-%20Overview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/09.%20Asymmetric%20Key%20Ciphers%20and%20Public-Key%20Cryptography%20-%20Overview/" class="post-title-link" itemprop="url">09. Asymmetric Key Ciphers and Public-Key Cryptography - Overview</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:20" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:20+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 16:24:28" itemprop="dateModified" datetime="2020-12-29T16:24:28+08:00">2020-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​非对称密钥密码系统/公共密钥密码系统（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)"><strong>RSA</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"><strong>elliptic curve cryptography (ECC)</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"><strong>Diffie-Hellman</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ElGamal_encryption"><strong>ElGamal</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/McEliece_cryptosystem"><strong>McEliece</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/NTRU"><strong>NTRU</strong></a> 等）使用一对数学上关联的密钥：公钥（加密密钥）和私钥（解密） 。</p>
+<p>​非对称密钥系统提供<strong>密钥对生成</strong>（私钥和公钥），<strong>加密算法</strong>（非对称密钥和加密方案，例如<code>RSA-OAEP</code>和<code>ECIES</code>），<strong>数字签名算法</strong>（例如<code>DSA</code>，<code>ECDSA</code>和<code>EdDSA</code>）和<strong>密钥交换算法</strong>（例如 <code>DHKE</code>和<code>ECDH</code>）。</p>
+<p>​由公钥加密的消息随后将由私钥解密。 由私钥签名的消息随后将由公钥验证。 公钥通常与所有人共享，而私钥则保密。 通过设计，从其对应的公钥计算私钥是不可行的。</p>
+<h2 id="91-公钥密码系统-public-key-cryptosystems"><a class="markdownIt-Anchor" href="#91-公钥密码系统-public-key-cryptosystems"></a> 9.1 公钥密码系统 Public-Key Cryptosystems</h2>
+<p>​众所周知的公钥密码系统是： <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)"><strong>RSA</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"><strong>ECC</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ElGamal_encryption"><strong>ElGamal</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"><strong>DHKE</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman"><strong>ECDH</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Digital_Signature_Algorithm"><strong>DSA</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm"><strong>ECDSA</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/EdDSA"><strong>EdDSA</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Schnorr_signature"><strong>Schnorr signatures</strong></a>。<br />
+​<br />
+​<strong>不同的公共密钥密码系统可以提供以下一项或多项功能：</strong></p>
+<ul>
+<li><strong>Key-pair generation</strong>： 生成一对随机的私钥+公钥；</li>
+<li><strong>Encryption</strong> / <strong>decryption</strong>：通过公钥加密数据，并通过私钥解密数据（通常使用混合加密方案）；</li>
+<li><strong>Digital signatures</strong> (message authentication)：通过私钥对消息签名，并通过公钥验证签名；</li>
+<li><strong>Key-exchange algorithms</strong>：通过不安全的通道在两方之间安全地交换加密密钥。</li>
+</ul>
+<p>​最重要和最常用的公钥密码系统是<strong>RSA</strong>和<strong>ECC</strong>。 椭圆曲线加密算法（ECC）是推荐的也是最可取的现代公钥密码系统，尤其是高度优化和安全的曲线（例如Curve25519和Curve448），因为它具有较小的密钥，较短的签名和更好的性能。</p>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)"><strong>RSA public-key cryptosystem</strong></a> 基于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Modular_exponentiation"><strong>modular exponentiation</strong></a>（模幂运算）、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_problem"><strong>integer factorization problem</strong></a> （整数分解问题）的数学概念。</p>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"><strong>elliptic-curve cryptography (ECC) cryptosystem</strong></a>基于有限域上椭圆曲线的代数结构的数学理论和椭圆曲线离散对数问题（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Rationale"><strong>elliptic curve discrete logarithm problem,  ECDLP</strong></a>。</p>
+<h2 id="92-非对称加密方案"><a class="markdownIt-Anchor" href="#92-非对称加密方案"></a> 9.2 非对称加密方案</h2>
+<p>​非对称加密比对称加密更复杂，不仅因为它使用公钥和私钥，而且因为非对称加密只能加密/解密较小的消息。在<code>RSA</code>系统中，应将输入消息转换为大整数（例如，使用OAEP填充），而在ECC中，基于椭圆曲线Diffie-Hellman密钥交换，不能直接对消息进行加密，而应使用更复杂的加密方案（ECDH）。稍后将对此进行详细说明。 此外，非对称密码比对称密码要慢得多（例如RSA加密要比AES慢1000倍）。</p>
+<p>​为了克服上述限制并允许对任意大小的消息进行加密，现代加密技术使用了非对称加密方案（也称为公钥加密方案/非对称加密结构/混合加密方案），例如密钥封装机制（<strong>key encapsulation mechanisms</strong>，KEM）和集成加密方案， 结合了非对称加密和对称密钥密码。</p>
+<p>​这是通过组合公钥加密和对称加密算法来加密大型文档或文件的方式：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/pkc.png" alt="pk -c" /></p>
+<p>​在上图中，加密的对称密钥称为KEM块（公钥加密的密钥），加密的数据文件称为DEM块（对称加密的数据）。 加密的消息由这两个块组成（封装的密钥+封装的数据）。</p>
+<p>​这是相应的解密过程（使用公钥和对称加密算法解密加密的大文档）：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/pkdc.png" alt="pkd -c" /></p>
+<p>采用这种非对称加密方案的有： <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding"><strong>RSA-OAEP</strong></a>, <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5990#appendix-A"><strong>RSA-KEM</strong></a> and <a target="_blank" rel="noopener" href="https://www.w3.org/TR/xmlsec-generic-hybrid/#sec-ecies-kem"><strong>ECIES-KEM</strong></a>。</p>
+<h2 id="93-综合加密方案"><a class="markdownIt-Anchor" href="#93-综合加密方案"></a> 9.3 综合加密方案</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme"><strong>Integrated encryption schemes (IES)</strong></a> 是现代的公共密钥加密方案，它结合了对称加密，非对称加密和密钥生成算法，以提供安全的基于公共密钥的加密（PKE）。在IES方案中，非对称加密算法（例如RSA或ECC）用于加密或封装对称密钥，稍后由对称加密（例如AES或ChaCha20）使用该对称密钥来加密输入消息。 一些EIS方案还提供消息身份验证。 使用EIS方案的有 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme"><strong>DLIES</strong></a> (Discrete Logarithm Integrated Encryption Scheme) and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme"><strong>ECIES</strong></a> (Elliptic Curve Integrated Encryption Scheme)</p>
+<h2 id="94-秘钥封装机制-key-encapsulation-mechanisms-kems"><a class="markdownIt-Anchor" href="#94-秘钥封装机制-key-encapsulation-mechanisms-kems"></a> 9.4 秘钥封装机制（ Key Encapsulation Mechanisms, KEMs）</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key_encapsulation"><strong>key encapsulation mechanisms (KEM)</strong></a> 是用于加密和封装密钥（称为“临时对称密钥”）的非对称加密技术，该密钥用于使用对称加密算法对输入消息进行加密。KEM通过使用收件人的公钥对临时对称加密密钥进行加密，作为加密消息的一部分。 在密码学中，此过程称为<strong>密钥封装</strong>。</p>
+<p>​基于KEM的混合加密方案的输出由<strong>KEM</strong>块（保存封装的加密对称密钥，或用于导出它的某些参数）和DEM块组成，DEM块保存封装的对称加密数据（加密参数 + 密文 + 可选的身份验证码）。</p>
+<p>​密钥封装机制（KEM）在混合加密方案和集成加密方案中使用。其中在公钥加密系统中生成随机元素，并通过Hash从该随机元素中获得对称密钥。这种方法简化了将非对称和对称加密相结合的过程。使用现代密钥封装机制的方案有： <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5990"><strong>RSA-KEM</strong></a>, <a target="_blank" rel="noopener" href="https://www.cosic.esat.kuleuven.be/nessie/reports/phase2/evalv2.pdf"><strong>ECIES-KEM</strong></a> and <a target="_blank" rel="noopener" href="https://www.cryptrec.go.jp/cryptrec_03_spec_cypherlist_files/PDF/02_03e_jspec.pdf"><strong>PSEC-KEM</strong></a></p>
+<p>​密钥封装（<strong>Key encapsulation</strong> ）不应与密钥包装（<strong>key wrapping</strong>）混淆：</p>
+<ul>
+<li><strong>Key encapsulation</strong> (KEM) ：指另一个密钥（对称或非对称）使用公钥加密。 它用于创建可证明安全的混合加密方案，例如： 通过给定的ECC公钥来加密AES密钥。</li>
+<li><strong>Key wrapping</strong>：指另一密钥（可以是对称密钥或非对称密钥）的对称密钥加密。它用于加密，完整性保护和传输密钥。密钥包装可为专用数据（如加密密钥）提供隐私和完整性保护。有关详细信息，请参见<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc3394.html">RFC 3394</a>。</li>
+</ul>
+<h2 id="95-数字签名"><a class="markdownIt-Anchor" href="#95-数字签名"></a> 9.5 数字签名</h2>
+<p>​在密码学中，数字签名为数字文档提供<strong>消息身份验证</strong>，<strong>完整性</strong>和<strong>不可否认性</strong>。使用私钥进行消息签名，相应的公钥执行消息验证。消息签名在数学上保证了某些消息是由某些（保密的）私钥签名的，该私钥对应于特定的（非秘密）公钥。 消息签名后，无法修改消息和签名，因此可以提供这条被签名消息的身份验证和完整性。知道消息签名者公钥的任何人都可以验证签名。 签名后，签名作者无法否认签名行为。</p>
+<p>​如今，数字签名已广泛用于签署数字合同，授权银行付款以及在公共区块链系统中签署交易以转移数字资产。</p>
+<h2 id="96-密钥交换算法"><a class="markdownIt-Anchor" href="#96-密钥交换算法"></a> 9.6 密钥交换算法</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key_exchange"><strong>key exchange algorithms</strong></a> (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key-agreement_protocol"><strong>key agreement protocols</strong></a> / <strong>key negotiation schemes</strong>)允许在两方之间交换加密密钥，从而允许使用加密算法，在大多数情况下交换的是对称加密秘钥。例如，当笔记本电脑连接到家用WiFi路由器时，双方都同意使用会话密钥，该会话密钥用于对称地加密它们之间的网络流量。</p>
+<p>​大多数密钥交换算法都基于公共密钥密码学和该系统背后的数学：离散对数，椭圆曲线或其他理论。<br />
+​<br />
+​像Diffie-Hellman（DHKE和ECDH）这样的匿名密钥交换不提供各方的身份验证，因此容易受到中间人攻击（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attacks</a>），但可以防止流量拦截（嗅探）攻击（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sniffing_attack">traffic interception (sniffing) attacks</a>）。</p>
+<p>​经过身份验证的密钥协议方案可以对参与密钥交换的各方的身份进行身份验证，从而通过使用数字签名 (例如， <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Public_key_certificate">PKI certificate</a>)、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Password-authenticated_key_agreement"><strong>password-authenticated key agreemen</strong></a>或者其他方法来防止中间人攻击</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/08.%20Popular%20Symmetric%20Encryption%20Algorithms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/08.%20Popular%20Symmetric%20Encryption%20Algorithms/" class="post-title-link" itemprop="url">08. Popular Symmetric Encryption Algorithms</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:19" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:19+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 16:24:28" itemprop="dateModified" datetime="2020-12-29T16:24:28+08:00">2020-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​对称密钥加密算法（如AES）是由数学家和密码学家设计的，其思想是在没有加密密钥的情况下解密密文应该是不可行的。一些流行的对称加密算法有：<code>AES</code>，<code>ChaCha20</code>，<code>CAST</code>，<code>Twofish</code>，<code>IDEA</code>，<code>Serpent</code>，<code>RC5</code>，<code>RC6</code>，<code>Camellia</code>和<code>ARIA</code>。 所有这些算法在正确配置和使用时都被认为是安全的。</p>
+<h2 id="81-aes"><a class="markdownIt-Anchor" href="#81-aes"></a> 8.1 AES</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"><strong>AES</strong></a>  (<strong>A</strong>dvanced <strong>E</strong>ncryption <strong>S</strong>tandard,又被称为 <strong>Rijndael</strong>)是现代IT行业中最流行和使用最广泛的对称加密算法。这是因为事实证明，AES是高度安全，快速且标准化良好的，并且几乎在所有平台上都得到很好的支持。</p>
+<p>​当今，大多数Internet网站在内部使用AES来提供https：//内容，这是TLS（Transport Layer Security，安全传输层协议）和SSL（Secure Sockets Layer，安全套接层）标准的一部分，用于安全主机在Web上承载通信。</p>
+<p>​由于AES在Internet安全通信中的广泛使用，现代CPU硬件在微处理器级别实现AES指令，以加快AES加密和解密的速度。</p>
+<h3 id="81-aes算法参数"><a class="markdownIt-Anchor" href="#81-aes算法参数"></a> 8.1 AES算法参数</h3>
+<p>​AES算法可以使用不同的密钥长度进行操作，但是块大小始终为128位。 对于大多数应用程序，128位AES加密（AES-128）足够了，但是对于更高的加密级别，建议使用AES-256（256位密钥长度）。</p>
+<p>​像任何其他分组加密一样，AES可以使用几种操作模式（CBC，ECB，CTR等）之一来允许对任意长度的数据进行加密。 对于一般情况和加密区块链钱包，推荐的模式是“ CTR”。</p>
+<p>​大多数操作模式都需要初始向量（IV）。当使用计数器模式（CTR），例如AES-128-CTR或AES-256-CTR时，首先应生成非机密的随机salt（IV）并与加密的密文输出保存在一起。 IV的大小始终与块的大小相同，即128位（16字节）。</p>
+<p>​AES加密与CTR块模式和随机IV相结合，使得每次加密相同的输入数据时，加密算法都会生成不同的加密密文。这样可以确保没有人可以构造字典来逆转加密的密文。</p>
+<h3 id="812-集成消息验证码mac"><a class="markdownIt-Anchor" href="#812-集成消息验证码mac"></a> 8.1.2 集成消息验证码（MAC）</h3>
+<p>​AES算法可以使用MAC（消息验证码）来检查密码的有效性，例如 <code>HMAC(text, key)</code>。MAC代码通常集成在算法的输出中( <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Authenticated_encryption#Approaches_to_authenticated_encryption"><strong>integrated encryption</strong></a>)。它是根据输入消息以及加密密钥计算得出的。从计算出的MAC中，不可能暴露输入消息或密钥，因此MAC本身不用保密。一些分组加密模式（例如AES-GCM）将消息身份验证集成到所获得的密文中，作为其工作的一部分，因此您无需显式添加MAC。<br />
+​<br />
+​<strong>通常，MAC的计算和使用方式如下：</strong></p>
+<ol>
+<li>加密之前，MAC计算为mac = HMAC-SHA256(input_msg, key)；</li>
+<li>输入数据被加密，密文与随机盐 salt（IV）和MAC一起存储。</li>
+<li>解密后，将再次计算MAC，并将其与与加密消息一起存储的MAC进行比较。</li>
+</ol>
+<ul>
+<li>如果MAC相同，则解密成功：正确的密文+解密密钥+算法设置（IV，块模式，填充算法）。</li>
+<li>如果MAC不同，则解密不成功：错误的密钥/密码或密文破解，错误的MAC或不同的算法设置（IV，块模式，填充等）</li>
+</ul>
+<p>​可以使用多种集成加密方法来计算和验证MAC（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Authenticated_encryption#Approaches_to_authenticated_encryption">approaches to integrated encryption</a>）： <strong>Encrypt-then-MAC</strong>, <strong>Encrypt-and-MAC</strong>, <strong>MAC-then-Encrypt</strong>.</p>
+<h2 id="82-aes加密过程"><a class="markdownIt-Anchor" href="#82-aes加密过程"></a> 8.2 AES加密过程</h2>
+<p>​整个AES加密过程（基于密码的身份验证加密）如下所示：</p>
+<ol>
+<li>
+<p>选择算法参数（例如AES，128位，CTR模式+ Scrypt + Scrypt参数+ MAC算法）。 这些参数可以硬编码在AES算法实现源代码中，或者可以指定为AES加密和解密的输入。 始终使用相同的参数进行加密和解密。</p>
+</li>
+<li>
+<p>加密密钥是使用密钥导出函数（KDF）从加密密码中导出的，例如 Scrypt（根据特定参数）：<img src="http://qiniu.gogocoding.cn/mweb/P2K.png" alt="P2K -c" /></p>
+</li>
+<li>
+<p>AES加密方案将<strong>输入消息msg</strong> + <strong>加密密钥</strong>作为输入。 它产生<strong>密文</strong> + <strong>随机生成的IV</strong>（128位salt）+ <strong>MAC码</strong> 作为输出：<br />
+<img src="http://qiniu.gogocoding.cn/mweb/AES.png" alt="AES -c" /></p>
+<ul>
+<li>
+<p>对于自带身份验证的加密（例如AES-GCM），在AES加密过程中已经自动计算了MAC；</p>
+</li>
+<li>
+<p>如果加密方案本身没有身份验证（例如AER-CTR），则AES加密过程不会自动计算出MAC码，应另外进行计算。 可以使用加密密钥（或其某种转换）和某些MAC函数（例如HMAC-SHA-256）从输入消息中计算出MAC代码：<img src="http://qiniu.gogocoding.cn/mweb/HMAC.png" alt="HMA -c" /></p>
+</li>
+<li>
+<p>密文是通过AES加密算法计算的。 它首先生成一个随机盐salt（IV），并使用它通过AES和加密密钥来加密输入消息：<img src="http://qiniu.gogocoding.cn/mweb/AES-IV.png" alt="AES-IV -c" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>最后，生成加密的输出。 它包含密文+ IV + MAC。 （可选）它还保存算法设置。</p>
+</li>
+</ol>
+<h2 id="83-aes解密过程"><a class="markdownIt-Anchor" href="#83-aes解密过程"></a> 8.3 AES解密过程</h2>
+<p>整个AES解密过程（基于密码的身份验证解密）如下所示：</p>
+<ol>
+<li>初始化与加密过程相同的AES算法参数以进行解密。</li>
+<li>使用解密密钥和加密消息中的IV，使用AES算法对密文进行解密。 输出是原始消息：<img src="http://qiniu.gogocoding.cn/mweb/AES%20decrypt.png" alt="AES decrypt -c" />
+<ul>
+<li>对于经过身份验证的加密（如AES-GCM），将在解密过程中验证集成的MAC代码。</li>
+<li>如果未经身份验证的加密（如AES-CTR），应如下面的步骤中所述，另外计算和验证MAC代码，</li>
+</ul>
+</li>
+<li>计算原始消息的HMAC：<img src="http://qiniu.gogocoding.cn/mweb/AES%20HMAC.png" alt="AES HMA -c" /></li>
+<li>将加密MAC（加密之前输入消息的MAC）与解密MAC（解密后恢复的原始消息的MAC）进行比较：<img src="http://qiniu.gogocoding.cn/mweb/Hmac%20compare.png" alt="Hmac compare -c" />
+<ul>
+<li>如果MAC码相同，则解密正确，并获得原始消息；</li>
+<li>如果MAC代码不同，则解密失败，并且原始消息不是获得的消息。 发生这种情况的原因可能有很多，最有可能是“密码错误”。 其他原因：密文不正确，IV错误，算法设置错误，KDF函数或KDF参数错误等。</li>
+</ul>
+</li>
+</ol>
+<h2 id="84-aes加密解密aes-ctraes-gcm示例"><a class="markdownIt-Anchor" href="#84-aes加密解密aes-ctraes-gcm示例"></a> 8.4 AES加密/解密（AES-CTR，AES-GCM）示例</h2>
+<p>​下面的第一个示例将说明一个简单的基于密码的AES加密（PBKDF2 + AES-CTR），没有消息身份验证。 第二个示例将添加消息身份验证（使用AES-GCM模式），并且使用密钥生成函数 (AES-256-GCM + Scrypt)。</p>
+<p>​首先，安装实现AES对称密钥加密算法的Python库Pyaes：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyaes</span><br></pre></td></tr></table></figure>
+<p>​接下来，安装实现PBKDF2密钥生成算法的Python库pbkdf2：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pbkdf2</span><br></pre></td></tr></table></figure>
+<p>​<strong>KDF</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyaes, pbkdf2, binascii, os, secrets</span><br><span class="line"></span><br><span class="line"><span class="comment"># Derive a 256-bit AES encryption key from the password</span></span><br><span class="line">password = <span class="string">&quot;s3cr3t*c0d3&quot;</span></span><br><span class="line">passwordSalt = os.urandom(<span class="number">16</span>)</span><br><span class="line">key = pbkdf2.PBKDF2(password, passwordSalt).read(<span class="number">32</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;AES encryption key:&#x27;</span>, binascii.hexlify(key))</span><br></pre></td></tr></table></figure>
+<p>​上面的代码使用PBKDF2密钥派生算法从密码<code>s3cr3t*c0d3</code>派生256位密钥，它使用随机密码派生盐（salt 128位），该salt应与密文一起存储在输出中。</p>
+<p>​<strong>AES Encryption (CTR Block Mode)</strong></p>
+<p>​接下来，为AES CTR 生成一个随机的256位初始向量（IV），然后执行AES-256-CTR加密：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Encrypt the plaintext with the given key:</span></span><br><span class="line"><span class="comment">#   ciphertext = AES-256-CTR-Encrypt(plaintext, key, iv)</span></span><br><span class="line">iv = secrets.randbits(<span class="number">256</span>)</span><br><span class="line">plaintext = <span class="string">&quot;Text for encryption&quot;</span></span><br><span class="line">aes = pyaes.AESModeOfOperationCTR(key, pyaes.Counter(iv))</span><br><span class="line">ciphertext = aes.encrypt(plaintext)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Encrypted:&#x27;</span>, binascii.hexlify(ciphertext))</span><br></pre></td></tr></table></figure>
+<p>​密文由38个十六进制数字（19个字节，152位）组成。 这是输入数据<code>Text for encryption</code>的大小；</p>
+<p>​请注意，在AES-CTR加密之后，初始向量（IV）应该与密文一起存储，因为没有它，解密将是不可能的。 应该为每种AES加密（非硬编码）随机生成IV，以提高安全性。</p>
+<p>​还要注意，如果您多次使用相同的加密密钥对相同的纯文本进行加密，由于IV中的随机性，每次输出都会有所不同。 这是预期的结果，会增加安全性，例如：抵抗字典攻击。</p>
+<p>​<strong>AES Decryption (CTR Block Mode)</strong></p>
+<p>​现在，让我们看看如何使用AES-CTR-256算法解密密文。 输入内容包括密文+加密密钥+ CTR计数器的IV。 输出为原始明文。 代码很简单：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Decrypt the ciphertext with the given key:</span></span><br><span class="line"><span class="comment">#   plaintext = AES-256-CTR-Decrypt(ciphertext, key, iv)</span></span><br><span class="line">aes = pyaes.AESModeOfOperationCTR(key, pyaes.Counter(iv))</span><br><span class="line">decrypted = aes.decrypt(ciphertext)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Decrypted:&#x27;</span>, decrypted)</span><br></pre></td></tr></table></figure>
+<p>​请注意，应再次初始化AES对象，因为CTR密码块模式算法会保持内部状态随时间变化。</p>
+<p>​还请注意，以上代码无法检测到错误的密钥，错误的密文或错误的IV。 如果您使用不正确的密钥来解密密文，则会得到错误的不可读文本。 下面的代码清楚地显示了这一点：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">key = os.urandom(<span class="number">32</span>)   <span class="comment"># random decryption key</span></span><br><span class="line">aes = pyaes.AESModeOfOperationCTR(key, pyaes.Counter(iv))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Wrongly decrypted:&#x27;</span>, aes.decrypt(ciphertext))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Wrongly decrypted: b&#39;\xe6!\n\x9a\xa9\x15\x12\xd9\xcb\x9cS\x86\xcc\xe1\x1d\x1a\x8blw&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="841-aes-256-gcm示例"><a class="markdownIt-Anchor" href="#841-aes-256-gcm示例"></a> 8.4.1 AES-256-GCM示例</h3>
+<p>​		现在我们给出一个完整的示例，说明如何使用<code>AES-256-GCM</code>对称加密。 我们将为AES使用另一个Python库，称为<code>pycryptodome</code>，该库支持AES-256-GCM构造：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
+<p>接下来，该示例生成一个随机加密密钥，并使用它来加密文本消息，然后将其解密回原始的纯文本消息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> binascii, os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt_AES_GCM</span>(<span class="params">msg, secretKey</span>):</span></span><br><span class="line">    aesCipher = AES.new(secretKey, AES.MODE_GCM)</span><br><span class="line">    ciphertext, authTag = aesCipher.encrypt_and_digest(msg)</span><br><span class="line">    <span class="keyword">return</span> (ciphertext, aesCipher.nonce, authTag)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt_AES_GCM</span>(<span class="params">encryptedMsg, secretKey</span>):</span></span><br><span class="line">    (ciphertext, nonce, authTag) = encryptedMsg</span><br><span class="line">    aesCipher = AES.new(secretKey, AES.MODE_GCM, nonce)</span><br><span class="line">    plaintext = aesCipher.decrypt_and_verify(ciphertext, authTag)</span><br><span class="line">    <span class="keyword">return</span> plaintext</span><br><span class="line"></span><br><span class="line">secretKey = os.urandom(<span class="number">32</span>)  <span class="comment"># 256-bit random encryption key</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Encryption key:&quot;</span>, binascii.hexlify(secretKey))</span><br><span class="line"></span><br><span class="line">msg = <span class="string">b&#x27;Message for AES-256-GCM + Scrypt encryption&#x27;</span></span><br><span class="line">encryptedMsg = encrypt_AES_GCM(msg, secretKey)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;encryptedMsg&quot;</span>, &#123;</span><br><span class="line">    <span class="string">&#x27;ciphertext&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">0</span>]),</span><br><span class="line">    <span class="string">&#x27;aesIV&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">1</span>]),</span><br><span class="line">    <span class="string">&#x27;authTag&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">2</span>])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">decryptedMsg = decrypt_AES_GCM(encryptedMsg, secretKey)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;decryptedMsg&quot;</span>, decryptedMsg)</span><br></pre></td></tr></table></figure>
+<p>​		AES-GCM加密将消息<strong>msg</strong> + 加密密钥<strong>secretKey</strong>作为输入，并产生一组值：{ <strong>ciphertext</strong> + <strong>nonce</strong> + <strong>authTag</strong> }。</p>
+<ul>
+<li><strong>ciphertext</strong>是加密后的消息；</li>
+<li><strong>nonce</strong>是用于GCM构建的随机生成的初始向量（IV）；</li>
+<li><strong>authTag</strong>是加密过程中计算出的消息身份验证代码（MAC）；</li>
+</ul>
+<p>​上面代码中生成的加密密钥大小为256位（32字节），并将AES-GCM配置为AES-256-GCM。 如果将密钥大小更改为128位或192位，则应分别使用AES-128-GCM或AES-192-GCM。</p>
+<h3 id="842-aes-256-gcm-scrypt-示例"><a class="markdownIt-Anchor" href="#842-aes-256-gcm-scrypt-示例"></a> 8.4.2 AES-256-GCM + Scrypt 示例</h3>
+<p>​		现在让我们给出一个更复杂的示例：我们将使用经过身份验证的加密结构AES-256-GCM，并结合Scrypt密钥推导：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> scrypt, os, binascii</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt_AES_GCM</span>(<span class="params">msg, password</span>):</span></span><br><span class="line">    kdfSalt = os.urandom(<span class="number">16</span>)</span><br><span class="line">    secretKey = scrypt.<span class="built_in">hash</span>(password, kdfSalt, N=<span class="number">16384</span>, r=<span class="number">8</span>, p=<span class="number">1</span>, buflen=<span class="number">32</span>)</span><br><span class="line">    aesCipher = AES.new(secretKey, AES.MODE_GCM)</span><br><span class="line">    ciphertext, authTag = aesCipher.encrypt_and_digest(msg)</span><br><span class="line">    <span class="keyword">return</span> (kdfSalt, ciphertext, aesCipher.nonce, authTag)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt_AES_GCM</span>(<span class="params">encryptedMsg, password</span>):</span></span><br><span class="line">    (kdfSalt, ciphertext, nonce, authTag) = encryptedMsg</span><br><span class="line">    secretKey = scrypt.<span class="built_in">hash</span>(password, kdfSalt, N=<span class="number">16384</span>, r=<span class="number">8</span>, p=<span class="number">1</span>, buflen=<span class="number">32</span>)</span><br><span class="line">    aesCipher = AES.new(secretKey, AES.MODE_GCM, nonce)</span><br><span class="line">    plaintext = aesCipher.decrypt_and_verify(ciphertext, authTag)</span><br><span class="line">    <span class="keyword">return</span> plaintext</span><br><span class="line"></span><br><span class="line">msg = <span class="string">b&#x27;Message for AES-256-GCM + Scrypt encryption&#x27;</span></span><br><span class="line">password = <span class="string">b&#x27;s3kr3tp4ssw0rd&#x27;</span></span><br><span class="line">encryptedMsg = encrypt_AES_GCM(msg, password)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;encryptedMsg&quot;</span>, &#123;</span><br><span class="line">    <span class="string">&#x27;kdfSalt&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">0</span>]),</span><br><span class="line">    <span class="string">&#x27;ciphertext&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">1</span>]),</span><br><span class="line">    <span class="string">&#x27;aesIV&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">2</span>]),</span><br><span class="line">    <span class="string">&#x27;authTag&#x27;</span>: binascii.hexlify(encryptedMsg[<span class="number">3</span>])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">decryptedMsg = decrypt_AES_GCM(encryptedMsg, password)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;decryptedMsg&quot;</span>, decryptedMsg)</span><br></pre></td></tr></table></figure>
+<p>上面的代码使用给定的文本密码生成秘钥，使用AES-256-GCM给文本消息进行加密。</p>
+<ul>
+<li>在加密过程中，使用Scrypt KDF函数（具有一些固定参数）根据密码生成密钥。 用于密钥派生的随机生成的KDF盐与加密的消息一起存储，解密时将会使用到。 然后，使用私钥对输入消息进行AES加密，并且输出由<strong>ciphertext</strong>（密文）+ <strong>IV</strong>（随机数）+ <strong>authTag</strong>（HMAC）+ <strong>salt</strong>（KDF salt） 组成的结果 。</li>
+<li>在解密过程中，Scrypt密钥派生（具有相同的参数）用于根据加密密码以及KDF盐（salt在加密过程中随机生成）得出相同的解密密钥。 然后，使用密钥，IV（随机数）和authTag（HMAC）对密文进行AES解密。 如果成功，则结果是解密的原始明文。 如果发生错误，则身份验证标签将无法对解密过程进行身份验证，并且将引发异常。</li>
+</ul>
+<h3 id="843-以太坊utc-json钱包加密aes-scrypt-mac"><a class="markdownIt-Anchor" href="#843-以太坊utc-json钱包加密aes-scrypt-mac"></a> 8.4.3 以太坊UTC / JSON钱包加密（AES + Scrypt + MAC）</h3>
+<p>​		演示AES密码在实际中的应用，我们将看一个真实的例子：以太坊区块链的标准加密钱包文件格式。我们将看到AES-128-CTR密码如何与Scrypt和MAC结合使用，以通过基于文本的密码安全地实现经过身份验证的对称密钥加密。</p>
+<h3 id="844-ethereum-utc-json-wallets"><a class="markdownIt-Anchor" href="#844-ethereum-utc-json-wallets"></a> 8.4.4 Ethereum UTC / JSON Wallets</h3>
+<p>​在公共区块链网络（如比特币和以太坊）中，区块链资产持有人的私钥存储在称为加密钱包的特殊密钥库中。 通常，这些加密钱包是本地硬盘上的文件，由密码加密。	<br />
+​在以太坊中，区块链加密货币钱包以一种特殊的加密格式在内部存储，称为&quot;<a target="_blank" rel="noopener" href="https://theethereum.wiki/w/index.php/Accounts,_Addresses,_Public_And_Private_Keys,_And_Tokens#UTC_JSON_Keystore_File"><strong>UTC / JSON Wallet (Keystore File)</strong></a>&quot; 或者 “<a target="_blank" rel="noopener" href="https://github.com/ethereum/wiki/wiki/Web3-Secret-Storage-Definition"><strong>Web3 Secret Storage Definition</strong></a>”。这是<a target="_blank" rel="noopener" href="https://geth.ethereum.org/"><strong>geth</strong></a> 和 <a target="_blank" rel="noopener" href="https://www.parity.io/ethereum"><strong>Parity</strong></a> （两个主要的以太坊协议的实现）、<a target="_blank" rel="noopener" href="https://www.myetherwallet.com/"><strong>MyEtherWallet</strong></a>（流行的在线客户端以太坊钱包）、<a target="_blank" rel="noopener" href="https://metamask.io/"><strong>MetaMask</strong></a> （广泛用于浏览器内的以太坊钱包）、<a target="_blank" rel="noopener" href="https://github.com/ethers-io/ethers.js/"><strong>ethers.js</strong></a> and <a target="_blank" rel="noopener" href="https://github.com/Nethereum/Nethereum"><strong>Nethereum</strong></a> libraries以及许多其他与以太坊相关的技术和工具中使用的钱包文件格式。</p>
+<p>​以太坊 <strong>UTC / JSON keystores</strong>将加密的私钥保存为JSON文本文档，指定加密的数据，加密算法及其参数。</p>
+<h3 id="845-utc-json-keystores-示例"><a class="markdownIt-Anchor" href="#845-utc-json-keystores-示例"></a> 8.4.5 UTC / JSON keystores 示例</h3>
+<p>​UTC / JSON keystores文件，其中包含受密码保护的256位私钥。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;07a9f767-93c5-4842-9afd-b3b083659f04&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;address&quot;</span>: <span class="string">&quot;aef8cad64d29fcc4ed07629b9e896ebc3160a8d0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Crypto&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;ciphertext&quot;</span>: <span class="string">&quot;99d0e66c67941a08690e48222a58843ef2481e110969325db7ff5284cd3d3093&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;cipherparams&quot;</span>: &#123; <span class="attr">&quot;iv&quot;</span>: <span class="string">&quot;7d7fabf8dee2e77f0d7e3ff3b965fc23&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">&quot;cipher&quot;</span>: <span class="string">&quot;aes-128-ctr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;kdf&quot;</span>: <span class="string">&quot;scrypt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;kdfparams&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;dklen&quot;</span>: <span class="number">32</span>,</span><br><span class="line">      <span class="attr">&quot;salt&quot;</span>: <span class="string">&quot;85ad073989d461c72358ccaea3551f7ecb8e672503cb05c2ee80cfb6b922f4d4&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;n&quot;</span>: <span class="number">8192</span>,</span><br><span class="line">      <span class="attr">&quot;r&quot;</span>: <span class="number">8</span>,</span><br><span class="line">      <span class="attr">&quot;p&quot;</span>: <span class="number">1</span></span><br><span class="line">      &#125;,</span><br><span class="line">    <span class="attr">&quot;mac&quot;</span>: <span class="string">&quot;06dcf1cc4bffe1616fafe94a2a7087fd79df444756bb17c93af588c3ab02a913&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​上面的JSON文档是经过身份验证的对称加密的经典示例。通常，UTC / JSON keystores存储区包含以下数据：</p>
+<ul>
+<li><strong>cipher</strong>：对称 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES 算法</a>的名称 <strong>AES-128-CTR</strong>;</li>
+<li><strong>cipherparams</strong>：上述 <em>cipher</em> 算法需要的参数;</li>
+<li><strong>ciphertext</strong>：你的以太坊私钥使用上述 <em>cipher</em> 算法进行加密;</li>
+<li><strong>kdf</strong>：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key_derivation_function">密钥生成函数</a>，用于让你用密码加密 keystore 文件;</li>
+<li><strong>kdfparams</strong>：上述 kdf 算法需要的参数;</li>
+<li><strong>Mac</strong>：用于验证密码的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Message_authentication_code">代码</a>。</li>
+<li>其他元数据：钱包格式version（版本），钱包唯一id（uuid）和由该钱包控制的address(区块链地址)。</li>
+</ul>
+<p><code>注</code>：<a target="_blank" rel="noopener" href="https://ethfans.org/posts/what-is-an-ethereum-keystore-file">什么是以太坊私钥储存（Keystore）文件</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/07.%20Symmetric%20Key%20Ciphers%20-%20Overview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/07.%20Symmetric%20Key%20Ciphers%20-%20Overview/" class="post-title-link" itemprop="url">07. Symmetric Key Ciphers - Overview</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:18" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:18+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 16:24:28" itemprop="dateModified" datetime="2020-12-29T16:24:28+08:00">2020-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​对称加密（例如<code>AES</code>，<code>ChaCha20</code>，<code>RC6</code>，<code>Twofish</code>，<code>CAST</code>等）使用相同的密钥（或密码）来加密和解密数据。 它们通常与其他算法结合使用以形成对称加密方案（例如<code>ChaCha20-Poly1305</code>和<code>AES-128-GCM</code>和<code>AES-256-CTR-HMAC-SHA256</code>）。对称密钥密码具有抗量子性，这意味着功能强大的量子计算机也无法破坏其安全性（使用足够长的密钥长度时）。</p>
+<p>​对称加密可以加密以固定大小的块形式出现的数据（<strong>block ciphers</strong>，块密码）或以字节序列形式出现的数据（<strong>stream ciphers</strong>，流密码）。可以通过某些构造将<strong>block ciphers</strong>转换为<strong>stream ciphers</strong>，这种构造称为“<strong>block cipher modes</strong> of operation”</p>
+<h2 id="71-分组密码流密码分组模式和填充-block-ciphers-stream-ciphers-block-modes-and-padding"><a class="markdownIt-Anchor" href="#71-分组密码流密码分组模式和填充-block-ciphers-stream-ciphers-block-modes-and-padding"></a> 7.1 分组密码，流密码，分组模式和填充( Block Ciphers, Stream Ciphers, Block Modes and Padding)</h2>
+<p>​在密码学中，块密码（例如AES）被设计为对固定大小（例如128位）的数据块进行加密。输入块的大小通常与加密输出块的大小相同，而密钥长度可能不同。</p>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stream_cipher"><strong>Stream ciphers</strong></a> 则更加灵活：它们旨在加密任意大小的数据（例如PDF文档），这些数据有时可能以流的形式出现（字节或帧的序列，例如视频流）。大多数流行的对称密钥加密算法都是块密码，但是密码学家提出了几种方案，可以将块密码转换为流密码并加密任意大小的数据。这些方案被称为“<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation"><strong>block cipher modes of operation</strong></a>”，并且适用于大多数分组密码，例如<strong>AES</strong>，<strong>RC6</strong>，<strong>Camellia</strong>，<strong>Serpent</strong>等。</p>
+<p>​当对称密码与分组操作模式结合使用时，所获得的密码结构由密码名称，分组模式和密钥大小表示。 例如：</p>
+<ul>
+<li><strong>AES-256-GCM</strong> ： the AES cipher with a 256-bit encryption key and GCM block mode</li>
+<li><strong>AES-128-CTR</strong> - the AES cipher with a 128-bit encryption key and CTR block mode</li>
+<li><strong>Serpent-128-CBC</strong> - the Serpent cipher with 128-bit encryption key and CBC block mode</li>
+</ul>
+<h2 id="72-分组加密模式cbc-ctr-gcm"><a class="markdownIt-Anchor" href="#72-分组加密模式cbc-ctr-gcm"></a> 7.2 分组加密模式(CBC, CTR, GCM，…)</h2>
+<p>​分组加密模式（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation"><strong>block cipher modes</strong></a>，例如CBC，CFB，OFB，CTR，EAX，CCM和GCM）背后的主要思想是重复应用密码的单块加密/解密，以安全地加密/解密大于块的数据量。</p>
+<p>​某些块模式（例如CBC）要求将输入拆分为块，并使用填充算法（例如添加特殊的填充字符）将最终块填充为固定的块大小。其他块模式（例如CTR，CFB，OFB，CCM，EAX和GCM）根本不需要填充，因为它们在每一步都执行明文部分与内部密码状态之间的XOR（异或）。</p>
+<p>​基本上，对大型输入数据进行加密的工作方式如下：初始化加密算法状态（使用加密密钥+随机盐salt），然后对数据的第一部分（例如块或块的一部分）进行加密，然后加密状态 转换（使用加密密钥和其他参数），然后对下一部分进行加密，然后再次转换加密状态，然后对下一部分进行加密，依此类推，直到处理完所有输入数据为止。 解密的工作方式非常相似。</p>
+<p>​为了正确使用它们，开发人员应该了解“<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation"><strong>block cipher modes of operation</strong></a>”：</p>
+<ul>
+<li>常用的安全块模式是CBC（密码块链接），CTR（计数器）和GCM（Galois /计数器模式），它们需要一个随机的（不可预测的）初始化向量（IV），开始时也称为随机数（<strong>nonce</strong>）或盐（<strong>salt</strong>）。</li>
+<li>“<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_(CTR)"><strong>Counter (CTR)</strong></a>”块模式是一个不错的选择。在大多数情况下，具有强大的安全性和并行处理能力，可以任意的输入数据长度（无填充）。 它不提供身份验证和完整性，仅提供加密。</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Galois/Counter_Mode"><strong>GCM</strong></a> (Galois/Counter Mode) 块模式利用了CTR模式的所有优点，并添加了消息身份验证（生成密码消息身份验证标签）。 GCM是在对称密码中实现身份验证加密的快速而有效的方法，在一般情况下，强烈建议使用GCM。</li>
+<li>CBC模式以固定大小的块工作。 因此，在将输入数据拆分为块之后，应使用填充算法（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Padding"><strong>padding algorithm</strong></a> ）使最后一个块具有相同的长度。 大多数应用程序使用PKCS7填充方案（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Padding_(cryptography)#PKCS#5_and_PKCS#7"><strong>PKCS7 padding scheme</strong></a> ）或ANSI X.923（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Padding_(cryptography)#ANSI_X.923"><strong>ANSI X.923</strong></a>）。 在某些情况下，CBC阻止模式可能容易受到“填充预言”攻击（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Padding_oracle_attack"><strong>&quot;padding oracle&quot; attack</strong></a>,），因此最好避免使用CBC模式。</li>
+<li>众所周知的不安全块模式是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_Codebook_(ECB)"><strong>ECB</strong></a> （电子密码本），它会将相等的输入块加密为相等的输出块（不提供密码扩散，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Confusion_and_diffusion">cryptographic diffusion</a>）。 <strong>不要使用它！</strong> 它可能会破坏整个加密系统。</li>
+<li>诸如CBC，CTR和GCM模式之类的大多数块均支持“随机访问”解密（例如，在视频播放器中的任意时间偏移处搜索，播放加密的视频流）。</li>
+</ul>
+<p><strong>CTR (Counter) Block Mode</strong></p>
+<p>​下图说明了如何在CTR块操作模式下使用块密码对明文的部分（块）进行逐个加密：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/CTR.png" alt="CT" /></p>
+<p>​对于CTR模式下的每个块，将基于初始向量（IV，有时称为“ nonce”）+当前计数器（01，02，03，…）+ 加密密钥和输入来生成新的不可预测的密钥流块与当前密钥流块 XOR合并以生成输出块。在CTR模式下，输入数据的最后部分可以短于密码块大小，因此不需要填充。 输入数据（加密之前）和输出数据（加密之后）具有相同的长度。</p>
+<p><strong>GCM (Galois/Counter) Block Mode</strong></p>
+<p>下图直观地说明了GCM块模式（Galois /Counter）的工作方式：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/GCM.png" alt="GC" /></p>
+<p>GCM模式使用一个计数器，该计数器针对每个块增加，并在每个已处理的块之后计算消息身份验证标签（MAC代码）。 最终的身份验证标签是从最后一个块计算得出的。 与所有计数器模式一样，GCM用作流密码，因此对于每个加密的流，在开始时使用不同的IV至关重要。</p>
+<p><code>注</code>：请注意，GCM，CTR和其他分组模式会显示原始消息的长度， 因为明文消息的长度与密文长度相同。 如果您想避免暴露原始的纯文本长度，可以在加密之前向纯文本添加一些随机字节，并在解密之后将其删除。</p>
+<h2 id="73-初始化向量iv"><a class="markdownIt-Anchor" href="#73-初始化向量iv"></a> 7.3 初始化向量（IV）</h2>
+<p>​对每个加密消息使用随机且不可预测的初始化向量 （Initialization Vector，IV)。 用相同的对称密钥和相同的IV加密多个消息是一个常见的错误。 这为大多数块模式引入了各种被攻击的可能。 IV的大小应与密码块的大小相同，例如 AES，Serpent和Camellia的128位。</p>
+<p>对于GCM模式，IV可能不是秘密且不可预测的，但对于每个消息，IV应当不同。</p>
+<h2 id="74-认证加密"><a class="markdownIt-Anchor" href="#74-认证加密"></a> 7.4 认证加密</h2>
+<p>​在密码学中，“认证加密”（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Authenticated_encryption"><strong>authenticated encryption</strong></a>，AE）的概念是指加密数据的同时计算用于提供消息真实性和完整性的认证码（认证标签/ MAC）的方案。 如果使用认证的加密方案，则在解密时将知道解密是否成功（即解密密钥/密码是否正确以及加密数据是否被篡改）。</p>
+<p>​身份验证加密（AE）与带有关联数据的认证加密（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Authenticated_encryption#Authenticated_encryption_with_associated_data_(AEAD)"><strong>authenticated encryption with associated data</strong></a>，<strong>AEAD</strong>）类似概念有关，AEAD是AE的一种更安全的变体。AEAD会将关联数据（AD）绑定到密文以及应该出现的上下文中，以便可以检测到并拒绝将有效密文“剪切并粘贴”到其他上下文中的尝试。AEAD用于加密和未加密的数据一起使用的场景（例如在加密的网络协议中），并确保整个数据流都经过身份验证和完整性保护。</p>
+<p>​一些加密方案（如ChaCha20-Poly1305和AES-GCM）提供集成的身份验证加密（AEAD），而另一些方案（如AES-CBC和AES-CTR）则需要额外添加身份验证（如果需要）。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/06.%20Symmetric%20and%20Asymmetric%20Encryption%20-%20Overview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/06.%20Symmetric%20and%20Asymmetric%20Encryption%20-%20Overview/" class="post-title-link" itemprop="url">06. Symmetric and Asymmetric Encryption - Overview</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:17" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:17+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 16:24:28" itemprop="dateModified" datetime="2020-12-29T16:24:28+08:00">2020-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​在密码学中，广泛使用了两种主要的加密方案：<code>对称加密</code>（使用单个密钥来加密和解密数据）和<code>非对称加密</code>（使用公钥加密，并且使用公钥对应的私钥进行解密），下面详细解释这些基本的加密概念。<br />
+​</p>
+<h2 id="61-对称加密-概念和算法"><a class="markdownIt-Anchor" href="#61-对称加密-概念和算法"></a> 6.1 对称加密-概念和算法</h2>
+<p>对称加密方案使用相同的密钥（或密码）来加密数据并将数据解密回其原始形式：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/symmetric%20key%20ciphers.png" alt="symmetric key ciphers -c400" /></p>
+<p>对称加密通常将几种密码算法组合成一个对称加密方案，例如 <code>AES-256-CTR-HMAC-SHA256</code>。</p>
+<p><strong>加密方案可能包括：</strong></p>
+<ol>
+<li>password to <strong>key derivation</strong> algorithm</li>
+<li><strong>symmetric cipher</strong> algorithm</li>
+<li><strong>cipher block mode</strong> algorithm</li>
+<li><strong>message authentication</strong> (MAC) algorithm</li>
+</ol>
+<p>这意味着上面显示的图是简化的，并不完全代表该过程。</p>
+<h3 id="611-秘钥"><a class="markdownIt-Anchor" href="#611-秘钥"></a> 6.1.1 秘钥</h3>
+<p>​用于加密（加密）和解密（解密）数据的秘密密钥通常大小为128、192或256位，有时被称为“加密密钥”或“共享密钥”，因为发送方和接收方都应该知道它。大多数应用程序都使用 <a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/content/part-1-blockchain-networks-concepts/blockchain-cryptography/blockchain-cryptography-overview/hmac-and-key-derivation.html"><strong>password-to-key-derivation</strong></a>生方案从某些密码中提取秘钥，因为用户相比二进制数据更容易记住密码。此外，消息身份验证通常与加密结合在一起以提供完整性和真实性验证。</p>
+<p><strong>256-bit secret key</strong> ：<code>02c324648931b89e3e8a0fc42c96e8e3be2e42812986573a40d46563bceaf75110</code></p>
+<p><strong>base58</strong>:<code>pbPRqYDxnKZfs8j4KKiqYmx6nzipAjTJf1oCD1WKgy99</code></p>
+<p><strong>base64</strong>:<code>AsMkZIkxuJ4+ig/ELJbo474uQoEphlc6QNRlY7zq91EQ</code></p>
+<p>在许多系统中（例如，公共区块链，PGP，OpenSSL等），密钥被编码为base58或base64，以便于用较短的字符串表示。</p>
+<h3 id="612-现代对称加密算法"><a class="markdownIt-Anchor" href="#612-现代对称加密算法"></a> 6.1.2 现代对称加密算法</h3>
+<p>​在现代密码学中，广泛使用的对称加密算法有：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"><strong>AES</strong></a> (AES-128, AES-192, AES-256)；</li>
+<li><a target="_blank" rel="noopener" href="https://legacy.gitbook.com/book/svetlin-nakov/practical-blockchain-for-developers-the-big-book/edit#"><strong>ChaCha20</strong></a>；</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Twofish"><strong>Twofish</strong></a>；</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm"><strong>IDEA</strong></a>；</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serpent_(cipher)"><strong>Serpent</strong></a>；</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Camellia_(cipher)"><strong>Camelia</strong></a>；</li>
+</ol>
+<p>​它们中的大多数是块密码（通过固定大小的块（例如128位）加密数据），而另一些是流密码（将字节作为数据流逐字节加密）。</p>
+<p><code>注</code>：在线对称加密工具 <a target="_blank" rel="noopener" href="https://aesencryption.net/"><strong>https://aesencryption.net</strong></a>.</p>
+<h2 id="62-公钥密码-概念"><a class="markdownIt-Anchor" href="#62-公钥密码-概念"></a> 6.2 公钥密码-概念</h2>
+<p>​在介绍非对称密钥加密方案和算法之前，我们应该首先了解公钥加密（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Public-key_cryptography"><strong>public key cryptography</strong></a>，非对称秘钥）的概念。 他使用不同的密钥来加密和解密数据（或签名和验证消息）。密钥总是以公钥+私钥对的形式出现。非对称密码处理使用公钥/私钥对消息进行加密和解密，对消息签名，验证签名和安全地交换<code>密钥</code>。</p>
+<p>​流行的公钥密码系统（非对称密码算法），例如<strong>RSA</strong>（Rivest–Shamir–Adleman），<strong>ECC</strong>（椭圆曲线加密），<strong>Diffie-Hellman</strong>，<strong>ECDH</strong>，<strong>ECDSA</strong>和<strong>EdDSA</strong>，已广泛用于现代密码学中。</p>
+<p>​非对称加密方案使用一对与密码相关的公钥和私钥对数据进行加密解密，其中公钥用于加密，私钥用于解密。</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/public%20key%20encryption%20and%20decryption.png" alt="public key encryption and decryption -c400" /></p>
+<p>​作为加密结果而获得的加密数据被称为“<strong>密文</strong>”。 密文是一个二进制序列，人类不可读，并且设计上如果没有对应私钥就无法解密。</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/asymmetric%20encryption.png" alt="asymmetric encryption -c400" /></p>
+<blockquote>
+<p>​注意，上面显示的图是高度简化的，并不完全代表非对称加密/解密过程。通常，非对称加密系统只能加密有限长度的消息，并且比对称加密慢。 为了加密较长的文件（例如PDF文档），通常使用<strong>公钥加密方案</strong>（也称为混合加密方案），该方案结合了对称和非对称加密，如下所示：</p>
+</blockquote>
+<ol>
+<li>为了进行加密，将生成随机对称密钥<code>sk</code>，消息将由<code>sk</code>对称加密，然后使用收件人的公钥对<code>sk</code>进行非对称加密。</li>
+<li>对于解密，首先使用接收者的私钥对<code>sk</code>密钥进行非对称解密，然后后续的密文使用<code>sk</code>对称秘钥对密文进行解密。</li>
+</ol>
+<p>以上过程称为 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key_encapsulation"><strong>key encapsulation mechanism (KEM)</strong></a>。</p>
+<p>​公钥加密也可以在相反的情况下工作：通过私钥加密数据，并通过公钥解密数据。 因此，某人可以证明自己是某些私钥的所有者。一些数字签名方案使用此方法。</p>
+<h2 id="63-签名不对称签名验证"><a class="markdownIt-Anchor" href="#63-签名不对称签名验证"></a> 6.3 签名：不对称签名/验证</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Digital_signature"><strong>digital signatures</strong></a>：由私钥签名的消息（数字签名）随后将由相应的公钥验证。</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/signatures.png" alt="signatures -c400" /></p>
+<p>​签名后不能更改已签名的消息。 消息签名证明某些消息（例如区块链交易）是由某些私钥的所有者创建的。 数字签名提供消息身份验证，消息完整性和不可否认性。<br />
+​<br />
+​数字签名在金融行业中广泛用于授权付款。 在操作系统中，操作系统组件和设备驱动程序通常经过数字签名，以避免在操作系统中注入不安全的代码，木马或病毒。在区块链系统中，交易通常由某些区块链地址的所有者签名。</p>
+<h2 id="64-密钥对"><a class="markdownIt-Anchor" href="#64-密钥对"></a> 6.4 密钥对</h2>
+<p>​公钥加密使用一对密钥：<code>公钥</code> + <code>私钥</code>。 这些密钥在数学上是相关的，并且要成对使用。</p>
+<p>在某些公钥密码系统（例如，椭圆曲线密码-ECC）中，可以根据私钥来计算出公钥。 而在其他密码系统（如RSA）中，公钥和私钥是一起生成的，但不能直接相互计算。</p>
+<h3 id="641-私钥"><a class="markdownIt-Anchor" href="#641-私钥"></a> 6.4.1 私钥</h3>
+<p>​消息加密和签名是通过私钥完成的。私钥始终像密码一样由其所有者保密。在服务器基础结构中，私钥通常驻留在加密和受保护的密钥库中。在区块链系统中，私钥通常位于特定的软件或硬件应用程序中，称为“加密钱包”，这些应用安全地存储一组私钥。</p>
+<h3 id="642-公钥"><a class="markdownIt-Anchor" href="#642-公钥"></a> 6.4.2 公钥</h3>
+<p>​消息解密和签名验证由公用密钥完成。 公钥在设计上就是可以被共享的信息（不是秘密）。 从相应的公钥来计算私钥在数学上是不可行的。在许多系统中，公钥被封装在数字证书中，该证书将某些身份（例如人或互联网域名）绑定到公钥上。在区块链系统中，公钥通常作为区块链交易的一部分发布，以帮助识别谁签署了这个交易。在PGP和SSH之类的系统中，公钥是从服务器下载一次的（在手动用户验证之后），并且会被记住以备将来使用。在大多数区块链系统中，区块链地址是从公钥派生的（通过哈希和其他转换），因此，如果您拥有某人的公钥，则假定您也拥有他的区块链地址。</p>
+<p>​某个公钥可以连接到某个人或组织，也可以匿名使用。除非您有其他证明，否则您永远不会知道谁是与某些公钥相对应的私钥的所有者，证明如 数字证书 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Public_key_certificate"><strong>digital certificate</strong></a>。</p>
+<h3 id="643-流行的非对称加密系统"><a class="markdownIt-Anchor" href="#643-流行的非对称加密系统"></a> 6.4.3 流行的非对称加密系统</h3>
+<p>​众所周知的非对称加密系统有：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)"><strong>RSA</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"><strong>ECC</strong></a> and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ElGamal_encryption"><strong>ElGamal</strong></a>。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">**RSA **</a> ：基于模幂的数学运算（数字乘以模的幂）和一些其他假设以及整数分解问题的计算难度。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"><strong>elliptic-curve cryptography (ECC) public-key cryptosystem</strong></a> ：基于有限域上椭圆曲线的代数结构的数学模型和椭圆曲线离散对数问题（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Rationale"><strong>elliptic curve discrete logarithm problem ，ECDLP</strong></a>）的难度。</p>
+<p><code>注</code>：一般情况下建议使用<code>ECC</code>，<code>ECC</code>使用的密钥，密文和签名比RSA小。 在数学上已证明3072位<code>RSA</code>密钥具有与256位<code>ECC</code>密钥相似的加密强度。 <code>ECC</code>中的密钥效率显著高于<code>RSA</code>。由于上述原因，大多数区块链网络（如比特币和以太坊）都使用基于椭圆曲线的密码学（ECC）来保护交易。注意，<code>RSA</code>和<code>ECC</code>密码系统都不是量子安全的，这意味着，如果某人拥有足够强大的量子计算机，则他将能够在短短几秒钟内从给定的公钥中导出私钥。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/05%20Key%20Exchange%20-%20Key%20Establishment%20Schemes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/05%20Key%20Exchange%20-%20Key%20Establishment%20Schemes/" class="post-title-link" itemprop="url">05 Key Exchange / Key Establishment Schemes</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:16" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:16+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 16:24:28" itemprop="dateModified" datetime="2020-12-29T16:24:28+08:00">2020-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="http://cacr.uwaterloo.ca/hac/about/chap12.pdf"><strong>key establishment</strong></a> (<strong>key exchange</strong>, <strong>key negotiation</strong>) 是一个过程或协议，从而使共享的秘密可供两方随后的加密通信使用，建立技术可以是秘钥协商或秘钥传输方案。</p>
+<ul>
+<li>在秘钥协商方案中，双方都参与共享密钥的协商。 秘钥协商方案典型的有<strong>Diffie-Hellman</strong>(DHKE) 和<strong>Elliptic-Curve Diffie-Hellman</strong> (ECDH)。</li>
+<li>在秘钥传输方案中，只有一方参与生产共享密钥，另一方从他获取密钥。密钥传输方案通常通过公钥密码术实现，例如 在<strong>RSA</strong>密钥交换中，客户端使用其私钥对随机会话密钥进行加密，然后将其发送到服务器，在服务器中使用客户端的公钥对其进行解密。</li>
+</ul>
+<p>​通过设计密钥交换方案，可以安全地在两方之间交换加密密钥，而其他任何人都无法获得密钥的副本。通常，在加密对话的开始时（例如在TLS握手阶段），各方首先协商要在对话中使用的共享秘钥。</p>
+<p>每当便携式计算机连接到Wi-Fi网络或Web浏览器通过https：//协议打开网站时，都会执行密钥协商（密钥建立）方案。密钥协商可以基于匿名密钥交换协议（例如<code>DHKE</code>），密码或预共享密钥（PSK），数字证书或许多元素的组合。 一些通信协议仅建立一次共享密钥，而另一些则随时间不断更改密钥。</p>
+<p>​身份验证密钥交换（AKE）是密钥交换协议中会话密钥的交换，该协议还对有关各方的身份进行身份验证（例如通过密码，公钥或数字证书）。例如，如果您连接到受密码保护的WiFi网络，则使用经过身份验证的密钥协商协议，在大多数情况下，将使用经过密码认证的密钥协商（PAKE）。 如果您连接到公共WiFi网络，则会执行匿名密钥协议。</p>
+<h2 id="51-diffiehellman-key-exchange-dhke"><a class="markdownIt-Anchor" href="#51-diffiehellman-key-exchange-dhke"></a> 5.1 Diffie–Hellman Key Exchange (DHKE)</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"><strong>Diffie–Hellman Key Exchange</strong></a> (DHKE) 是一种通过公共（不安全的）渠道也可以安全地交换加密密钥的方案。交换的密钥稍后用于加密通信（例如，使用诸如AES之类的对称密码）。Diffie-Hellman（DH）方法是匿名密钥协商方案：它允许彼此不具有先验知识的两方通过不安全的信道共同建立共享密钥。DHKE方法可以抵抗<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sniffing_attack"><strong>sniffing attacks</strong></a> (数据拦截)，但它容易受到<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack"><strong>man-in-the-middle attacks</strong></a> （中间人攻击，攻击者会偷偷中继并可能改变双方的通信）。</p>
+<p>​Diffie-Hellman密钥交换协议可以使用离散对数（经典 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"><strong>DHKE</strong></a>算法）或椭圆曲线加密算法（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman"><strong>ECDH</strong></a>算法）实现。</p>
+<h2 id="52-通过混合颜色mixing-colors进行密钥交换"><a class="markdownIt-Anchor" href="#52-通过混合颜色mixing-colors进行密钥交换"></a> 5.2 通过混合颜色(Mixing Colors)进行密钥交换</h2>
+<p><code>​Diffie-Hellman</code>密钥交换协议与“<strong>通过混合颜色交换密钥</strong>”的概念非常相似，该协议具有良好的视觉表示，从而简化了对其的理解。这就是为什么我们将首先解释如何通过颜色混合来交换秘密颜色的原因。</p>
+<p>​颜色混合密钥交换方案的设计假定，如果我们有两种不同颜色的液体，我们可以轻松地混合颜色并获得新的颜色，但是反向操作几乎是不可能的：无法将混合后的颜色分离回其原始颜色。</p>
+<p><strong>具体操作步骤如下：</strong></p>
+<ol>
+<li><strong>Alice</strong>和<strong>Bob</strong>使用一个无需保密的任意起始（共享）颜色（例如黄色）。</li>
+<li><strong>Alice</strong>和<strong>Bob</strong>分别选择自己保留的私密颜色（例如红色和海绿色）。</li>
+<li><strong>Alice</strong>和<strong>Bob</strong>将他们的私密颜色与共享的颜色混合在一起， 获得用于公开交换的混合色（在我们的示例中为橙色和浅天蓝色）。</li>
+</ol>
+<p><img src="http://qiniu.gogocoding.cn/mweb/Mixed%20color%201.png" alt="Mixed color 1 -c400" /></p>
+<p><strong>后续步骤如下：</strong></p>
+<ol>
+<li><strong>Alice</strong>和<strong>Bob</strong>公开交换他们的两种混合色。</li>
+<li>最后，<strong>Alice</strong>和<strong>Bob</strong>将他们从对方那里得到的颜色与自己的私密颜色混合在一起，得到最终的颜色。</li>
+</ol>
+<p><img src="http://qiniu.gogocoding.cn/mweb/Mixed%20color%202.png" alt="Mixed color 2-c400" /></p>
+<p>​Diffie-Hellman密钥交换协议基于相似的概念，但是使用 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Discrete_logarithm"><strong>discrete logarithms</strong></a>（离散对数）和 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Modular_exponentiation"><strong>modular exponentiations</strong></a> （模化指数）而不是颜色混合。</p>
+<h2 id="53-dhke背后的数学理论"><a class="markdownIt-Anchor" href="#53-dhke背后的数学理论"></a> 5.3 DHKE背后的数学理论</h2>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>b</mi></msup><msup><mo stretchy="false">)</mo><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mi>e</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">(g^a)^b \quad mod \quad p = (g^b)^a \quad mode \quad p
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></span></p>
+<p><strong>g</strong>, <strong>a</strong>, <strong>b</strong> 和 <strong>p</strong>都是正整数；<br />
+当我们已知 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><msup><mi>g</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">A = g^a \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>=</mo><msup><mi>g</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">B = g^b \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.043548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span>，我们可以在不知道 a 或 b 的情况下计算 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">(g^a)^b \quad mod \quad p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></p>
+<p><code>注</code>: 如果$ m = g^s \quad mod \quad p $, 即使<strong>m</strong> 、<strong>g</strong>、<strong>p</strong>已知的情况下，也没有有效的（快速）算法来找到私密指数<strong>s</strong>，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Discrete_Logarithm_Problem_(DLP)">Discrete Logartihm Problem (DLP)</a>。</p>
+<p><strong>离散对数问题（ Discrete Logarithm Problem，DLP）</strong></p>
+<p>计算机科学中的离散对数问题（DLP）定义如下：</p>
+<ul>
+<li>通过给定元素<strong>b</strong>和值<strong>a</strong> = $ b^x $来找到指数 <strong>x</strong>（如果存在）</li>
+</ul>
+<p>指数<strong>x</strong>称为离散对数，即<strong>x</strong> =$ \log_ba$</p>
+<p><strong>The DHKE Protocol</strong></p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/The%20DHKE%20Protocol.png" alt="The DHKE Protoco -c400" /></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><msup><mi>A</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>a</mi></msup><msup><mo stretchy="false">)</mo><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>g</mi><mi>b</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><msup><mo stretchy="false">)</mo><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi><mo>=</mo><msup><mi>B</mi><mi>a</mi></msup><mspace width="1em"/><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>p</mi></mrow><annotation encoding="application/x-tex">S=A^b \quad mod \quad p = (g^a \quad mod \quad p)^b \quad mod \quad p = (g^a)^b \quad mod  \quad p = (g^b \quad mod \quad p)^a \quad mod \quad p = B^a \quad mod \quad p
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.093548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9088319999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">p</span></span></span></span></span></p>
+<h2 id="54-ecdh-基于椭圆曲线的diffie-hellman密钥交换协议"><a class="markdownIt-Anchor" href="#54-ecdh-基于椭圆曲线的diffie-hellman密钥交换协议"></a> 5.4 ECDH-基于椭圆曲线的Diffie-Hellman密钥交换协议</h2>
+<p>​**<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman">Elliptic-Curve Diffie–Hellman (ECDH)</a>** 是一个匿名密钥协商协议，该协议允许两方（每方都有一个椭圆曲线的公私钥对）在不安全的通道上建立共享秘钥。ECDH是经典DHKE协议的一种变体，其中模化指数计算被椭圆曲线计算代替以提高安全性。稍后我们将详细解释椭圆曲线密码学（ECC）部分。</p>
+<h2 id="55-dhke-使用示例"><a class="markdownIt-Anchor" href="#55-dhke-使用示例"></a> 5.5 DHKE 使用示例</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyDHE</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyDHE</span><br><span class="line"></span><br><span class="line">alice = pyDHE.new()</span><br><span class="line">alicePubKey = alice.getPublicKey()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Alice public key:&quot;</span>, <span class="built_in">hex</span>(alicePubKey))</span><br><span class="line"></span><br><span class="line">bob = pyDHE.new()</span><br><span class="line">bobPubKey = bob.getPublicKey()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Bob public key:&quot;</span>, <span class="built_in">hex</span>(bobPubKey))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Now exchange the public keys (e.g. through Internet)&quot;</span>)</span><br><span class="line"></span><br><span class="line">aliceSharedKey = alice.update(bobPubKey)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Alice shared key:&quot;</span>, <span class="built_in">hex</span>(aliceSharedKey))</span><br><span class="line"></span><br><span class="line">bobSharedKey = bob.update(alicePubKey)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Bob shared key:&quot;</span>, <span class="built_in">hex</span>(bobSharedKey))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Equal shared keys:&quot;</span>, aliceSharedKey == bobSharedKey)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Alice public key: 0xa26c2f1354a8f58abbf78172730595c4de8277962ebe92100793f99ea80f66abe5e75a14a52e86ce1c086c1ca2e1662b3900510346d848b425d34279ceea92661fb1166b9438589c0b57eb4ebb69e0c3844ebe5ad4c0e316b637d47148d69dc2387c2968c82d198114a6c0f14a605a9e85110d24a9db4f11963b9b13dc788c0538096cadffd258364c63621f6bb1a3e515d3741af4619e62452a394fab9d84be7cee255fdd7216401cafee6471b4adbb77e93f878f1bb4df633e0632522b51fe70fc154e7d3e60a69f815a4e2a84506f05b1ccfce01e873cd7dc51fba0b6eac66af1c0a7500f71af405a6c34ffd27a1239180c22fbddf8dc15d30c821c57307d</span><br><span class="line">Bob public key: 0x822660dfff1af80c237402263dda9e0e417fa04547a4e36041a35a152df28b0ac66b059d9e0034c7cd58b6b7edbc8a20bf1bdc2af6534bd6f2dbcffeb9a4aa9f038461994622f786258beb8f6493594e1559e5ebf5a92ba60335f668a9ccbf8d6d87460f21d94938ac40cfd78d062571f68aa7e7fbabed4ba582e8e831288670004ae64be113a2c7b5b9a472ba4733ea4f29c1b1f30ead3729908d9bb54278a499b2c16cc62d4f330a28cdd302bf655f3d724b6d5b0655c9299ada183d8bed4e98c2f0d93339eb3c22c88c9d000de4ea3286b6be5b96e7d7cccb7b8d6a079264e155c5b25b5aca21ccfed7d21d5dce79845fe5456419504ec9c2a896448572e7</span><br><span class="line">Now exchange the public keys (e.g. through Internet)</span><br><span class="line">Alice shared key: 0x60d96187ae1db8e8acac7795837a2964e4972ebf666eaecfa09135371a2de5287db18c1a30f2af840f04cac42fea21e42369af5ffbeb235faa42da6bed24cd922ea4637ad146558f2d8b07b19a0084c19f041af5456a5826dd836d0c9c4f32ca0a5877da9493af36f66949e76af12e45a20b20c222a37a49b658066bd7b1f79bcf81d1083e79c62c43e3ee11f8727e798e310a2683939c06b75ab80c531743d6c03c90007ab8a36af45b3573f4e41a2a41c9fdde962493f9ed860597ee527d978e41a413d13198aaac2b27e70aac5be15fd695592350c56b6d74b3427dcf6888ee11cef4b4d8f5b3acbfbda1d9b8d7425bc9446e1a6424a929d9136590161cfe</span><br><span class="line">Bob shared key: 0x60d96187ae1db8e8acac7795837a2964e4972ebf666eaecfa09135371a2de5287db18c1a30f2af840f04cac42fea21e42369af5ffbeb235faa42da6bed24cd922ea4637ad146558f2d8b07b19a0084c19f041af5456a5826dd836d0c9c4f32ca0a5877da9493af36f66949e76af12e45a20b20c222a37a49b658066bd7b1f79bcf81d1083e79c62c43e3ee11f8727e798e310a2683939c06b75ab80c531743d6c03c90007ab8a36af45b3573f4e41a2a41c9fdde962493f9ed860597ee527d978e41a413d13198aaac2b27e70aac5be15fd695592350c56b6d74b3427dcf6888ee11cef4b4d8f5b3acbfbda1d9b8d7425bc9446e1a6424a929d9136590161cfe</span><br><span class="line">Equal shared keys: True</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/04.%20Secure%20Random%20Number%20Generators,%20PRNG%20and%20CSPRNG/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/04.%20Secure%20Random%20Number%20Generators,%20PRNG%20and%20CSPRNG/" class="post-title-link" itemprop="url">04. Secure Random Number Generators, PRNG and CSPRNG</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:15" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:15+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 16:20:32" itemprop="dateModified" datetime="2020-12-29T16:20:32+08:00">2020-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​在密码学中，随机性（熵）起着非常重要的作用。 在许多算法中，我们需要随机（即不可预测）。 如果这些数字不是不可预测的，则算法将会更容易被攻破。</p>
+<p>​例如，假设我们需要一个密钥，它将保护我们的金融资产。应该以其他任何人都不能生成或拥有相同密钥的方式随机生成此密钥。我们从安全的随机生成器生成密钥，则密钥将是不可预测的，因此“安全随机”仅表示“不可预测的随机”。</p>
+<p>​让我们更详细地讨论计算机科学中的随机数及其在密码学中的作用，伪随机数生成器（ pseudo-random numbers generators, PRNG），安全伪随机生成器（Cryptography secure pseudo-random generators, CSPRNG），以及开发人员应如何在代码中生成和使用随机数的一些准则。</p>
+<h2 id="41-pseudo-random-number-generators-prng"><a class="markdownIt-Anchor" href="#41-pseudo-random-number-generators-prng"></a> 4.1 Pseudo-Random Number Generators (PRNG)</h2>
+<p>​伪随机数生成器(PRNG)用于将少量的初始随机性扩展为大量的伪随机性，通常用于密码系统。注意，PRNGs不是加密安全的，并且不同于CSPRNGs。</p>
+<p>​<code>PRNGs</code>是从某个初始熵（种子,seed）开始，并通过某种计算来计算下一个随机数的函数，而这些计算在不知道种子的情况下是无法预测的。 这种计算称为伪随机函数。<br />
+​<br />
+<img src="http://qiniu.gogocoding.cn//mweb/PRNGs.png" alt="PRNGs" /></p>
+<p>此过程以最简单的形式可以实现如下:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">init(entropy):</span><br><span class="line">  state = entropy, counter = <span class="number">0</span></span><br><span class="line">netNum():</span><br><span class="line">  state = HMAC(state, ++counter)</span><br><span class="line">  <span class="keyword">return</span> state</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randrange(<span class="number">1000000</span>, <span class="number">9999999</span>))</span><br></pre></td></tr></table></figure>
+<p>上面的代码生成一个随机数，但是这个数字是可以预测的。 这是因为Python（旧版本）中的随机库会在当前时间之前初始化随机生成器种子</p>
+<h2 id="42-csprng-cryptography-secure-random-number-generators"><a class="markdownIt-Anchor" href="#42-csprng-cryptography-secure-random-number-generators"></a> 4.2 CSPRNG (Cryptography Secure Random Number Generators)</h2>
+<p>​根据定义，<code>CSPRNG</code>（密码学安全随机数发生器）是一种伪随机数发生器（PRNG），其一些特性使其适合用于密码学。 要使PRNG成为CSPRNG，有两个主要要求：</p>
+<ol>
+<li>满足 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Next-bit_test"><strong>next-bit test</strong></a> ：即使某人从PRNG的开头就知道所有k位，那么他将无法使用合理的计算资源来预测k + 1位。</li>
+<li>经受<a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/PRNG_state_compromise_extension_attack"><strong>state compromise extensions</strong></a> : 如果攻击者猜出PRNG的内部状态或内部状态以某种方式被暴露，攻击者也无法重建内部状态暴露前的所有随机数。</li>
+</ol>
+<p>已提出许多设计来构造CSPRNG算法：</p>
+<ol>
+<li>基于数论、整数分解问题（IFP），离散对数问题（DLP）或椭圆曲线离散对数问题（ECDLP）。</li>
+<li>基于密码安全随机性的特殊设计：例如：<code>MacOS</code> 和<code>FreeBSD</code>系统中的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Yarrow_algorithm">Yarrow algorithm</a> 和 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fortuna_(PRNG)">Fortuna</a>,</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line"><span class="built_in">print</span>(secrets.randbelow(<span class="built_in">int</span>(<span class="number">1e50</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, time, binascii</span><br><span class="line"></span><br><span class="line">entropy = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    s = <span class="built_in">input</span>(<span class="string">&quot;Enter something [&quot;</span> + <span class="built_in">str</span>(i+<span class="number">1</span>) + <span class="string">&quot; of 5]: &quot;</span>)</span><br><span class="line">    entropy = entropy + s + <span class="string">&#x27;|&#x27;</span> + <span class="built_in">str</span>(time.time()) + <span class="string">&#x27;|&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Entropy:&quot;</span>, entropy)</span><br><span class="line">startSeed = <span class="built_in">str</span>(binascii.hexlify(hashlib.sha256(entropy.encode(<span class="string">&#x27;ascii&#x27;</span>)).digest()))[<span class="number">2</span>:-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Start seed = SHA-256(entropy) =&quot;</span>, startSeed)</span><br><span class="line"></span><br><span class="line"><span class="built_in">min</span> = <span class="number">10</span></span><br><span class="line"><span class="built_in">max</span> = <span class="number">20</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    nextSeed = startSeed + <span class="string">&#x27;|&#x27;</span> + <span class="built_in">str</span>(i)</span><br><span class="line">    <span class="built_in">hash</span> = hashlib.sha256(nextSeed.encode(<span class="string">&#x27;ascii&#x27;</span>)).digest()</span><br><span class="line">    bigRand = <span class="built_in">int</span>.from_bytes(<span class="built_in">hash</span>, <span class="string">&#x27;big&#x27;</span>)</span><br><span class="line">    rand = <span class="built_in">min</span> + bigRand % (<span class="built_in">max</span> - <span class="built_in">min</span> + <span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(nextSeed, bigRand, <span class="string">&#x27;--&gt;&#x27;</span>, rand)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Enter something [1 of 5]: first</span><br><span class="line">Enter something [2 of 5]: second</span><br><span class="line">Enter something [3 of 5]: random text</span><br><span class="line">Enter something [4 of 5]: dfasfdasfs</span><br><span class="line">Enter something [5 of 5]: last</span><br><span class="line">Entropy: first|1539885709.4494743|second|1539885713.687703|random text|1539885721.5754962|dfasfdasfs|1539885724.40904|last|1539885726.1286101|</span><br><span class="line">Start seed &#x3D; SHA-256(entropy) &#x3D; f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|0 84482770259566839097936866229004786554948913905882724148636325987196754263481 --&gt; 19</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|1 67001454659030164457342421011672033052466168976555224352709830050538321411120 --&gt; 14</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|2 103739181507291072572315034266940107849472122762876847172454548630886082729227 --&gt; 12</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|3 3011033199204097839903859902789759740091959530467456042709372597822032778153 --&gt; 16</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|4 100466094724924763659843669256673300207383922129676800217664465341535622195997 --&gt; 16</span><br></pre></td></tr></table></figure>
+<p><strong>作为开发者如何访问CSPRNG</strong></p>
+<ul>
+<li>In <strong>Linux</strong> and <strong>macOS</strong>, it is considered that both <code>/dev/random</code> and <code>/dev/urandom</code> sources of randomness are <strong>secure enough for most cryptographic purposes</strong> and most cryptographic libraries access them internally.</li>
+<li>In <strong>Windows</strong>, random numbers for cryptographic purposes can be securely generated using the <code>BCryptGenRandom</code> function from the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/windows/desktop/SecCNG/cng-portal">Cryptography API: Next Generation (CNG)</a> or higher level crypto libraries.</li>
+<li>In <strong>C#</strong> use <code>System.Security.Cryptography.RandomNumberGenerator.Create()</code> from .NET Framework or .NET Core.</li>
+<li>In <strong>Python</strong> use <code>os.urandom()</code> or the <code>secrets</code> library.</li>
+<li>In <strong>Java</strong> use the <code>java.security.SecureRandom</code> system class.</li>
+<li>In <strong>JavaScript</strong> use <code>window.crypto.getRandomValues(Uint8Array)</code> for client side (in the Web browser) or <code>crypto.randomBytes()</code> or external module like <code>node-sodium</code> for server-side (in Node.js).</li>
+</ul>
+<p><strong>Never use</strong> <code>Math.random()</code> or similar insecure RNG functions for cryptographic purposes!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/03.%20MAC%20Codes%20and%20Key%20Derivation%20Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/03.%20MAC%20Codes%20and%20Key%20Derivation%20Functions/" class="post-title-link" itemprop="url">03. MAC Codes and Key Derivation Functions</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:14" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:14+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​消息认证码(MAC)，HMAC(hash-based message authentication code,基于哈希的消息认证码)和KDF(key derivation functions, 密钥导出函数)在密码学中起着重要的作用。</p>
+<h2 id="31-消息认证码"><a class="markdownIt-Anchor" href="#31-消息认证码"></a> 3.1 消息认证码</h2>
+<p>消息验证码(MAC)是由给定密钥和消息计算出的密码。<br />
+​<code>auth_code = MAC(key, msg)</code><br />
+通常它的类似于哈希函数：</p>
+<ul>
+<li>消息或密钥中的微小变化会导致<code>MAC</code>值完全不同；</li>
+<li>不可能通过更改秘钥或者消息来获得相同的<code>MAC</code>值；</li>
+<li>无法从<code>MAC</code>值推测出原始消息或密钥。</li>
+</ul>
+<p>​存在许多用于计算消息认证码（MAC）的算法。 最受欢迎的是基于哈希算法，如：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HMAC">HMAC</a>（Hash-based MAC, e.g. HMAC-SHA256）和<a target="_blank" rel="noopener" href="https://www.cryptosys.net/manapi/api_kmac.html">KMAC</a>（Keccak-based MAC）。基于对称加密的MAC，如<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/One-key_MAC">CMAC</a>(Cipher-based MAC)，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Galois/Counter_Mode">GMAC</a>（Galois MAC）和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Poly1305">Poly1305</a>（Bernstein’s one-time authenticator）。</p>
+<p><strong>例</strong>：可以通过HMAC-SHA256算法来计算MAC值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, hmac, binascii</span><br><span class="line"></span><br><span class="line">mac = hmac.new(<span class="string">b&#x27;key&#x27;</span>, <span class="string">b&#x27;some msg&#x27;</span>, hashlib.sha256).digest()</span><br><span class="line"><span class="built_in">print</span>(binascii.hexlify(mac))</span><br></pre></td></tr></table></figure>
+<p>MAC是类似于数字签名的数字认证码，但是他具有预共享的密钥。</p>
+<p>消息认证码的应用场景：</p>
+<ul>
+<li>通信双方交换了某种特定的MAC的秘钥；</li>
+<li>接收方从某处收到了msg + auth_code；</li>
+<li>保证msg未被篡改，意味着秘钥key和msg是正确的，且可以匹配对应的MAC码。</li>
+</ul>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/sample%20scenario%20for%20using%20MAC%20codes.png" alt="sample scenario for using MAC codes" /></p>
+<h3 id="311-认证加密使用mac加密解密消息"><a class="markdownIt-Anchor" href="#311-认证加密使用mac加密解密消息"></a> 3.1.1 认证加密：使用MAC加密/解密消息</h3>
+<p>​使用MAC代码的另一种情况是认证加密：当我们加密消息时，我们要确保解密的密码正确并且解密后的消息与加密前的原始消息相同。<br />
+​<br />
+​加密msg过程：</p>
+<ol>
+<li>根据密码生成密钥。 我们可以将此密钥用于<code>MAC</code>算法。</li>
+<li>使用生成的密钥对消息进行加密，并将密文存储在输出中。</li>
+<li>使用密钥和原始消息来计算<code>MAC</code>，并将其附加到输出中。</li>
+</ol>
+<p>​解密msg过程</p>
+<ol>
+<li>根据用户输入的密码生成密钥，可能是正确的密码或错误的密码， 稍后可以得到验证。</li>
+<li>使用生成的密钥解密消息， 它可能是原始消息，也可能是错误消息（取决于输入的密码）。</li>
+<li>使用生成的密钥+解密后的消息来计算MAC代码。
+<ol>
+<li>如果计算出的MAC码与加密消息中的MAC代码匹配，则密码正确。</li>
+<li>否则，得到的解密消息和源消息不一致，意味着密码错误。</li>
+</ol>
+</li>
+</ol>
+<p>​一些认证加密算法（例如<strong>AES-GCM</strong>和<strong>ChaCha20-Poly1305</strong>）将MAC计算集成到加密算法中，并将MAC验证集成到解密算法中。MAC与密文一起存储，并且不会泄露密码或原始消息。 存储对任何人都可见的MAC码是安全的，并且在解密之后，我们知道消息是否是原始消息（密码是否错误）。</p>
+<h3 id="312-基于mac的伪随机数器生成器"><a class="markdownIt-Anchor" href="#312-基于mac的伪随机数器生成器"></a> 3.1.2 基于MAC的伪随机数器生成器</h3>
+<p><code>MAC</code>的另一个应用就是伪随机数器生成器，根据一个确定的salt(常量、当前日期和时间，或者其他随机数)和一些seed number（最新生成的随机数），我们可以如下计算next_seed：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">next_seed = MAC(salt, seed)</span><br></pre></td></tr></table></figure>
+<h2 id="32-hmac和密钥生成函数-key-derivation-functions-kdf"><a class="markdownIt-Anchor" href="#32-hmac和密钥生成函数-key-derivation-functions-kdf"></a> 3.2 HMAC和密钥生成函数( Key Derivation Functions, KDF)</h2>
+<p>​仅通过计算哈希 <code>hash_func(key + msg)</code>来获得<code>MAC</code>是不安全的，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HMAC#Design_principles">点击查看详情</a>。建议改用<strong>HMAC</strong>算法，例如 <code>HMAC-SHA256</code>或<code>HMAC-SHA3-512</code>或其他安全的MAC算法<br />
+​<br />
+​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HMAC"><strong>HMAC</strong></a> = <strong>H</strong>ash-based <strong>M</strong>essage <strong>A</strong>uthentication <strong>C</strong>ode (MAC code, calculated using a cryptographic hash function):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HMAC(key, msg, hash_func) -&gt; hash</span><br></pre></td></tr></table></figure>
+<p>​得到的结果MAC码是混合了密钥的消息哈希值。 它具有哈希的加密属性：不可逆，抗碰撞等。<code>hash_func</code>可以是任何加密哈希函数，例如:<code>SHA-256</code>，<code>SHA-512</code>，<code>RIPEMD-160</code>，<code>SHA3-256</code>或<code>BLAKE2s</code>。<strong>HMAC</strong>用于保证消息真实性，消息完整性，有时还用于密钥生成。<br />
+​</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, hmac, binascii</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hmac_sha256</span>(<span class="params">key, msg</span>):</span></span><br><span class="line">  <span class="keyword">return</span> hmac.new(key, msg, hashlib.sha256).digest()</span><br><span class="line"></span><br><span class="line">key = <span class="string">b&quot;12345&quot;</span></span><br><span class="line">msg = <span class="string">b&quot;sample message&quot;</span></span><br><span class="line"><span class="built_in">print</span>(binascii.hexlify(hmac_sha256(key, msg)))</span><br></pre></td></tr></table></figure>
+<h3 id="321-秘钥生成函数key-derivation-functions-kdf"><a class="markdownIt-Anchor" href="#321-秘钥生成函数key-derivation-functions-kdf"></a> 3.2.1 秘钥生成函数(Key Derivation Functions, KDF)</h3>
+<p>KDF是将可变长度密码转换为固定长度密钥（bit序列）的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function(password) -&gt; key</span><br></pre></td></tr></table></figure>
+<h3 id="322-根据密码生成秘钥"><a class="markdownIt-Anchor" href="#322-根据密码生成秘钥"></a> 3.2.2 根据密码生成秘钥</h3>
+<p>如何安全的根据密码生成秘钥？一起了解一下实践中常用的KDFs：<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PBKDF2">PBKDF2</a></strong>，<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bcrypt">Bcrypt</a></strong>，<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Argon2">Scrypt</a><strong>和</strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Argon2">Argon2</a></strong>，并讨论上述KDFs的优缺点和使用它们的场景。</p>
+<h4 id="3221-pbkdf2"><a class="markdownIt-Anchor" href="#3221-pbkdf2"></a> 3.2.2.1 PBKDF2:</h4>
+<p>​<code>PBKDF2</code>是一个简单的可抵御<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dictionary_attack">dictionary attacks</a>和 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Rainbow_table">rainbow table attacks</a> 的 KDF。 该算法原理基于在HASH算法基础上增加随机盐，并进行多次HASH运算。PBKDF2接受多个输入参数，并生成密钥作为输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key &#x3D; pbkdf2(password, salt, iterations-count, hash-function, derived-key-len)</span><br></pre></td></tr></table></figure>
+<p>从技术上讲，<code>PBKDF2</code>的输入数据包括：</p>
+<ul>
+<li><code>password</code> : 字节/字符串数组;</li>
+<li><code>salt</code> : 安全生成的随机字节(最低64位，建议使用128位);</li>
+<li><code>iterations-count</code>: 迭代次数；</li>
+<li><code>hash-function</code> : 用于计算HMAC;</li>
+<li><code>derived-key-len</code> : 生成秘钥长度;</li>
+</ul>
+<p><strong>注</strong>：PBKDF2不能抵抗<a target="_blank" rel="noopener" href="https://security.stackexchange.com/questions/118147/how-are-gpus-used-in-brute-force-attacks">GPU attacks</a> (使用显卡并行密码破解)和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Custom_hardware_attack">ASIC attacks</a>(专用密码破解硬件).如今<code>PBKDF2</code>被认为是过时的且不如现代KDF功能安全的，因此建议改用<code>Bcrypt</code>，<code>Scrypt</code>或<code>Argon2</code>。</p>
+<p>在此处尝试PBKDF2密钥生成：<a target="_blank" rel="noopener" href="https://asecuritysite.com/encryption/PBKDF2z">https://asecuritysite.com/encryption/PBKDF2z</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install backports.pbkdf2</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, binascii</span><br><span class="line"><span class="keyword">from</span> backports.pbkdf2 <span class="keyword">import</span> pbkdf2_hmac</span><br><span class="line"></span><br><span class="line">salt = binascii.unhexlify(<span class="string">&#x27;aaef2d3f4d77ac66e9c5a6c3d8f921d1&#x27;</span>)</span><br><span class="line">passwd = <span class="string">&quot;p@$Sw0rD~1&quot;</span>.encode(<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line">key = pbkdf2_hmac(<span class="string">&quot;sha256&quot;</span>, passwd, salt, <span class="number">50000</span>, <span class="number">32</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Derived key:&quot;</span>, binascii.hexlify(key))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Derived key: b&#39;52c5efa16e7022859051b1dec28bc65d9696a3005d0f97e506c42843bc3bdbc0&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="323-现代kdfbcryptscrypt和argon2"><a class="markdownIt-Anchor" href="#323-现代kdfbcryptscrypt和argon2"></a> 3.2.3 现代KDF：Bcrypt，Scrypt和Argon2</h3>
+<p>​<code>Scrypt</code>和<code>Argon2</code>等现代KDF旨在抵抗字典攻击，GPU攻击和ASIC攻击。 这些功能根据密码（文本）生成固定长度密钥，需要大量内存（RAM），这使得无法在GPU或ASIC硬件上进行快速并行计算。</p>
+<h4 id="3231-scrypt"><a class="markdownIt-Anchor" href="#3231-scrypt"></a> 3.2.3.1 Scrypt</h4>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Scrypt"><strong>Scrypt</strong></a> (<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7914.html">RFC 7914</a>)是一个健壮的，它需要耗费大量内存，旨在防止GPU，ASIC和FPGA攻击(高效的密码破解硬件)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key &#x3D; Scrypt(password, salt, N, r, p, derived-key-len)</span><br></pre></td></tr></table></figure>
+<p><strong>Scrypt 参数</strong>：</p>
+<ul>
+<li><code>N</code> – 迭代计数（影响内存和CPU使用率）;</li>
+<li><code>r</code> –块大小（影响内存和CPU使用率）;</li>
+<li><code>p</code> –并行因素（并行运行的线程-影响内存，CPU使用率），通常为1;</li>
+<li><code>password</code> – 输入密码（建议最小长度为8-10个字符）;</li>
+<li><code>salt</code> – 安全生成的随机字节（最小64位，建议128位）</li>
+<li><code>derived-key-len</code> - 要生成多少字节作为输出，例如 32个字节（256位）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Memory required &#x3D; 128 * N * r * p bytes</span><br></pre></td></tr></table></figure>
+<p>参数的选择取决于你要等待的时间以及想要达到的安全级别（密码破解阻力）：</p>
+<ol>
+<li>交互式登录的示例参数：N = 16384，r = 8，p = 1（RAM = 2 MB）。 对于交互式登录，您很可能不想等待超过0.5秒， 同样在服务器端，通常许多用户可以同时登录，因此太过缓慢的Scrypt计算会减慢整个系统的速度。</li>
+<li>用于文件加密的样本参数：N = 1048576，r = 8，p = 1（RAM = 1 GB）。 加密硬盘驱动器时，在极少会对数据进行加解密（通常每天不超过2-3次），所以在解锁加密的数据时，可以等待2-3秒以提高安全性。</li>
+</ol>
+<p><strong>Scrypt Calculation in Python</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install scrypt</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyscrypt</span><br><span class="line"></span><br><span class="line">salt = <span class="string">b&#x27;aa1f2d3f4d23ac44e9c5a6c3d8f9ee8c&#x27;</span></span><br><span class="line">passwd = <span class="string">b&#x27;p@$Sw0rD~7&#x27;</span></span><br><span class="line">key = pyscrypt.<span class="built_in">hash</span>(passwd, salt, <span class="number">2048</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">32</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Derived key:&quot;</span>, key.<span class="built_in">hex</span>())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Derived key: b&#39;e813a6f6ccc4e9110193bf9efb7c0a489d76655f9e36629dccbeaf2a73bc0c6f&#39;</span><br></pre></td></tr></table></figure>
+<h4 id="3232-bcrypt"><a class="markdownIt-Anchor" href="#3232-bcrypt"></a> 3.2.3.2 Bcrypt</h4>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bcrypt"><strong>Bcrypt</strong></a>是另一种KDF函数，它对ASIC和GPU攻击的抵抗力较弱。 Bcrypt提供了可配置的迭代计数，但使用恒定的内存消耗，因此更容易构建硬件加速的密码破解程序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bcrypt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import bcrypt</span><br><span class="line"></span><br><span class="line">salt &#x3D; bcrypt.gensalt()</span><br><span class="line">passwd &#x3D; b&#39;p@$Sw0rD~7&#39;</span><br><span class="line">bcrypt.hashpw(passwd, salt)</span><br></pre></td></tr></table></figure>
+<h4 id="3233-argon2-安全的抗asic攻击的kdf"><a class="markdownIt-Anchor" href="#3233-argon2-安全的抗asic攻击的kdf"></a> 3.2.3.3 Argon2: 安全的，抗ASIC攻击的KDF</h4>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Argon2"><strong>Argon2</strong></a>是现代的抗ASIC攻击和抗GPU攻击的KDF。它具有比PBKDF2，Bcrypt和Scrypt（在相同CPU和RAM占用的参数配置下）更好的防止密码被破解能力。</p>
+<p><strong>Argon2</strong>有多个变体：</p>
+<ol>
+<li><strong>Argon2d</strong> ：提供强大的抗GPU攻击能力，但具有潜在的side-channel攻击（在非常特殊的情况下）。</li>
+<li><strong>Argon2i</strong> : 提供较低的抗GPU攻击能力，但没有side-channel攻击。</li>
+<li><strong>Argon2id</strong> - 推荐，结合了Argon2d和Argon2i。</li>
+</ol>
+<p>Argon2需要以下参数，与Scrypt非常相似：</p>
+<ul>
+<li><strong>password</strong> <code>P</code>: the password (or message) to be hashed</li>
+<li><strong>salt</strong> <code>S</code>: random-generated salt (16 bytes recommended for password hashing)</li>
+<li><strong>iterations</strong> <code>t</code>: number of iterations to perform</li>
+<li><strong>memorySizeKB</strong> <code>m</code>: amount of memory (in kilobytes) to use</li>
+<li><strong>parallelism</strong> <code>p</code>: degree of parallelism (i.e. number of threads)</li>
+<li><strong>outputKeyLength</strong> <code>T</code>: desired number of returned bytes</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install argon2_cffi</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argon2, binascii</span><br><span class="line"></span><br><span class="line"><span class="built_in">hash</span> = argon2.hash_password_raw(</span><br><span class="line">    time_cost=<span class="number">16</span>, memory_cost=<span class="number">2</span>**<span class="number">15</span>, parallelism=<span class="number">2</span>, hash_len=<span class="number">32</span>,</span><br><span class="line">    password=<span class="string">b&#x27;password&#x27;</span>, salt=<span class="string">b&#x27;some salt&#x27;</span>, <span class="built_in">type</span>=argon2.low_level.<span class="type">Type</span>.ID)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Argon2 raw hash:&quot;</span>, binascii.hexlify(<span class="built_in">hash</span>))</span><br><span class="line"></span><br><span class="line">argon2Hasher = argon2.PasswordHasher(</span><br><span class="line">    time_cost=<span class="number">16</span>, memory_cost=<span class="number">2</span>**<span class="number">15</span>, parallelism=<span class="number">2</span>, hash_len=<span class="number">32</span>, salt_len=<span class="number">16</span>)</span><br><span class="line"><span class="built_in">hash</span> = argon2Hasher.<span class="built_in">hash</span>(<span class="string">&quot;password&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Argon2 hash (random salt):&quot;</span>, <span class="built_in">hash</span>)</span><br><span class="line"></span><br><span class="line">verifyValid = argon2Hasher.verify(<span class="built_in">hash</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Argon2 verify (correct password):&quot;</span>, verifyValid)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    argon2Hasher.verify(<span class="built_in">hash</span>, <span class="string">&quot;wrong123&quot;</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Argon2 verify (incorrect password):&quot;</span>, <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Argon2 raw hash: b&#39;157f21dd3fdf7bafb76d2923ccaffa0b7be7cbae394709474d2bc66ee7b09d3e&#39;</span><br><span class="line">Argon2 hash (random salt): $argon2id$v&#x3D;19$m&#x3D;32768,t&#x3D;16,p&#x3D;2$Rfy6J41W9idBU+n&#x2F;8sZc6Q$i3QYYPtoogIAw78I2qqlUQ8vjzUXGG1V6QsBOq2NIp4</span><br><span class="line">Argon2 verify (correct password): True</span><br><span class="line">Argon2 verify (incorrect password): False</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Approach</strong></th>
+<th style="text-align:left"><strong>Security</strong></th>
+<th style="text-align:left"><strong>Comments</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Clear-text passwords</td>
+<td style="text-align:left">Extremely low</td>
+<td style="text-align:left">Never do this: compromised server will render all passwords leaked</td>
+</tr>
+<tr>
+<td style="text-align:left">Simple password hash</td>
+<td style="text-align:left">Low</td>
+<td style="text-align:left">Vulnerable to dictionary attacks</td>
+</tr>
+<tr>
+<td style="text-align:left">Salted hashed passwords</td>
+<td style="text-align:left">Average</td>
+<td style="text-align:left">Vulnerable to GPU-based and ASIC-based password cracking</td>
+</tr>
+<tr>
+<td style="text-align:left">Secure KDF function (like Argon2)</td>
+<td style="text-align:left">High</td>
+<td style="text-align:left">Recommended, use strong KDF parameters</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/" class="post-title-link" itemprop="url">02. Hashing and Cryptographic Hash Functions</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:13" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:13+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="02-hashing-and-cryptographic-hash-functions"><a class="markdownIt-Anchor" href="#02-hashing-and-cryptographic-hash-functions"></a> 02. Hashing and Cryptographic Hash Functions</h1>
+<p>​在计算机编程中，哈希函数用于将文本或其他数据映射到整形值。通常不通的输入值会映射到不通的输出值，但是输出值偶尔会发生<code>碰撞</code>（不同的输入值，但是输出值相同）。加密哈希函数将文本或二进制数据转换为固定长度的散列值，并且具有抗冲突性和不可逆性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHA3-256(<span class="string">&quot;hello&quot;</span>) = <span class="string">&quot;3338be694f50c5f338814986cdf0686453a888b84f424d792af4b9202398f392&quot;</span></span><br><span class="line">SHA256(<span class="string">&quot;hello&quot;</span>) = <span class="string">&quot;2CF24DBA5FB0A30E26E83B2AC5B9E29E1B161E5C1FA7425E73043362938B9824&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line">sha3_256hash = hashlib.sha3_256(<span class="string">b&#x27;hello&#x27;</span>).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256(&#x27;hello&#x27;) =&quot;</span>, binascii.hexlify(sha3_256hash))</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line">sha256hash = hashlib.sha256(<span class="string">b&#x27;hello&#x27;</span>).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256(&#x27;hello&#x27;) =&quot;</span>, binascii.hexlify(sha256hash))</span><br></pre></td></tr></table></figure>
+<h2 id="21-加密哈希函数和冲突"><a class="markdownIt-Anchor" href="#21-加密哈希函数和冲突"></a> 2.1 加密哈希函数和冲突</h2>
+<h3 id="211-哈希碰撞"><a class="markdownIt-Anchor" href="#211-哈希碰撞"></a> 2.1.1 哈希碰撞</h3>
+<p>碰撞意味着两个不同输入的哈希值相同， 对于简单的哈希函数，很容易发生碰撞。例如，假设哈希函数h(text)等于文本中所有字符码的和。 则对于以不同顺序持有相同字母的文本，将产生相同的哈希值（碰撞），即：<code>h('abc') == h('cab') == h('bca')</code>。为了避免冲突，密码学家设计了抗碰撞的哈希函数。</p>
+<h3 id="212-加密哈希函数无冲突"><a class="markdownIt-Anchor" href="#212-加密哈希函数无冲突"></a> 2.1.2 加密哈希函数：无冲突</h3>
+<p>​加密哈希函数极不可能产生碰撞，可以认为加密哈希值几乎可以唯一地标识其对应的输入， 并且很难根据哈希值反推出输入值。加密哈希函数是不可逆的单向哈希函数。<br />
+​<br />
+理想的加密哈希函数应该具备以下属性：</p>
+<ul>
+<li><strong>确定性</strong>：相同输入总是可以得到相同的输出值</li>
+<li><strong>快速性</strong>：计算任何给定消息的哈希值应该很快。</li>
+<li><strong>难分析性</strong>：对输入值的微小更改将完全改变输出哈希值。</li>
+<li><strong>不可逆性</strong>：无法根据哈希值反推出输入值，即：除了暴力穷举外，没有明显更好的办法来猜出输入值。</li>
+</ul>
+<p>现代的加密哈希函数（例如SHA2和SHA3）属性与上述属性匹配，并且在密码学中得到了广泛使用。</p>
+<h2 id="22-加密哈希函数的应用"><a class="markdownIt-Anchor" href="#22-加密哈希函数的应用"></a> 2.2 加密哈希函数的应用</h2>
+<ul>
+<li>文件完整性校验</li>
+<li>存储密码：/etc/shadow</li>
+<li>生成唯一ID: <code>Git commit ID</code>、<code>Bitcoin addresses</code></li>
+<li>生成伪随机数：</li>
+<li>工作量证明算法：</li>
+</ul>
+<h2 id="23-安全哈希算法"><a class="markdownIt-Anchor" href="#23-安全哈希算法"></a> 2.3 安全哈希算法</h2>
+<p>​软件开发人员提出并使用了许多密码哈希算法。 但是其中一些已经被证明为不安全的，例如MD5和SHA1；还有一些仍然认为是安全的，如SHA-2,SHA-3和BLAKE2等</p>
+<h3 id="231-sha-2-sha-256-sha-512"><a class="markdownIt-Anchor" href="#231-sha-2-sha-256-sha-512"></a> 2.3.1 SHA-2, SHA-256, SHA-512</h3>
+<p>​SHA-2是一组加密哈希函数，<strong>SHA-256</strong> (256 bits hash), <strong>SHA-384</strong> (384 bits hash), <strong>SHA-512</strong> (512 bits hash)，他们都是基于 &quot;<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction"><strong>Merkle–Damgård construction</strong></a>&quot;的密码学概念，SHA-2是美国的官方加密标准。更多位的哈希值能提供更好的抗碰撞性。</p>
+<h3 id="232-sha-3-sha3-256-sha3-512-keccak-256"><a class="markdownIt-Anchor" href="#232-sha-3-sha3-256-sha3-512-keccak-256"></a> 2.3.2 SHA-3, SHA3-256, SHA3-512, Keccak-256</h3>
+<p>​SHA-3及其变体SHA3-224，SHA3-256，SHA3-384，SHA3-512 在相同的哈希长度的情况下比SHA-2（SHA-224，SHA-256，SHA-384，SHA-512）更加安全 。SHA-3系列加密哈希函数不容易受到“<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Length_extension_attack">length extension attack</a></strong>”的影响。</p>
+<p>通过以下网址了解有关加密哈希函数，其强度和抗攻击性的更多信息：<a target="_blank" rel="noopener" href="https://z.cash/technology/history-of-hash-function-attacks.html">https://z.cash/technology/history-of-hash-function-attacks.html</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line"></span><br><span class="line">text = <span class="string">&#x27;hello&#x27;</span></span><br><span class="line">data = text.encode(<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line"></span><br><span class="line">sha256hash = hashlib.sha256(data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA-256:   &quot;</span>, binascii.hexlify(sha256hash))</span><br><span class="line"></span><br><span class="line">sha3_256 = hashlib.sha3_256(data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256:  &quot;</span>, binascii.hexlify(sha3_256))</span><br><span class="line"></span><br><span class="line">blake2s = hashlib.new(<span class="string">&#x27;blake2s&#x27;</span>, data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;BLAKE2s:   &quot;</span>, binascii.hexlify(blake2s))</span><br><span class="line"></span><br><span class="line">ripemd160 = hashlib.new(<span class="string">&#x27;ripemd160&#x27;</span>, data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;RIPEMD-160:&quot;</span>, binascii.hexlify(ripemd160))</span><br></pre></td></tr></table></figure>
+<h2 id="24-工作量证明哈希函数ethash-和-equihash"><a class="markdownIt-Anchor" href="#24-工作量证明哈希函数ethash-和-equihash"></a> 2.4 工作量证明哈希函数：ETHash 和 Equihash</h2>
+<p>​区块链工作量证明挖矿算法使用一类特殊的哈希函数，这些哈希函数旨在消耗大量计算资源和大量内存，并且很难通过硬件设备来实现（例如FPGA集成电路或ASIC矿工） 这种哈希函数的特点被称为“抗ASIC”。这样做的目的在于通过激励小型矿工来最大程度地减少采矿的集中化。大量的小型参与者比少数几个大型参与者意味着更好的权力下放，更好的去中心化。</p>
+<ul>
+<li><strong>ETHash</strong>：以太坊区块链中的工作量证明哈希函数。</li>
+<li><strong>Equihash</strong>：Zcash和Bitcoin Gold区块链中的工作量证明哈希函数</li>
+</ul>
+<p><code>MORE:</code><br />
+Learn more about <strong>ETHash</strong> at: <a target="_blank" rel="noopener" href="https://github.com/ethereum/wiki/wiki/Ethash">https://github.com/ethereum/wiki/wiki/Ethash</a>, <a target="_blank" rel="noopener" href="https://github.com/lukovkin/ethash">https://github.com/lukovkin/ethash</a>.</p>
+<p>Learn more about <strong>Equihash</strong> at: <a target="_blank" rel="noopener" href="https://www.cryptolux.org/images/b/b9/Equihash.pdf">https://www.cryptolux.org/images/b/b9/Equihash.pdf</a>, <a target="_blank" rel="noopener" href="https://github.com/tromp/equihash">https://github.com/tromp/equihash</a>.</p>
+<p>Lear more about the <strong>ASIC-resistant hash functions</strong> at: <a target="_blank" rel="noopener" href="https://github.com/ifdefelse/ProgPOW">https://github.com/ifdefelse/ProgPOW</a>.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/" class="post-title-link" itemprop="url">01. Hello, CryptoGraphy</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:12" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:12+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="01-hello-cryptography"><a class="markdownIt-Anchor" href="#01-hello-cryptography"></a> 01. Hello, CryptoGraphy</h1>
+<p>​参加工作已有不短时间，在这期间，不可避免的接触使用了一些加密算法。平时忙于工作中的各种业务需求，没有对作为信息安全基石的现代密码学内容进行过系统的学习、归纳和总结。在即将迎接2020年春节之际，萌生一个想法，系统性的整理一套学习笔记，以供自己在此方面的知识积淀。</p>
+<p>​密码学有着深刻的数学背景，虽然自己也是数学系毕业，但是查看学院派的书籍如 :<a target="_blank" rel="noopener" href="https://crypto.stanford.edu/~dabo/cryptobook/">A Graduate Course in Applied Cryptography</a> 也难免觉得枯燥乏味，这份学习笔记会从工作实践的角度来进行总结。在此特别感谢Dr.<a target="_blank" rel="noopener" href="https://nakov.com/">Svetlin Nakov</a>，我的学习笔记主要参考了其编写的<a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/"> Practical Cryptography for Developers</a> 一书，沿着该书的脉络，后面笔记预计会从以下主题展开：</p>
+<ol>
+<li>哈希和哈希加密函数(Hashing and Cryptographic Hash Functions)</li>
+<li>消息验证码和秘钥导出函数(Message authentication codes and Key Derivation Functions)</li>
+<li>安全随机数生成器(Secure Random Number Generators)</li>
+<li>秘钥交换(Key Exchange)</li>
+<li>对称秘钥密码(Symmetric Key Ciphers)</li>
+<li>非对称秘钥密码(Asymmetric Key Ciphers)</li>
+<li>数字签名(Digital Signatures)</li>
+<li>更多的密码学概念(More Cryptographic Concepts)</li>
+</ol>
+<h2 id="11-什么是密码学"><a class="markdownIt-Anchor" href="#11-什么是密码学"></a> 1.1 什么是密码学？</h2>
+<p>​<code>密码学</code>是为信息提供安全与防护的一门学科，他广泛应用于数字世界中。因此开发人员应该至少对密码学有基本的了解，以及如何使用密码算法和密码库，并了解他们背后的算法。<br />
+​</p>
+<h2 id="12-加密和秘钥"><a class="markdownIt-Anchor" href="#12-加密和秘钥"></a> 1.2 加密和秘钥</h2>
+<p>​密码学使用安全的方式处理存储和传输数据，以便于只有特定的人才能读取和处理这些数据。这会涉及使用对称或非对称加密方案对数据进行加密和解密，这些方案在明文和密文的相互转化过程中会用到一个或多个秘钥。</p>
+<p>​对称加密（例如AES，Twofish和ChaCha20）使用相同的密钥来加密和解密消息，而非对称加密使用公钥密码系统（如RSA或ECC）和密钥对：公共密钥（加密密钥）和相应的私有密钥（解密密钥）。</p>
+<h2 id="13-数字签名和消息认证"><a class="markdownIt-Anchor" href="#13-数字签名和消息认证"></a> 1.3 数字签名和消息认证</h2>
+<p>​密码术提供了对消息进行数字签名的方法，可确保消息的真实性，完整性和不可否认性。大多数数字签名算法（例如DSA，ECDSA和EdDSA）都使用非对密钥对来完成：消息由私钥进行签名，签名由相应的公钥来完成验证。在银行系统中，数字签名用于签署和批准交易。在区块链中，签名交易允许用户将区块链资产从一个地址转移到另一个地址。密码学中使用消息认证算法（如：HMAC）和消息认证码（MAC codes）来证明消息的真实性，完整性和来源。</p>
+<h2 id="14-安全随机数"><a class="markdownIt-Anchor" href="#14-安全随机数"></a> 1.4 安全随机数</h2>
+<p>​安全随机数本质上是无法预测的，因此开发人员应在意它们，因为损坏的随机数生成器意味着系统或应用程序受到威胁或被黑。</p>
+<h2 id="15-秘钥交换"><a class="markdownIt-Anchor" href="#15-秘钥交换"></a> 1.5 秘钥交换</h2>
+<p>​密码学定义了密钥交换算法（例如Diffie-Hellman密钥交换和ECDH）和密钥生成方案，用于在打算使用加密算法安全地传输消息的两个节点之间安全地创建加密密钥。这种算法典型的应用就是在双方之间建立新的安全连接，例如，打开一个新的网站或连接到WiFi网络。<br />
+​<br />
+##1.6 加密哈希和密码哈希</p>
+<p>​密码学提供加密哈希函数（如SHA-3和BLAKE2），可将消息转换为消息摘要（固定长度的哈希值），并且同时要满足哈希值不能被还原回原始消息，且可以几乎唯一地标识输入值。例如，在区块链系统中，散列用于生成区块链地址，交易ID。在Git中，加密散列用于为文件和提交生成唯一的ID。密码哈希和秘钥导出函数对应的密码如（Scrypt 和 Argon2）通过安全地从基于文本的密码生成散列(或密钥) 来保护用户的密码以及密码加密的文件和数据，并注入随机参数（盐，salt）并使用大量迭代和计算资源以使密码破解速度变慢</p>
+<h2 id="17-密码学中的混乱和扩散"><a class="markdownIt-Anchor" href="#17-密码学中的混乱和扩散"></a> 1.7 密码学中的混乱和扩散</h2>
+<p>​在密码学中，哈希，加密算法和随机生成器遵循香农的混淆和扩散原理。<code>混乱</code>意味着密码形式的输出中的每个bit都应取决于密钥和输入数据的几个部分，因此无法建立直接映射关系。<code>扩散</code>意味着更改输入中的任一bit应更改输出中大约一半的bits。这些原理已包含在大多数哈希函数，MAC算法，随机数生成器，对称和非对称加密中。</p>
+<h2 id="18-加密库"><a class="markdownIt-Anchor" href="#18-加密库"></a> 1.8 加密库</h2>
+<p>​开发人员应该了解现代密码库的编程语言和平台，以及如何使用它们。使用密码学进行开发需要了解加密概念。从Internet复制/粘贴代码或遵循Blog中的示例可能会导致安全风险。加密库非常有用，但是您应该首先了解概念，然后选择适当的算法组合并仔细调整其参数。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>

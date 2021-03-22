@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="02. Hashing and Cryptographic Hash Functions ​在计算机编程中，哈希函数用于将文本或其他数据映射到整形值。通常不通的输入值会映射到不通的输出值，但是输出值偶尔会发生碰撞（不同的输入值，但是输出值相同）。加密哈希函数将文本或二进制数据转换为固定长度的散列值，并且具有抗冲突性和不可逆性。 12SHA3-256(&quot;hello&quot;) &#x3D; &amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02. Hashing and Cryptographic Hash Functions">
+<meta property="og:url" content="https://gogocoding.github.io/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="02. Hashing and Cryptographic Hash Functions ​在计算机编程中，哈希函数用于将文本或其他数据映射到整形值。通常不通的输入值会映射到不通的输出值，但是输出值偶尔会发生碰撞（不同的输入值，但是输出值相同）。加密哈希函数将文本或二进制数据转换为固定长度的散列值，并且具有抗冲突性和不可逆性。 12SHA3-256(&quot;hello&quot;) &#x3D; &amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-05T06:37:13.000Z">
+<meta property="article:modified_time" content="2020-09-08T09:12:44.314Z">
+<meta property="article:author" content="Hao Qi">
+<meta property="article:tag" content="CryptoGraphy">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>02. Hashing and Cryptographic Hash Functions | GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          02. Hashing and Cryptographic Hash Functions
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:13" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:13+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="02-hashing-and-cryptographic-hash-functions"><a class="markdownIt-Anchor" href="#02-hashing-and-cryptographic-hash-functions"></a> 02. Hashing and Cryptographic Hash Functions</h1>
+<p>​在计算机编程中，哈希函数用于将文本或其他数据映射到整形值。通常不通的输入值会映射到不通的输出值，但是输出值偶尔会发生<code>碰撞</code>（不同的输入值，但是输出值相同）。加密哈希函数将文本或二进制数据转换为固定长度的散列值，并且具有抗冲突性和不可逆性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHA3-256(<span class="string">&quot;hello&quot;</span>) = <span class="string">&quot;3338be694f50c5f338814986cdf0686453a888b84f424d792af4b9202398f392&quot;</span></span><br><span class="line">SHA256(<span class="string">&quot;hello&quot;</span>) = <span class="string">&quot;2CF24DBA5FB0A30E26E83B2AC5B9E29E1B161E5C1FA7425E73043362938B9824&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line">sha3_256hash = hashlib.sha3_256(<span class="string">b&#x27;hello&#x27;</span>).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256(&#x27;hello&#x27;) =&quot;</span>, binascii.hexlify(sha3_256hash))</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line">sha256hash = hashlib.sha256(<span class="string">b&#x27;hello&#x27;</span>).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256(&#x27;hello&#x27;) =&quot;</span>, binascii.hexlify(sha256hash))</span><br></pre></td></tr></table></figure>
+<h2 id="21-加密哈希函数和冲突"><a class="markdownIt-Anchor" href="#21-加密哈希函数和冲突"></a> 2.1 加密哈希函数和冲突</h2>
+<h3 id="211-哈希碰撞"><a class="markdownIt-Anchor" href="#211-哈希碰撞"></a> 2.1.1 哈希碰撞</h3>
+<p>碰撞意味着两个不同输入的哈希值相同， 对于简单的哈希函数，很容易发生碰撞。例如，假设哈希函数h(text)等于文本中所有字符码的和。 则对于以不同顺序持有相同字母的文本，将产生相同的哈希值（碰撞），即：<code>h('abc') == h('cab') == h('bca')</code>。为了避免冲突，密码学家设计了抗碰撞的哈希函数。</p>
+<h3 id="212-加密哈希函数无冲突"><a class="markdownIt-Anchor" href="#212-加密哈希函数无冲突"></a> 2.1.2 加密哈希函数：无冲突</h3>
+<p>​加密哈希函数极不可能产生碰撞，可以认为加密哈希值几乎可以唯一地标识其对应的输入， 并且很难根据哈希值反推出输入值。加密哈希函数是不可逆的单向哈希函数。<br />
+​<br />
+理想的加密哈希函数应该具备以下属性：</p>
+<ul>
+<li><strong>确定性</strong>：相同输入总是可以得到相同的输出值</li>
+<li><strong>快速性</strong>：计算任何给定消息的哈希值应该很快。</li>
+<li><strong>难分析性</strong>：对输入值的微小更改将完全改变输出哈希值。</li>
+<li><strong>不可逆性</strong>：无法根据哈希值反推出输入值，即：除了暴力穷举外，没有明显更好的办法来猜出输入值。</li>
+</ul>
+<p>现代的加密哈希函数（例如SHA2和SHA3）属性与上述属性匹配，并且在密码学中得到了广泛使用。</p>
+<h2 id="22-加密哈希函数的应用"><a class="markdownIt-Anchor" href="#22-加密哈希函数的应用"></a> 2.2 加密哈希函数的应用</h2>
+<ul>
+<li>文件完整性校验</li>
+<li>存储密码：/etc/shadow</li>
+<li>生成唯一ID: <code>Git commit ID</code>、<code>Bitcoin addresses</code></li>
+<li>生成伪随机数：</li>
+<li>工作量证明算法：</li>
+</ul>
+<h2 id="23-安全哈希算法"><a class="markdownIt-Anchor" href="#23-安全哈希算法"></a> 2.3 安全哈希算法</h2>
+<p>​软件开发人员提出并使用了许多密码哈希算法。 但是其中一些已经被证明为不安全的，例如MD5和SHA1；还有一些仍然认为是安全的，如SHA-2,SHA-3和BLAKE2等</p>
+<h3 id="231-sha-2-sha-256-sha-512"><a class="markdownIt-Anchor" href="#231-sha-2-sha-256-sha-512"></a> 2.3.1 SHA-2, SHA-256, SHA-512</h3>
+<p>​SHA-2是一组加密哈希函数，<strong>SHA-256</strong> (256 bits hash), <strong>SHA-384</strong> (384 bits hash), <strong>SHA-512</strong> (512 bits hash)，他们都是基于 &quot;<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction"><strong>Merkle–Damgård construction</strong></a>&quot;的密码学概念，SHA-2是美国的官方加密标准。更多位的哈希值能提供更好的抗碰撞性。</p>
+<h3 id="232-sha-3-sha3-256-sha3-512-keccak-256"><a class="markdownIt-Anchor" href="#232-sha-3-sha3-256-sha3-512-keccak-256"></a> 2.3.2 SHA-3, SHA3-256, SHA3-512, Keccak-256</h3>
+<p>​SHA-3及其变体SHA3-224，SHA3-256，SHA3-384，SHA3-512 在相同的哈希长度的情况下比SHA-2（SHA-224，SHA-256，SHA-384，SHA-512）更加安全 。SHA-3系列加密哈希函数不容易受到“<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Length_extension_attack">length extension attack</a></strong>”的影响。</p>
+<p>通过以下网址了解有关加密哈希函数，其强度和抗攻击性的更多信息：<a target="_blank" rel="noopener" href="https://z.cash/technology/history-of-hash-function-attacks.html">https://z.cash/technology/history-of-hash-function-attacks.html</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line"></span><br><span class="line">text = <span class="string">&#x27;hello&#x27;</span></span><br><span class="line">data = text.encode(<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line"></span><br><span class="line">sha256hash = hashlib.sha256(data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA-256:   &quot;</span>, binascii.hexlify(sha256hash))</span><br><span class="line"></span><br><span class="line">sha3_256 = hashlib.sha3_256(data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256:  &quot;</span>, binascii.hexlify(sha3_256))</span><br><span class="line"></span><br><span class="line">blake2s = hashlib.new(<span class="string">&#x27;blake2s&#x27;</span>, data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;BLAKE2s:   &quot;</span>, binascii.hexlify(blake2s))</span><br><span class="line"></span><br><span class="line">ripemd160 = hashlib.new(<span class="string">&#x27;ripemd160&#x27;</span>, data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;RIPEMD-160:&quot;</span>, binascii.hexlify(ripemd160))</span><br></pre></td></tr></table></figure>
+<h2 id="24-工作量证明哈希函数ethash-和-equihash"><a class="markdownIt-Anchor" href="#24-工作量证明哈希函数ethash-和-equihash"></a> 2.4 工作量证明哈希函数：ETHash 和 Equihash</h2>
+<p>​区块链工作量证明挖矿算法使用一类特殊的哈希函数，这些哈希函数旨在消耗大量计算资源和大量内存，并且很难通过硬件设备来实现（例如FPGA集成电路或ASIC矿工） 这种哈希函数的特点被称为“抗ASIC”。这样做的目的在于通过激励小型矿工来最大程度地减少采矿的集中化。大量的小型参与者比少数几个大型参与者意味着更好的权力下放，更好的去中心化。</p>
+<ul>
+<li><strong>ETHash</strong>：以太坊区块链中的工作量证明哈希函数。</li>
+<li><strong>Equihash</strong>：Zcash和Bitcoin Gold区块链中的工作量证明哈希函数</li>
+</ul>
+<p><code>MORE:</code><br />
+Learn more about <strong>ETHash</strong> at: <a target="_blank" rel="noopener" href="https://github.com/ethereum/wiki/wiki/Ethash">https://github.com/ethereum/wiki/wiki/Ethash</a>, <a target="_blank" rel="noopener" href="https://github.com/lukovkin/ethash">https://github.com/lukovkin/ethash</a>.</p>
+<p>Learn more about <strong>Equihash</strong> at: <a target="_blank" rel="noopener" href="https://www.cryptolux.org/images/b/b9/Equihash.pdf">https://www.cryptolux.org/images/b/b9/Equihash.pdf</a>, <a target="_blank" rel="noopener" href="https://github.com/tromp/equihash">https://github.com/tromp/equihash</a>.</p>
+<p>Lear more about the <strong>ASIC-resistant hash functions</strong> at: <a target="_blank" rel="noopener" href="https://github.com/ifdefelse/ProgPOW">https://github.com/ifdefelse/ProgPOW</a>.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/" rel="prev" title="01. Hello, CryptoGraphy">
+      <i class="fa fa-chevron-left"></i> 01. Hello, CryptoGraphy
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/03.%20MAC%20Codes%20and%20Key%20Derivation%20Functions/" rel="next" title="03. MAC Codes and Key Derivation Functions">
+      03. MAC Codes and Key Derivation Functions <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#02-hashing-and-cryptographic-hash-functions"><span class="nav-number">1.</span> <span class="nav-text"> 02. Hashing and Cryptographic Hash Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#21-%E5%8A%A0%E5%AF%86%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%E5%92%8C%E5%86%B2%E7%AA%81"><span class="nav-number">1.1.</span> <span class="nav-text"> 2.1 加密哈希函数和冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#211-%E5%93%88%E5%B8%8C%E7%A2%B0%E6%92%9E"><span class="nav-number">1.1.1.</span> <span class="nav-text"> 2.1.1 哈希碰撞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#212-%E5%8A%A0%E5%AF%86%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%E6%97%A0%E5%86%B2%E7%AA%81"><span class="nav-number">1.1.2.</span> <span class="nav-text"> 2.1.2 加密哈希函数：无冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-%E5%8A%A0%E5%AF%86%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text"> 2.2 加密哈希函数的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-%E5%AE%89%E5%85%A8%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text"> 2.3 安全哈希算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#231-sha-2-sha-256-sha-512"><span class="nav-number">1.3.1.</span> <span class="nav-text"> 2.3.1 SHA-2, SHA-256, SHA-512</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#232-sha-3-sha3-256-sha3-512-keccak-256"><span class="nav-number">1.3.2.</span> <span class="nav-text"> 2.3.2 SHA-3, SHA3-256, SHA3-512, Keccak-256</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-%E5%B7%A5%E4%BD%9C%E9%87%8F%E8%AF%81%E6%98%8E%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0ethash-%E5%92%8C-equihash"><span class="nav-number">1.4.</span> <span class="nav-text"> 2.4 工作量证明哈希函数：ETHash 和 Equihash</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="01. Hello, CryptoGraphy ​参加工作已有不短时间，在这期间，不可避免的接触使用了一些加密算法。平时忙于工作中的各种业务需求，没有对作为信息安全基石的现代密码学内容进行过系统的学习、归纳和总结。在即将迎接2020年春节之际，萌生一个想法，系统性的整理一套学习笔记，以供自己在此方面的知识积淀。 ​密码学有着深刻的数学背景，虽然自己也是数学系毕业，但是查看学院派的书籍如 :A G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01. Hello, CryptoGraphy">
+<meta property="og:url" content="https://gogocoding.github.io/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="01. Hello, CryptoGraphy ​参加工作已有不短时间，在这期间，不可避免的接触使用了一些加密算法。平时忙于工作中的各种业务需求，没有对作为信息安全基石的现代密码学内容进行过系统的学习、归纳和总结。在即将迎接2020年春节之际，萌生一个想法，系统性的整理一套学习笔记，以供自己在此方面的知识积淀。 ​密码学有着深刻的数学背景，虽然自己也是数学系毕业，但是查看学院派的书籍如 :A G">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-05T06:37:12.000Z">
+<meta property="article:modified_time" content="2020-09-08T09:12:44.314Z">
+<meta property="article:author" content="Hao Qi">
+<meta property="article:tag" content="CryptoGraphy">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>01. Hello, CryptoGraphy | GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          01. Hello, CryptoGraphy
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:12" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:12+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="01-hello-cryptography"><a class="markdownIt-Anchor" href="#01-hello-cryptography"></a> 01. Hello, CryptoGraphy</h1>
+<p>​参加工作已有不短时间，在这期间，不可避免的接触使用了一些加密算法。平时忙于工作中的各种业务需求，没有对作为信息安全基石的现代密码学内容进行过系统的学习、归纳和总结。在即将迎接2020年春节之际，萌生一个想法，系统性的整理一套学习笔记，以供自己在此方面的知识积淀。</p>
+<p>​密码学有着深刻的数学背景，虽然自己也是数学系毕业，但是查看学院派的书籍如 :<a target="_blank" rel="noopener" href="https://crypto.stanford.edu/~dabo/cryptobook/">A Graduate Course in Applied Cryptography</a> 也难免觉得枯燥乏味，这份学习笔记会从工作实践的角度来进行总结。在此特别感谢Dr.<a target="_blank" rel="noopener" href="https://nakov.com/">Svetlin Nakov</a>，我的学习笔记主要参考了其编写的<a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/"> Practical Cryptography for Developers</a> 一书，沿着该书的脉络，后面笔记预计会从以下主题展开：</p>
+<ol>
+<li>哈希和哈希加密函数(Hashing and Cryptographic Hash Functions)</li>
+<li>消息验证码和秘钥导出函数(Message authentication codes and Key Derivation Functions)</li>
+<li>安全随机数生成器(Secure Random Number Generators)</li>
+<li>秘钥交换(Key Exchange)</li>
+<li>对称秘钥密码(Symmetric Key Ciphers)</li>
+<li>非对称秘钥密码(Asymmetric Key Ciphers)</li>
+<li>数字签名(Digital Signatures)</li>
+<li>更多的密码学概念(More Cryptographic Concepts)</li>
+</ol>
+<h2 id="11-什么是密码学"><a class="markdownIt-Anchor" href="#11-什么是密码学"></a> 1.1 什么是密码学？</h2>
+<p>​<code>密码学</code>是为信息提供安全与防护的一门学科，他广泛应用于数字世界中。因此开发人员应该至少对密码学有基本的了解，以及如何使用密码算法和密码库，并了解他们背后的算法。<br />
+​</p>
+<h2 id="12-加密和秘钥"><a class="markdownIt-Anchor" href="#12-加密和秘钥"></a> 1.2 加密和秘钥</h2>
+<p>​密码学使用安全的方式处理存储和传输数据，以便于只有特定的人才能读取和处理这些数据。这会涉及使用对称或非对称加密方案对数据进行加密和解密，这些方案在明文和密文的相互转化过程中会用到一个或多个秘钥。</p>
+<p>​对称加密（例如AES，Twofish和ChaCha20）使用相同的密钥来加密和解密消息，而非对称加密使用公钥密码系统（如RSA或ECC）和密钥对：公共密钥（加密密钥）和相应的私有密钥（解密密钥）。</p>
+<h2 id="13-数字签名和消息认证"><a class="markdownIt-Anchor" href="#13-数字签名和消息认证"></a> 1.3 数字签名和消息认证</h2>
+<p>​密码术提供了对消息进行数字签名的方法，可确保消息的真实性，完整性和不可否认性。大多数数字签名算法（例如DSA，ECDSA和EdDSA）都使用非对密钥对来完成：消息由私钥进行签名，签名由相应的公钥来完成验证。在银行系统中，数字签名用于签署和批准交易。在区块链中，签名交易允许用户将区块链资产从一个地址转移到另一个地址。密码学中使用消息认证算法（如：HMAC）和消息认证码（MAC codes）来证明消息的真实性，完整性和来源。</p>
+<h2 id="14-安全随机数"><a class="markdownIt-Anchor" href="#14-安全随机数"></a> 1.4 安全随机数</h2>
+<p>​安全随机数本质上是无法预测的，因此开发人员应在意它们，因为损坏的随机数生成器意味着系统或应用程序受到威胁或被黑。</p>
+<h2 id="15-秘钥交换"><a class="markdownIt-Anchor" href="#15-秘钥交换"></a> 1.5 秘钥交换</h2>
+<p>​密码学定义了密钥交换算法（例如Diffie-Hellman密钥交换和ECDH）和密钥生成方案，用于在打算使用加密算法安全地传输消息的两个节点之间安全地创建加密密钥。这种算法典型的应用就是在双方之间建立新的安全连接，例如，打开一个新的网站或连接到WiFi网络。<br />
+​<br />
+##1.6 加密哈希和密码哈希</p>
+<p>​密码学提供加密哈希函数（如SHA-3和BLAKE2），可将消息转换为消息摘要（固定长度的哈希值），并且同时要满足哈希值不能被还原回原始消息，且可以几乎唯一地标识输入值。例如，在区块链系统中，散列用于生成区块链地址，交易ID。在Git中，加密散列用于为文件和提交生成唯一的ID。密码哈希和秘钥导出函数对应的密码如（Scrypt 和 Argon2）通过安全地从基于文本的密码生成散列(或密钥) 来保护用户的密码以及密码加密的文件和数据，并注入随机参数（盐，salt）并使用大量迭代和计算资源以使密码破解速度变慢</p>
+<h2 id="17-密码学中的混乱和扩散"><a class="markdownIt-Anchor" href="#17-密码学中的混乱和扩散"></a> 1.7 密码学中的混乱和扩散</h2>
+<p>​在密码学中，哈希，加密算法和随机生成器遵循香农的混淆和扩散原理。<code>混乱</code>意味着密码形式的输出中的每个bit都应取决于密钥和输入数据的几个部分，因此无法建立直接映射关系。<code>扩散</code>意味着更改输入中的任一bit应更改输出中大约一半的bits。这些原理已包含在大多数哈希函数，MAC算法，随机数生成器，对称和非对称加密中。</p>
+<h2 id="18-加密库"><a class="markdownIt-Anchor" href="#18-加密库"></a> 1.8 加密库</h2>
+<p>​开发人员应该了解现代密码库的编程语言和平台，以及如何使用它们。使用密码学进行开发需要了解加密概念。从Internet复制/粘贴代码或遵循Blog中的示例可能会导致安全风险。加密库非常有用，但是您应该首先了解概念，然后选择适当的算法组合并仔细调整其参数。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/01/WorkDay/Genesis/" rel="prev" title="1. Genesis">
+      <i class="fa fa-chevron-left"></i> 1. Genesis
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/" rel="next" title="02. Hashing and Cryptographic Hash Functions">
+      02. Hashing and Cryptographic Hash Functions <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#01-hello-cryptography"><span class="nav-number">1.</span> <span class="nav-text"> 01. Hello, CryptoGraphy</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%86%E7%A0%81%E5%AD%A6"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.1 什么是密码学？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%8A%A0%E5%AF%86%E5%92%8C%E7%A7%98%E9%92%A5"><span class="nav-number">1.2.</span> <span class="nav-text"> 1.2 加密和秘钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E5%92%8C%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81"><span class="nav-number">1.3.</span> <span class="nav-text"> 1.3 数字签名和消息认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E5%AE%89%E5%85%A8%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text"> 1.4 安全随机数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-%E7%A7%98%E9%92%A5%E4%BA%A4%E6%8D%A2"><span class="nav-number">1.5.</span> <span class="nav-text"> 1.5 秘钥交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B8%AD%E7%9A%84%E6%B7%B7%E4%B9%B1%E5%92%8C%E6%89%A9%E6%95%A3"><span class="nav-number">1.6.</span> <span class="nav-text"> 1.7 密码学中的混乱和扩散</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-%E5%8A%A0%E5%AF%86%E5%BA%93"><span class="nav-number">1.7.</span> <span class="nav-text"> 1.8 加密库</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

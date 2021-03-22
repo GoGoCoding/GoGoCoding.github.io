@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gogocoding.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Pod  基本概念 Pod，而不是容器，才是 Kubernetes 项目中的最小编排单位。凡是调度、网络、存储，以及安全相关的属性，基本上是 Pod 级别的；凡是跟容器的 Linux Namespace 相关的属性，也一定是 Pod 级别的。  NodeSelector NodeSelector是一个供用户将 Pod 与 Node 进行绑定的字段。 1234567apiVersion: v1ki">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GoGoCoding">
+<meta property="og:url" content="https://gogocoding.github.io/2020/12/07/Kubernetes/Pod/index.html">
+<meta property="og:site_name" content="GoGoCoding">
+<meta property="og:description" content="Pod  基本概念 Pod，而不是容器，才是 Kubernetes 项目中的最小编排单位。凡是调度、网络、存储，以及安全相关的属性，基本上是 Pod 级别的；凡是跟容器的 Linux Namespace 相关的属性，也一定是 Pod 级别的。  NodeSelector NodeSelector是一个供用户将 Pod 与 Node 进行绑定的字段。 1234567apiVersion: v1ki">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-07T03:25:21.096Z">
+<meta property="article:modified_time" content="2020-12-29T09:42:59.601Z">
+<meta property="article:author" content="Hao Qi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gogocoding.github.io/2020/12/07/Kubernetes/Pod/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title> | GoGoCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GoGoCoding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Code For Art</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/12/07/Kubernetes/Pod/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-07 11:25:21" itemprop="dateCreated datePublished" datetime="2020-12-07T11:25:21+08:00">2020-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 17:42:59" itemprop="dateModified" datetime="2020-12-29T17:42:59+08:00">2020-12-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="pod"><a class="markdownIt-Anchor" href="#pod"></a> Pod</h1>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<p>Pod，而不是容器，才是 Kubernetes 项目中的最小编排单位。凡是调度、网络、存储，以及安全相关的属性，基本上是 Pod 级别的；凡是跟容器的 Linux Namespace 相关的属性，也一定是 Pod 级别的。</p>
+<h3 id="nodeselector"><a class="markdownIt-Anchor" href="#nodeselector"></a> NodeSelector</h3>
+<p>NodeSelector是一个供用户将 Pod 与 Node 进行绑定的字段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">...</span><br><span class="line">spec:</span><br><span class="line"> nodeSelector:</span><br><span class="line">   disktype: ssd</span><br></pre></td></tr></table></figure>
+<h3 id="hostaliases"><a class="markdownIt-Anchor" href="#hostaliases"></a> HostAliases</h3>
+<p>HostAliases：定义了 Pod 的 hosts 文件（比如 /etc/hosts）里的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">...</span><br><span class="line">spec:</span><br><span class="line">  hostAliases:</span><br><span class="line">  - ip: &quot;10.1.2.3&quot;</span><br><span class="line">    hostnames:</span><br><span class="line">    - &quot;foo.remote&quot;</span><br><span class="line">    - &quot;bar.remote&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="imagepullpolicy"><a class="markdownIt-Anchor" href="#imagepullpolicy"></a> ImagePullPolicy</h3>
+<p>ImagePullPolicy定义了镜像拉取的策略。</p>
+<ul>
+<li>Always：每次都重新拉取镜像</li>
+<li>Never ：从来不拉取新镜像</li>
+<li>IfNotPresent：如果本地没有就拉取</li>
+</ul>
+<h3 id="lifecycle"><a class="markdownIt-Anchor" href="#lifecycle"></a> Lifecycle</h3>
+<p>Lifecycle 定义的是 Container Lifecycle Hooks。顾名思义，Container Lifecycle Hooks 的作用，是在容器状态发生变化时触发一系列“钩子”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: lifecycle-demo</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: lifecycle-demo-container</span><br><span class="line">    image: nginx</span><br><span class="line">    lifecycle:</span><br><span class="line">      postStart:</span><br><span class="line">        exec:</span><br><span class="line">          command: [&quot;&#x2F;bin&#x2F;sh&quot;, &quot;-c&quot;, &quot;echo Hello from the postStart handler &gt; &#x2F;usr&#x2F;share&#x2F;message&quot;]</span><br><span class="line">      preStop:</span><br><span class="line">        exec:</span><br><span class="line">          command: [&quot;&#x2F;usr&#x2F;sbin&#x2F;nginx&quot;,&quot;-s&quot;,&quot;quit&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="projected-volume"><a class="markdownIt-Anchor" href="#projected-volume"></a> Projected Volume</h3>
+<p>Projected Volume的作用，是为容器提供预先定义好的数据</p>
+<ol>
+<li>Secret</li>
+<li>ConfigMap</li>
+<li>Downward API</li>
+<li>ServiceAccountToken</li>
+</ol>
+<p><code>Secret</code>把 Pod 想要访问的加密数据，存放到 Etcd中，然后通过volume的方式挂载到pod中，已提供给pod中的容器使用 加密数据-&gt;etcd-&gt;volume-&gt;pod-&gt;container</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: test-projected-volume </span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: test-secret-volume</span><br><span class="line">    image: busybox</span><br><span class="line">    args:</span><br><span class="line">    - sleep</span><br><span class="line">    - &quot;86400&quot;</span><br><span class="line">    volumeMounts:</span><br><span class="line">    - name: mysql-cred</span><br><span class="line">      mountPath: &quot;&#x2F;projected-volume&quot;</span><br><span class="line">      readOnly: true</span><br><span class="line">  volumes:</span><br><span class="line">  - name: mysql-cred</span><br><span class="line">    projected:</span><br><span class="line">      sources:</span><br><span class="line">      - secret:</span><br><span class="line">          name: user</span><br><span class="line">      - secret:</span><br><span class="line">          name: pass</span><br></pre></td></tr></table></figure>
+<p><code>ConfigMap</code> 和<code>Secret</code>类似，它与 Secret 的区别在于，ConfigMap 保存的是不需要加密的、应用所需的配置信息。而 ConfigMap 的用法几乎与 Secret 完全相同：你可以使用 kubectl create configmap 从文件或者目录创建 ConfigMap，也可以直接编写 ConfigMap 对象的 YAML 文件。</p>
+<p><code>Downward API</code>的作用是：让 Pod 里的容器能够直接获取到这个 Pod API 对象本身的信息。有两种方式可以将 Pod 和 Container 字段呈现给运行中的容器： 1、Environment variables 2、Volume Files 这两种呈现 Pod 和 Container 字段的方式都称为 Downward API。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: test-downwardapi-volume</span><br><span class="line">  labels:</span><br><span class="line">    zone: us-est-coast</span><br><span class="line">    cluster: test-cluster1</span><br><span class="line">    rack: rack-22</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">    - name: client-container</span><br><span class="line">      image: k8s.gcr.io&#x2F;busybox</span><br><span class="line">      command: [&quot;sh&quot;, &quot;-c&quot;]</span><br><span class="line">      args:</span><br><span class="line">      - while true; do</span><br><span class="line">          if [[ -e &#x2F;etc&#x2F;podinfo&#x2F;labels ]]; then</span><br><span class="line">            echo -en &#39;\n\n&#39;; cat &#x2F;etc&#x2F;podinfo&#x2F;labels; fi;</span><br><span class="line">          sleep 5;</span><br><span class="line">        done;</span><br><span class="line">      volumeMounts:</span><br><span class="line">        - name: podinfo</span><br><span class="line">          mountPath: &#x2F;etc&#x2F;podinfo</span><br><span class="line">          readOnly: false</span><br><span class="line">  volumes:</span><br><span class="line">    - name: podinfo</span><br><span class="line">      projected:</span><br><span class="line">        sources:</span><br><span class="line">        - downwardAPI:</span><br><span class="line">            items:</span><br><span class="line">              - path: &quot;labels&quot;</span><br><span class="line">                fieldRef:</span><br><span class="line">                  fieldPath: metadata.labels</span><br></pre></td></tr></table></figure>
+<p>Downward API 支持的字段已经非常丰富了，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. 使用fieldRef可以声明使用:</span><br><span class="line">spec.nodeName - 宿主机名字</span><br><span class="line">status.hostIP - 宿主机IP</span><br><span class="line">metadata.name - Pod的名字</span><br><span class="line">metadata.namespace - Pod的Namespace</span><br><span class="line">status.podIP - Pod的IP</span><br><span class="line">spec.serviceAccountName - Pod的Service Account的名字</span><br><span class="line">metadata.uid - Pod的UID</span><br><span class="line">metadata.labels[&#39;&lt;KEY&gt;&#39;] - 指定&lt;KEY&gt;的Label值</span><br><span class="line">metadata.annotations[&#39;&lt;KEY&gt;&#39;] - 指定&lt;KEY&gt;的Annotation值</span><br><span class="line">metadata.labels - Pod的所有Label</span><br><span class="line">metadata.annotations - Pod的所有Annotation</span><br><span class="line"></span><br><span class="line">2. 使用resourceFieldRef可以声明使用:</span><br><span class="line">容器的CPU limit</span><br><span class="line">容器的CPU request</span><br><span class="line">容器的memory limit</span><br><span class="line">容器的memory request</span><br></pre></td></tr></table></figure>
+<p>其实，Secret、ConfigMap，以及 Downward API 这三种 Projected Volume 定义的信息，大多还可以通过环境变量的方式出现在容器里。但是，通过环境变量获取这些信息的方式，不具备自动更新的能力。所以，一般情况下建议使用 Volume 文件的方式获取这些信息。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/30/Notes/Micro%20Services/" rel="prev" title="Micro Services">
+      <i class="fa fa-chevron-left"></i> Micro Services
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/07/Kubernetes/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E4%B8%8EKubernetes%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pod"><span class="nav-number">1.</span> <span class="nav-text"> Pod</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text"> 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nodeselector"><span class="nav-number">1.1.1.</span> <span class="nav-text"> NodeSelector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hostaliases"><span class="nav-number">1.1.2.</span> <span class="nav-text"> HostAliases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#imagepullpolicy"><span class="nav-number">1.1.3.</span> <span class="nav-text"> ImagePullPolicy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lifecycle"><span class="nav-number">1.1.4.</span> <span class="nav-text"> Lifecycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#projected-volume"><span class="nav-number">1.1.5.</span> <span class="nav-text"> Projected Volume</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
