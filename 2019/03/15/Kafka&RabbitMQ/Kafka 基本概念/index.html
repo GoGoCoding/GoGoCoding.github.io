@@ -23,7 +23,7 @@
   <meta name="description" content="1. Kafka介绍 Apache Kafka 是一个分布式流处理平台。 Kafka有以下三种特性:  可以发布和订阅流式的记录。这一方面与消息队列或者企业消息系统类似。 可以储存流式的记录，并且有较好的容错性。 可以在流式记录产生时就进行处理。  Kafka可以用于两大类别的应用:  构造实时流数据管道，它可以在系统或应用之间可靠地获取数据。 (相当于message queue) 构建实时流式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kafka基本概念">
-<meta property="og:url" content="https://gogocoding.github.io/2020/09/08/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:url" content="https://gogocoding.github.io/2019/03/15/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="GoGoCoding">
 <meta property="og:description" content="1. Kafka介绍 Apache Kafka 是一个分布式流处理平台。 Kafka有以下三种特性:  可以发布和订阅流式的记录。这一方面与消息队列或者企业消息系统类似。 可以储存流式的记录，并且有较好的容错性。 可以在流式记录产生时就进行处理。  Kafka可以用于两大类别的应用:  构造实时流数据管道，它可以在系统或应用之间可靠地获取数据。 (相当于message queue) 构建实时流式">
 <meta property="og:locale" content="zh_CN">
@@ -31,14 +31,14 @@
 <meta property="og:image" content="http://qiniu.gogocoding.cn/mweb/%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9.png">
 <meta property="og:image" content="http://qiniu.gogocoding.cn/mweb/Kafka%E7%BB%93%E6%9E%84-2.png">
 <meta property="og:image" content="http://qiniu.gogocoding.cn/mweb/kafka%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84.png">
-<meta property="article:published_time" content="2020-09-08T09:12:44.322Z">
-<meta property="article:modified_time" content="2020-09-08T09:12:44.322Z">
+<meta property="article:published_time" content="2019-03-15T03:15:18.000Z">
+<meta property="article:modified_time" content="2021-03-22T08:24:04.638Z">
 <meta property="article:author" content="Hao Qi">
 <meta property="article:tag" content="Kafka">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://qiniu.gogocoding.cn/mweb/%E5%88%86%E5%8C%BAlog.png">
 
-<link rel="canonical" href="https://gogocoding.github.io/2020/09/08/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+<link rel="canonical" href="https://gogocoding.github.io/2019/03/15/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
 
 
 <script id="page-configurations">
@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/09/08/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2019/03/15/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -214,8 +214,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-08 17:12:44" itemprop="dateCreated datePublished" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              <time title="创建时间：2019-03-15 11:15:18" itemprop="dateCreated datePublished" datetime="2019-03-15T11:15:18+08:00">2019-03-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-22 16:24:04" itemprop="dateModified" datetime="2021-03-22T16:24:04+08:00">2021-03-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -393,12 +400,12 @@ Kafka也提供了一个消费消息的命令行工具，将存储的信息输出
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/08/Interview/MQ/" rel="prev" title="">
-      <i class="fa fa-chevron-left"></i> 
+    <a href="/2019/02/11/WorkDay/%E4%BA%BA%E7%94%9F%E8%A7%84%E5%88%92/" rel="prev" title="人生规划">
+      <i class="fa fa-chevron-left"></i> 人生规划
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/10/30/Notes/Micro%20Services/" rel="next" title="Micro Services">
-      Micro Services <i class="fa fa-chevron-right"></i>
+    <a href="/2020/02/11/Interview/Redis/" rel="next" title="如何掌握企业级技术和项目经验">
+      如何掌握企业级技术和项目经验 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -480,13 +487,13 @@ Kafka也提供了一个消费消息的命令行工具，将存储的信息输出
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

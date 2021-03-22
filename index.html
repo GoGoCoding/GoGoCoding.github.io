@@ -272,7 +272,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/07/Kubernetes/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E4%B8%8EKubernetes%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2020/12/07/Kubernetes/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E4%B8%8EKubernetes%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">容器编排与Kubernetes作业管理</a>
         </h1>
 
         <div class="post-meta">
@@ -282,15 +282,24 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-07 17:27:24" itemprop="dateCreated datePublished" datetime="2020-12-07T17:27:24+08:00">2020-12-07</time>
+              <time title="创建时间：2020-12-07 17:27:18" itemprop="dateCreated datePublished" datetime="2020-12-07T17:27:18+08:00">2020-12-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-14 10:48:55" itemprop="dateModified" datetime="2020-12-14T10:48:55+08:00">2020-12-14</time>
+                <time title="修改时间：2021-03-22 16:27:08" itemprop="dateModified" datetime="2021-03-22T16:27:08+08:00">2021-03-22</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
+                </span>
+            </span>
 
           
 
@@ -306,7 +315,7 @@
           <h1 id="容器编排与kubernetes作业管理"><a class="markdownIt-Anchor" href="#容器编排与kubernetes作业管理"></a> 容器编排与Kubernetes作业管理</h1>
 <h2 id="deployment"><a class="markdownIt-Anchor" href="#deployment"></a> Deployment</h2>
 <p>Deployment实现了 Kubernetes 项目中一个非常重要的功能：Pod 的“水平扩展 / 收缩”（horizontal scaling out/in）。这个功能，是从 PaaS 时代开始，一个平台级项目就必须具备的编排能力。这个能力的实现，依赖的是 Kubernetes 项目中的一个非常重要的概念（API 对象）：ReplicaSet。</p>
-<p><img src="media/Dep-Rep.png" alt="Dep-Rep-w300" /></p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/Dep-Rep.png" alt="Dep-Rep-w300" /></p>
 <p>Deployment 四个状态</p>
 <ol>
 <li>DESIRED：用户期望的 Pod 副本个数（spec.replicas 的值）；</li>
@@ -385,7 +394,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/07/Kubernetes/Pod/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2020/12/07/Kubernetes/Pod/" class="post-title-link" itemprop="url">Pod</a>
         </h1>
 
         <div class="post-meta">
@@ -395,15 +404,24 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-07 11:25:21" itemprop="dateCreated datePublished" datetime="2020-12-07T11:25:21+08:00">2020-12-07</time>
+              <time title="创建时间：2020-12-07 11:25:56" itemprop="dateCreated datePublished" datetime="2020-12-07T11:25:56+08:00">2020-12-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-29 17:42:59" itemprop="dateModified" datetime="2020-12-29T17:42:59+08:00">2020-12-29</time>
+                <time title="修改时间：2021-03-22 16:26:22" itemprop="dateModified" datetime="2021-03-22T16:26:22+08:00">2021-03-22</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
+                </span>
+            </span>
 
           
 
@@ -519,210 +537,6 @@
 
       
           
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/09/08/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hao Qi">
-      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GoGoCoding">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/08/Kafka&RabbitMQ/Kafka%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">Kafka基本概念</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-08 17:12:44" itemprop="dateCreated datePublished" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B5%81%E5%A4%84%E7%90%86%E5%B9%B3%E5%8F%B0/" itemprop="url" rel="index"><span itemprop="name">流处理平台</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-kafka介绍"><a class="markdownIt-Anchor" href="#1-kafka介绍"></a> 1. Kafka介绍</h1>
-<p>Apache Kafka 是一个分布式流处理平台。<br />
-Kafka有以下三种特性:</p>
-<ul>
-<li>可以发布和订阅流式的记录。这一方面与消息队列或者企业消息系统类似。</li>
-<li>可以储存流式的记录，并且有较好的容错性。</li>
-<li>可以在流式记录产生时就进行处理。</li>
-</ul>
-<p>Kafka可以用于两大类别的应用:</p>
-<ul>
-<li>构造实时流数据管道，它可以在系统或应用之间可靠地获取数据。 (相当于message queue)</li>
-<li>构建实时流式应用程序，对这些流数据进行转换或者影响。 (就是流处理，通过kafka stream topic和topic之间内部进行变化)</li>
-</ul>
-<h2 id="11-kafka基本概念"><a class="markdownIt-Anchor" href="#11-kafka基本概念"></a> 1.1 kafka基本概念</h2>
-<ul>
-<li>
-<p><strong>Topic</strong>: 逻辑概念，Kafka消息的类别，对数据区分、隔离，每一类的消息称之为一个主题（Topic）。</p>
-</li>
-<li>
-<p><strong>Producer</strong>: 消息和数据的生产者，向Kafka的一个Topic发布消息的进程/代码/服务。</p>
-</li>
-<li>
-<p><strong>Consumer</strong>: 消息和数据的消费者，订阅数据（Topic）并且处理其发布的消息的进程/代码/服务。</p>
-</li>
-<li>
-<p><strong>Consumer Group</strong>: 逻辑概念，对于同一个Topic，会广播给不同的group，一个group中，只有一个consumer可以消费该消息。</p>
-</li>
-<li>
-<p><strong>Broker</strong>: 物理概念，Kafka集群中的每个Kafka节点。</p>
-</li>
-<li>
-<p><strong>Partition</strong>： 物理概念，Kafka下数据存储的基本单元。一个Topic数据，会被分散存储到多个Partition，每个Partition是有序的。</p>
-</li>
-<li>
-<p><strong>Replication</strong>: 同一个Partition可能会有多个Replication，多个Replication之间数据时一样的。</p>
-</li>
-<li>
-<p><strong>Replication Leader</strong>: 一个Partition的多个Replication上，需要一个Leader负责该Partition上与Producer和Consumer交互。</p>
-</li>
-<li>
-<p><strong>ReplicaManager</strong>: 负责管理当前broker所有分区和副本的信息，处理KafkaController发起的一些请求，副本状态的切换、添加/读取消息等。</p>
-</li>
-</ul>
-<h3 id="111-主题和日志topic和log"><a class="markdownIt-Anchor" href="#111-主题和日志topic和log"></a> 1.1.1 主题和日志（Topic和Log）</h3>
-<p>Topic是发布的消息的类别名，一个topic可以有零个，一个或多个消费者订阅该主题的消息。对于每个topic，Kafka集群都会维护一个分区log，就像下图中所示：<br />
-<img src="http://qiniu.gogocoding.cn/mweb/%E5%88%86%E5%8C%BAlog.png" alt="分区log" /></p>
-<h3 id="112-分区partition"><a class="markdownIt-Anchor" href="#112-分区partition"></a> 1.1.2 分区（Partition）</h3>
-<p>每一个分区都是一个顺序的、不可变的消息队列， 并且可以持续的添加。分区中的消息都被分了一个序列号，称之为偏移量(offset)，在每个分区中此偏移量都是唯一的。</p>
-<p>Kafka集群保持所有的消息，直到它们过期（无论消息是否被消费）。实际上消费者所持有的仅有的元数据就是这个offset（偏移量），也就是说offset由消费者来控制：正常情况当消费者消费消息的时候，偏移量也线性的的增加。但是实际偏移量由消费者控制，消费者可以将偏移量重置为更早的位置，重新读取消息。可以看到这种设计对消费者来说操作自如，一个消费者的操作不会影响其它消费者对此log的处理。<br />
-<img src="http://qiniu.gogocoding.cn/mweb/%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9.png" alt="生产消费" /></p>
-<ul>
-<li>每个Topic被切分为多个Partitions</li>
-<li>消费者数目少于或等于Partition的数目</li>
-<li>broker Group中的每一个Broker保存Topic的一个或多个Partitions</li>
-<li>Consumer Group中的仅有一个Consumer读取Topic的一个或多个Partitions，并且是唯一的Consumer</li>
-</ul>
-<h3 id="113-生产者producers"><a class="markdownIt-Anchor" href="#113-生产者producers"></a> 1.1.3 生产者（Producers）</h3>
-<p>生产者往某个Topic上发布消息。生产者也负责选择发布到Topic上的哪一个分区。最简单的方式从分区列表中轮流选择。也可以根据某种算法依照权重选择分区。开发者负责如何选择分区的算法。</p>
-<h3 id="114-消费者consumers"><a class="markdownIt-Anchor" href="#114-消费者consumers"></a> 1.1.4 消费者（Consumers）</h3>
-<p>通常来讲，消息模型可以分为两种， 队列和发布-订阅式。 队列的处理方式是 一组消费者从服务器读取消息，一条消息只有其中的一个消费者来处理。在发布-订阅模型中，消息被广播给所有的消费者，接收到消息的消费者都可以处理此消息。Kafka为这两种模型提供了单一的消费者抽象模型： 消费者组 （consumer group）。 消费者用一个消费者组名标记自己。 一个发布在Topic上消息被分发给此消费者组中的一个消费者。 假如所有的消费者都在一个组中，那么这就变成了queue模型。 假如所有的消费者都在不同的组中，那么就完全变成了发布-订阅模型。 更通用的， 我们可以创建一些消费者组作为逻辑上的订阅者。每个组包含数目不等的消费者， 一个组内多个消费者可以用来扩展性能和容错。</p>
-<h3 id="115-备份replication"><a class="markdownIt-Anchor" href="#115-备份replication"></a> 1.1.5 备份（Replication）</h3>
-<ul>
-<li>当集群中有Broker挂掉的情况，系统可以主动地使Replicas提供服务</li>
-<li>系统默认设置每一个Topic的replication系数为1，可以在创建Topic时单独设置</li>
-<li>Replication的基本单位时Topic的Partition</li>
-<li>所有的读和写都从Leader进，Followers只是做为备份</li>
-<li>Follower必须能够及时复制Leader的数据</li>
-<li>增加容错性与可扩展性</li>
-</ul>
-<h2 id="12-kafka的基本结构"><a class="markdownIt-Anchor" href="#12-kafka的基本结构"></a> 1.2. Kafka的基本结构</h2>
-<p><img src="http://qiniu.gogocoding.cn/mweb/Kafka%E7%BB%93%E6%9E%84-2.png" alt="Kafka结构" /></p>
-<ul>
-<li><strong>Producer Api</strong>: 允许应用程序发送数据流到kafka集群中的topic</li>
-<li><strong>Consumer Api</strong>: 允许应用程序从kafka集群的topic中读取数据流</li>
-<li><strong>Streams Api</strong>: 允许从输入topic转换数据流到输出topic</li>
-<li><strong>Connectors Api</strong>: 通过实现连接器（connector），不断地从一些源系统或应用程序中拉取数据到kafka，或从kafka提交数据到宿系统（sink system）或应用程序。</li>
-</ul>
-<p><img src="http://qiniu.gogocoding.cn/mweb/kafka%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84.png" alt="kafka消息结构" /></p>
-<h2 id="13-kafka特点"><a class="markdownIt-Anchor" href="#13-kafka特点"></a> 1.3 Kafka特点</h2>
-<ul>
-<li>分布式
-<ul>
-<li>多分区</li>
-<li>多副本</li>
-<li>多订阅者</li>
-<li>基于Zookeeper调度</li>
-</ul>
-</li>
-<li>高性能
-<ul>
-<li>高吞吐量</li>
-<li>低延迟</li>
-<li>高并发</li>
-<li>时间复杂度为O(1)</li>
-</ul>
-</li>
-<li>持久性和扩展性
-<ul>
-<li>数据可持久化</li>
-<li>容错性</li>
-<li>支持在线水平扩展</li>
-<li>消息自动平衡</li>
-</ul>
-</li>
-</ul>
-<h1 id="2-kafka应用场景"><a class="markdownIt-Anchor" href="#2-kafka应用场景"></a> 2. Kafka应用场景</h1>
-<ul>
-<li><strong>消息队列</strong>：kafka更好的替换传统的消息系统，消息系统被用于各种场景（解耦数据生产者，缓存未处理的消息，等），与大多数消息系统比较，kafka有更好的吞吐量，内置分区，副本和故障转移，这有利于处理大规模的消息。在端到端延迟这一领域，kafka比得上传统的消息系统，如的ActiveMQ或RabbitMQ的。</li>
-<li><strong>行为跟踪</strong>：kafka原本的使用场景：用户的活动追踪，网站的活动（网页游览，搜索或其他用户的操作信息）发布到不同的话题中心，这些消息可实时处理，实时监测，也可加载到Hadoop或离线处理数据仓库。</li>
-<li><strong>元信息监控</strong>：kafka也常常用于监测数据。分布式应用程序生成的统计数据集中聚合。</li>
-<li><strong>日志收集</strong>：Kafka抽象出文件的细节，并将日志或事件数据更清晰地抽象为消息流。这允许更低延迟的处理并更容易支持多个数据源和分布式数据消费。</li>
-<li><strong>流处理</strong>：kafka中消息处理一般包含多个阶段。其中原始输入数据是从kafka主题消费的，然后汇总，丰富，或者以其他的方式处理转化为新主题，例如，一个推荐新闻文章，文章内容可能从“articles”主题获取；然后进一步处理内容，得到一个处理后的新内容，最后推荐给用户。这种处理是基于单个主题的实时数据流。从0.10.0.0开始，轻量，但功能强大的流处理，就可以这样进行数据处理了。</li>
-<li><strong>事件采集</strong>：事件采集是一种应用程序的设计风格，其中状态的变化根据时间的顺序记录下来，kafka支持这种非常大的存储日志数据的场景。</li>
-<li><strong>持久性日志</strong>：kafka可以作为一种分布式的外部日志，可帮助节点之间复制数据，并作为失败的节点来恢复数据重新同步，kafka的日志压缩功能很好的支持这种用法，这种用法类似于Apacha BookKeeper项目。</li>
-</ul>
-<h1 id="3-kafka安装启动"><a class="markdownIt-Anchor" href="#3-kafka安装启动"></a> 3. Kafka安装启动</h1>
-<p><strong>1 下载镜像</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull wurstmeister/zookeeper</span><br><span class="line">docker pull wurstmeister/kafka</span><br></pre></td></tr></table></figure>
-<p><strong>2 启动镜像</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name zookeeper --publish 2181:2181 --volume /etc/localtime:/etc/localtime zookeeper:latest</span><br><span class="line"></span><br><span class="line">docker run -p 9092:9092 --name kafka1 -d -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=宿主机IP:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://宿主机IP:19092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 wurstmeister/kafka:latest</span><br></pre></td></tr></table></figure>
-<p><strong>3 创建一个主题（Topic）</strong><br />
-创建topic</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure>
-<p>查看topic</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --list --zookeeper localhost:2181 test</span><br></pre></td></tr></table></figure>
-<p><strong>4 发送消息</strong><br />
-Kafka提供了一个命令行的工具，可以从输入文件或者命令行中读取消息并发送给Kafka集群。每一行是一条消息。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line">This is a message</span><br><span class="line">This is another message</span><br></pre></td></tr></table></figure>
-<p><strong>5 消费消息</strong><br />
-Kafka也提供了一个消费消息的命令行工具，将存储的信息输出出来。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line">This is a message</span><br><span class="line">This is another message</span><br></pre></td></tr></table></figure>
-<p><strong>6 设置多个broker集群</strong></p>
-<p><code>broker.id</code>是集群中每个节点的唯一且永久的名称，我们修改端口和日志目录是因为我们现在在同一台机器上运行，我们要防止broker在同一端口上注册和覆盖对方的数据。<br />
-启动2个新的kafka节点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 9093:9093 --name kafka2 -d -e KAFKA_BROKER_ID&#x3D;1 -e KAFKA_ZOOKEEPER_CONNECT&#x3D;宿主机IP:2181 -e KAFKA_ADVERTISED_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;宿主机IP:19093 -e KAFKA_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;0.0.0.0:9092 wurstmeister&#x2F;kafka:latest</span><br><span class="line"></span><br><span class="line">docker run -p 9094:9094 --name kafka3 -d -e KAFKA_BROKER_ID&#x3D;2 -e KAFKA_ZOOKEEPER_CONNECT&#x3D;宿主机IP:2181 -e KAFKA_ADVERTISED_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;宿主机IP:19094 -e KAFKA_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;0.0.0.0:9092 wurstmeister&#x2F;kafka:latest</span><br></pre></td></tr></table></figure>
-<p>现在，我们创建一个新topic，把备份设置为：3</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic</span><br></pre></td></tr></table></figure>
-<p>好了，现在我们已经有了一个集群了，我们怎么知道每个集群在做什么呢？运行命令“describe topics”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1155,6 +969,145 @@ Kafka也提供了一个消费消息的命令行工具，将存储的信息输出
   
   
 
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/08/06/Data%20Structure%20and%20Algorithm/%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/06/Data%20Structure%20and%20Algorithm/%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">排序</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-06 23:04:47" itemprop="dateCreated datePublished" datetime="2020-08-06T23:04:47+08:00">2020-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-几种经典排序算法及其时间复杂度级别"><a class="markdownIt-Anchor" href="#1-几种经典排序算法及其时间复杂度级别"></a> 1. 几种经典排序算法及其时间复杂度级别</h1>
+<ul>
+<li>冒泡、插入、选择 O(n^2) 基于比较</li>
+<li>快排、归并 O(nlogn) 基于比较</li>
+<li>计数、基数、桶 O(n) 不基于比较</li>
+</ul>
+<h1 id="2-如何分析一个排序算法"><a class="markdownIt-Anchor" href="#2-如何分析一个排序算法"></a> 2. 如何分析一个排序算法？</h1>
+<ol>
+<li>学习排序算法的思路？明确原理、掌握实现以及分析性能。</li>
+<li>如何分析排序算法性能？从执行效率、内存消耗以及稳定性3个方面分析排序算法的性能。</li>
+<li>执行效率：从以下3个方面来衡量<br />
+1）最好情况、最坏情况、平均情况时间复杂度<br />
+2）时间复杂度的系数、常数、低阶：排序的数据量比较小时考虑<br />
+3）比较次数和交换（或移动）次数</li>
+<li>内存消耗：通过空间复杂度来衡量。针对排序算法的空间复杂度，引入原地排序的概念，原地排序算法就是指空间复杂度为O(1)的排序算法。</li>
+<li>稳定性：如果待排序的序列中存在值等的元素，经过排序之后，相等元素之间原有的先后顺序不变，就说明这个排序算法时稳定的。</li>
+</ol>
+<h1 id="3-冒泡排序"><a class="markdownIt-Anchor" href="#3-冒泡排序"></a> 3. 冒泡排序</h1>
+<h2 id="31-排序原理"><a class="markdownIt-Anchor" href="#31-排序原理"></a> 3.1. 排序原理</h2>
+<ol>
+<li>冒泡排序只会操作相邻的两个数据。</li>
+<li>对相邻两个数据进行比较，看是否满足大小关系要求，若不满足让它俩互换。</li>
+<li>一次冒泡会让至少一个元素移动到它应该在的位置，重复n次，就完成了n个数据的排序工作。</li>
+<li>优化：若某次冒泡不存在数据交换，则说明已经达到完全有序，所以终止冒泡。</li>
+</ol>
+<h2 id="32-代码实现"><a class="markdownIt-Anchor" href="#32-代码实现"></a> 3.2. 代码实现</h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bubbleSort</span> <span class="params">([]<span class="keyword">int</span> a, <span class="keyword">int</span> n)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> n &lt;=<span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i &lt; n; i++ &#123; </span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; n-i<span class="number">-1</span>; j++ &#123;</span><br><span class="line">            <span class="keyword">if</span> a[j] &gt; a[j+<span class="number">1</span>] &#123;</span><br><span class="line">                temp := a[j]</span><br><span class="line">                a[i] = a[j+]</span><br><span class="line">                a[j+<span class="number">1</span>] = temp</span><br><span class="line">                flag = <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> !flag &#123;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="33-性能分析"><a class="markdownIt-Anchor" href="#33-性能分析"></a> 3.3. 性能分析</h2>
+<h3 id="331-执行效率最小时间复杂度-最大时间复杂度-平均时间复杂度"><a class="markdownIt-Anchor" href="#331-执行效率最小时间复杂度-最大时间复杂度-平均时间复杂度"></a> 3.3.1 执行效率：最小时间复杂度、最大时间复杂度、平均时间复杂度</h3>
+<ul>
+<li>最小时间复杂度：数据完全有序时，只需进行一次冒泡操作即可，时间复杂度是O(n)。</li>
+<li>最大时间复杂度：数据倒序排序时，需要n次冒泡操作，时间复杂度是O(n^2)。</li>
+<li>平均时间复杂度：通过有序度和逆序度来分析。</li>
+</ul>
+<p>什么是有序度？<br />
+有序度是数组中具有有序关系的元素对的个数，比如[2,4,3,1,5,6]这组数据的有序度就是11，分别是[2,4][2,3][2,5][2,6][4,5][4,6][3,5][3,6][1,5][1,6][5,6]。同理，对于一个倒序数组，比如[6,5,4,3,2,1]，有序度是0；对于一个完全有序的数组，比如[1,2,3,4,5,6]，有序度为n*(n-1)/2，也就是15，完全有序的情况称为满有序度。<br />
+什么是逆序度？逆序度的定义正好和有序度相反。核心公式：逆序度=满有序度-有序度。<br />
+排序过程，就是有序度增加，逆序度减少的过程，最后达到满有序度，就说明排序完成了。<br />
+冒泡排序包含两个操作原子，即比较和交换，每交换一次，有序度加1。不管算法如何改进，交换的次数总是确定的，即逆序度。<br />
+对于包含n个数据的数组进行冒泡排序，平均交换次数是多少呢？最坏的情况初始有序度为0，所以要进行n*(n-1)/2交换。最好情况下，初始状态有序度是n*(n-1)/2，就不需要进行交互。我们可以取个中间值n*(n-1)/4，来表示初始有序度既不是很高也不是很低的平均情况。<br />
+换句话说，平均情况下，需要n*(n-1)/4次交换操作，比较操作可定比交换操作多，而复杂度的上限是O(n<sup>2)，所以平均情况时间复杂度就是O(n</sup>2)。<br />
+以上的分析并不严格，但很实用，这就够了。</p>
+<h3 id="332-空间复杂度每次交换仅需1个临时变量故空间复杂度为o1是原地排序算法"><a class="markdownIt-Anchor" href="#332-空间复杂度每次交换仅需1个临时变量故空间复杂度为o1是原地排序算法"></a> 3.3.2 空间复杂度：每次交换仅需1个临时变量，故空间复杂度为O(1)，是原地排序算法。</h3>
+<h3 id="333-算法稳定性如果两个值相等就不会交换位置故是稳定排序算法"><a class="markdownIt-Anchor" href="#333-算法稳定性如果两个值相等就不会交换位置故是稳定排序算法"></a> 3.3.3 算法稳定性：如果两个值相等，就不会交换位置，故是稳定排序算法。</h3>
+<h1 id="4-插入排序"><a class="markdownIt-Anchor" href="#4-插入排序"></a> 4. 插入排序</h1>
+<h2 id="41-算法原理"><a class="markdownIt-Anchor" href="#41-算法原理"></a> 4.1. 算法原理</h2>
+<p>首先，我们将数组中的数据分为2个区间，即已排序区间和未排序区间。初始已排序区间只有一个元素，就是数组的第一个元素。插入算法的核心思想就是取未排序区间中的元素，在已排序区间中找到合适的插入位置将其插入，并保证已排序区间中的元素一直有序。重复这个过程，直到未排序中元素为空，算法结束。</p>
+<h2 id="42代码实现"><a class="markdownIt-Anchor" href="#42代码实现"></a> 4.2代码实现</h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertionSort</span> <span class="params">([]<span class="keyword">int</span> a, n <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">1</span>; i &lt; n; i++ &#123;</span><br><span class="line">        value := a[i]</span><br><span class="line">        j:=i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> ; j&gt;<span class="number">0</span>; j--&#123;</span><br><span class="line">            <span class="keyword">if</span> a[j]&gt;a[i] &#123;</span><br><span class="line">                a[j+<span class="number">1</span>]= a[j]</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        a[j+<span class="number">1</span>] = a[i]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="43-性能分析"><a class="markdownIt-Anchor" href="#43-性能分析"></a> 4.3 性能分析</h2>
+<h3 id="431-时间复杂度最好-最坏-平均情况"><a class="markdownIt-Anchor" href="#431-时间复杂度最好-最坏-平均情况"></a> 4.3.1 时间复杂度：最好、最坏、平均情况</h3>
+<p>如果要排序的数组已经是有序的，我们并不需要搬移任何数据。只需要遍历一遍数组即可，所以时间复杂度是O(n)。如果数组是倒序的，每次插入都相当于在数组的第一个位置插入新的数据，所以需要移动大量的数据，因此时间复杂度是O(n<sup>2)。而在一个数组中插入一个元素的平均时间复杂都是O(n)，插入排序需要n次插入，所以平均时间复杂度是O(n</sup>2)。</p>
+<h3 id="432-空间复杂度从上面的代码可以看出插入排序算法的运行并不需要额外的存储空间所以空间复杂度是o1是原地排序算法"><a class="markdownIt-Anchor" href="#432-空间复杂度从上面的代码可以看出插入排序算法的运行并不需要额外的存储空间所以空间复杂度是o1是原地排序算法"></a> 4.3.2 空间复杂度：从上面的代码可以看出，插入排序算法的运行并不需要额外的存储空间，所以空间复杂度是O(1)，是原地排序算法。</h3>
+<h3 id="433-算法稳定性在插入排序中对于值相同的元素我们可以选择将后面出现的元素插入到前面出现的元素的后面这样就保持原有的顺序不变所以是稳定的"><a class="markdownIt-Anchor" href="#433-算法稳定性在插入排序中对于值相同的元素我们可以选择将后面出现的元素插入到前面出现的元素的后面这样就保持原有的顺序不变所以是稳定的"></a> 4.3.3 算法稳定性：在插入排序中，对于值相同的元素，我们可以选择将后面出现的元素，插入到前面出现的元素的后面，这样就保持原有的顺序不变，所以是稳定的。</h3>
+<h1 id="5-归并排序"><a class="markdownIt-Anchor" href="#5-归并排序"></a> 5 归并排序</h1>
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MergeSort</span><span class="params">(arr []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	arrLen := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="keyword">if</span> arrLen &lt;= <span class="number">1</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mergeSort(arr, <span class="number">0</span>, arrLen<span class="number">-1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mergeSort</span><span class="params">(arr []<span class="keyword">int</span>, start, end <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> start &gt;= end &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mid := (start + end) / <span class="number">2</span></span><br><span class="line">	mergeSort(arr, start, mid)</span><br><span class="line">	mergeSort(arr, mid+<span class="number">1</span>, end)</span><br><span class="line">	merge(arr, start, mid, end)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">merge</span><span class="params">(arr []<span class="keyword">int</span>, start, mid, end <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	tmpArr := <span class="built_in">make</span>([]<span class="keyword">int</span>, end-start+<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">	i := start</span><br><span class="line">	j := mid + <span class="number">1</span></span><br><span class="line">	k := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> ; i &lt;= mid &amp;&amp; j &lt;= end; k++ &#123;</span><br><span class="line">		<span class="keyword">if</span> arr[i] &lt;= arr[j] &#123;</span><br><span class="line">			tmpArr[k] = arr[i]</span><br><span class="line">			i++</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			tmpArr[k] = arr[j]</span><br><span class="line">			j++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> ; i &lt;= mid; i++ &#123;</span><br><span class="line">		tmpArr[k] = arr[i]</span><br><span class="line">		k++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> ; j &lt;= end; j++ &#123;</span><br><span class="line">		tmpArr[k] = arr[j]</span><br><span class="line">		k++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">copy</span>(arr[start:end+<span class="number">1</span>], tmpArr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="6-快速排序"><a class="markdownIt-Anchor" href="#6-快速排序"></a> 6 快速排序</h1>
+<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// QuickSort is quicksort methods for golang</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">QuickSort</span><span class="params">(arr []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	separateSort(arr, <span class="number">0</span>, <span class="built_in">len</span>(arr)<span class="number">-1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">separateSort</span><span class="params">(arr []<span class="keyword">int</span>, start, end <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> start &gt;= end &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	i := partition(arr, start, end)</span><br><span class="line">	separateSort(arr, start, i<span class="number">-1</span>)</span><br><span class="line">	separateSort(arr, i+<span class="number">1</span>, end)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">partition</span><span class="params">(arr []<span class="keyword">int</span>, start, end <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="comment">// 选取最后一位当对比数字</span></span><br><span class="line">	pivot := arr[end]</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> i = start</span><br><span class="line">	<span class="keyword">for</span> j := start; j &lt; end; j++ &#123;</span><br><span class="line">		<span class="keyword">if</span> arr[j] &lt; pivot &#123;</span><br><span class="line">			<span class="keyword">if</span> !(i == j) &#123;</span><br><span class="line">				<span class="comment">// 交换位置</span></span><br><span class="line">				arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">			&#125;</span><br><span class="line">			i++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	arr[i], arr[end] = arr[end], arr[i]</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="桶排序"><a class="markdownIt-Anchor" href="#桶排序"></a> 桶排序</h1>
+<h4 id="代码-3"><a class="markdownIt-Anchor" href="#代码-3"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 获取待排序数组中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMax</span><span class="params">(a []<span class="keyword">int</span>)</span><span class="title">int</span></span>&#123;</span><br><span class="line">	max := a[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>; i&lt;<span class="built_in">len</span>(a); i++&#123;</span><br><span class="line">		<span class="keyword">if</span> a[i] &gt; max&#123;</span><br><span class="line">			max = a[i]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> max</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BucketSort</span><span class="params">(a []<span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">	num := <span class="built_in">len</span>(a)</span><br><span class="line">	<span class="keyword">if</span> num &lt;= <span class="number">1</span>&#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	max := getMax(a)</span><br><span class="line">	buckets := <span class="built_in">make</span>([][]<span class="keyword">int</span>, num)  <span class="comment">// 二维切片</span></span><br><span class="line"></span><br><span class="line">	index :=<span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt; num; i++&#123;</span><br><span class="line">		index = a[i]*(num <span class="number">-1</span>) / max  <span class="comment">// 桶序号</span></span><br><span class="line">		buckets[index] = <span class="built_in">append</span>(buckets[index],a[i]) <span class="comment">// 加入对应的桶中</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tmpPos := <span class="number">0</span>  <span class="comment">// 标记数组位置</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; num; i++ &#123;</span><br><span class="line">		bucketLen := <span class="built_in">len</span>(buckets[i])</span><br><span class="line">		<span class="keyword">if</span> bucketLen &gt; <span class="number">0</span>&#123;</span><br><span class="line">			Sort.QuickSort(buckets[i])  <span class="comment">// 桶内做快速排序</span></span><br><span class="line">			<span class="built_in">copy</span>(a[tmpPos:], buckets[i])</span><br><span class="line">			tmpPos += bucketLen</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 桶排序简单实现</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BucketSortSimple</span><span class="params">(source []<span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(source)&lt;=<span class="number">1</span>&#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	array := <span class="built_in">make</span>([]<span class="keyword">int</span>, getMax(source)+<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;<span class="built_in">len</span>(source); i++&#123;</span><br><span class="line">		array[source[i]] ++</span><br><span class="line">	&#125;</span><br><span class="line">    fmt.Println(array)</span><br><span class="line">	c := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">0</span>)</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;<span class="built_in">len</span>(array); i++&#123;</span><br><span class="line">		<span class="keyword">for</span> array[i] != <span class="number">0</span> &#123;</span><br><span class="line">            c = <span class="built_in">append</span>(c, i)</span><br><span class="line">			array[i] --</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">copy</span>(source,c)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
   </div>
 
   
@@ -1232,13 +1185,13 @@ Kafka也提供了一个消费消息的命令行工具，将存储的信息输出
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
