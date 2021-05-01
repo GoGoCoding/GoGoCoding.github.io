@@ -262,4 +262,219 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ecies.utils <span class="keyword">import</span> generate_eth_key</span><br><span class="line"><span class="keyword">from</span> ecies <span class="keyword">import</span> encrypt, decrypt</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">privKey = generate_eth_key()</span><br><span class="line">privKeyHex = privKey.to_hex()</span><br><span class="line">pubKeyHex = privKey.public_key.to_hex()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Encryption public key:&quot;</span>, pubKeyHex)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Decryption private key:&quot;</span>, privKeyHex)</span><br><span class="line"></span><br><span class="line">plaintext = <span class="string">b&#x27;Some plaintext for encryption&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Plaintext:&quot;</span>, plaintext)</span><br><span class="line"></span><br><span class="line">encrypted = encrypt(pubKeyHex, plaintext)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Encrypted:&quot;</span>, binascii.hexlify(encrypted))</span><br><span class="line"></span><br><span class="line">decrypted = decrypt(privKeyHex, encrypted)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Decrypted:&quot;</span>, decrypted)</span><br></pre></td></tr></table></figure>
 <p>上面代码的输出如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Encryption public key: 0x0dc8e06c055b45ecf110258ed5c0261ce2019b1bd0f8f226dcd010dade448b8f304a0915c68cdf7ddded8e4021d28fb92e27d08df695f48a0d2c41ddee750fc7</span><br><span class="line">Decryption private key: 0x487fd8b53c471e3c38484a0fbe4751ace67a9ed28e60ea6b0b44c445b881f99d</span><br><span class="line">Plaintext: b&#39;Some plaintext for encryption&#39;</span><br><span class="line">Encrypted: b&#39;045699078bbd101e270572d0d68e87a8f7b6cc377ebeeffb60d2fcac5dc7bdd86a26d7f79d13b92e923a0e2cdbe418a7856b27157ef150d5c72f4f8f312467d13221ebe7049b7ed2f0ed253bce13117129a7b01bb881b8dfbf004ff11f3ebed4c732744bc49ea03230c2d1b2ec80774e79c075431d2019464d3de97ceb96&#39;</span><br><span class="line">Decrypted: b&#39;Some plaintext for encryption&#39;</span><br></pre></td></tr></table></figure>
-<p>​注意，以上加密的消息包含4个值：{cipherPubKey，AES-nonce，authTag，AES-ciphertext}，它们以二进制形式打包并且不能从上述输出中
+<p>​注意，以上加密的消息包含4个值：{cipherPubKey，AES-nonce，authTag，AES-ciphertext}，它们以二进制形式打包并且不能从上述输出中直接看到。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/13.%20ECC-Based%20Encryption%20-%20Decryption/" rel="prev" title="13. ECC-Based Encryption / Decryption">
+      <i class="fa fa-chevron-left"></i> 13. ECC-Based Encryption / Decryption
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/15.%20Digital%20Signatures,%20ECDSA%20and%20EdDSA/" rel="next" title="15. Digital Signatures, ECDSA and EdDSA">
+      15. Digital Signatures, ECDSA and EdDSA <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#141-ecies%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E9%9B%86%E6%88%90%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88-%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text"> 14.1 ECIES（椭圆曲线集成加密方案）-示例</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

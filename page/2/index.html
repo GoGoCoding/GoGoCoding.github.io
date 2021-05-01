@@ -241,7 +241,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/09/08/Interview/MySQL/">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/09/08/Interview/MQ/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -255,7 +255,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/09/08/Interview/MySQL/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2020/09/08/Interview/MQ/" class="post-title-link" itemprop="url">未命名</a>
         </h1>
 
         <div class="post-meta">
@@ -1225,3 +1225,415 @@ p—&gt;next = p—&gt;next—&gt;next; 表示p节点的后继指针存储了p�
 <h3 id="331-什么是哨兵"><a class="markdownIt-Anchor" href="#331-什么是哨兵"></a> 3.3.1 什么是“哨兵”？</h3>
 <p>链表中的“哨兵”节点是解决边界问题的，不参与业务逻辑。如果我们引入“哨兵”节点，则不管链表是否为空，head指针都会指向这个“哨兵”节点。我们把这种有“哨兵”节点的链表称为带头链表，相反，没有“哨兵”节点的链表就称为不带头链表。</p>
 <h3 id="332-未引入哨兵的情况"><a class="markdownIt-Anchor" href="#332-未引入哨兵的情况"></a> 3.3.2 未引入“哨兵”的情况</h3>
+<p>如果在p节点后插入一个节点，只需2行代码即可搞定：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">new_node—&gt;next = p—&gt;next;</span><br><span class="line">p—&gt;next = new_node;</span><br></pre></td></tr></table></figure>
+<p>但，若向空链表中插入一个节点，则代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(head == null)&#123;</span><br><span class="line">    head = new_node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要删除节点p的后继节点，只需1行代码即可搞定：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p—&gt;next = p—&gt;next—&gt;next;</span><br></pre></td></tr></table></figure>
+<p>但，若是删除链表的最后一个节点（链表中只剩下这个节点），则代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(head—&gt;next == null)&#123;</span><br><span class="line">head = null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面的情况可以看出，针对链表的插入、删除操作，需要对插入第一个节点和删除最后一个节点的情况进行特殊处理。这样代码就会显得很繁琐，所以引入“哨兵”节点来解决这个问题。</p>
+<h3 id="333-引入哨兵的情况"><a class="markdownIt-Anchor" href="#333-引入哨兵的情况"></a> 3.3.3 引入“哨兵”的情况</h3>
+<p>“哨兵”节点不存储数据，无论链表是否为空，head指针都会指向它，作为链表的头结点始终存在。这样，插入第一个节点和插入其他节点，删除最后一个节点和删除其他节点都可以统一为相同的代码实现逻辑了。</p>
+<h3 id="334-哨兵还有哪些应用场景"><a class="markdownIt-Anchor" href="#334-哨兵还有哪些应用场景"></a> 3.3.4 “哨兵”还有哪些应用场景？</h3>
+<p>但总结起来，哨兵最大的作用就是简化边界条件的处理。</p>
+<h2 id="34-重点留意边界条件处理"><a class="markdownIt-Anchor" href="#34-重点留意边界条件处理"></a> 3.4 重点留意边界条件处理</h2>
+<p>经常用来检查链表是否正确的边界4个边界条件：<br />
+1.如果链表为空时，代码是否能正常工作？<br />
+2.如果链表只包含一个节点时，代码是否能正常工作？<br />
+3.如果链表只包含两个节点时，代码是否能正常工作？<br />
+4.代码逻辑在处理头尾节点时是否能正常工作？</p>
+<h2 id="35-举例画图辅助思考"><a class="markdownIt-Anchor" href="#35-举例画图辅助思考"></a> 3.5 举例画图，辅助思考</h2>
+<p>核心思想：释放脑容量，留更多的给逻辑思考，这样就会感觉到思路清晰很多。</p>
+<h2 id="36-多写多练没有捷径"><a class="markdownIt-Anchor" href="#36-多写多练没有捷径"></a> 3.6 多写多练，没有捷径</h2>
+<p>0.请判断一个链表是否为回文链表 :<code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-linked-list">234</a></p>
+<p>5个常见的链表操作：<br />
+1.单链表反转 : <code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206</a><br />
+2.链表中环的检测 :<code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/">141</a><br />
+3.两个有序链表合并:<code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21</a><br />
+4.删除链表倒数第n个节点:<code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">19</a><br />
+5.求链表的中间节点:<code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/middle-of-the-linked-list/">876</a></p>
+<h1 id="4-练习题"><a class="markdownIt-Anchor" href="#4-练习题"></a> 4 练习题</h1>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ListNode <span class="keyword">struct</span> &#123;</span><br><span class="line">    Val  <span class="keyword">int</span></span><br><span class="line">    Next *ListNode</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="0-请判断一个链表是否为回文链表"><a class="markdownIt-Anchor" href="#0-请判断一个链表是否为回文链表"></a> 0. 请判断一个链表是否为回文链表。</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-linked-list">234</a></p>
+<h3 id="思路一"><a class="markdownIt-Anchor" href="#思路一"></a> 思路一</h3>
+<p>使用快慢两个指针找到链表中点，慢指针每次前进一步，快指针每次前进两步。在慢指针前进的过程中，同时修改其 next 指针，使得链表前半部分反序。最后比较中点两侧的链表是否相等。</p>
+<ol>
+<li>首先是利用快慢指针找到链表的中点, 其思路是:<br />
+快指针与慢指针均从头出发,但快指针的速度是慢指针的两倍, 故当快指针到达链表的尾部时, 慢指针的位置就是终点;</li>
+<li>由于链表的节点数可能为偶数,对于偶数的情形, 快指针所在的终点其实并非是真的在最后一个节点上, 而是指向倒数第二个,故此时慢指针所指向的其实是在前半段链表中, 所以对于这种情形,需要调整下慢指针的位置,将其移后一位;</li>
+<li>以慢指针作为起点,反转后半段链表, 并用一个新指针指向反转后的链表头;</li>
+<li>前后两段链表进行逐个节点的比较, 循环终止条件是前半段链表的指针不等于慢指针, 此时慢指针充当中间界碑;</li>
+<li>链表恢复,其实就是将后半段,再反转回来. (算法做题层面不用实现)</li>
+</ol>
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isPalindrome</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">	<span class="comment">// 如果head为空，返回false</span></span><br><span class="line">	<span class="keyword">if</span> head == <span class="literal">nil</span> || head.Next == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//定义快慢两个指针</span></span><br><span class="line">	slow, fast := head, head</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 找中点</span></span><br><span class="line">	<span class="keyword">for</span> fast != <span class="literal">nil</span> &amp;&amp; fast.Next != <span class="literal">nil</span> &#123;</span><br><span class="line">		slow = slow.Next</span><br><span class="line">		fast = fast.Next.Next</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//奇数链表取下一个节点</span></span><br><span class="line">	<span class="keyword">if</span> fast != <span class="literal">nil</span> &#123;</span><br><span class="line">		slow = slow.Next</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//反转后半段</span></span><br><span class="line">	<span class="keyword">var</span> newHead *ListNode</span><br><span class="line">	<span class="keyword">for</span> slow != <span class="literal">nil</span> &#123;</span><br><span class="line">		tem := slow.Next</span><br><span class="line">		slow.Next = newHead</span><br><span class="line">		newHead = slow</span><br><span class="line"></span><br><span class="line">		slow = tem</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//反转后的值和前半段比较</span></span><br><span class="line">	<span class="keyword">for</span> newHead != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> newHead.Val != head.Val &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">		newHead = newHead.Next</span><br><span class="line">		head = head.Next</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="1单链表反转"><a class="markdownIt-Anchor" href="#1单链表反转"></a> 1.单链表反转</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206</a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> newHead *ListNode</span><br><span class="line">    <span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</span><br><span class="line">        tem := head.Next</span><br><span class="line">        head.Next = newHead</span><br><span class="line">        newHead = head</span><br><span class="line">        head =tem</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newHead</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2链表中环的检测"><a class="markdownIt-Anchor" href="#2链表中环的检测"></a> 2.链表中环的检测</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/">141</a></p>
+<h3 id="思路一暴力破解"><a class="markdownIt-Anchor" href="#思路一暴力破解"></a> 思路一：暴力破解</h3>
+<ol>
+<li>设置头部哨兵</li>
+<li>从头到尾遍历链表 如果可以遍历完，即 head.Next == nil, 说明链表中不存在环</li>
+<li>每次拿到一个节点p， 从头遍历直到p, 查找是否有p.next 指向过去的某个节点</li>
+</ol>
+<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasCycle</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> head ==<span class="literal">nil</span> || head.Next == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//哨兵</span></span><br><span class="line">    guard := head</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> head.Next != <span class="literal">nil</span>  &#123;</span><br><span class="line">        <span class="keyword">if</span> head == head.Next &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">        head = head.Next</span><br><span class="line">        tem := guard</span><br><span class="line">        <span class="keyword">for</span> tem != head &#123;</span><br><span class="line">            <span class="keyword">if</span> tem == head.Next &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">            tem = tem.Next</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路二利用map"><a class="markdownIt-Anchor" href="#思路二利用map"></a> 思路二：利用Map</h3>
+<p>通过hash 表来判断链表是否成环</p>
+<h4 id="代码-3"><a class="markdownIt-Anchor" href="#代码-3"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasCycle</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> head ==<span class="literal">nil</span> || head.Next == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    collection := <span class="built_in">make</span>(<span class="keyword">map</span>[*ListNode]<span class="keyword">int</span>)</span><br><span class="line">    <span class="keyword">for</span> head.Next != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> _, exist := collection[head]; exist &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            collection[head] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        head = head.Next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路三-标准题解"><a class="markdownIt-Anchor" href="#思路三-标准题解"></a> 思路三： 标准题解</h3>
+<p>通过具有不同速度的快慢两个指针遍历链表，空间复杂度可以降低至O(1)；慢指针每次移动一步， 快指针每次移动两部，如果两个指针相遇说明有环；<br />
+情形类似于两个不同速度的人在操场跑步，跑的快的会追上跑的慢的</p>
+<h4 id="代码-4"><a class="markdownIt-Anchor" href="#代码-4"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasCycle</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> head ==<span class="literal">nil</span> || head.Next == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">   slow, fast := head, head</span><br><span class="line">   <span class="keyword">for</span> fast != <span class="literal">nil</span> &amp;&amp; fast.Next != <span class="literal">nil</span> &#123;</span><br><span class="line">       slow = slow.Next</span><br><span class="line">       fast = fast.Next.Next</span><br><span class="line">       <span class="keyword">if</span> fast == slow &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3两个有序链表合并"><a class="markdownIt-Anchor" href="#3两个有序链表合并"></a> 3.两个有序链表合并</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21</a></p>
+<h3 id="思路一-2"><a class="markdownIt-Anchor" href="#思路一-2"></a> 思路一：</h3>
+<h4 id="代码-5"><a class="markdownIt-Anchor" href="#代码-5"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">unc mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode &#123;</span><br><span class="line"></span><br><span class="line">    p1, p2 := l1, l2</span><br><span class="line"></span><br><span class="line">    pre :=  &amp;ListNode&#123;&#125;</span><br><span class="line">    result := pre</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> p1 != <span class="literal">nil</span> &amp;&amp; p2 != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> p1.Val &lt;= p2.Val &#123;</span><br><span class="line">            pre.Next = p1</span><br><span class="line">            p1 = p1.Next</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            pre.Next = p2</span><br><span class="line">            p2 = p2.Next</span><br><span class="line">        &#125;</span><br><span class="line">        pre = pre.Next</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> p1 == <span class="literal">nil</span> &#123;</span><br><span class="line">        pre.Next = p2</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        pre.Next = p1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result.Next</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4删除链表倒数第n个节点"><a class="markdownIt-Anchor" href="#4删除链表倒数第n个节点"></a> 4.删除链表倒数第n个节点</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">19</a></p>
+<h3 id="思路一-3"><a class="markdownIt-Anchor" href="#思路一-3"></a> 思路一</h3>
+<ol>
+<li>首先我们定义好哨兵节点result，指向哨兵节点的目标元素指针cur，以及目标指针cur的前一个指针pre，此时pre指向nil。</li>
+<li>接下来我们开始遍历整个链表。</li>
+<li>当head移动到距离目标元素cur的距离为N-1时，同时开始移动cur。</li>
+<li>当链表遍历完之后，此时head指向nil，这时的cur就是我们要找的待删除的目标元素。</li>
+<li>最后我们通过pre.Next = pre.Next.Next完成删除操作，就完成了整个解题过程。</li>
+</ol>
+<h4 id="代码-6"><a class="markdownIt-Anchor" href="#代码-6"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeNthFromEnd</span><span class="params">(head *ListNode, n <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</span><br><span class="line">    result := &amp;ListNode&#123;&#125;</span><br><span class="line">    result.Next = head</span><br><span class="line">    <span class="keyword">var</span> pre *ListNode</span><br><span class="line">    cur := result</span><br><span class="line">    i := <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> i &gt;= n &#123;</span><br><span class="line">            pre = cur</span><br><span class="line">            cur = cur.Next</span><br><span class="line">        &#125;</span><br><span class="line">        head = head.Next</span><br><span class="line">        i++</span><br><span class="line">    &#125;</span><br><span class="line">    pre.Next = pre.Next.Next</span><br><span class="line">    <span class="keyword">return</span> result.Next</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5求链表的中间节点"><a class="markdownIt-Anchor" href="#5求链表的中间节点"></a> 5.求链表的中间节点</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/middle-of-the-linked-list/">876</a></p>
+<h3 id="思路一-4"><a class="markdownIt-Anchor" href="#思路一-4"></a> 思路一</h3>
+<p>快慢两个指针，慢的每次走一步，快的每次走两步，快的走到链尾的时候，慢指针正好走到中间</p>
+<h4 id="代码-7"><a class="markdownIt-Anchor" href="#代码-7"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> head == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> head.Next == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">slow, fast := head, head</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> fast != <span class="literal">nil</span>  &amp;&amp; fast.Next != <span class="literal">nil</span> &#123;</span><br><span class="line">    slow = slow.Next</span><br><span class="line">    fast = fast.Next.Next</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/08/01/Data%20Structure%20and%20Algorithm/%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/01/Data%20Structure%20and%20Algorithm/%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">数组</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-01 18:46:06" itemprop="dateCreated datePublished" datetime="2020-08-01T18:46:06+08:00">2020-08-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>数组看起来简单基础，但是很多人没有理解这个数据结构的精髓。带着为什么数组要从0开始编号，而不是从1开始的问题，进入主题。</p>
+<h1 id="1-数组如何实现随机访问"><a class="markdownIt-Anchor" href="#1-数组如何实现随机访问"></a> 1. 数组如何实现随机访问</h1>
+<ol>
+<li>
+<p>数组是一种线性数据结构，用连续的存储空间存储相同类型数据<br />
+I. 线性表：数组、链表、队列、栈 非线性表：树 图<br />
+II. 连续的内存空间、相同的数据，所以数组可以随机访问，但对数组进行删除插入，为了保证数组的连续性，就要做大量的数据搬移工作</p>
+</li>
+<li>
+<p>数组如何实现下标随机访问。<br />
+<code>a[k]_address = base_address + k * type_size</code></p>
+</li>
+<li>
+<p>纠正数组和链表的错误认识。<br />
+数组的查找操作时间复杂度并不是O(1)。即便是排好的数组，用二分查找，时间复杂度也是O（logn）。<br />
+正确表述：数组支持随机访问，根据下标随机访问的时间复杂度为O（1）</p>
+</li>
+</ol>
+<h1 id="2-低效的插入和删除"><a class="markdownIt-Anchor" href="#2-低效的插入和删除"></a> 2. 低效的插入和删除</h1>
+<ol>
+<li>插入：从最好O(1) 最坏O(n) 平均O(n)</li>
+<li>插入：数组若无序，插入新的元素时，可以将第K个位置元素移动到数组末尾，把心的元素，插入到第k个位置，此处复杂度为O(1)。作者举例说明</li>
+<li>删除：从最好O(1) 最坏O(n) 平均O(n)</li>
+<li>多次删除集中在一起，提高删除效率<br />
+记录下已经被删除的数据，每次的删除操作并不是搬移数据，只是记录数据已经被删除，当数组没有更多的存储空间时，再触发一次真正的删除操作。即JVM标记清除垃圾回收算法。</li>
+</ol>
+<h1 id="3-警惕数组的访问越界问题"><a class="markdownIt-Anchor" href="#3-警惕数组的访问越界问题"></a> 3. 警惕数组的访问越界问题</h1>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> arr[<span class="number">3</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(; i&lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line">        arr[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用C语言循环越界访问的例子说明访问越界的bug。此例在《C陷阱与缺陷》出现过，很惭愧，看过但是现在也只有一丢丢印象。翻了下书，替作者加上一句话：如果用来编译这段程序的编译器按照内存地址递减的方式给变量分配内存，那么内存中的i将会被置为0，则为死循环永远出不去。</p>
+<p><code>注</code>: gcc有一个编译选项（-fno-stack-protector）用于关闭堆栈保护功能。默认情况下启动了堆栈保护，不管i声明在前还是在后，i都会在数组之后压栈，只会循环4次；如果关闭堆栈保护功能，则会出现死循环。<a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/linux/l-cn-gccstack/index.html">请参考</a></p>
+<h1 id="4-容器能否完全替代数组"><a class="markdownIt-Anchor" href="#4-容器能否完全替代数组"></a> 4. 容器能否完全替代数组</h1>
+<p>相比于数字，java中的ArrayList封装了数组的很多操作，并支持动态扩容。一旦超过存储容量，扩容时比较耗内存，因为涉及到内存申请和数据搬移。<br />
+数组适合的场景：</p>
+<ol>
+<li>Java ArrayList 的使用涉及装箱拆箱，有一定的性能损耗，如果特别管柱性能，可以考虑数组</li>
+<li>若数据大小事先已知，并且涉及的数据操作非常简单，可以使用数组</li>
+<li>表示多维数组时，数组往往更加直观。</li>
+<li>业务开发容器即可，底层开发，如网络框架，性能优化。选择数组。</li>
+</ol>
+<h1 id="5-解答开篇问题"><a class="markdownIt-Anchor" href="#5-解答开篇问题"></a> 5. 解答开篇问题</h1>
+<ol>
+<li>从偏移角度理解a[0] 0为偏移量，如果从1计数，会多出K-1。增加cpu负担。为什么循环要写成for(int i = 0;i&lt;3;i++) 而不是for(int i = 0 ;i&lt;=2;i++)。第一个直接就可以算出3-0 = 3 有三个数据，而后者 2-0+1个数据，多出1个加法运算，很恼火。</li>
+<li>也有一定的历史原因</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

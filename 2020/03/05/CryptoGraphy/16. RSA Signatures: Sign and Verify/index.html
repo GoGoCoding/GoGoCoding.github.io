@@ -256,4 +256,260 @@
 <p>​<strong>使用私钥指数d签署消息msg：</strong></p>
 <ul>
 <li>计算消息哈希：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>=</mo><mi>h</mi><mi>a</mi><mi>s</mi><mi>h</mi><mo stretchy="false">(</mo><mi>m</mi><mi>s</mi><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h = hash ( msg )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mclose">)</span></span></span></span></li>
-<li>加密h来计算签名：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mo>=</mo><msup><mi>h</mi><mi>d</mi></msup><mspace width="1em"/><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s = h^d \quad (mod \quad n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span
+<li>加密h来计算签名：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mo>=</mo><msup><mi>h</mi><mi>d</mi></msup><mspace width="1em"/><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s = h^d \quad (mod \quad n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<p>​哈希h应当在[0 … n）范围内。 获得的签名s是[0 … n）范围内的整数。</p>
+<h2 id="163-rsa验证签名"><a class="markdownIt-Anchor" href="#163-rsa验证签名"></a> 16.3 RSA验证签名</h2>
+<p>​<strong>使用公开密钥e验证消息msg的签名s：</strong></p>
+<ul>
+<li>计算消息哈希：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>=</mo><mi>h</mi><mi>a</mi><mi>s</mi><mi>h</mi><mo stretchy="false">(</mo><mi>m</mi><mi>s</mi><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h = hash ( msg )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mclose">)</span></span></span></span></li>
+<li>解密签名：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>h</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><msup><mi>s</mi><mi>e</mi></msup><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h&#x27; = s^e(mod \quad n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></li>
+<li>比较h和h’以查找签名是否有效 s<br />
+​<br />
+​如果签名正确，则以下内容为真:<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>h</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><msup><mi>s</mi><mi>e</mi></msup><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msup><mi>h</mi><mi>d</mi></msup><msup><mo stretchy="false">)</mo><mi>e</mi></msup><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mspace width="1em"/><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">h&#x27;=s^e(mod \quad n) = (h^d)^e(mod \quad n) = h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span></span></span></span></li>
+</ul>
+<h2 id="164-rsa签名验证-示例"><a class="markdownIt-Anchor" href="#164-rsa签名验证-示例"></a> 16.4 RSA：签名/验证-示例</h2>
+<p>​生成密钥后，我们将计算RSA数字签名，并通过简单的模幂运算（通过加密和解密消息哈希）来验证签名。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"></span><br><span class="line">keyPair = RSA.generate(bits=<span class="number">1024</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Public key:  (n=<span class="subst">&#123;<span class="built_in">hex</span>(keyPair.n)&#125;</span>, e=<span class="subst">&#123;<span class="built_in">hex</span>(keyPair.e)&#125;</span>)&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Private key: (n=<span class="subst">&#123;<span class="built_in">hex</span>(keyPair.n)&#125;</span>, d=<span class="subst">&#123;<span class="built_in">hex</span>(keyPair.d)&#125;</span>)&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>上面代码的输出可能看起来像这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Public key:  (n&#x3D;0xf51518d30754430e4b89f828fd4f1a8e8f44dd10e0635c0e93b7c01802729a37e1dfc8848d7fbbdf2599830268d544c1ecab4f2b19b6164a4ac29c8b1a4ec6930047397d0bb93aa77ed0c2f5d5c90ff3d458755b2367b46cc5c0d83f8f8673ec85b0575b9d1cea2c35a0b881a6d007d95c1cc94892bec61c2e9ed1599c1e605f, e&#x3D;0x10001)</span><br><span class="line">Private key: (n&#x3D;0xf51518d30754430e4b89f828fd4f1a8e8f44dd10e0635c0e93b7c01802729a37e1dfc8848d7fbbdf2599830268d544c1ecab4f2b19b6164a4ac29c8b1a4ec6930047397d0bb93aa77ed0c2f5d5c90ff3d458755b2367b46cc5c0d83f8f8673ec85b0575b9d1cea2c35a0b881a6d007d95c1cc94892bec61c2e9ed1599c1e605f, d&#x3D;0x165ecc9b4689fc6ceb9c3658977686f8083fc2e5ed75644bb8540766a9a2884d1d82edac9bb5d312353e63e4ee68b913f264589f98833459a7a547e0b2900a33e71023c4dedb42875b2dfdf412881199a990dfb77c097ce71b9c8b8811480f1637b85900137231ab47a7e0cbecc0b011c2c341b6de2b2e9c24d455ccd1fc0c21)</span><br></pre></td></tr></table></figure>
+<p>​现在，让我们使用RSA私钥{n，d}签名消息。 计算其哈希值并以私钥加密哈希值。 我们将使用SHA-512哈希。 它将适合当前的RSA密钥大小（1024）。 在Python中，我们具有内置的幂函数pow（x，y，n）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># RSA sign the message</span></span><br><span class="line">msg = <span class="string">b&#x27;A message for signing&#x27;</span></span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha512</span><br><span class="line"><span class="built_in">hash</span> = <span class="built_in">int</span>.from_bytes(sha512(msg).digest(), byteorder=<span class="string">&#x27;big&#x27;</span>)</span><br><span class="line">signature = <span class="built_in">pow</span>(<span class="built_in">hash</span>, keyPair.d, keyPair.n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Signature:&quot;</span>, <span class="built_in">hex</span>(signature))</span><br></pre></td></tr></table></figure>
+<p>所获得的数字签名是RSA密钥长度[0 … n）范围内的整数。 对于上面的私钥和上面的消息，获得的签名如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Signature: 0x650c9f2e6701e3fe73d3054904a9a4bbdb96733f1c4c743ef573ad6ac14c5a3bf8a4731f6e6276faea5247303677fb8dbdf24ff78e53c25052cdca87eecfee85476bcb8a05cb9a1efef7cb87dd68223e117ce800ac46177172544757a487be32f5ab8fe0879fa8add78be465ea8f8d5acf977e9f1ae36d4d47816ea6ed41372b</span><br></pre></td></tr></table></figure>
+<p>​签名是1024位整数（128个字节，256个十六进制数字）。 该签名大小对应于RSA密钥大小。</p>
+<p>​现在，让我们验证签名，方法是使用公钥解密签名，然后将获得的哈希值从签名与原始签名消息的哈希值进行比较：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># RSA verify signature</span></span><br><span class="line">msg = <span class="string">b&#x27;A message for signing&#x27;</span></span><br><span class="line"><span class="built_in">hash</span> = <span class="built_in">int</span>.from_bytes(sha512(msg).digest(), byteorder=<span class="string">&#x27;big&#x27;</span>)</span><br><span class="line">hashFromSignature = <span class="built_in">pow</span>(signature, keyPair.e, keyPair.n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Signature valid:&quot;</span>, <span class="built_in">hash</span> == hashFromSignature)</span><br></pre></td></tr></table></figure>
+<p>​输出将显示True，因为签名将是有效的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Signature valid: True</span><br></pre></td></tr></table></figure>
+<p>现在，让我们尝试篡改消息并再次验证签名：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># RSA verify signature (tampered msg)</span></span><br><span class="line">msg = <span class="string">b&#x27;A message for signing (tampered)&#x27;</span></span><br><span class="line"><span class="built_in">hash</span> = <span class="built_in">int</span>.from_bytes(sha512(msg).digest(), byteorder=<span class="string">&#x27;big&#x27;</span>)</span><br><span class="line">hashFromSignature = <span class="built_in">pow</span>(signature, keyPair.e, keyPair.n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Signature valid (tampered):&quot;</span>, <span class="built_in">hash</span> == hashFromSignature)</span><br></pre></td></tr></table></figure>
+<p>​现在，签名将无效，以上代码的输出将是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Signature valid (tampered): False</span><br></pre></td></tr></table></figure>
+<h2 id="165-rsa签名标准pkcs1"><a class="markdownIt-Anchor" href="#165-rsa签名标准pkcs1"></a> 16.5 RSA签名标准PKCS＃1</h2>
+<p>​上面演示了RSA签名的简单用法，但是该行业通常遵循加密标准。 对于RSA签名，最常用的标准是“ PKCS＃1”，它具有多个版本（1.5、2.0、2.1、2.2），这是<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc8017#page-15"><strong>RFC 8017</strong></a>中最新描述的版本。PKCS＃1标准定义了RSA签名算法（RSASP1）和RSA签名验证算法（RSAVP1），与上一节中实现的几乎相同。</p>
+<p>​我们将基于pycryptodome库使用以下代码，该库根据PKCS#1 v1.5规范实现RSA签名/验证：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Crypto.Signature.pkcs1_15 <span class="keyword">import</span> PKCS115_SigScheme</span><br><span class="line"><span class="keyword">from</span> Crypto.Hash <span class="keyword">import</span> SHA256</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate 1024-bit RSA key pair (private + public key)</span></span><br><span class="line">keyPair = RSA.generate(bits=<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sign the message using the PKCS#1 v1.5 signature scheme (RSASP1)</span></span><br><span class="line">msg = <span class="string">b&#x27;A message for signing&#x27;</span></span><br><span class="line"><span class="built_in">hash</span> = SHA256.new(msg)</span><br><span class="line">signer = PKCS115_SigScheme(keyPair)</span><br><span class="line">signature = signer.sign(<span class="built_in">hash</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Signature:&quot;</span>, binascii.hexlify(signature))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Verify valid PKCS#1 v1.5 signature (RSAVP1)</span></span><br><span class="line">msg = <span class="string">b&#x27;A message for signing&#x27;</span></span><br><span class="line"><span class="built_in">hash</span> = SHA256.new(msg)</span><br><span class="line">signer = PKCS115_SigScheme(keyPair)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    signer.verify(<span class="built_in">hash</span>, signature)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Signature is valid.&quot;</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Signature is invalid.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Verify invalid PKCS#1 v1.5 signature (RSAVP1)</span></span><br><span class="line">msg = <span class="string">b&#x27;A tampered message&#x27;</span></span><br><span class="line"><span class="built_in">hash</span> = SHA256.new(msg)</span><br><span class="line">signer = PKCS115_SigScheme(keyPair)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    signer.verify(<span class="built_in">hash</span>, signature)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Signature is valid.&quot;</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Signature is invalid.&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>​上面示例的输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Signature: b&#39;243b9ed6561ab3bddead98508af0ac34b4567b1358011ace24db71ce2bc7f1a2e942b6231aa84cb07bae85b668d7c7cd0bc40cdda6f8162de57f0ee842e589c58f94aa4f96d51355f8aa395d7db950ebb9d375fca3124b6222699a645e93287bc6f5eb5b750fc0b470588f949a887dff75ed42cf01d9642a5d497f609b8cd043&#39;</span><br><span class="line">Signature is valid.</span><br><span class="line">Signature is invalid.</span><br></pre></td></tr></table></figure>
+<p><code>注</code>:在实际应用中，RSA密钥长度至少应为3072位，以提供足够安全的签名。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/15.%20Digital%20Signatures,%20ECDSA%20and%20EdDSA/" rel="prev" title="15. Digital Signatures, ECDSA and EdDSA">
+      <i class="fa fa-chevron-left"></i> 15. Digital Signatures, ECDSA and EdDSA
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/17.%20ECDSA:%20Elliptic%20Curve%20Digital%20Signatures/" rel="next" title="17. ECDSA, Elliptic Curve Digital Signatures">
+      17. ECDSA, Elliptic Curve Digital Signatures <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#161-%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text"> 16.1 密钥生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#162-rsa%E7%AD%BE%E5%90%8D"><span class="nav-number">2.</span> <span class="nav-text"> 16.2 RSA签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#163-rsa%E9%AA%8C%E8%AF%81%E7%AD%BE%E5%90%8D"><span class="nav-number">3.</span> <span class="nav-text"> 16.3 RSA验证签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#164-rsa%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81-%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text"> 16.4 RSA：签名&#x2F;验证-示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#165-rsa%E7%AD%BE%E5%90%8D%E6%A0%87%E5%87%86pkcs1"><span class="nav-number">5.</span> <span class="nav-text"> 16.5 RSA签名标准PKCS＃1</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>

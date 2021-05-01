@@ -288,4 +288,241 @@
 </blockquote>
 <ol>
 <li>为了进行加密，将生成随机对称密钥<code>sk</code>，消息将由<code>sk</code>对称加密，然后使用收件人的公钥对<code>sk</code>进行非对称加密。</li>
-<li>对于解密，首先使用接收者的私钥对<code>sk</code>密钥进行非对称解密，然后后续的密文使用<code>sk</code>�
+<li>对于解密，首先使用接收者的私钥对<code>sk</code>密钥进行非对称解密，然后后续的密文使用<code>sk</code>对称秘钥对密文进行解密。</li>
+</ol>
+<p>以上过程称为 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key_encapsulation"><strong>key encapsulation mechanism (KEM)</strong></a>。</p>
+<p>​公钥加密也可以在相反的情况下工作：通过私钥加密数据，并通过公钥解密数据。 因此，某人可以证明自己是某些私钥的所有者。一些数字签名方案使用此方法。</p>
+<h2 id="63-签名不对称签名验证"><a class="markdownIt-Anchor" href="#63-签名不对称签名验证"></a> 6.3 签名：不对称签名/验证</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Digital_signature"><strong>digital signatures</strong></a>：由私钥签名的消息（数字签名）随后将由相应的公钥验证。</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/signatures.png" alt="signatures -c400" /></p>
+<p>​签名后不能更改已签名的消息。 消息签名证明某些消息（例如区块链交易）是由某些私钥的所有者创建的。 数字签名提供消息身份验证，消息完整性和不可否认性。<br />
+​<br />
+​数字签名在金融行业中广泛用于授权付款。 在操作系统中，操作系统组件和设备驱动程序通常经过数字签名，以避免在操作系统中注入不安全的代码，木马或病毒。在区块链系统中，交易通常由某些区块链地址的所有者签名。</p>
+<h2 id="64-密钥对"><a class="markdownIt-Anchor" href="#64-密钥对"></a> 6.4 密钥对</h2>
+<p>​公钥加密使用一对密钥：<code>公钥</code> + <code>私钥</code>。 这些密钥在数学上是相关的，并且要成对使用。</p>
+<p>在某些公钥密码系统（例如，椭圆曲线密码-ECC）中，可以根据私钥来计算出公钥。 而在其他密码系统（如RSA）中，公钥和私钥是一起生成的，但不能直接相互计算。</p>
+<h3 id="641-私钥"><a class="markdownIt-Anchor" href="#641-私钥"></a> 6.4.1 私钥</h3>
+<p>​消息加密和签名是通过私钥完成的。私钥始终像密码一样由其所有者保密。在服务器基础结构中，私钥通常驻留在加密和受保护的密钥库中。在区块链系统中，私钥通常位于特定的软件或硬件应用程序中，称为“加密钱包”，这些应用安全地存储一组私钥。</p>
+<h3 id="642-公钥"><a class="markdownIt-Anchor" href="#642-公钥"></a> 6.4.2 公钥</h3>
+<p>​消息解密和签名验证由公用密钥完成。 公钥在设计上就是可以被共享的信息（不是秘密）。 从相应的公钥来计算私钥在数学上是不可行的。在许多系统中，公钥被封装在数字证书中，该证书将某些身份（例如人或互联网域名）绑定到公钥上。在区块链系统中，公钥通常作为区块链交易的一部分发布，以帮助识别谁签署了这个交易。在PGP和SSH之类的系统中，公钥是从服务器下载一次的（在手动用户验证之后），并且会被记住以备将来使用。在大多数区块链系统中，区块链地址是从公钥派生的（通过哈希和其他转换），因此，如果您拥有某人的公钥，则假定您也拥有他的区块链地址。</p>
+<p>​某个公钥可以连接到某个人或组织，也可以匿名使用。除非您有其他证明，否则您永远不会知道谁是与某些公钥相对应的私钥的所有者，证明如 数字证书 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Public_key_certificate"><strong>digital certificate</strong></a>。</p>
+<h3 id="643-流行的非对称加密系统"><a class="markdownIt-Anchor" href="#643-流行的非对称加密系统"></a> 6.4.3 流行的非对称加密系统</h3>
+<p>​众所周知的非对称加密系统有：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)"><strong>RSA</strong></a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"><strong>ECC</strong></a> and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ElGamal_encryption"><strong>ElGamal</strong></a>。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">**RSA **</a> ：基于模幂的数学运算（数字乘以模的幂）和一些其他假设以及整数分解问题的计算难度。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"><strong>elliptic-curve cryptography (ECC) public-key cryptosystem</strong></a> ：基于有限域上椭圆曲线的代数结构的数学模型和椭圆曲线离散对数问题（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Rationale"><strong>elliptic curve discrete logarithm problem ，ECDLP</strong></a>）的难度。</p>
+<p><code>注</code>：一般情况下建议使用<code>ECC</code>，<code>ECC</code>使用的密钥，密文和签名比RSA小。 在数学上已证明3072位<code>RSA</code>密钥具有与256位<code>ECC</code>密钥相似的加密强度。 <code>ECC</code>中的密钥效率显著高于<code>RSA</code>。由于上述原因，大多数区块链网络（如比特币和以太坊）都使用基于椭圆曲线的密码学（ECC）来保护交易。注意，<code>RSA</code>和<code>ECC</code>密码系统都不是量子安全的，这意味着，如果某人拥有足够强大的量子计算机，则他将能够在短短几秒钟内从给定的公钥中导出私钥。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/05%20Key%20Exchange%20-%20Key%20Establishment%20Schemes/" rel="prev" title="05 Key Exchange / Key Establishment Schemes">
+      <i class="fa fa-chevron-left"></i> 05 Key Exchange / Key Establishment Schemes
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/07.%20Symmetric%20Key%20Ciphers%20-%20Overview/" rel="next" title="07. Symmetric Key Ciphers - Overview">
+      07. Symmetric Key Ciphers - Overview <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#61-%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86-%E6%A6%82%E5%BF%B5%E5%92%8C%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text"> 6.1 对称加密-概念和算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#611-%E7%A7%98%E9%92%A5"><span class="nav-number">1.1.</span> <span class="nav-text"> 6.1.1 秘钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#612-%E7%8E%B0%E4%BB%A3%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text"> 6.1.2 现代对称加密算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#62-%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81-%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text"> 6.2 公钥密码-概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#63-%E7%AD%BE%E5%90%8D%E4%B8%8D%E5%AF%B9%E7%A7%B0%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81"><span class="nav-number">3.</span> <span class="nav-text"> 6.3 签名：不对称签名&#x2F;验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#64-%E5%AF%86%E9%92%A5%E5%AF%B9"><span class="nav-number">4.</span> <span class="nav-text"> 6.4 密钥对</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#641-%E7%A7%81%E9%92%A5"><span class="nav-number">4.1.</span> <span class="nav-text"> 6.4.1 私钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#642-%E5%85%AC%E9%92%A5"><span class="nav-number">4.2.</span> <span class="nav-text"> 6.4.2 公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#643-%E6%B5%81%E8%A1%8C%E7%9A%84%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.3.</span> <span class="nav-text"> 6.4.3 流行的非对称加密系统</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

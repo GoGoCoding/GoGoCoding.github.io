@@ -369,4 +369,247 @@ p—&gt;next = p—&gt;next—&gt;next; 表示p节点的后继指针存储了p�
 <h3 id="思路二利用map"><a class="markdownIt-Anchor" href="#思路二利用map"></a> 思路二：利用Map</h3>
 <p>通过hash 表来判断链表是否成环</p>
 <h4 id="代码-3"><a class="markdownIt-Anchor" href="#代码-3"></a> 代码</h4>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasCycle</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> head ==<span class="li
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasCycle</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> head ==<span class="literal">nil</span> || head.Next == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    collection := <span class="built_in">make</span>(<span class="keyword">map</span>[*ListNode]<span class="keyword">int</span>)</span><br><span class="line">    <span class="keyword">for</span> head.Next != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> _, exist := collection[head]; exist &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            collection[head] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        head = head.Next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路三-标准题解"><a class="markdownIt-Anchor" href="#思路三-标准题解"></a> 思路三： 标准题解</h3>
+<p>通过具有不同速度的快慢两个指针遍历链表，空间复杂度可以降低至O(1)；慢指针每次移动一步， 快指针每次移动两部，如果两个指针相遇说明有环；<br />
+情形类似于两个不同速度的人在操场跑步，跑的快的会追上跑的慢的</p>
+<h4 id="代码-4"><a class="markdownIt-Anchor" href="#代码-4"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasCycle</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> head ==<span class="literal">nil</span> || head.Next == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">   slow, fast := head, head</span><br><span class="line">   <span class="keyword">for</span> fast != <span class="literal">nil</span> &amp;&amp; fast.Next != <span class="literal">nil</span> &#123;</span><br><span class="line">       slow = slow.Next</span><br><span class="line">       fast = fast.Next.Next</span><br><span class="line">       <span class="keyword">if</span> fast == slow &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3两个有序链表合并"><a class="markdownIt-Anchor" href="#3两个有序链表合并"></a> 3.两个有序链表合并</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21</a></p>
+<h3 id="思路一-2"><a class="markdownIt-Anchor" href="#思路一-2"></a> 思路一：</h3>
+<h4 id="代码-5"><a class="markdownIt-Anchor" href="#代码-5"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">unc mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode &#123;</span><br><span class="line"></span><br><span class="line">    p1, p2 := l1, l2</span><br><span class="line"></span><br><span class="line">    pre :=  &amp;ListNode&#123;&#125;</span><br><span class="line">    result := pre</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> p1 != <span class="literal">nil</span> &amp;&amp; p2 != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> p1.Val &lt;= p2.Val &#123;</span><br><span class="line">            pre.Next = p1</span><br><span class="line">            p1 = p1.Next</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            pre.Next = p2</span><br><span class="line">            p2 = p2.Next</span><br><span class="line">        &#125;</span><br><span class="line">        pre = pre.Next</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> p1 == <span class="literal">nil</span> &#123;</span><br><span class="line">        pre.Next = p2</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        pre.Next = p1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result.Next</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4删除链表倒数第n个节点"><a class="markdownIt-Anchor" href="#4删除链表倒数第n个节点"></a> 4.删除链表倒数第n个节点</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">19</a></p>
+<h3 id="思路一-3"><a class="markdownIt-Anchor" href="#思路一-3"></a> 思路一</h3>
+<ol>
+<li>首先我们定义好哨兵节点result，指向哨兵节点的目标元素指针cur，以及目标指针cur的前一个指针pre，此时pre指向nil。</li>
+<li>接下来我们开始遍历整个链表。</li>
+<li>当head移动到距离目标元素cur的距离为N-1时，同时开始移动cur。</li>
+<li>当链表遍历完之后，此时head指向nil，这时的cur就是我们要找的待删除的目标元素。</li>
+<li>最后我们通过pre.Next = pre.Next.Next完成删除操作，就完成了整个解题过程。</li>
+</ol>
+<h4 id="代码-6"><a class="markdownIt-Anchor" href="#代码-6"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeNthFromEnd</span><span class="params">(head *ListNode, n <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</span><br><span class="line">    result := &amp;ListNode&#123;&#125;</span><br><span class="line">    result.Next = head</span><br><span class="line">    <span class="keyword">var</span> pre *ListNode</span><br><span class="line">    cur := result</span><br><span class="line">    i := <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> i &gt;= n &#123;</span><br><span class="line">            pre = cur</span><br><span class="line">            cur = cur.Next</span><br><span class="line">        &#125;</span><br><span class="line">        head = head.Next</span><br><span class="line">        i++</span><br><span class="line">    &#125;</span><br><span class="line">    pre.Next = pre.Next.Next</span><br><span class="line">    <span class="keyword">return</span> result.Next</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5求链表的中间节点"><a class="markdownIt-Anchor" href="#5求链表的中间节点"></a> 5.求链表的中间节点</h2>
+<p><code>leetcode</code>题号: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/middle-of-the-linked-list/">876</a></p>
+<h3 id="思路一-4"><a class="markdownIt-Anchor" href="#思路一-4"></a> 思路一</h3>
+<p>快慢两个指针，慢的每次走一步，快的每次走两步，快的走到链尾的时候，慢指针正好走到中间</p>
+<h4 id="代码-7"><a class="markdownIt-Anchor" href="#代码-7"></a> 代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> head == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> head.Next == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">slow, fast := head, head</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> fast != <span class="literal">nil</span>  &amp;&amp; fast.Next != <span class="literal">nil</span> &#123;</span><br><span class="line">    slow = slow.Next</span><br><span class="line">    fast = fast.Next.Next</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构和算法</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/01/Data%20Structure%20and%20Algorithm/%E6%95%B0%E7%BB%84/" rel="prev" title="数组">
+      <i class="fa fa-chevron-left"></i> 数组
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/02/Data%20Structure%20and%20Algorithm/%E6%A0%88/" rel="next" title="栈">
+      栈 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%B8%B8%E8%A7%81%E7%9A%84%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text"> 1. 常见的链表结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text"> 1.1  单链表：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text"> 1.2 循环链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text"> 1.3 双向链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E7%A9%BA%E9%97%B4%E6%8D%A2%E6%97%B6%E9%97%B4%E6%97%B6%E9%97%B4%E6%8D%A2%E7%A9%BA%E9%97%B4"><span class="nav-number">2.3.</span> <span class="nav-text"> 1.4 空间换时间，时间换空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%93%BE%E8%A1%A8%E5%92%8C%E6%95%B0%E7%BB%84%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text"> 2. 链表和数组的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#21-%E5%BA%95%E5%B1%82%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text"> 2.1 底层存储结构：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-%E6%80%A7%E8%83%BD"><span class="nav-number">3.2.</span> <span class="nav-text"> 2.2 性能：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%86%99%E5%87%BA%E9%93%BE%E8%A1%A8%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text"> 3. 如何优雅的写出链表代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#31-%E7%90%86%E8%A7%A3%E6%8C%87%E9%92%88%E6%88%96%E5%BC%95%E7%94%A8%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text"> 3.1 理解指针或引用的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-%E8%AD%A6%E6%83%95%E6%8C%87%E9%92%88%E4%B8%A2%E5%A4%B1%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-number">4.2.</span> <span class="nav-text"> 3.2 警惕指针丢失和内存泄漏（单链表）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#321-%E6%8F%92%E5%85%A5%E8%8A%82%E7%82%B9"><span class="nav-number">4.2.1.</span> <span class="nav-text"> 3.2.1 插入节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#322-%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9"><span class="nav-number">4.2.2.</span> <span class="nav-text"> 3.2.2 删除节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-%E5%88%A9%E7%94%A8%E5%93%A8%E5%85%B5%E7%AE%80%E5%8C%96%E5%AE%9E%E7%8E%B0%E9%9A%BE%E5%BA%A6"><span class="nav-number">4.3.</span> <span class="nav-text"> 3.3 利用“哨兵”简化实现难度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#331-%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%A8%E5%85%B5"><span class="nav-number">4.3.1.</span> <span class="nav-text"> 3.3.1 什么是“哨兵”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#332-%E6%9C%AA%E5%BC%95%E5%85%A5%E5%93%A8%E5%85%B5%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">4.3.2.</span> <span class="nav-text"> 3.3.2 未引入“哨兵”的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#333-%E5%BC%95%E5%85%A5%E5%93%A8%E5%85%B5%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">4.3.3.</span> <span class="nav-text"> 3.3.3 引入“哨兵”的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#334-%E5%93%A8%E5%85%B5%E8%BF%98%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">4.3.4.</span> <span class="nav-text"> 3.3.4 “哨兵”还有哪些应用场景？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-%E9%87%8D%E7%82%B9%E7%95%99%E6%84%8F%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-number">4.4.</span> <span class="nav-text"> 3.4 重点留意边界条件处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-%E4%B8%BE%E4%BE%8B%E7%94%BB%E5%9B%BE%E8%BE%85%E5%8A%A9%E6%80%9D%E8%80%83"><span class="nav-number">4.5.</span> <span class="nav-text"> 3.5 举例画图，辅助思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-%E5%A4%9A%E5%86%99%E5%A4%9A%E7%BB%83%E6%B2%A1%E6%9C%89%E6%8D%B7%E5%BE%84"><span class="nav-number">4.6.</span> <span class="nav-text"> 3.6 多写多练，没有捷径</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text"> 4 练习题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E8%AF%B7%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E9%93%BE%E8%A1%A8%E6%98%AF%E5%90%A6%E4%B8%BA%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8"><span class="nav-number">5.1.</span> <span class="nav-text"> 0. 请判断一个链表是否为回文链表。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="nav-number">5.1.1.</span> <span class="nav-text"> 思路一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">5.1.1.1.</span> <span class="nav-text"> 代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC"><span class="nav-number">5.2.</span> <span class="nav-text"> 1.单链表反转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%8E%AF%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-number">5.3.</span> <span class="nav-text"> 2.链表中环的检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%80%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3"><span class="nav-number">5.3.1.</span> <span class="nav-text"> 思路一：暴力破解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">5.3.1.1.</span> <span class="nav-text"> 代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%BA%8C%E5%88%A9%E7%94%A8map"><span class="nav-number">5.3.2.</span> <span class="nav-text"> 思路二：利用Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="nav-number">5.3.2.1.</span> <span class="nav-text"> 代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%89-%E6%A0%87%E5%87%86%E9%A2%98%E8%A7%A3"><span class="nav-number">5.3.3.</span> <span class="nav-text"> 思路三： 标准题解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="nav-number">5.3.3.1.</span> <span class="nav-text"> 代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E5%90%88%E5%B9%B6"><span class="nav-number">5.4.</span> <span class="nav-text"> 3.两个有序链表合并</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%80-2"><span class="nav-number">5.4.1.</span> <span class="nav-text"> 思路一：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-5"><span class="nav-number">5.4.1.1.</span> <span class="nav-text"> 代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="nav-number">5.5.</span> <span class="nav-text"> 4.删除链表倒数第n个节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%80-3"><span class="nav-number">5.5.1.</span> <span class="nav-text"> 思路一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-6"><span class="nav-number">5.5.1.1.</span> <span class="nav-text"> 代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E6%B1%82%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9"><span class="nav-number">5.6.</span> <span class="nav-text"> 5.求链表的中间节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%80-4"><span class="nav-number">5.6.1.</span> <span class="nav-text"> 思路一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-7"><span class="nav-number">5.6.1.1.</span> <span class="nav-text"> 代码</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -266,4 +266,239 @@
 <p>​在上图中，加密的对称密钥称为KEM块（公钥加密的密钥），加密的数据文件称为DEM块（对称加密的数据）。 加密的消息由这两个块组成（封装的密钥+封装的数据）。</p>
 <p>​这是相应的解密过程（使用公钥和对称加密算法解密加密的大文档）：</p>
 <p><img src="http://qiniu.gogocoding.cn/mweb/pkdc.png" alt="pkd -c" /></p>
-<p>采用这种非对称加密方案的有： <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding"><strong>RSA-OAEP</strong></a>, <a target="_blank" rel="noopener" href="https://tools.ietf.o
+<p>采用这种非对称加密方案的有： <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding"><strong>RSA-OAEP</strong></a>, <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5990#appendix-A"><strong>RSA-KEM</strong></a> and <a target="_blank" rel="noopener" href="https://www.w3.org/TR/xmlsec-generic-hybrid/#sec-ecies-kem"><strong>ECIES-KEM</strong></a>。</p>
+<h2 id="93-综合加密方案"><a class="markdownIt-Anchor" href="#93-综合加密方案"></a> 9.3 综合加密方案</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme"><strong>Integrated encryption schemes (IES)</strong></a> 是现代的公共密钥加密方案，它结合了对称加密，非对称加密和密钥生成算法，以提供安全的基于公共密钥的加密（PKE）。在IES方案中，非对称加密算法（例如RSA或ECC）用于加密或封装对称密钥，稍后由对称加密（例如AES或ChaCha20）使用该对称密钥来加密输入消息。 一些EIS方案还提供消息身份验证。 使用EIS方案的有 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme"><strong>DLIES</strong></a> (Discrete Logarithm Integrated Encryption Scheme) and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme"><strong>ECIES</strong></a> (Elliptic Curve Integrated Encryption Scheme)</p>
+<h2 id="94-秘钥封装机制-key-encapsulation-mechanisms-kems"><a class="markdownIt-Anchor" href="#94-秘钥封装机制-key-encapsulation-mechanisms-kems"></a> 9.4 秘钥封装机制（ Key Encapsulation Mechanisms, KEMs）</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key_encapsulation"><strong>key encapsulation mechanisms (KEM)</strong></a> 是用于加密和封装密钥（称为“临时对称密钥”）的非对称加密技术，该密钥用于使用对称加密算法对输入消息进行加密。KEM通过使用收件人的公钥对临时对称加密密钥进行加密，作为加密消息的一部分。 在密码学中，此过程称为<strong>密钥封装</strong>。</p>
+<p>​基于KEM的混合加密方案的输出由<strong>KEM</strong>块（保存封装的加密对称密钥，或用于导出它的某些参数）和DEM块组成，DEM块保存封装的对称加密数据（加密参数 + 密文 + 可选的身份验证码）。</p>
+<p>​密钥封装机制（KEM）在混合加密方案和集成加密方案中使用。其中在公钥加密系统中生成随机元素，并通过Hash从该随机元素中获得对称密钥。这种方法简化了将非对称和对称加密相结合的过程。使用现代密钥封装机制的方案有： <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5990"><strong>RSA-KEM</strong></a>, <a target="_blank" rel="noopener" href="https://www.cosic.esat.kuleuven.be/nessie/reports/phase2/evalv2.pdf"><strong>ECIES-KEM</strong></a> and <a target="_blank" rel="noopener" href="https://www.cryptrec.go.jp/cryptrec_03_spec_cypherlist_files/PDF/02_03e_jspec.pdf"><strong>PSEC-KEM</strong></a></p>
+<p>​密钥封装（<strong>Key encapsulation</strong> ）不应与密钥包装（<strong>key wrapping</strong>）混淆：</p>
+<ul>
+<li><strong>Key encapsulation</strong> (KEM) ：指另一个密钥（对称或非对称）使用公钥加密。 它用于创建可证明安全的混合加密方案，例如： 通过给定的ECC公钥来加密AES密钥。</li>
+<li><strong>Key wrapping</strong>：指另一密钥（可以是对称密钥或非对称密钥）的对称密钥加密。它用于加密，完整性保护和传输密钥。密钥包装可为专用数据（如加密密钥）提供隐私和完整性保护。有关详细信息，请参见<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc3394.html">RFC 3394</a>。</li>
+</ul>
+<h2 id="95-数字签名"><a class="markdownIt-Anchor" href="#95-数字签名"></a> 9.5 数字签名</h2>
+<p>​在密码学中，数字签名为数字文档提供<strong>消息身份验证</strong>，<strong>完整性</strong>和<strong>不可否认性</strong>。使用私钥进行消息签名，相应的公钥执行消息验证。消息签名在数学上保证了某些消息是由某些（保密的）私钥签名的，该私钥对应于特定的（非秘密）公钥。 消息签名后，无法修改消息和签名，因此可以提供这条被签名消息的身份验证和完整性。知道消息签名者公钥的任何人都可以验证签名。 签名后，签名作者无法否认签名行为。</p>
+<p>​如今，数字签名已广泛用于签署数字合同，授权银行付款以及在公共区块链系统中签署交易以转移数字资产。</p>
+<h2 id="96-密钥交换算法"><a class="markdownIt-Anchor" href="#96-密钥交换算法"></a> 9.6 密钥交换算法</h2>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key_exchange"><strong>key exchange algorithms</strong></a> (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Key-agreement_protocol"><strong>key agreement protocols</strong></a> / <strong>key negotiation schemes</strong>)允许在两方之间交换加密密钥，从而允许使用加密算法，在大多数情况下交换的是对称加密秘钥。例如，当笔记本电脑连接到家用WiFi路由器时，双方都同意使用会话密钥，该会话密钥用于对称地加密它们之间的网络流量。</p>
+<p>​大多数密钥交换算法都基于公共密钥密码学和该系统背后的数学：离散对数，椭圆曲线或其他理论。<br />
+​<br />
+​像Diffie-Hellman（DHKE和ECDH）这样的匿名密钥交换不提供各方的身份验证，因此容易受到中间人攻击（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attacks</a>），但可以防止流量拦截（嗅探）攻击（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sniffing_attack">traffic interception (sniffing) attacks</a>）。</p>
+<p>​经过身份验证的密钥协议方案可以对参与密钥交换的各方的身份进行身份验证，从而通过使用数字签名 (例如， <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Public_key_certificate">PKI certificate</a>)、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Password-authenticated_key_agreement"><strong>password-authenticated key agreemen</strong></a>或者其他方法来防止中间人攻击</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/08.%20Popular%20Symmetric%20Encryption%20Algorithms/" rel="prev" title="08. Popular Symmetric Encryption Algorithms">
+      <i class="fa fa-chevron-left"></i> 08. Popular Symmetric Encryption Algorithms
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/10.%20The%20RSA%20Cryptosystem%20-%20Concepts/" rel="next" title="10. The RSA Cryptosystem - Concepts">
+      10. The RSA Cryptosystem - Concepts <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#91-%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F-public-key-cryptosystems"><span class="nav-number">1.</span> <span class="nav-text"> 9.1 公钥密码系统 Public-Key Cryptosystems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#92-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text"> 9.2 非对称加密方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#93-%E7%BB%BC%E5%90%88%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text"> 9.3 综合加密方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#94-%E7%A7%98%E9%92%A5%E5%B0%81%E8%A3%85%E6%9C%BA%E5%88%B6-key-encapsulation-mechanisms-kems"><span class="nav-number">4.</span> <span class="nav-text"> 9.4 秘钥封装机制（ Key Encapsulation Mechanisms, KEMs）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#95-%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="nav-number">5.</span> <span class="nav-text"> 9.5 数字签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#96-%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text"> 9.6 密钥交换算法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

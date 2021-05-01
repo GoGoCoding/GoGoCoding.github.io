@@ -263,4 +263,237 @@
 <li>“<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_(CTR)"><strong>Counter (CTR)</strong></a>”块模式是一个不错的选择。在大多数情况下，具有强大的安全性和并行处理能力，可以任意的输入数据长度（无填充）。 它不提供身份验证和完整性，仅提供加密。</li>
 <li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Galois/Counter_Mode"><strong>GCM</strong></a> (Galois/Counter Mode) 块模式利用了CTR模式的所有优点，并添加了消息身份验证（生成密码消息身份验证标签）。 GCM是在对称密码中实现身份验证加密的快速而有效的方法，在一般情况下，强烈建议使用GCM。</li>
 <li>CBC模式以固定大小的块工作。 因此，在将输入数据拆分为块之后，应使用填充算法（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Padding"><strong>padding algorithm</strong></a> ）使最后一个块具有相同的长度。 大多数应用程序使用PKCS7填充方案（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Padding_(cryptography)#PKCS#5_and_PKCS#7"><strong>PKCS7 padding scheme</strong></a> ）或ANSI X.923（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Padding_(cryptography)#ANSI_X.923"><strong>ANSI X.923</strong></a>）。 在某些情况下，CBC阻止模式可能容易受到“填充预言”攻击（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Padding_oracle_attack"><strong>&quot;padding oracle&quot; attack</strong></a>,），因此最好避免使用CBC模式。</li>
-<li>众所周知的不安全块模式是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_Codebook_(ECB)"><strong>ECB</strong></a> （电子密码本），它会将相等的输入块加密为相等的输出块（不提供密码扩散，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Confusion_and_diffusion">cryptographic diffusion</a>）。 <strong>不要使用它！</strong> �
+<li>众所周知的不安全块模式是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_Codebook_(ECB)"><strong>ECB</strong></a> （电子密码本），它会将相等的输入块加密为相等的输出块（不提供密码扩散，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Confusion_and_diffusion">cryptographic diffusion</a>）。 <strong>不要使用它！</strong> 它可能会破坏整个加密系统。</li>
+<li>诸如CBC，CTR和GCM模式之类的大多数块均支持“随机访问”解密（例如，在视频播放器中的任意时间偏移处搜索，播放加密的视频流）。</li>
+</ul>
+<p><strong>CTR (Counter) Block Mode</strong></p>
+<p>​下图说明了如何在CTR块操作模式下使用块密码对明文的部分（块）进行逐个加密：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/CTR.png" alt="CT" /></p>
+<p>​对于CTR模式下的每个块，将基于初始向量（IV，有时称为“ nonce”）+当前计数器（01，02，03，…）+ 加密密钥和输入来生成新的不可预测的密钥流块与当前密钥流块 XOR合并以生成输出块。在CTR模式下，输入数据的最后部分可以短于密码块大小，因此不需要填充。 输入数据（加密之前）和输出数据（加密之后）具有相同的长度。</p>
+<p><strong>GCM (Galois/Counter) Block Mode</strong></p>
+<p>下图直观地说明了GCM块模式（Galois /Counter）的工作方式：</p>
+<p><img src="http://qiniu.gogocoding.cn/mweb/GCM.png" alt="GC" /></p>
+<p>GCM模式使用一个计数器，该计数器针对每个块增加，并在每个已处理的块之后计算消息身份验证标签（MAC代码）。 最终的身份验证标签是从最后一个块计算得出的。 与所有计数器模式一样，GCM用作流密码，因此对于每个加密的流，在开始时使用不同的IV至关重要。</p>
+<p><code>注</code>：请注意，GCM，CTR和其他分组模式会显示原始消息的长度， 因为明文消息的长度与密文长度相同。 如果您想避免暴露原始的纯文本长度，可以在加密之前向纯文本添加一些随机字节，并在解密之后将其删除。</p>
+<h2 id="73-初始化向量iv"><a class="markdownIt-Anchor" href="#73-初始化向量iv"></a> 7.3 初始化向量（IV）</h2>
+<p>​对每个加密消息使用随机且不可预测的初始化向量 （Initialization Vector，IV)。 用相同的对称密钥和相同的IV加密多个消息是一个常见的错误。 这为大多数块模式引入了各种被攻击的可能。 IV的大小应与密码块的大小相同，例如 AES，Serpent和Camellia的128位。</p>
+<p>对于GCM模式，IV可能不是秘密且不可预测的，但对于每个消息，IV应当不同。</p>
+<h2 id="74-认证加密"><a class="markdownIt-Anchor" href="#74-认证加密"></a> 7.4 认证加密</h2>
+<p>​在密码学中，“认证加密”（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Authenticated_encryption"><strong>authenticated encryption</strong></a>，AE）的概念是指加密数据的同时计算用于提供消息真实性和完整性的认证码（认证标签/ MAC）的方案。 如果使用认证的加密方案，则在解密时将知道解密是否成功（即解密密钥/密码是否正确以及加密数据是否被篡改）。</p>
+<p>​身份验证加密（AE）与带有关联数据的认证加密（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Authenticated_encryption#Authenticated_encryption_with_associated_data_(AEAD)"><strong>authenticated encryption with associated data</strong></a>，<strong>AEAD</strong>）类似概念有关，AEAD是AE的一种更安全的变体。AEAD会将关联数据（AD）绑定到密文以及应该出现的上下文中，以便可以检测到并拒绝将有效密文“剪切并粘贴”到其他上下文中的尝试。AEAD用于加密和未加密的数据一起使用的场景（例如在加密的网络协议中），并确保整个数据流都经过身份验证和完整性保护。</p>
+<p>​一些加密方案（如ChaCha20-Poly1305和AES-GCM）提供集成的身份验证加密（AEAD），而另一些方案（如AES-CBC和AES-CTR）则需要额外添加身份验证（如果需要）。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CryptoGraphy/" rel="tag"># CryptoGraphy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/06.%20Symmetric%20and%20Asymmetric%20Encryption%20-%20Overview/" rel="prev" title="06. Symmetric and Asymmetric Encryption - Overview">
+      <i class="fa fa-chevron-left"></i> 06. Symmetric and Asymmetric Encryption - Overview
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/CryptoGraphy/08.%20Popular%20Symmetric%20Encryption%20Algorithms/" rel="next" title="08. Popular Symmetric Encryption Algorithms">
+      08. Popular Symmetric Encryption Algorithms <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#71-%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E6%B5%81%E5%AF%86%E7%A0%81%E5%88%86%E7%BB%84%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%A1%AB%E5%85%85-block-ciphers-stream-ciphers-block-modes-and-padding"><span class="nav-number">1.</span> <span class="nav-text"> 7.1 分组密码，流密码，分组模式和填充( Block Ciphers, Stream Ciphers, Block Modes and Padding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#72-%E5%88%86%E7%BB%84%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%BC%8Fcbc-ctr-gcm"><span class="nav-number">2.</span> <span class="nav-text"> 7.2 分组加密模式(CBC, CTR, GCM，…)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#73-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%90%91%E9%87%8Fiv"><span class="nav-number">3.</span> <span class="nav-text"> 7.3 初始化向量（IV）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#74-%E8%AE%A4%E8%AF%81%E5%8A%A0%E5%AF%86"><span class="nav-number">4.</span> <span class="nav-text"> 7.4 认证加密</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Qi</p>
+  <div class="site-description" itemprop="description">Mobile developer, also want to be a Gopher</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GoGoCoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GoGoCoding" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:it_haoqi@163.com" title="E-Mail → mailto:it_haoqi@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
