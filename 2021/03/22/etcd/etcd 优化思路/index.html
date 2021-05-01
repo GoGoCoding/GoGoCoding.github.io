@@ -28,7 +28,7 @@
 <meta property="og:description" content="优化读性能  我们可通过 etcd clientv3 自带的 Round-robin 负载均衡算法或者 Load Balancer，尽量确保整个集群负载均衡。 在开启鉴权场景时，建议你尽量使用证书而不是密码认证，避免校验密码的昂贵开销。 根据业务场景选择合适的读模式，串行读比线性度性能提高 30% 以上，延时降低一倍。线性读性能受节点之间 RTT 延时、磁盘 IO 延时、当前写 QPS 等多重因">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-22T08:09:29.000Z">
-<meta property="article:modified_time" content="2021-03-22T08:13:57.663Z">
+<meta property="article:modified_time" content="2021-03-23T10:15:41.309Z">
 <meta property="article:author" content="Hao Qi">
 <meta property="article:tag" content="ETCD">
 <meta name="twitter:card" content="summary">
@@ -208,10 +208,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-22 16:09:29 / 修改时间：16:13:57" itemprop="dateCreated datePublished" datetime="2021-03-22T16:09:29+08:00">2021-03-22</time>
+              <time title="创建时间：2021-03-22 16:09:29" itemprop="dateCreated datePublished" datetime="2021-03-22T16:09:29+08:00">2021-03-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-23 18:15:41" itemprop="dateModified" datetime="2021-03-23T18:15:41+08:00">2021-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -241,6 +247,12 @@
 <li>最容易被大家忽视的就是写 QPS 对读 QPS 的影响，我通过一系列压测数据，整理成一个表格，让你更直观感受写 QPS 对读性能的影响。多可用区部署会导致节点 RTT 延时增高，读性能下降。因此你需要在高可用和高性能上做取舍和平衡。</li>
 <li>在访问数据前，你的读性能还可能会受授权性能、expensive read request、treeIndex 及 boltdb 的锁等影响。你需要遵循最佳实践，避免一个请求查询大量 key、大 key-value 等，否则会导致读性能剧烈下降。</li>
 </ol>
+<h1 id="k8s大集群核心问题"><a class="markdownIt-Anchor" href="#k8s大集群核心问题"></a> K8S大集群核心问题</h1>
+<p>expensive request、db size、key-value 大小</p>
+<ol>
+<li>针对 expensive request， Kubernetes 采用了分页机制、资源按 namespace 拆分部署策略、核心的 Informer 机制、优化 client 与 kube-apiserver 连接异常后的 Watch 恢复效率的 bookmark 机制、以及进一步优化 kube-apiserver 重建场景下 Watch 恢复效率的 Notify 机制</li>
+<li>针对 db size 和 key-value 大小，Kubernetes 社区的解决方案核心思想是拆分，通过 Lease 和 EndpointSlice 资源对象成功解决了大规模集群过程遇到 db size 和 key-value 瓶颈。</li>
+</ol>
 
     </div>
 
@@ -262,7 +274,10 @@
     <a href="/2020/12/07/Kubernetes/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E4%B8%8EKubernetes%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/" rel="prev" title="容器编排与Kubernetes作业管理">
       <i class="fa fa-chevron-left"></i> 容器编排与Kubernetes作业管理
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/31/Redis/Redis%E5%AE%95%E6%9C%BA%EF%BC%8C%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1/" rel="next" title="Redis AOF">
+      Redis AOF <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -322,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E8%AF%BB%E6%80%A7%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text"> 优化读性能</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E8%AF%BB%E6%80%A7%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text"> 优化读性能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k8s%E5%A4%A7%E9%9B%86%E7%BE%A4%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text"> K8S大集群核心问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -336,20 +351,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

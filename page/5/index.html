@@ -183,6 +183,642 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/04.%20Secure%20Random%20Number%20Generators,%20PRNG%20and%20CSPRNG/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/04.%20Secure%20Random%20Number%20Generators,%20PRNG%20and%20CSPRNG/" class="post-title-link" itemprop="url">04. Secure Random Number Generators, PRNG and CSPRNG</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:15" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:15+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-29 16:20:32" itemprop="dateModified" datetime="2020-12-29T16:20:32+08:00">2020-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​在密码学中，随机性（熵）起着非常重要的作用。 在许多算法中，我们需要随机（即不可预测）。 如果这些数字不是不可预测的，则算法将会更容易被攻破。</p>
+<p>​例如，假设我们需要一个密钥，它将保护我们的金融资产。应该以其他任何人都不能生成或拥有相同密钥的方式随机生成此密钥。我们从安全的随机生成器生成密钥，则密钥将是不可预测的，因此“安全随机”仅表示“不可预测的随机”。</p>
+<p>​让我们更详细地讨论计算机科学中的随机数及其在密码学中的作用，伪随机数生成器（ pseudo-random numbers generators, PRNG），安全伪随机生成器（Cryptography secure pseudo-random generators, CSPRNG），以及开发人员应如何在代码中生成和使用随机数的一些准则。</p>
+<h2 id="41-pseudo-random-number-generators-prng"><a class="markdownIt-Anchor" href="#41-pseudo-random-number-generators-prng"></a> 4.1 Pseudo-Random Number Generators (PRNG)</h2>
+<p>​伪随机数生成器(PRNG)用于将少量的初始随机性扩展为大量的伪随机性，通常用于密码系统。注意，PRNGs不是加密安全的，并且不同于CSPRNGs。</p>
+<p>​<code>PRNGs</code>是从某个初始熵（种子,seed）开始，并通过某种计算来计算下一个随机数的函数，而这些计算在不知道种子的情况下是无法预测的。 这种计算称为伪随机函数。<br />
+​<br />
+<img src="http://qiniu.gogocoding.cn//mweb/PRNGs.png" alt="PRNGs" /></p>
+<p>此过程以最简单的形式可以实现如下:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">init(entropy):</span><br><span class="line">  state = entropy, counter = <span class="number">0</span></span><br><span class="line">netNum():</span><br><span class="line">  state = HMAC(state, ++counter)</span><br><span class="line">  <span class="keyword">return</span> state</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randrange(<span class="number">1000000</span>, <span class="number">9999999</span>))</span><br></pre></td></tr></table></figure>
+<p>上面的代码生成一个随机数，但是这个数字是可以预测的。 这是因为Python（旧版本）中的随机库会在当前时间之前初始化随机生成器种子</p>
+<h2 id="42-csprng-cryptography-secure-random-number-generators"><a class="markdownIt-Anchor" href="#42-csprng-cryptography-secure-random-number-generators"></a> 4.2 CSPRNG (Cryptography Secure Random Number Generators)</h2>
+<p>​根据定义，<code>CSPRNG</code>（密码学安全随机数发生器）是一种伪随机数发生器（PRNG），其一些特性使其适合用于密码学。 要使PRNG成为CSPRNG，有两个主要要求：</p>
+<ol>
+<li>满足 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Next-bit_test"><strong>next-bit test</strong></a> ：即使某人从PRNG的开头就知道所有k位，那么他将无法使用合理的计算资源来预测k + 1位。</li>
+<li>经受<a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/PRNG_state_compromise_extension_attack"><strong>state compromise extensions</strong></a> : 如果攻击者猜出PRNG的内部状态或内部状态以某种方式被暴露，攻击者也无法重建内部状态暴露前的所有随机数。</li>
+</ol>
+<p>已提出许多设计来构造CSPRNG算法：</p>
+<ol>
+<li>基于数论、整数分解问题（IFP），离散对数问题（DLP）或椭圆曲线离散对数问题（ECDLP）。</li>
+<li>基于密码安全随机性的特殊设计：例如：<code>MacOS</code> 和<code>FreeBSD</code>系统中的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Yarrow_algorithm">Yarrow algorithm</a> 和 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fortuna_(PRNG)">Fortuna</a>,</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line"><span class="built_in">print</span>(secrets.randbelow(<span class="built_in">int</span>(<span class="number">1e50</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, time, binascii</span><br><span class="line"></span><br><span class="line">entropy = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    s = <span class="built_in">input</span>(<span class="string">&quot;Enter something [&quot;</span> + <span class="built_in">str</span>(i+<span class="number">1</span>) + <span class="string">&quot; of 5]: &quot;</span>)</span><br><span class="line">    entropy = entropy + s + <span class="string">&#x27;|&#x27;</span> + <span class="built_in">str</span>(time.time()) + <span class="string">&#x27;|&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Entropy:&quot;</span>, entropy)</span><br><span class="line">startSeed = <span class="built_in">str</span>(binascii.hexlify(hashlib.sha256(entropy.encode(<span class="string">&#x27;ascii&#x27;</span>)).digest()))[<span class="number">2</span>:-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Start seed = SHA-256(entropy) =&quot;</span>, startSeed)</span><br><span class="line"></span><br><span class="line"><span class="built_in">min</span> = <span class="number">10</span></span><br><span class="line"><span class="built_in">max</span> = <span class="number">20</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    nextSeed = startSeed + <span class="string">&#x27;|&#x27;</span> + <span class="built_in">str</span>(i)</span><br><span class="line">    <span class="built_in">hash</span> = hashlib.sha256(nextSeed.encode(<span class="string">&#x27;ascii&#x27;</span>)).digest()</span><br><span class="line">    bigRand = <span class="built_in">int</span>.from_bytes(<span class="built_in">hash</span>, <span class="string">&#x27;big&#x27;</span>)</span><br><span class="line">    rand = <span class="built_in">min</span> + bigRand % (<span class="built_in">max</span> - <span class="built_in">min</span> + <span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(nextSeed, bigRand, <span class="string">&#x27;--&gt;&#x27;</span>, rand)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Enter something [1 of 5]: first</span><br><span class="line">Enter something [2 of 5]: second</span><br><span class="line">Enter something [3 of 5]: random text</span><br><span class="line">Enter something [4 of 5]: dfasfdasfs</span><br><span class="line">Enter something [5 of 5]: last</span><br><span class="line">Entropy: first|1539885709.4494743|second|1539885713.687703|random text|1539885721.5754962|dfasfdasfs|1539885724.40904|last|1539885726.1286101|</span><br><span class="line">Start seed &#x3D; SHA-256(entropy) &#x3D; f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|0 84482770259566839097936866229004786554948913905882724148636325987196754263481 --&gt; 19</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|1 67001454659030164457342421011672033052466168976555224352709830050538321411120 --&gt; 14</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|2 103739181507291072572315034266940107849472122762876847172454548630886082729227 --&gt; 12</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|3 3011033199204097839903859902789759740091959530467456042709372597822032778153 --&gt; 16</span><br><span class="line">f8a4eaceb16156b1a23f4b6d08e54665ffa4822949b22e01d6de4c5daae965e3|4 100466094724924763659843669256673300207383922129676800217664465341535622195997 --&gt; 16</span><br></pre></td></tr></table></figure>
+<p><strong>作为开发者如何访问CSPRNG</strong></p>
+<ul>
+<li>In <strong>Linux</strong> and <strong>macOS</strong>, it is considered that both <code>/dev/random</code> and <code>/dev/urandom</code> sources of randomness are <strong>secure enough for most cryptographic purposes</strong> and most cryptographic libraries access them internally.</li>
+<li>In <strong>Windows</strong>, random numbers for cryptographic purposes can be securely generated using the <code>BCryptGenRandom</code> function from the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/windows/desktop/SecCNG/cng-portal">Cryptography API: Next Generation (CNG)</a> or higher level crypto libraries.</li>
+<li>In <strong>C#</strong> use <code>System.Security.Cryptography.RandomNumberGenerator.Create()</code> from .NET Framework or .NET Core.</li>
+<li>In <strong>Python</strong> use <code>os.urandom()</code> or the <code>secrets</code> library.</li>
+<li>In <strong>Java</strong> use the <code>java.security.SecureRandom</code> system class.</li>
+<li>In <strong>JavaScript</strong> use <code>window.crypto.getRandomValues(Uint8Array)</code> for client side (in the Web browser) or <code>crypto.randomBytes()</code> or external module like <code>node-sodium</code> for server-side (in Node.js).</li>
+</ul>
+<p><strong>Never use</strong> <code>Math.random()</code> or similar insecure RNG functions for cryptographic purposes!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/03.%20MAC%20Codes%20and%20Key%20Derivation%20Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/03.%20MAC%20Codes%20and%20Key%20Derivation%20Functions/" class="post-title-link" itemprop="url">03. MAC Codes and Key Derivation Functions</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:14" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:14+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​消息认证码(MAC)，HMAC(hash-based message authentication code,基于哈希的消息认证码)和KDF(key derivation functions, 密钥导出函数)在密码学中起着重要的作用。</p>
+<h2 id="31-消息认证码"><a class="markdownIt-Anchor" href="#31-消息认证码"></a> 3.1 消息认证码</h2>
+<p>消息验证码(MAC)是由给定密钥和消息计算出的密码。<br />
+​<code>auth_code = MAC(key, msg)</code><br />
+通常它的类似于哈希函数：</p>
+<ul>
+<li>消息或密钥中的微小变化会导致<code>MAC</code>值完全不同；</li>
+<li>不可能通过更改秘钥或者消息来获得相同的<code>MAC</code>值；</li>
+<li>无法从<code>MAC</code>值推测出原始消息或密钥。</li>
+</ul>
+<p>​存在许多用于计算消息认证码（MAC）的算法。 最受欢迎的是基于哈希算法，如：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HMAC">HMAC</a>（Hash-based MAC, e.g. HMAC-SHA256）和<a target="_blank" rel="noopener" href="https://www.cryptosys.net/manapi/api_kmac.html">KMAC</a>（Keccak-based MAC）。基于对称加密的MAC，如<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/One-key_MAC">CMAC</a>(Cipher-based MAC)，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Galois/Counter_Mode">GMAC</a>（Galois MAC）和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Poly1305">Poly1305</a>（Bernstein’s one-time authenticator）。</p>
+<p><strong>例</strong>：可以通过HMAC-SHA256算法来计算MAC值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, hmac, binascii</span><br><span class="line"></span><br><span class="line">mac = hmac.new(<span class="string">b&#x27;key&#x27;</span>, <span class="string">b&#x27;some msg&#x27;</span>, hashlib.sha256).digest()</span><br><span class="line"><span class="built_in">print</span>(binascii.hexlify(mac))</span><br></pre></td></tr></table></figure>
+<p>MAC是类似于数字签名的数字认证码，但是他具有预共享的密钥。</p>
+<p>消息认证码的应用场景：</p>
+<ul>
+<li>通信双方交换了某种特定的MAC的秘钥；</li>
+<li>接收方从某处收到了msg + auth_code；</li>
+<li>保证msg未被篡改，意味着秘钥key和msg是正确的，且可以匹配对应的MAC码。</li>
+</ul>
+<p><img src="http://q6r9jgptb.bkt.clouddn.com/mweb/sample%20scenario%20for%20using%20MAC%20codes.png" alt="sample scenario for using MAC codes" /></p>
+<h3 id="311-认证加密使用mac加密解密消息"><a class="markdownIt-Anchor" href="#311-认证加密使用mac加密解密消息"></a> 3.1.1 认证加密：使用MAC加密/解密消息</h3>
+<p>​使用MAC代码的另一种情况是认证加密：当我们加密消息时，我们要确保解密的密码正确并且解密后的消息与加密前的原始消息相同。<br />
+​<br />
+​加密msg过程：</p>
+<ol>
+<li>根据密码生成密钥。 我们可以将此密钥用于<code>MAC</code>算法。</li>
+<li>使用生成的密钥对消息进行加密，并将密文存储在输出中。</li>
+<li>使用密钥和原始消息来计算<code>MAC</code>，并将其附加到输出中。</li>
+</ol>
+<p>​解密msg过程</p>
+<ol>
+<li>根据用户输入的密码生成密钥，可能是正确的密码或错误的密码， 稍后可以得到验证。</li>
+<li>使用生成的密钥解密消息， 它可能是原始消息，也可能是错误消息（取决于输入的密码）。</li>
+<li>使用生成的密钥+解密后的消息来计算MAC代码。
+<ol>
+<li>如果计算出的MAC码与加密消息中的MAC代码匹配，则密码正确。</li>
+<li>否则，得到的解密消息和源消息不一致，意味着密码错误。</li>
+</ol>
+</li>
+</ol>
+<p>​一些认证加密算法（例如<strong>AES-GCM</strong>和<strong>ChaCha20-Poly1305</strong>）将MAC计算集成到加密算法中，并将MAC验证集成到解密算法中。MAC与密文一起存储，并且不会泄露密码或原始消息。 存储对任何人都可见的MAC码是安全的，并且在解密之后，我们知道消息是否是原始消息（密码是否错误）。</p>
+<h3 id="312-基于mac的伪随机数器生成器"><a class="markdownIt-Anchor" href="#312-基于mac的伪随机数器生成器"></a> 3.1.2 基于MAC的伪随机数器生成器</h3>
+<p><code>MAC</code>的另一个应用就是伪随机数器生成器，根据一个确定的salt(常量、当前日期和时间，或者其他随机数)和一些seed number（最新生成的随机数），我们可以如下计算next_seed：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">next_seed = MAC(salt, seed)</span><br></pre></td></tr></table></figure>
+<h2 id="32-hmac和密钥生成函数-key-derivation-functions-kdf"><a class="markdownIt-Anchor" href="#32-hmac和密钥生成函数-key-derivation-functions-kdf"></a> 3.2 HMAC和密钥生成函数( Key Derivation Functions, KDF)</h2>
+<p>​仅通过计算哈希 <code>hash_func(key + msg)</code>来获得<code>MAC</code>是不安全的，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HMAC#Design_principles">点击查看详情</a>。建议改用<strong>HMAC</strong>算法，例如 <code>HMAC-SHA256</code>或<code>HMAC-SHA3-512</code>或其他安全的MAC算法<br />
+​<br />
+​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HMAC"><strong>HMAC</strong></a> = <strong>H</strong>ash-based <strong>M</strong>essage <strong>A</strong>uthentication <strong>C</strong>ode (MAC code, calculated using a cryptographic hash function):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HMAC(key, msg, hash_func) -&gt; hash</span><br></pre></td></tr></table></figure>
+<p>​得到的结果MAC码是混合了密钥的消息哈希值。 它具有哈希的加密属性：不可逆，抗碰撞等。<code>hash_func</code>可以是任何加密哈希函数，例如:<code>SHA-256</code>，<code>SHA-512</code>，<code>RIPEMD-160</code>，<code>SHA3-256</code>或<code>BLAKE2s</code>。<strong>HMAC</strong>用于保证消息真实性，消息完整性，有时还用于密钥生成。<br />
+​</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, hmac, binascii</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hmac_sha256</span>(<span class="params">key, msg</span>):</span></span><br><span class="line">  <span class="keyword">return</span> hmac.new(key, msg, hashlib.sha256).digest()</span><br><span class="line"></span><br><span class="line">key = <span class="string">b&quot;12345&quot;</span></span><br><span class="line">msg = <span class="string">b&quot;sample message&quot;</span></span><br><span class="line"><span class="built_in">print</span>(binascii.hexlify(hmac_sha256(key, msg)))</span><br></pre></td></tr></table></figure>
+<h3 id="321-秘钥生成函数key-derivation-functions-kdf"><a class="markdownIt-Anchor" href="#321-秘钥生成函数key-derivation-functions-kdf"></a> 3.2.1 秘钥生成函数(Key Derivation Functions, KDF)</h3>
+<p>KDF是将可变长度密码转换为固定长度密钥（bit序列）的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function(password) -&gt; key</span><br></pre></td></tr></table></figure>
+<h3 id="322-根据密码生成秘钥"><a class="markdownIt-Anchor" href="#322-根据密码生成秘钥"></a> 3.2.2 根据密码生成秘钥</h3>
+<p>如何安全的根据密码生成秘钥？一起了解一下实践中常用的KDFs：<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PBKDF2">PBKDF2</a></strong>，<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bcrypt">Bcrypt</a></strong>，<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Argon2">Scrypt</a><strong>和</strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Argon2">Argon2</a></strong>，并讨论上述KDFs的优缺点和使用它们的场景。</p>
+<h4 id="3221-pbkdf2"><a class="markdownIt-Anchor" href="#3221-pbkdf2"></a> 3.2.2.1 PBKDF2:</h4>
+<p>​<code>PBKDF2</code>是一个简单的可抵御<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dictionary_attack">dictionary attacks</a>和 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Rainbow_table">rainbow table attacks</a> 的 KDF。 该算法原理基于在HASH算法基础上增加随机盐，并进行多次HASH运算。PBKDF2接受多个输入参数，并生成密钥作为输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key &#x3D; pbkdf2(password, salt, iterations-count, hash-function, derived-key-len)</span><br></pre></td></tr></table></figure>
+<p>从技术上讲，<code>PBKDF2</code>的输入数据包括：</p>
+<ul>
+<li><code>password</code> : 字节/字符串数组;</li>
+<li><code>salt</code> : 安全生成的随机字节(最低64位，建议使用128位);</li>
+<li><code>iterations-count</code>: 迭代次数；</li>
+<li><code>hash-function</code> : 用于计算HMAC;</li>
+<li><code>derived-key-len</code> : 生成秘钥长度;</li>
+</ul>
+<p><strong>注</strong>：PBKDF2不能抵抗<a target="_blank" rel="noopener" href="https://security.stackexchange.com/questions/118147/how-are-gpus-used-in-brute-force-attacks">GPU attacks</a> (使用显卡并行密码破解)和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Custom_hardware_attack">ASIC attacks</a>(专用密码破解硬件).如今<code>PBKDF2</code>被认为是过时的且不如现代KDF功能安全的，因此建议改用<code>Bcrypt</code>，<code>Scrypt</code>或<code>Argon2</code>。</p>
+<p>在此处尝试PBKDF2密钥生成：<a target="_blank" rel="noopener" href="https://asecuritysite.com/encryption/PBKDF2z">https://asecuritysite.com/encryption/PBKDF2z</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install backports.pbkdf2</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, binascii</span><br><span class="line"><span class="keyword">from</span> backports.pbkdf2 <span class="keyword">import</span> pbkdf2_hmac</span><br><span class="line"></span><br><span class="line">salt = binascii.unhexlify(<span class="string">&#x27;aaef2d3f4d77ac66e9c5a6c3d8f921d1&#x27;</span>)</span><br><span class="line">passwd = <span class="string">&quot;p@$Sw0rD~1&quot;</span>.encode(<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line">key = pbkdf2_hmac(<span class="string">&quot;sha256&quot;</span>, passwd, salt, <span class="number">50000</span>, <span class="number">32</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Derived key:&quot;</span>, binascii.hexlify(key))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Derived key: b&#39;52c5efa16e7022859051b1dec28bc65d9696a3005d0f97e506c42843bc3bdbc0&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="323-现代kdfbcryptscrypt和argon2"><a class="markdownIt-Anchor" href="#323-现代kdfbcryptscrypt和argon2"></a> 3.2.3 现代KDF：Bcrypt，Scrypt和Argon2</h3>
+<p>​<code>Scrypt</code>和<code>Argon2</code>等现代KDF旨在抵抗字典攻击，GPU攻击和ASIC攻击。 这些功能根据密码（文本）生成固定长度密钥，需要大量内存（RAM），这使得无法在GPU或ASIC硬件上进行快速并行计算。</p>
+<h4 id="3231-scrypt"><a class="markdownIt-Anchor" href="#3231-scrypt"></a> 3.2.3.1 Scrypt</h4>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Scrypt"><strong>Scrypt</strong></a> (<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7914.html">RFC 7914</a>)是一个健壮的，它需要耗费大量内存，旨在防止GPU，ASIC和FPGA攻击(高效的密码破解硬件)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key &#x3D; Scrypt(password, salt, N, r, p, derived-key-len)</span><br></pre></td></tr></table></figure>
+<p><strong>Scrypt 参数</strong>：</p>
+<ul>
+<li><code>N</code> – 迭代计数（影响内存和CPU使用率）;</li>
+<li><code>r</code> –块大小（影响内存和CPU使用率）;</li>
+<li><code>p</code> –并行因素（并行运行的线程-影响内存，CPU使用率），通常为1;</li>
+<li><code>password</code> – 输入密码（建议最小长度为8-10个字符）;</li>
+<li><code>salt</code> – 安全生成的随机字节（最小64位，建议128位）</li>
+<li><code>derived-key-len</code> - 要生成多少字节作为输出，例如 32个字节（256位）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Memory required &#x3D; 128 * N * r * p bytes</span><br></pre></td></tr></table></figure>
+<p>参数的选择取决于你要等待的时间以及想要达到的安全级别（密码破解阻力）：</p>
+<ol>
+<li>交互式登录的示例参数：N = 16384，r = 8，p = 1（RAM = 2 MB）。 对于交互式登录，您很可能不想等待超过0.5秒， 同样在服务器端，通常许多用户可以同时登录，因此太过缓慢的Scrypt计算会减慢整个系统的速度。</li>
+<li>用于文件加密的样本参数：N = 1048576，r = 8，p = 1（RAM = 1 GB）。 加密硬盘驱动器时，在极少会对数据进行加解密（通常每天不超过2-3次），所以在解锁加密的数据时，可以等待2-3秒以提高安全性。</li>
+</ol>
+<p><strong>Scrypt Calculation in Python</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install scrypt</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyscrypt</span><br><span class="line"></span><br><span class="line">salt = <span class="string">b&#x27;aa1f2d3f4d23ac44e9c5a6c3d8f9ee8c&#x27;</span></span><br><span class="line">passwd = <span class="string">b&#x27;p@$Sw0rD~7&#x27;</span></span><br><span class="line">key = pyscrypt.<span class="built_in">hash</span>(passwd, salt, <span class="number">2048</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">32</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Derived key:&quot;</span>, key.<span class="built_in">hex</span>())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Derived key: b&#39;e813a6f6ccc4e9110193bf9efb7c0a489d76655f9e36629dccbeaf2a73bc0c6f&#39;</span><br></pre></td></tr></table></figure>
+<h4 id="3232-bcrypt"><a class="markdownIt-Anchor" href="#3232-bcrypt"></a> 3.2.3.2 Bcrypt</h4>
+<p>​<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bcrypt"><strong>Bcrypt</strong></a>是另一种KDF函数，它对ASIC和GPU攻击的抵抗力较弱。 Bcrypt提供了可配置的迭代计数，但使用恒定的内存消耗，因此更容易构建硬件加速的密码破解程序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bcrypt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import bcrypt</span><br><span class="line"></span><br><span class="line">salt &#x3D; bcrypt.gensalt()</span><br><span class="line">passwd &#x3D; b&#39;p@$Sw0rD~7&#39;</span><br><span class="line">bcrypt.hashpw(passwd, salt)</span><br></pre></td></tr></table></figure>
+<h4 id="3233-argon2-安全的抗asic攻击的kdf"><a class="markdownIt-Anchor" href="#3233-argon2-安全的抗asic攻击的kdf"></a> 3.2.3.3 Argon2: 安全的，抗ASIC攻击的KDF</h4>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Argon2"><strong>Argon2</strong></a>是现代的抗ASIC攻击和抗GPU攻击的KDF。它具有比PBKDF2，Bcrypt和Scrypt（在相同CPU和RAM占用的参数配置下）更好的防止密码被破解能力。</p>
+<p><strong>Argon2</strong>有多个变体：</p>
+<ol>
+<li><strong>Argon2d</strong> ：提供强大的抗GPU攻击能力，但具有潜在的side-channel攻击（在非常特殊的情况下）。</li>
+<li><strong>Argon2i</strong> : 提供较低的抗GPU攻击能力，但没有side-channel攻击。</li>
+<li><strong>Argon2id</strong> - 推荐，结合了Argon2d和Argon2i。</li>
+</ol>
+<p>Argon2需要以下参数，与Scrypt非常相似：</p>
+<ul>
+<li><strong>password</strong> <code>P</code>: the password (or message) to be hashed</li>
+<li><strong>salt</strong> <code>S</code>: random-generated salt (16 bytes recommended for password hashing)</li>
+<li><strong>iterations</strong> <code>t</code>: number of iterations to perform</li>
+<li><strong>memorySizeKB</strong> <code>m</code>: amount of memory (in kilobytes) to use</li>
+<li><strong>parallelism</strong> <code>p</code>: degree of parallelism (i.e. number of threads)</li>
+<li><strong>outputKeyLength</strong> <code>T</code>: desired number of returned bytes</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install argon2_cffi</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argon2, binascii</span><br><span class="line"></span><br><span class="line"><span class="built_in">hash</span> = argon2.hash_password_raw(</span><br><span class="line">    time_cost=<span class="number">16</span>, memory_cost=<span class="number">2</span>**<span class="number">15</span>, parallelism=<span class="number">2</span>, hash_len=<span class="number">32</span>,</span><br><span class="line">    password=<span class="string">b&#x27;password&#x27;</span>, salt=<span class="string">b&#x27;some salt&#x27;</span>, <span class="built_in">type</span>=argon2.low_level.<span class="type">Type</span>.ID)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Argon2 raw hash:&quot;</span>, binascii.hexlify(<span class="built_in">hash</span>))</span><br><span class="line"></span><br><span class="line">argon2Hasher = argon2.PasswordHasher(</span><br><span class="line">    time_cost=<span class="number">16</span>, memory_cost=<span class="number">2</span>**<span class="number">15</span>, parallelism=<span class="number">2</span>, hash_len=<span class="number">32</span>, salt_len=<span class="number">16</span>)</span><br><span class="line"><span class="built_in">hash</span> = argon2Hasher.<span class="built_in">hash</span>(<span class="string">&quot;password&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Argon2 hash (random salt):&quot;</span>, <span class="built_in">hash</span>)</span><br><span class="line"></span><br><span class="line">verifyValid = argon2Hasher.verify(<span class="built_in">hash</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Argon2 verify (correct password):&quot;</span>, verifyValid)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    argon2Hasher.verify(<span class="built_in">hash</span>, <span class="string">&quot;wrong123&quot;</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Argon2 verify (incorrect password):&quot;</span>, <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Argon2 raw hash: b&#39;157f21dd3fdf7bafb76d2923ccaffa0b7be7cbae394709474d2bc66ee7b09d3e&#39;</span><br><span class="line">Argon2 hash (random salt): $argon2id$v&#x3D;19$m&#x3D;32768,t&#x3D;16,p&#x3D;2$Rfy6J41W9idBU+n&#x2F;8sZc6Q$i3QYYPtoogIAw78I2qqlUQ8vjzUXGG1V6QsBOq2NIp4</span><br><span class="line">Argon2 verify (correct password): True</span><br><span class="line">Argon2 verify (incorrect password): False</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Approach</strong></th>
+<th style="text-align:left"><strong>Security</strong></th>
+<th style="text-align:left"><strong>Comments</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Clear-text passwords</td>
+<td style="text-align:left">Extremely low</td>
+<td style="text-align:left">Never do this: compromised server will render all passwords leaked</td>
+</tr>
+<tr>
+<td style="text-align:left">Simple password hash</td>
+<td style="text-align:left">Low</td>
+<td style="text-align:left">Vulnerable to dictionary attacks</td>
+</tr>
+<tr>
+<td style="text-align:left">Salted hashed passwords</td>
+<td style="text-align:left">Average</td>
+<td style="text-align:left">Vulnerable to GPU-based and ASIC-based password cracking</td>
+</tr>
+<tr>
+<td style="text-align:left">Secure KDF function (like Argon2)</td>
+<td style="text-align:left">High</td>
+<td style="text-align:left">Recommended, use strong KDF parameters</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/02.%20Hashing%20and%20Cryptographic%20Hash%20Functions/" class="post-title-link" itemprop="url">02. Hashing and Cryptographic Hash Functions</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:13" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:13+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="02-hashing-and-cryptographic-hash-functions"><a class="markdownIt-Anchor" href="#02-hashing-and-cryptographic-hash-functions"></a> 02. Hashing and Cryptographic Hash Functions</h1>
+<p>​在计算机编程中，哈希函数用于将文本或其他数据映射到整形值。通常不通的输入值会映射到不通的输出值，但是输出值偶尔会发生<code>碰撞</code>（不同的输入值，但是输出值相同）。加密哈希函数将文本或二进制数据转换为固定长度的散列值，并且具有抗冲突性和不可逆性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHA3-256(<span class="string">&quot;hello&quot;</span>) = <span class="string">&quot;3338be694f50c5f338814986cdf0686453a888b84f424d792af4b9202398f392&quot;</span></span><br><span class="line">SHA256(<span class="string">&quot;hello&quot;</span>) = <span class="string">&quot;2CF24DBA5FB0A30E26E83B2AC5B9E29E1B161E5C1FA7425E73043362938B9824&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line">sha3_256hash = hashlib.sha3_256(<span class="string">b&#x27;hello&#x27;</span>).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256(&#x27;hello&#x27;) =&quot;</span>, binascii.hexlify(sha3_256hash))</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line">sha256hash = hashlib.sha256(<span class="string">b&#x27;hello&#x27;</span>).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256(&#x27;hello&#x27;) =&quot;</span>, binascii.hexlify(sha256hash))</span><br></pre></td></tr></table></figure>
+<h2 id="21-加密哈希函数和冲突"><a class="markdownIt-Anchor" href="#21-加密哈希函数和冲突"></a> 2.1 加密哈希函数和冲突</h2>
+<h3 id="211-哈希碰撞"><a class="markdownIt-Anchor" href="#211-哈希碰撞"></a> 2.1.1 哈希碰撞</h3>
+<p>碰撞意味着两个不同输入的哈希值相同， 对于简单的哈希函数，很容易发生碰撞。例如，假设哈希函数h(text)等于文本中所有字符码的和。 则对于以不同顺序持有相同字母的文本，将产生相同的哈希值（碰撞），即：<code>h('abc') == h('cab') == h('bca')</code>。为了避免冲突，密码学家设计了抗碰撞的哈希函数。</p>
+<h3 id="212-加密哈希函数无冲突"><a class="markdownIt-Anchor" href="#212-加密哈希函数无冲突"></a> 2.1.2 加密哈希函数：无冲突</h3>
+<p>​加密哈希函数极不可能产生碰撞，可以认为加密哈希值几乎可以唯一地标识其对应的输入， 并且很难根据哈希值反推出输入值。加密哈希函数是不可逆的单向哈希函数。<br />
+​<br />
+理想的加密哈希函数应该具备以下属性：</p>
+<ul>
+<li><strong>确定性</strong>：相同输入总是可以得到相同的输出值</li>
+<li><strong>快速性</strong>：计算任何给定消息的哈希值应该很快。</li>
+<li><strong>难分析性</strong>：对输入值的微小更改将完全改变输出哈希值。</li>
+<li><strong>不可逆性</strong>：无法根据哈希值反推出输入值，即：除了暴力穷举外，没有明显更好的办法来猜出输入值。</li>
+</ul>
+<p>现代的加密哈希函数（例如SHA2和SHA3）属性与上述属性匹配，并且在密码学中得到了广泛使用。</p>
+<h2 id="22-加密哈希函数的应用"><a class="markdownIt-Anchor" href="#22-加密哈希函数的应用"></a> 2.2 加密哈希函数的应用</h2>
+<ul>
+<li>文件完整性校验</li>
+<li>存储密码：/etc/shadow</li>
+<li>生成唯一ID: <code>Git commit ID</code>、<code>Bitcoin addresses</code></li>
+<li>生成伪随机数：</li>
+<li>工作量证明算法：</li>
+</ul>
+<h2 id="23-安全哈希算法"><a class="markdownIt-Anchor" href="#23-安全哈希算法"></a> 2.3 安全哈希算法</h2>
+<p>​软件开发人员提出并使用了许多密码哈希算法。 但是其中一些已经被证明为不安全的，例如MD5和SHA1；还有一些仍然认为是安全的，如SHA-2,SHA-3和BLAKE2等</p>
+<h3 id="231-sha-2-sha-256-sha-512"><a class="markdownIt-Anchor" href="#231-sha-2-sha-256-sha-512"></a> 2.3.1 SHA-2, SHA-256, SHA-512</h3>
+<p>​SHA-2是一组加密哈希函数，<strong>SHA-256</strong> (256 bits hash), <strong>SHA-384</strong> (384 bits hash), <strong>SHA-512</strong> (512 bits hash)，他们都是基于 &quot;<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction"><strong>Merkle–Damgård construction</strong></a>&quot;的密码学概念，SHA-2是美国的官方加密标准。更多位的哈希值能提供更好的抗碰撞性。</p>
+<h3 id="232-sha-3-sha3-256-sha3-512-keccak-256"><a class="markdownIt-Anchor" href="#232-sha-3-sha3-256-sha3-512-keccak-256"></a> 2.3.2 SHA-3, SHA3-256, SHA3-512, Keccak-256</h3>
+<p>​SHA-3及其变体SHA3-224，SHA3-256，SHA3-384，SHA3-512 在相同的哈希长度的情况下比SHA-2（SHA-224，SHA-256，SHA-384，SHA-512）更加安全 。SHA-3系列加密哈希函数不容易受到“<strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Length_extension_attack">length extension attack</a></strong>”的影响。</p>
+<p>通过以下网址了解有关加密哈希函数，其强度和抗攻击性的更多信息：<a target="_blank" rel="noopener" href="https://z.cash/technology/history-of-hash-function-attacks.html">https://z.cash/technology/history-of-hash-function-attacks.html</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib, binascii</span><br><span class="line"></span><br><span class="line">text = <span class="string">&#x27;hello&#x27;</span></span><br><span class="line">data = text.encode(<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line"></span><br><span class="line">sha256hash = hashlib.sha256(data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA-256:   &quot;</span>, binascii.hexlify(sha256hash))</span><br><span class="line"></span><br><span class="line">sha3_256 = hashlib.sha3_256(data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA3-256:  &quot;</span>, binascii.hexlify(sha3_256))</span><br><span class="line"></span><br><span class="line">blake2s = hashlib.new(<span class="string">&#x27;blake2s&#x27;</span>, data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;BLAKE2s:   &quot;</span>, binascii.hexlify(blake2s))</span><br><span class="line"></span><br><span class="line">ripemd160 = hashlib.new(<span class="string">&#x27;ripemd160&#x27;</span>, data).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;RIPEMD-160:&quot;</span>, binascii.hexlify(ripemd160))</span><br></pre></td></tr></table></figure>
+<h2 id="24-工作量证明哈希函数ethash-和-equihash"><a class="markdownIt-Anchor" href="#24-工作量证明哈希函数ethash-和-equihash"></a> 2.4 工作量证明哈希函数：ETHash 和 Equihash</h2>
+<p>​区块链工作量证明挖矿算法使用一类特殊的哈希函数，这些哈希函数旨在消耗大量计算资源和大量内存，并且很难通过硬件设备来实现（例如FPGA集成电路或ASIC矿工） 这种哈希函数的特点被称为“抗ASIC”。这样做的目的在于通过激励小型矿工来最大程度地减少采矿的集中化。大量的小型参与者比少数几个大型参与者意味着更好的权力下放，更好的去中心化。</p>
+<ul>
+<li><strong>ETHash</strong>：以太坊区块链中的工作量证明哈希函数。</li>
+<li><strong>Equihash</strong>：Zcash和Bitcoin Gold区块链中的工作量证明哈希函数</li>
+</ul>
+<p><code>MORE:</code><br />
+Learn more about <strong>ETHash</strong> at: <a target="_blank" rel="noopener" href="https://github.com/ethereum/wiki/wiki/Ethash">https://github.com/ethereum/wiki/wiki/Ethash</a>, <a target="_blank" rel="noopener" href="https://github.com/lukovkin/ethash">https://github.com/lukovkin/ethash</a>.</p>
+<p>Learn more about <strong>Equihash</strong> at: <a target="_blank" rel="noopener" href="https://www.cryptolux.org/images/b/b9/Equihash.pdf">https://www.cryptolux.org/images/b/b9/Equihash.pdf</a>, <a target="_blank" rel="noopener" href="https://github.com/tromp/equihash">https://github.com/tromp/equihash</a>.</p>
+<p>Lear more about the <strong>ASIC-resistant hash functions</strong> at: <a target="_blank" rel="noopener" href="https://github.com/ifdefelse/ProgPOW">https://github.com/ifdefelse/ProgPOW</a>.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/CryptoGraphy/01.%20Hello,%20CryptoGraphy%20/" class="post-title-link" itemprop="url">01. Hello, CryptoGraphy</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-05 14:37:12" itemprop="dateCreated datePublished" datetime="2020-03-05T14:37:12+08:00">2020-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 17:12:44" itemprop="dateModified" datetime="2020-09-08T17:12:44+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CryptoGraphy/" itemprop="url" rel="index"><span itemprop="name">CryptoGraphy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="01-hello-cryptography"><a class="markdownIt-Anchor" href="#01-hello-cryptography"></a> 01. Hello, CryptoGraphy</h1>
+<p>​参加工作已有不短时间，在这期间，不可避免的接触使用了一些加密算法。平时忙于工作中的各种业务需求，没有对作为信息安全基石的现代密码学内容进行过系统的学习、归纳和总结。在即将迎接2020年春节之际，萌生一个想法，系统性的整理一套学习笔记，以供自己在此方面的知识积淀。</p>
+<p>​密码学有着深刻的数学背景，虽然自己也是数学系毕业，但是查看学院派的书籍如 :<a target="_blank" rel="noopener" href="https://crypto.stanford.edu/~dabo/cryptobook/">A Graduate Course in Applied Cryptography</a> 也难免觉得枯燥乏味，这份学习笔记会从工作实践的角度来进行总结。在此特别感谢Dr.<a target="_blank" rel="noopener" href="https://nakov.com/">Svetlin Nakov</a>，我的学习笔记主要参考了其编写的<a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/practical-cryptography-for-developers-book/"> Practical Cryptography for Developers</a> 一书，沿着该书的脉络，后面笔记预计会从以下主题展开：</p>
+<ol>
+<li>哈希和哈希加密函数(Hashing and Cryptographic Hash Functions)</li>
+<li>消息验证码和秘钥导出函数(Message authentication codes and Key Derivation Functions)</li>
+<li>安全随机数生成器(Secure Random Number Generators)</li>
+<li>秘钥交换(Key Exchange)</li>
+<li>对称秘钥密码(Symmetric Key Ciphers)</li>
+<li>非对称秘钥密码(Asymmetric Key Ciphers)</li>
+<li>数字签名(Digital Signatures)</li>
+<li>更多的密码学概念(More Cryptographic Concepts)</li>
+</ol>
+<h2 id="11-什么是密码学"><a class="markdownIt-Anchor" href="#11-什么是密码学"></a> 1.1 什么是密码学？</h2>
+<p>​<code>密码学</code>是为信息提供安全与防护的一门学科，他广泛应用于数字世界中。因此开发人员应该至少对密码学有基本的了解，以及如何使用密码算法和密码库，并了解他们背后的算法。<br />
+​</p>
+<h2 id="12-加密和秘钥"><a class="markdownIt-Anchor" href="#12-加密和秘钥"></a> 1.2 加密和秘钥</h2>
+<p>​密码学使用安全的方式处理存储和传输数据，以便于只有特定的人才能读取和处理这些数据。这会涉及使用对称或非对称加密方案对数据进行加密和解密，这些方案在明文和密文的相互转化过程中会用到一个或多个秘钥。</p>
+<p>​对称加密（例如AES，Twofish和ChaCha20）使用相同的密钥来加密和解密消息，而非对称加密使用公钥密码系统（如RSA或ECC）和密钥对：公共密钥（加密密钥）和相应的私有密钥（解密密钥）。</p>
+<h2 id="13-数字签名和消息认证"><a class="markdownIt-Anchor" href="#13-数字签名和消息认证"></a> 1.3 数字签名和消息认证</h2>
+<p>​密码术提供了对消息进行数字签名的方法，可确保消息的真实性，完整性和不可否认性。大多数数字签名算法（例如DSA，ECDSA和EdDSA）都使用非对密钥对来完成：消息由私钥进行签名，签名由相应的公钥来完成验证。在银行系统中，数字签名用于签署和批准交易。在区块链中，签名交易允许用户将区块链资产从一个地址转移到另一个地址。密码学中使用消息认证算法（如：HMAC）和消息认证码（MAC codes）来证明消息的真实性，完整性和来源。</p>
+<h2 id="14-安全随机数"><a class="markdownIt-Anchor" href="#14-安全随机数"></a> 1.4 安全随机数</h2>
+<p>​安全随机数本质上是无法预测的，因此开发人员应在意它们，因为损坏的随机数生成器意味着系统或应用程序受到威胁或被黑。</p>
+<h2 id="15-秘钥交换"><a class="markdownIt-Anchor" href="#15-秘钥交换"></a> 1.5 秘钥交换</h2>
+<p>​密码学定义了密钥交换算法（例如Diffie-Hellman密钥交换和ECDH）和密钥生成方案，用于在打算使用加密算法安全地传输消息的两个节点之间安全地创建加密密钥。这种算法典型的应用就是在双方之间建立新的安全连接，例如，打开一个新的网站或连接到WiFi网络。<br />
+​<br />
+##1.6 加密哈希和密码哈希</p>
+<p>​密码学提供加密哈希函数（如SHA-3和BLAKE2），可将消息转换为消息摘要（固定长度的哈希值），并且同时要满足哈希值不能被还原回原始消息，且可以几乎唯一地标识输入值。例如，在区块链系统中，散列用于生成区块链地址，交易ID。在Git中，加密散列用于为文件和提交生成唯一的ID。密码哈希和秘钥导出函数对应的密码如（Scrypt 和 Argon2）通过安全地从基于文本的密码生成散列(或密钥) 来保护用户的密码以及密码加密的文件和数据，并注入随机参数（盐，salt）并使用大量迭代和计算资源以使密码破解速度变慢</p>
+<h2 id="17-密码学中的混乱和扩散"><a class="markdownIt-Anchor" href="#17-密码学中的混乱和扩散"></a> 1.7 密码学中的混乱和扩散</h2>
+<p>​在密码学中，哈希，加密算法和随机生成器遵循香农的混淆和扩散原理。<code>混乱</code>意味着密码形式的输出中的每个bit都应取决于密钥和输入数据的几个部分，因此无法建立直接映射关系。<code>扩散</code>意味着更改输入中的任一bit应更改输出中大约一半的bits。这些原理已包含在大多数哈希函数，MAC算法，随机数生成器，对称和非对称加密中。</p>
+<h2 id="18-加密库"><a class="markdownIt-Anchor" href="#18-加密库"></a> 1.8 加密库</h2>
+<p>​开发人员应该了解现代密码库的编程语言和平台，以及如何使用它们。使用密码学进行开发需要了解加密概念。从Internet复制/粘贴代码或遵循Blog中的示例可能会导致安全风险。加密库非常有用，但是您应该首先了解概念，然后选择适当的算法组合并仔细调整其参数。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/03/01/WorkDay/Genesis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Qi">
+      <meta itemprop="description" content="Mobile developer, also want to be a Gopher">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GoGoCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/01/WorkDay/Genesis/" class="post-title-link" itemprop="url">1. Genesis</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-01 14:37:12" itemprop="dateCreated datePublished" datetime="2020-03-01T14:37:12+08:00">2020-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-19 20:11:58" itemprop="dateModified" datetime="2020-11-19T20:11:58+08:00">2020-11-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5/" itemprop="url" rel="index"><span itemprop="name">工作日</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="gogocoding-blog-goes-online"><a class="markdownIt-Anchor" href="#gogocoding-blog-goes-online"></a> GoGoCoding blog goes online !!!</h1>
+<p>2020-03-01 14:37:12</p>
+<h1 id="是的算法练习开始~"><a class="markdownIt-Anchor" href="#是的算法练习开始~"></a> 是的！算法练习开始~</h1>
+<p>2020-08-01 18:49:58<br />
+<a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/39922?utm_campaign=guanwang&amp;utm_source=baidu-ad&amp;utm_medium=ppzq-pc&amp;utm_content=title&amp;utm_term=baidu-ad-ppzq-title">参考教程</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://gogocoding.github.io/2020/02/11/Forward/%E3%80%8A%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8F%A1%E4%BC%81%E4%B8%9A%E7%BA%A7%E6%8A%80%E6%9C%AF%E5%92%8C%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C%E3%80%8B%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -753,20 +1389,20 @@ Kafka也提供了一个消费消息的命令行工具，将存储的信息输出
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
